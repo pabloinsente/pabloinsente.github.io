@@ -4,8 +4,8 @@
     <li>
       <p class="sharetitle"> Share this: </p>
     </li>
-    <li class="facebook">
-      <a href="http://news.ycombinator.com/submitlink?u={{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url | uri_escape}}&t={{ page.title | default:"" | uri_escape}}" target="_blank">
+    <li class="facebook">      
+      <a href="https://www.facebook.com/sharer/sharer.php?u={{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url | uri_escape}}&t={{ page.title | default:"" | uri_escape}}" target="_blank">
         {% include social/facebook.svg %}
       </a>
     </li>
