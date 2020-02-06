@@ -1,8 +1,8 @@
-title: Hacker-Blog
-description: "A Jekyll Blog Theme For Hackers"
+title: Catbug's Blog
+description: "A blog about cognitive science, machine learning, and data science"
 author:
-  name: "SomeHacker"
-  email: "someone@somewebsite.somedomain"
+  name: "Catbug"
+  email: "pablo.caceres.maldonado@gmail.com"
   url: "https://ashishchaudhary.in/hacker-blog"
 
 baseurl: /
@@ -28,5 +28,5 @@ plugins:
   - jekyll-sitemap
 
 # Custom variables
-owner : "SomeHacker"
+owner : "Catbug"
 year : "2020"
