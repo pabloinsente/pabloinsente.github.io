@@ -1,7 +1,7 @@
-title: Catbug's Blog
+title: Catbug88's Blog
 description: "A blog about cognitive science, machine learning, and data science"
 author:
-  name: "Catbug"
+  name: "Catbug88"
   email: "pablo.caceres.maldonado@gmail.com"
   url: "http://pabloinsente.github.io/"
 
@@ -28,5 +28,5 @@ plugins:
   - jekyll-sitemap
 
 # Custom variables
-owner : "Catbug"
+owner : "Catbug88"
 year : "2020"
