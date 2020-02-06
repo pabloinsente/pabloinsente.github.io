@@ -5,7 +5,7 @@ author:
   email: "pablo.caceres.maldonado@gmail.com"
   url: "https://pabloinsente.github.io/pabloinsente/"
 
-baseurl: /
+baseurl: /pabloinsente
 
 source: .
 destination: ./_site
