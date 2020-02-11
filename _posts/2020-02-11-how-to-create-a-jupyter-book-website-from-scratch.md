@@ -4,7 +4,7 @@ I recently used the [jupyter-book](https://pypi.org/project/jupyter-book/) packa
 
 Instructions about how to build and deploy jupyter-book can be found in the [package documentation](https://jupyterbook.org/intro), which is an example of a jupyter-book in itself. Although the documentation is extensive and detailed, I had significant trouble building and deploying my notebooks in jupyter-book format. This is completely understandable, since jupyter-book is a project in active development, with lots of moving pieces, so sometimes the documentation may be unclear for some users (like me). 
 
-My purpose is to provide a step-by-step guide to build a minimalistic version of jupyter-book. I'll explain everything as plain as possible, without very minimal assumptions about background knowledge. I only assume you know what the terminal is, and that you can type stuff in it to make things happen in your computer. I think jupyter-book is an amazing project, and that providing a guide to build and deploy a book may significantly help to increment its adoption, saving time and trouble to potential users.
+My purpose is to provide a step-by-step guide to build a minimalistic version of jupyter-book. I'll explain everything as plain as possible, with very minimal assumptions about background knowledge. I only assume you know what the terminal is, and that you can type stuff in it to make things happen in your computer. I think jupyter-book is an amazing project, and that providing a guide to build and deploy a book may significantly help to increment its adoption, saving time and trouble to potential users.
 
 ## The situation
 
@@ -198,7 +198,7 @@ This will recursively copy the contents of your `notebook/` directory into the  
   cp intro.md my-book/content/
   ```
 
-Assuming that you have a `notebooks/` directory, an`images/` directory, and an `about.md` file, your `my-book/content/` directory should look like this now:
+Assuming that you have a `notebooks/` directory, an `images/` directory, and an `about.md` file, your `my-book/content/` directory should look like this now:
 
 ```bash
 # list directory with subdirectories
@@ -302,7 +302,7 @@ cp toc.yml my-book/_data/
 
 ### Step 8: add a `requirements.txt` file 
 
-The chances are that you are using some python package for your analysis. If so, you'll need to create a `requirements.txt` file containing the package names and versions for your project:
+Chances are that you are using some python package for your analysis. If so, you'll need to create a `requirements.txt` file containing the package names and versions for your project:
 
 ```bash
 # create an empty toc.yml file  
@@ -599,25 +599,25 @@ git commit -m "my first jupyter book"
 git push origin master
 ```
 
-Now, go to the repo`Setting` as shown in the picture below
+Now, go to the repo `Setting` as shown in the picture below
 
-![](images/screenshot-1.png)
+![Go to Settings](/assets/post-3/screenshot-1.png)
 
 Then, enable `GitHub pages` in your master branch as shown below
 
-![](images/screenshot-2.png)
+![Enable GitHub Pages](/assets/post-3/screenshot-2.png)
 
 If successful, you should see this message:
 
-![](images/screenshot-3.png)
+![Successful deploy](/assets/post-3/screenshot-3.png)
 
 After a couple of minutes (usually 1 or 2 minutes), you should see this message (refresh the page too see the update):
 
-![](images/screenshot-4.png)
+![Site published](/assets/post-3/screenshot-4.png)
 
 Finally if you click the link, and everything went well, your site should be ready to use! for instance, the page that I created for this tutorial can be found [here](https://my-first-jupyter-book.github.io/my-book-site/intro.html), and it looks like this:
 
-![](images/screenshot-5.png)
+![site on-line](/assets/post-3/screenshot-5.png)
 
 ### Bonus: updating your site
 
