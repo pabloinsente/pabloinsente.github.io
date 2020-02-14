@@ -1,3 +1,9 @@
+---
+title: The McCulloch-Pitts Artificial Neuron Model: theory and implementation
+published: true
+mathjax: true
+---
+
 ## History and definition
 
 
