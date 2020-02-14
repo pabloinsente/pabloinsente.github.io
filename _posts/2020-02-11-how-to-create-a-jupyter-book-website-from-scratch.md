@@ -1,3 +1,9 @@
+---
+title: How to Create a Jupyter-Book Website From Scratch
+published: true
+mathjax: true
+---
+
 # So, you want to build a website?
 
 I recently used the [jupyter-book](https://pypi.org/project/jupyter-book/) package to build an on-line book version of one of [my projects](https://github.com/pabloinsente/comp_models_cog_beh). This package simplifies the creation of websites hosting interactive [Jupyter Notebooks](https://jupyter.org/), by providing a series of scripts that will transform your Notebooks into Jekyll pages. [Jekyll](https://jekyllrb.com/) is a minimalistic static website and blog generator. Websites built with Jekyll can be freely and easily hosted with [GitHub pages](https://pages.github.com/).
@@ -645,6 +651,3 @@ That's it. I hope this tutorial was helpful.
 [This is my Twitter account](https://twitter.com/CodeBug88)
 
 [This is my GitHub account](https://github.com/pabloinsente)
-
-[Back to the top](#how-to-create-an-on-line-jupyter-book-from-scratch)
-
