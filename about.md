@@ -19,4 +19,4 @@ I still love basketball. I still do research, this time in computational cogniti
 
 If you want to contact me or learn more about me, visit my professional website [here](https://pablocaceres.org/)
 
-![site on-line](/assets/post-4/catbug.jpg)
+![site on-line](/assets/catbug.jpg)

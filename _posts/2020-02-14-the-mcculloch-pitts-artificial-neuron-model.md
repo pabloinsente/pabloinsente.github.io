@@ -2,10 +2,10 @@
 
 Alan Turing's formalization of computation as [Turing Machines](https://www.youtube.com/watch?v=dNRDvLACg5Q) provided the theoretical and mathematical foundations for modern computer science[<sup>1</sup>](#fn1). Turing Machines are an abstraction of a general computation device. Turing (1937) described these machines as composed by an "infinite tape" made of "cells" (divided into squares), a "tape head", and a table with a finite set of instructions. Each cell contained a symbol, either a 0 or a 1, serving as information storage. The tape head can move along the tape, one cell at the time, to read the cell information. Then, according to a table of instructions at that state and the cell information, the tape head can erase information, write information, or do nothing, to then move to the next cell at the left or the right. In the next cell, the tape head would again do something according to the table of instructions and the cell information, to then repeat the process until the last instruction in the table of instructions. Figure 1 shows a representation of a Turing machine.
 
-Figure 1
+**Figure 1**
 
 
-![site on-line](/assets/post-4/Turing-machine.svg)
+![site on-line](/assets/post-4/Turing-machine.png)
 
 The particularities of Turing's description of Turing Machines are not relevant. You can envision a different way to implement the same general computing device. Indeed, alternative models of computation exist, such as "lambda calculus" and "cellular automata" (Fernández, 2009). The crucial part of Turing's proposal was the articulation of a machine capable to implement *any computable program*. The *computable* part of the last phrase is important because as Turing demonstrated, there are functions that can not be computed, like the [*Entscheidungsproblem*](https://en.wikipedia.org/wiki/Entscheidungsproblem) (a famous problem in mathematics formulated by [David Hilbert](https://en.wikipedia.org/wiki/David_Hilbert) in 1928), one of the problems that motivated Turing's work in the first place. 
 
@@ -20,10 +20,10 @@ The heart of the McCulloch and Pitts idea is that given the *all-or-none* charac
 
 <span id="fn1"> *Footnote* 1: a detalied examination of the Turin Machine is beyond the scope of this tutorial. For an extended explanation of Turing Machines see https://plato.stanford.edu/entries/turing-machine/#DefiTuriMach </span>
 
-Figure 2
+**Figure 2**
 
 
-![site on-line](/assets/post-4/neuron-synapse.svg)
+![site on-line](/assets/post-4/neuron-synapse.png)
 
 Neurons communicate with each other by passing *electro-chemical signals* from the axon terminals in the pre-synaptic neuron to the dendrites in the post-synaptic neuron. Usually, each neuron connects to hundreds or thousands of neurons. For a neuron to "*fire*", certain voltage *threshold* must be passed. The *combined excitatory and inhibitory input* received by the post-synaptic neuron from the pre-synaptic neurons determines whether the neuron passes the threshold and fires. Is this *firing* or *spiking* behavior that McCulloch and Pitts modeled computationally. Furthermore, by carefully calibrating the combination of inhibitory and excitatory signals passed to a neuron, McCulloch and Pitts were able to emulate the behavior of a few *boolean functions* or *logical gates*, like the *AND* gate and the *OR* gate. Thinking in this process abstractly, neurons can be seen as biological computational devices, in the sense that they can receive inputs, apply calculations over those inputs algorithmically, and then produce outputs.
 
@@ -54,16 +54,16 @@ $$
 
 Where  $I_1, I_2,..., I_N$ are binary input values  $\in\{0,1\}$ ;  $W_1, W_2,..., W_N$ are weights associated with each input $\in\{-1,1\}$ ; $Sum$ is the weighted sum of inputs; and $T$ is a predefined threshold value for the neuron activation (i.e., *firing*). **Figure 3** shows a graphical representation of the McCulloch-Pitts artificial neuron.
 
-Figure 3
+**Figure 3**
 
 
-![site on-line](/assets/post-4/mp-neuron.svg)
+![site on-line](/assets/post-4/mp-neuron.png)
 
 An input is considered *excitatory* when its contribution to the weighted sum is positive, for instance $I_1*W_1 = 1 * 1 = 1$; whereas an input is considered *inhibitory* when its contribution to the weighted sum is negative, for instance $I_1*W_1 = 1 * -1 = -1$. If the value of $Sum$ is $\geq$ $T$, the neuron fires, otherwise, it does not. **Figure 4** shows a graphical representation of the threshold function.
 
-Figure 4
+**Figure 4**
 
-![site on-line](/assets/post-4/linear-threshold-function.svg)
+![site on-line](/assets/post-4/linear-threshold-function.png)
 
 This is known as a *step-function*, where the $y$-axis encodes the activation-state of the neuron, and the $Sum$-axis encodes the output of the weighted sum of inputs.
 
@@ -134,7 +134,7 @@ print(f'Activation: {activation}')
     Activation: 0
 
 
-## Application: boolean algebra using the MccCulloch-Pitts artificial neuron
+## Application: boolean algebra using the McCulloch-Pitts artificial neuron
 
 Understanding how logical thinking works has been one of the main goals of cognitive scientists since the creation of the field. One way to approach the study of logical thinking is by building an artificial system able to perform logical operations. [*Truth tables*](https://en.wikipedia.org/wiki/Truth_table) are a schematic way to express the behavior of *boolean functions*, which are essentially logical operations. Here, we will use the McCulloch-Pitts model to replicate the behavior of a few boolean functions, as expressed in their respective truth tables. Notice that I'm using the term "function" to describe boolean logic, but you may find that the term "logic gate" is also widely used, particularly in the electronic circuits literature where this kind of function is fundamental.
 
@@ -142,7 +142,8 @@ Understanding how logical thinking works has been one of the main goals of cogni
 
 The *AND* function is "activated" only when all the incoming inputs are "on", this is, it outputs a 1 only when all inputs are 1. In "neural" terms, the neuron *fires* when all the incoming signals are *excitatory*. On a more abstract level, think in a situation where you would decide that something is "true" or you would say "yes", depending on the value of some "conditions" or "variables". This relationship is expressed in **Table 1**. 
 
-<center>Table 1: Truth Table For AND Function</center>
+**Table 1: Truth Table For AND Function**
+
 | A | B | Output |
 |---|---|--------|
 | 0 | 0 | 0      |
@@ -152,7 +153,8 @@ The *AND* function is "activated" only when all the incoming inputs are "on", th
 
 Now, imagine that you are deciding whether to watch a movie or not. In this simplified scenario, you would watch the movie *only if* the movie features Samuel L. Jackson AND the director is Quentin Tarantino. Now the truth table looks like this:
 
-<center>Table 2: Movie Decision Table</center>
+**Table 2: Movie Decision Table**
+
 | Samuel L. Jackson | Quentin Tarantino | Watch the movie |
 |-------------------|-------------------|-----------------|
 | No                | No                | No              |
@@ -237,7 +239,8 @@ As expected, only the last movie, with Samuel L. Jackson as an actor and Quentin
 
 The *OR* function is "activated" when *at least one* of the incoming inputs is "on". In "neural" terms, the neuron *fires* when at least one of the incoming signals is *excitatory*. This relationship is expressed in **Table 3**.
 
-<center>Table 3: Truth Table For OR Function</center>
+**Table 3: Truth Table For OR Function**
+
 | A | B | Output |
 |---|---|--------|
 | 0 | 0 | 0      |
@@ -247,7 +250,8 @@ The *OR* function is "activated" when *at least one* of the incoming inputs is "
 
 Imagine that you decide to be flexible about your decision criteria. Now, you will watch the movie *if at least one* of your favorite stars, Samuel L. Jackson or Quentin Tarantino, is involved in the movie. Now, the truth table looks like this:
 
-<center>Table 4: Movie Decision Table</center>
+**Table 4: Movie Decision Table**
+
 | Samuel L. Jackson | Quentin Tarantino | Watch the movie |
 |-------------------|-------------------|-----------------|
 | No                | No                | No              |
@@ -296,7 +300,8 @@ As you can probably appreciate by now, the only thing we needed to change was th
 
 The *OR* function is "activated" when *all* the incoming inputs are "off". In this sense, it is the inverse of the OR function. In "neural" terms, the neuron *fires* when all the signals are *inhibitory*. This relationship is expressed in **Table 5**. 
 
-<center>Table 5: Truth Table For OR Function</center>
+**Table 5: Truth Table For OR Function**
+
 | A | B | Output |
 |---|---|--------|
 | 0 | 0 | 1      |
@@ -306,7 +311,8 @@ The *OR* function is "activated" when *all* the incoming inputs are "off". In th
 
 This time, imagine that you got saturated of watching Samuel L. Jackson and/or Quentin Tarantino movies, and you decide you only watch movies where both are absent. The presence of even one of them is unacceptable for you. The new truth table looks like this:
 
-<center>Table 6: Movie Decision Table</center>
+**Table 6: Movie Decision Table**
+
 | Samuel L. Jackson | Quentin Tarantino | Watch the movie |
 |-------------------|-------------------|-----------------|
 | No                | No                | Yes             |
