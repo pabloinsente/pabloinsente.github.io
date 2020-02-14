@@ -5,7 +5,7 @@ Alan Turing's formalization of computation as [Turing Machines](https://www.yout
 
 **Figure 1**
 
-<img src=/assets/post-4/Turing-machine.png width='600' height='YYY'/>
+<img src="/assets/post-4/Turing-machine.png" width='600' height='YYY'/>
 
 
 The particularities of Turing's description of Turing Machines are not relevant. You can envision a different way to implement the same general computing device. Indeed, alternative models of computation exist, such as "lambda calculus" and "cellular automata" (Fernández, 2009). The crucial part of Turing's proposal was the articulation of a machine capable to implement *any computable program*. The *computable* part of the last phrase is important because as Turing demonstrated, there are functions that can not be computed, like the [*Entscheidungsproblem*](https://en.wikipedia.org/wiki/Entscheidungsproblem) (a famous problem in mathematics formulated by [David Hilbert](https://en.wikipedia.org/wiki/David_Hilbert) in 1928), one of the problems that motivated Turing's work in the first place. 
@@ -23,7 +23,7 @@ The heart of the McCulloch and Pitts idea is that given the *all-or-none* charac
 
 **Figure 2**
 
-<img src=/assets/post-4/neuron-synapse.png width='600' height='YYY'/>
+<img src="/assets/post-4/neuron-synapse.png" width='600' height='YYY'/>
 
 Neurons communicate with each other by passing *electro-chemical signals* from the axon terminals in the pre-synaptic neuron to the dendrites in the post-synaptic neuron. Usually, each neuron connects to hundreds or thousands of neurons. For a neuron to "*fire*", certain voltage *threshold* must be passed. The *combined excitatory and inhibitory input* received by the post-synaptic neuron from the pre-synaptic neurons determines whether the neuron passes the threshold and fires. Is this *firing* or *spiking* behavior that McCulloch and Pitts modeled computationally. Furthermore, by carefully calibrating the combination of inhibitory and excitatory signals passed to a neuron, McCulloch and Pitts were able to emulate the behavior of a few *boolean functions* or *logical gates*, like the *AND* gate and the *OR* gate. Thinking in this process abstractly, neurons can be seen as biological computational devices, in the sense that they can receive inputs, apply calculations over those inputs algorithmically, and then produce outputs.
 
@@ -56,13 +56,13 @@ Where  $I_1, I_2,..., I_N$ are binary input values  $\in\{0,1\}$ ;  $W_1, W_2,..
 
 **Figure 3**
 
-<img src=/assets/post-4/mp-neuron.png width='250' height='YYY'/>
+<img src="/assets/post-4/mp-neuron.png" width='250' height='YYY'/>
 
 An input is considered *excitatory* when its contribution to the weighted sum is positive, for instance $I_1*W_1 = 1 * 1 = 1$; whereas an input is considered *inhibitory* when its contribution to the weighted sum is negative, for instance $I_1*W_1 = 1 * -1 = -1$. If the value of $Sum$ is $\geq$ $T$, the neuron fires, otherwise, it does not. **Figure 4** shows a graphical representation of the threshold function.
 
 **Figure 4**
 
-<img src=/assets/post-4/linear-threshold-function.png width='400' height='YYY'/>
+<img src="/assets/post-4/linear-threshold-function.png" width='400' height='YYY'/>
 
 This is known as a *step-function*, where the $y$-axis encodes the activation-state of the neuron, and the $Sum$-axis encodes the output of the weighted sum of inputs.
 
