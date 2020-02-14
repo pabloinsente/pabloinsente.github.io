@@ -1,11 +1,12 @@
 ## History and definition
 
+
 Alan Turing's formalization of computation as [Turing Machines](https://www.youtube.com/watch?v=dNRDvLACg5Q) provided the theoretical and mathematical foundations for modern computer science[<sup>1</sup>](#fn1). Turing Machines are an abstraction of a general computation device. Turing (1937) described these machines as composed by an "infinite tape" made of "cells" (divided into squares), a "tape head", and a table with a finite set of instructions. Each cell contained a symbol, either a 0 or a 1, serving as information storage. The tape head can move along the tape, one cell at the time, to read the cell information. Then, according to a table of instructions at that state and the cell information, the tape head can erase information, write information, or do nothing, to then move to the next cell at the left or the right. In the next cell, the tape head would again do something according to the table of instructions and the cell information, to then repeat the process until the last instruction in the table of instructions. Figure 1 shows a representation of a Turing machine.
 
 **Figure 1**
 
+<img src=/assets/post-4/Turing-machine.png width='600' height='YYY'/>
 
-![site on-line](/assets/post-4/Turing-machine.png)
 
 The particularities of Turing's description of Turing Machines are not relevant. You can envision a different way to implement the same general computing device. Indeed, alternative models of computation exist, such as "lambda calculus" and "cellular automata" (Fernández, 2009). The crucial part of Turing's proposal was the articulation of a machine capable to implement *any computable program*. The *computable* part of the last phrase is important because as Turing demonstrated, there are functions that can not be computed, like the [*Entscheidungsproblem*](https://en.wikipedia.org/wiki/Entscheidungsproblem) (a famous problem in mathematics formulated by [David Hilbert](https://en.wikipedia.org/wiki/David_Hilbert) in 1928), one of the problems that motivated Turing's work in the first place. 
 
@@ -22,8 +23,7 @@ The heart of the McCulloch and Pitts idea is that given the *all-or-none* charac
 
 **Figure 2**
 
-
-![site on-line](/assets/post-4/neuron-synapse.png)
+<img src=/assets/post-4/neuron-synapse.png width='600' height='YYY'/>
 
 Neurons communicate with each other by passing *electro-chemical signals* from the axon terminals in the pre-synaptic neuron to the dendrites in the post-synaptic neuron. Usually, each neuron connects to hundreds or thousands of neurons. For a neuron to "*fire*", certain voltage *threshold* must be passed. The *combined excitatory and inhibitory input* received by the post-synaptic neuron from the pre-synaptic neurons determines whether the neuron passes the threshold and fires. Is this *firing* or *spiking* behavior that McCulloch and Pitts modeled computationally. Furthermore, by carefully calibrating the combination of inhibitory and excitatory signals passed to a neuron, McCulloch and Pitts were able to emulate the behavior of a few *boolean functions* or *logical gates*, like the *AND* gate and the *OR* gate. Thinking in this process abstractly, neurons can be seen as biological computational devices, in the sense that they can receive inputs, apply calculations over those inputs algorithmically, and then produce outputs.
 
@@ -56,14 +56,13 @@ Where  $I_1, I_2,..., I_N$ are binary input values  $\in\{0,1\}$ ;  $W_1, W_2,..
 
 **Figure 3**
 
-
-![site on-line](/assets/post-4/mp-neuron.png)
+<img src=/assets/post-4/mp-neuron.png width='250' height='YYY'/>
 
 An input is considered *excitatory* when its contribution to the weighted sum is positive, for instance $I_1*W_1 = 1 * 1 = 1$; whereas an input is considered *inhibitory* when its contribution to the weighted sum is negative, for instance $I_1*W_1 = 1 * -1 = -1$. If the value of $Sum$ is $\geq$ $T$, the neuron fires, otherwise, it does not. **Figure 4** shows a graphical representation of the threshold function.
 
 **Figure 4**
 
-![site on-line](/assets/post-4/linear-threshold-function.png)
+<img src=/assets/post-4/linear-threshold-function.png width='400' height='YYY'/>
 
 This is known as a *step-function*, where the $y$-axis encodes the activation-state of the neuron, and the $Sum$-axis encodes the output of the weighted sum of inputs.
 
