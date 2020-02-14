@@ -19,4 +19,4 @@ I still love basketball. I still do research, this time in computational cogniti
 
 If you want to contact me or learn more about me, visit my professional website [here](https://pablocaceres.org/)
 
-<img src="https://github.com/pabloinsente/pabloinsente.github.io/blob/master/assets/Catbug_by_sircinnamon-d5riz9k.jpg" alt="Catbug" height="30%" width="30%">
+![site on-line](/assets/post-4/catbug.jpg)
