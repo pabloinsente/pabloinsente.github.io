@@ -1,5 +1,5 @@
 ---
-title: The McCulloch-Pitts Artificial Neuron Model: theory and implementation
+title: The McCulloch-Pitts Artificial Neuron Model - Theory and Implementation
 published: true
 mathjax: true
 ---
