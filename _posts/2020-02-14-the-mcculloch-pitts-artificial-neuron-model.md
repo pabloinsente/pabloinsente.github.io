@@ -2,7 +2,8 @@
 
 Alan Turing's formalization of computation as [Turing Machines](https://www.youtube.com/watch?v=dNRDvLACg5Q) provided the theoretical and mathematical foundations for modern computer science[<sup>1</sup>](#fn1). Turing Machines are an abstraction of a general computation device. Turing (1937) described these machines as composed by an "infinite tape" made of "cells" (divided into squares), a "tape head", and a table with a finite set of instructions. Each cell contained a symbol, either a 0 or a 1, serving as information storage. The tape head can move along the tape, one cell at the time, to read the cell information. Then, according to a table of instructions at that state and the cell information, the tape head can erase information, write information, or do nothing, to then move to the next cell at the left or the right. In the next cell, the tape head would again do something according to the table of instructions and the cell information, to then repeat the process until the last instruction in the table of instructions. Figure 1 shows a representation of a Turing machine.
 
-<center>Figure 1<center/>
+Figure 1
+
 
 ![site on-line](/assets/post-4/Turing-machine.svg)
 
@@ -19,7 +20,8 @@ The heart of the McCulloch and Pitts idea is that given the *all-or-none* charac
 
 <span id="fn1"> *Footnote* 1: a detalied examination of the Turin Machine is beyond the scope of this tutorial. For an extended explanation of Turing Machines see https://plato.stanford.edu/entries/turing-machine/#DefiTuriMach </span>
 
-<center>Figure 2<center/>
+Figure 2
+
 
 ![site on-line](/assets/post-4/neuron-synapse.svg)
 
@@ -52,13 +54,15 @@ $$
 
 Where  $I_1, I_2,..., I_N$ are binary input values  $\in\{0,1\}$ ;  $W_1, W_2,..., W_N$ are weights associated with each input $\in\{-1,1\}$ ; $Sum$ is the weighted sum of inputs; and $T$ is a predefined threshold value for the neuron activation (i.e., *firing*). **Figure 3** shows a graphical representation of the McCulloch-Pitts artificial neuron.
 
-<center>Figure 3<center/>
+Figure 3
+
 
 ![site on-line](/assets/post-4/mp-neuron.svg)
 
 An input is considered *excitatory* when its contribution to the weighted sum is positive, for instance $I_1*W_1 = 1 * 1 = 1$; whereas an input is considered *inhibitory* when its contribution to the weighted sum is negative, for instance $I_1*W_1 = 1 * -1 = -1$. If the value of $Sum$ is $\geq$ $T$, the neuron fires, otherwise, it does not. **Figure 4** shows a graphical representation of the threshold function.
 
-<center>Figure 4</center>
+Figure 4
+
 ![site on-line](/assets/post-4/linear-threshold-function.svg)
 
 This is known as a *step-function*, where the $y$-axis encodes the activation-state of the neuron, and the $Sum$-axis encodes the output of the weighted sum of inputs.
