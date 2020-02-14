@@ -64,7 +64,7 @@ Where  $I_1, I_2,..., I_N$ are binary input values  $\in\{0,1\}$ ;  $W_1, W_2,..
 
 <img src="/assets/post-4/mp-neuron.png" width='250' height='YYY'/>
 
-An input is considered *excitatory* when its contribution to the weighted sum is positive, for instance $I_1*W_1 = 1 * 1 = 1$; whereas an input is considered *inhibitory* when its contribution to the weighted sum is negative, for instance $I_1*W_1 = 1 * -1 = -1$. If the value of $Sum$ is $\geq$ $T$, the neuron fires, otherwise, it does not. **Figure 4** shows a graphical representation of the threshold function.
+An input is considered *excitatory* when its contribution to the weighted sum is positive, for instance $I_1*W_1 = 1 * 1 = 1$ ; whereas an input is considered *inhibitory* when its contribution to the weighted sum is negative, for instance $I_1*W_1 = 1 * -1 = -1$. If the value of $Sum$ is $\geq$ $T$, the neuron fires, otherwise, it does not. **Figure 4** shows a graphical representation of the threshold function.
 
 **Figure 4**
 
