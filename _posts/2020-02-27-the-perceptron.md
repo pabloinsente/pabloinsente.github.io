@@ -135,10 +135,10 @@ z=\sum_iw_ix_i\geq\theta
 $$
 
 Now, if we subtract $\theta$ from both sides we obtain:
-
 $$
-z=\sum_iw_ix_i-\theta\geq\theta - \theta 
+z=\sum_iw_ix_i-\theta\geq\theta - \theta
 $$
+then:
 $$
 z=\sum_iw_ix_i-\theta\geq0
 $$
@@ -164,6 +164,8 @@ $$
 \end{cases}
 \end{equation}
 $$
+
+
 where $z$ is the output of the linear aggregation function.
 
 ### Learning procedure
