@@ -61,7 +61,7 @@ At this point, you may be wondering what's the difference between the perceptron
 
 **Figure 1**
 
-<img src="/assets/post-6/adaline-math.png" width="80%"/>
+<img src="/assets/post-6/adaline-math.png" width="100%"/>
 
 ### The ADALINE error surface
 
@@ -75,7 +75,7 @@ In a single iteration, the error in the ADALINE is calculated as $(y - \hat{y})^
 
 **Figure 2**
 
-<img src="/assets/post-6/least-squares.png" width="80%"/>
+<img src="/assets/post-6/least-squares.png" width="60%"/>
 
 The goal of the least-squares algorithm is to generate as little cumulative error as possible. This equals to find the line that best fit the points in the cartesian plane. Since the weights are the *only values* we can adjust to change the shape of the line, **different pairs of weights will generate different means of squared errors**. This is our gateway to the idea of finding a *minima* in an error surface. Imagine the following: you are trying to find the set of weights, $w_1$ and $w_2$ that would generate the smallest mean of squared error. Your weights can take values ranging from 0 to 1, and your error can go from 0 to 1 (or 0% to 100% thinking proportionally). Now, you decide to plot the mean of squared errors against all possible combinations of $w_1$ and $w_2$. **Figure 3** shows the resulting surface:
 
@@ -182,7 +182,7 @@ Imagine that you are hiker at the top of a mountain in the side of a valley. Sim
 
 **Figure 5**
 
-<img src="/assets/post-6/gradient-hiker.png" width="80%"/>
+<img src="/assets/post-6/gradient-hiker.png" width="60%"/>
 
 
 For conciseness, let's define the error of the network as function $E$.  
