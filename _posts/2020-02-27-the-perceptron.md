@@ -135,12 +135,13 @@ z=\sum_iw_ix_i\geq\theta
 $$
 
 Now, if we subtract $\theta$ from both sides we obtain:  
+
 $$
 z=\sum_iw_ix_i-\theta\geq\theta - \theta
 $$
 
-
 then:  
+
 $$
 z=\sum_iw_ix_i-\theta\geq0
 $$
@@ -158,13 +159,11 @@ Now, the weight for $b$ can be learned along with the weights for the input valu
 The threshold function for the perceptron is defined as:  
 
 $$
-\begin{equation}
 \hat{y}=f(z)
 \begin{cases}
 +1, &\text{if z>0}\\
 -1, &\text{otherwise}
 \end{cases}
-\end{equation}
 $$
 
 
@@ -182,14 +181,13 @@ The error-corrective learning rule is as follow:
 - then, use a portion of that value to update the weights of the network
 
 This can be expressed as:
+
 $$
 w_{k+1} = w_k + \Delta w_k
 $$
 
-
-
-
 The $\Delta w_k$ is computed as:
+
 $$
 \Delta w_k = \eta(y - \hat{y})x_k
 $$
