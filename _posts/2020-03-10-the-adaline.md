@@ -73,12 +73,14 @@ In a single iteration, the error in the ADALINE is calculated as $(y - \hat{y})^
 
 **Figure 2** shows a visual example of the least-squares method with one predictor. The horizontal axis represents the $x_1$ predictor (or feature), the vertical axis represents the predicted value $\hat{y}$, and the pinkish dots represent the expected values (real data points). If you remember your high-school algebra, you may know that $\hat{y}=w_1b+w_2x_1$ defines a line a cartesian plane. They key, is that the *intercept* (i.e., where the line begins) and the *slope* (i.e., degree of inclination) of the line is determined by the $w_1$ and $w_2$ weights. The $b$ and $x_1$ values are given, *do not change*, therefore, they can't influence the shape of the line.
 
-**Figure 2 **
+**Figure 2**
+
 <img src="/assets/post-6/least-squares.png" width="80%"/>
 
 The goal of the least-squares algorithm is to generate as little cumulative error as possible. This equals to find the line that best fit the points in the cartesian plane. Since the weights are the *only values* we can adjust to change the shape of the line, **different pairs of weights will generate different means of squared errors**. This is our gateway to the idea of finding a *minima* in an error surface. Imagine the following: you are trying to find the set of weights, $w_1$ and $w_2$ that would generate the smallest mean of squared error. Your weights can take values ranging from 0 to 1, and your error can go from 0 to 1 (or 0% to 100% thinking proportionally). Now, you decide to plot the mean of squared errors against all possible combinations of $w_1$ and $w_2$. **Figure 3** shows the resulting surface:
 
-**Figure 3** 
+**Figure 3**
+ 
 <img src="/assets/post-6/sse-surface.png" width="100%"/>
 
 
@@ -127,7 +129,8 @@ scene = dict(xaxis_title='w<sub>1</sub>',
 
 Alas, the bad news is that most problems worth solving in cognitive science are *nonconvex*, meaning that finding the so-called global minima becomes extremely hard, and in most cases can't be guaranteed. In the 3D case, instead of having a nice cone-like error surface, we obtain something more similar to a complex landscape of mountains and valleys, like the Cordillera de Los Andes or the Rocky Mountains. **Figure 4** shows an example of such a landscape:
 
-** Figure 4 **
+**Figure 4**
+
 <img src="/assets/post-6/sse-nonconvex.png" width="100%"/>
 
 
@@ -177,7 +180,8 @@ By now, we know that we want to find a set of parameters that minimize the mean 
 
 Imagine that you are hiker at the top of a mountain in the side of a valley. Similar to **Figure 5**. Your goal is to reach the base of the valley. Logically, you would want to walk downhill over the hillside until you reach the base. In the context of training neural networks, this is what we call "descending a gradient". Now, it would be nice if you could do this *efficiently*, meaning to follow the path that will get you faster to the base of the valley. In gradient descent terms, this equals to move along the error surface in the direction where the gradient (degree of inclination) is steepest. As a hiker, you can visually inspect your surroundings to determine the best path. In an optimization context, we can use the [chain-rule of calculus](https://en.wikipedia.org/wiki/Chain_rule) to estimate the gradient and adjust the weights.
 
-**Figure 5 **
+**Figure 5**
+
 <img src="/assets/post-6/gradient-hiker.png" width="80%"/>
 
 
@@ -204,18 +208,19 @@ $$
 
 Now comes the fun part. By applying the chain-rule of calculus, the gradient of $e$:
 
-<img src="/assets/post-6/gradient-math.png" width="80%"/>
+<img src="/assets/post-6/gradient-math.png" width="60%"/>
 
 
 This may come as a surprise to you, but the gradient, in this case, is as simple as **2 times the difference between the expected and predicted value**. Now we know the $\hat{\Delta}$ we need to update the weights at each iteration. Finally, the rule to update the weights says the following: "**change the weight, $w_j$, by a portion, $\eta$, of the calculated negative gradient, $\Delta_j$**". We use the negative of the gradient because we want to go "downhill", otherwise, you will be climbing the surface in the wrong direction. Formally, this is:
 
-<img src="/assets/post-6/weight-update.png" width="60%"/>
+<img src="/assets/post-6/weight-update.png" width="40%"/>
 
 
 We use a portion ($\eta$) of the gradient instead of the full value to avoid "bouncing around" the minima of the function. This is easier to understand by looking at a simplified example as in **Figure 6**
 
 **Figure 6**
-<img src="/assets/post-6/step-size.png" width="80%"/>
+
+<img src="/assets/post-6/step-size.png" width="60%"/>
 
 
 In the left pane, the value of $\eta$ is too large to allow the ball to reach the minima of the function so the ball "bounces around" the minima without reaching it. In the right pane, the value of $\eta$ is small enough to allow the ball to reach the minima after a few iterations. Adjusting the step-size or learning rate to find a minimum is usually solved by semi-automatically searching over different values of $\eta$ when training networks. "Why don't use very small values of $\eta$ all the time?" Because there is a trade-off on training time. Smaller values of $\eta$ may help to find the minima, but it will also extend the training time as usually more steps are needed to find the solution.
@@ -693,8 +698,9 @@ $$
 
 That's a huge number. With enough data, the network should learn to reduce the $w_i$ until are small enough to make sensible predictions. But, if you start with predictions that are too far-off, the network may become unable to get back on track. **Figure 7** succinctly illustrate this idea.  
 
-**Figure 7** 
-<img src="/assets/post-6/error-explotion.png" width="80%"/>
+**Figure 7**  
+
+<img src="/assets/post-6/error-explotion.png" width="60%"/>
 
 ### Linear separability constraint
 
