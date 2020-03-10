@@ -128,17 +128,19 @@ $$
 z=b+\sum_{i=1}^nw_ix_i=w_0x_0+w_1 x_1+...+w_nx_n
 $$
 
-The $z$ output is used as input for the threshold function $f(z)$. The $b$ constant added at the beginning, the *bias term*, is a way to simplify learning a good threshold value for the network. Consider the original threshold function, which compares the weighted sum of inputs to a threshold $\theta$:
+The $z$ output is used as input for the threshold function $f(z)$. The $b$ constant added at the beginning, the *bias term*, is a way to simplify learning a good threshold value for the network. Consider the original threshold function, which compares the weighted sum of inputs to a threshold $\theta$:  
 
 $$
 z=\sum_iw_ix_i\geq\theta 
 $$
 
-Now, if we subtract $\theta$ from both sides we obtain:
+Now, if we subtract $\theta$ from both sides we obtain:  
 $$
 z=\sum_iw_ix_i-\theta\geq\theta - \theta
 $$
-then:
+
+
+then:  
 $$
 z=\sum_iw_ix_i-\theta\geq0
 $$
@@ -181,16 +183,18 @@ The error-corrective learning rule is as follow:
 
 This can be expressed as:
 $$
-\begin{equation*}
 w_{k+1} = w_k + \Delta w_k
-\end{equation*}
 $$
+
+
+
+
 The $\Delta w_k$ is computed as:
 $$
-\begin{equation*}
 \Delta w_k = \eta(y - \hat{y})x_k
-\end{equation*}
 $$
+
+
 where:
 - $w_k$ is the weight for case $k$
 - $\eta$ is the learning rate (0 -1 value)
