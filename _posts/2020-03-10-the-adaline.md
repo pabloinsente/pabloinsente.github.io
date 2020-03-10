@@ -57,7 +57,7 @@ where $\hat{y}$ is the output of the linear function.
 
 ### The Perceptron and ADALINE fundamental difference
 
-At this point, you may be wondering what's the difference between the perceptron and the ADALINE considering that both end up using a threshold function to make classifications. The difference is the **learning procedure to update the weight** of the network. The perceptron updates the weights by computing the difference between the expected and predicted *class values*. In other words, the perceptron always compares +1 or -1 (predicted values) to +1 or -1 (expected values). An important consequence of this is that perceptron *only learns when errors are made*. In contrast, the ADALINE computes the difference between the expected class value $y$ (+1 or -1), and the *continuous* output value $\hat{y}$ from the linear function, which can be *any real number*. This is crucial because it means the ADALINE can learn *even when no classification mistake has been made*. This is a consequence of the fact that predicted class values $\hat{y}'$ do not influence the error computation. Since the ADALINE learns *all the time* and the perceptron only after errors, the ADALINE will find a solution faster than the perceptron for the same problem. **Figure 1** illustrate this difference in the paths and formulas highlighted in red.
+If you read [my previous article about the perceptron](https://pabloinsente.github.io/the-perceptron), you may be wondering what's the difference between the perceptron and the ADALINE considering that both end up using a threshold function to make classifications. The difference is the **learning procedure to update the weight** of the network. The perceptron updates the weights by computing the difference between the expected and predicted *class values*. In other words, the perceptron always compares +1 or -1 (predicted values) to +1 or -1 (expected values). An important consequence of this is that perceptron *only learns when errors are made*. In contrast, the ADALINE computes the difference between the expected class value $y$ (+1 or -1), and the *continuous* output value $\hat{y}$ from the linear function, which can be *any real number*. This is crucial because it means the ADALINE can learn *even when no classification mistake has been made*. This is a consequence of the fact that predicted class values $\hat{y}'$ do not influence the error computation. Since the ADALINE learns *all the time* and the perceptron only after errors, the ADALINE will find a solution faster than the perceptron for the same problem. **Figure 1** illustrate this difference in the paths and formulas highlighted in red.
 
 **Figure 1**
 
@@ -80,7 +80,7 @@ In a single iteration, the error in the ADALINE is calculated as $(y - \hat{y})^
 The goal of the least-squares algorithm is to generate as little cumulative error as possible. This equals to find the line that best fit the points in the cartesian plane. Since the weights are the *only values* we can adjust to change the shape of the line, **different pairs of weights will generate different means of squared errors**. This is our gateway to the idea of finding a *minima* in an error surface. Imagine the following: you are trying to find the set of weights, $w_1$ and $w_2$ that would generate the smallest mean of squared error. Your weights can take values ranging from 0 to 1, and your error can go from 0 to 1 (or 0% to 100% thinking proportionally). Now, you decide to plot the mean of squared errors against all possible combinations of $w_1$ and $w_2$. **Figure 3** shows the resulting surface:
 
 **Figure 3**
- 
+
 <img src="/assets/post-6/sse-surface.png" width="100%"/>
 
 
@@ -229,7 +229,7 @@ In the left pane, the value of $\eta$ is too large to allow the ball to reach th
 
 We will implement the ADALINE from scratch with `python` and `numpy`. The goal is to understand the perceptron step-by-step execution rather than achieving an elegant implementation. I'll break down each step into functions to ensemble everything at the end. 
 
-The first elements of the ADALINE are essentially the same as in the perceptron. Therefore, we could put those functions in a separate module and call the functions instead of writing them all over again. I'm not doing this to facilitate two things: to refresh the inner workings of the algorithm in code, and to provide with the full description for readers have not reviewed previous chapters. If you reviewed the perceptron chapter already, you may want to skip to the `Training loop - Learning procedure` section.
+The first elements of the ADALINE are essentially the same as in the perceptron. Therefore, we could put those functions in a separate module and call the functions instead of writing them all over again. I'm not doing this to facilitate two things: to refresh the inner workings of the algorithm in code, and to provide with the full description for readers have not read [the previous post](https://pabloinsente.github.io/the-perceptron). If you reviewed the perceptron post already, you may want to skip to the `Training loop - Learning procedure` section.
 
 ### Generate vector of random weights
 
@@ -297,7 +297,7 @@ Let's examine the fit method that implements the ADALINE learning procedure:
 * Create a vector of random weights by using the `random_weights` function with dimensionality equal to the number of columns in the feature matrix
 * Loop over the entire dataset `n_iter` times with `for pair in range(n_iter)`
 * Compute the inner product between the feature matrix $X$ and the weight vector $w$ by using the `net_input(X, w)` function
-* Compute the gradient of error with respecto to the weights `2*(y - output)`
+* Compute the gradient of error with respect to the weights `2*(y - output)`
 * Update the weights in proportion to the learning rate $\eta$ by `w[1:] += eta*(X.T @ gradient)` and `w[0] += eta*gradient.sum()`
 * Compute the MSE `mse = (((y - output)**2).sum())/len(y)`
 * Save the MSE for each iteration`mse_iteration.append(mse)`
@@ -418,7 +418,7 @@ df = albatross_df.append(owl_df, ignore_index=True)
 
 ### Plot synthetic dataset
 
-To appreaciate the difference in weight and wingspan between albatross and eagles, we can generate a 2-D chart.
+To appreciate the difference in weight and wingspan between albatross and eagles, we can generate a 2-D chart.
 
 
 ```python
@@ -489,7 +489,7 @@ alt.Chart(df).mark_image(
 
 
 
-From **Chart 1** is clear that the albatross is considerably larger than the owls, therefore the perceptron should be able to find a plane to separate the data relatively fast.
+From **Chart 1** is clear that the albatross is considerably larger than the owls, therefore the ADALINE should be able to find a plane to separate the data relatively fast.
 
 ### ADALINE training
 
@@ -520,7 +520,7 @@ print('ADALINE accuracy: %.2f%%' % accuracy)
     ADALINE accuracy: 99.50%
 
 
-After 12 runs, the ADALINE reached 99.5% accuracy, which is the *same accuracy that the perceptron achieved with 200 runs given the same data* (see "Perceptron training" section in "The Perceptron" chapter). A massive reduction in training time. As I mentioned before, this is related to the fact that the ADALINE learns (i.e., update the weights) after each iteration, instead of only after makes a classification mistake as the perceptron.
+After 12 runs, the ADALINE reached 99.5% accuracy, which is the *same accuracy that the perceptron achieved with 200 runs given the same data* (see "Perceptron training" section in [the perceptron post](https://pabloinsente.github.io/the-perceptron)). A massive reduction in training time. As I mentioned before, this is related to the fact that the ADALINE learns (i.e., update the weights) after each iteration, instead of only after makes a classification mistake as the perceptron.
 
 Examining the reduction in mean-squared-error at each time-step (**Chart 2**) reveals a trajectory where the error goes down really fast in the first few iterations, and then slow down as it approaches zero.
 
@@ -594,7 +594,7 @@ base.mark_line().encode(
 Although the ADALINE introduced a better training procedure, it did not fix the so-called linear separability constraint problem, the main limitation of the perceptron. Its training procedure it's also vulnerable to what sometimes is informally called "error explosion" or "gradient explosion". We will examine these two problems next.
 
 
-### Error and gradient explotion
+### Error and gradient explosion
 
 You may have noticed that the learning rate and iterations choice was pretty arbitrary. This is essentially unavoidable in the context of training neural networks with gradient descent methods. Nowadays, there are several "tricks" that can be applied to search for parameters like the learning rate $\eta$ more efficiently, but the problem of searching for those kinds of parameters persist. 
 
@@ -704,7 +704,7 @@ That's a huge number. With enough data, the network should learn to reduce the $
 
 ### Linear separability constraint
 
-We explored the linear separability constraint in detail in the perceptron Chapter, therefore we will explore this more briefly here. Let's generate a new dataset, with Albatroos and Condors. 
+We explored the linear separability constraint in detail in the perceptron Chapter, therefore we will explore this more briefly here. Let's generate a new dataset, with Albatross and Condors. 
 
 
 ```python
