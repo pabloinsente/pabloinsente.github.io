@@ -598,7 +598,7 @@ Although the ADALINE introduced a better training procedure, it did not fix the 
 
 You may have noticed that the learning rate and iterations choice was pretty arbitrary. This is essentially unavoidable in the context of training neural networks with gradient descent methods. Nowadays, there are several "tricks" that can be applied to search for parameters like the learning rate $\eta$ more efficiently, but the problem of searching for those kinds of parameters persist. 
 
-Now, a $\eta$=1e-10 (0.0000000001) looks very small. Let's try with a slightly smallest $\eta$=1e-9 and test the ADALINE again.
+Now, a $\eta$=1e-10 (0.0000000001) looks very small. Let's try with a slightly larger $\eta$=1e-9 and test the ADALINE again.
 
 
 ```python
@@ -681,8 +681,8 @@ line1 | line2 | (line1 + line2)
 </script>
 
 
-
-The results now look like a  mess. The network went from solving the problem in 12 iterations to an MSE of 4822,208,321,414 in the 5th iteration, and to a prediction accuracy equivalent to random guessing. Actually, if you try diminishing the learning rate even more, the MSE would be so large it would "overflow" or exceed the capacity of your computer to represent integers. 
+The results now look like a mess. The middle pane shows how the MSE error explodes almost immediately. The right pane is there just to show how absurd is the difference between the two $\eta$  values.
+The network went from solving the problem in 12 iterations to an MSE of 4822,208,321,414 in the 5th iteration, and to a prediction accuracy equivalent to random guessing. Actually, if you try increasing the learning rate even more, the MSE would be so large it would "overflow" or exceed the capacity of your computer to represent integers. 
 
 This is very strange. What is going on? In simple terms, the step-size is so large that after the first iteration, the error is so far-off from the minima of the function, that it can't find its way in the right direction after that. Instead, the error starts to spiral out of control until it blows up and your computer runs out of memory. Remember, the ADALINE computes the $\hat{y}$ by multiplying each feature by the weights. Consider a bird with $x_1 = 10,000$ and $x_2 = 300$. Let's compute the predicted value for that case:
 
