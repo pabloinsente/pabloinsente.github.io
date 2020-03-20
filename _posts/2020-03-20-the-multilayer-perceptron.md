@@ -25,12 +25,12 @@ Backpropagation remained dormant for a couple of years until Hinton picked it up
 
 ### Overcoming limitations and creating advantages
 
-Truth be told, "multilayer perceptron" is a terrible name for what Rumelhart, Hinton, and Williams introduced in the mid-'80s. It is a bad name because its most fundamental piece, the *training algorithm*, is completely different from [the one in the perceptron](https://com-cog-book.github.io/com-cog-book/features/perceptron.html#Learning-procedure). Therefore, a multilayer perceptron it is not simply "a perceptron with multiple layers" as the name suggests. True, it is a network composed of multiple neuron-like processing units but not every neuron-like processing unit is a perceptron. If you were to put together a bunch of Rossenblat's perceptron in sequence, you would obtain something very different from what most people today would call a multilayer perceptron. If anything, the multi-layer perceptron is more similar to the Widrow and Hoff ADALINE, and in fact, Widrow and Hoff did try multi-layer ADALINEs, known as MADALINEs (i.e., many ADALINEs), but they did not incorporate non-linear functions.
+Truth be told, "multilayer perceptron" is a terrible name for what Rumelhart, Hinton, and Williams introduced in the mid-'80s. It is a bad name because its most fundamental piece, the *training algorithm*, is completely different from [the one in the perceptron](https://pabloinsente.github.io/the-perceptron). Therefore, a multilayer perceptron it is not simply "a perceptron with multiple layers" as the name suggests. True, it is a network composed of multiple neuron-like processing units but not every neuron-like processing unit is a perceptron. If you were to put together a bunch of Rossenblat's perceptron in sequence, you would obtain something very different from what most people today would call a multilayer perceptron. If anything, the multi-layer perceptron is more similar to the Widrow and Hoff ADALINE, and in fact, Widrow and Hoff did try multi-layer ADALINEs, known as MADALINEs (i.e., many ADALINEs), but they did not incorporate non-linear functions.
 
 
-Now, the main reason for the resurgence of interest in neural networks was that finally someone designed an architecture that could overcome the perceptron and ADALINE limitations: **to solve problems requiring non-linear solutions**. Problems like the famous [XOR (exclusive or)](https://com-cog-book.github.io/com-cog-book/features/perceptron.html#Example-1:-the-XOR-problem) function (to learn more about it, see the "Limitations" section in the ["The Perceptron"](https://com-cog-book.github.io/com-cog-book/features/perceptron.html#Example-1:-the-XOR-problem) and ["The ADALINE"](https://com-cog-book.github.io/com-cog-book/features/adaline.html#ADALINE-limitations) chapters). 
+Now, the main reason for the resurgence of interest in neural networks was that finally someone designed an architecture that could overcome the perceptron and ADALINE limitations: **to solve problems requiring non-linear solutions**. Problems like the famous [XOR (exclusive or)](https://en.wikipedia.org/wiki/XOR_gate) function (to learn more about it, see the "Limitations" section in the ["The Perceptron"](https://pabloinsente.github.io/the-perceptron) and ["The ADALINE"](https://pabloinsente.github.io/the-adaline) blogposts). 
 
-Further, a side effect of the capacity to use multiple layers of non-linear units is that neural networks can form **complex internal representations of entities**. The perceptron and ADALINE did not have this capacity. They both are linear models, therefore, it doesn't matter how many layers of processing units you concatenate together, the representation learned by the network will be a linear model. You may as well dropped all the extra layers and the network eventually would learn the same solution that with multiple layers (see [Why adding multiple layers of processing units does not work](https://com-cog-book.github.io/com-cog-book/features/perceptron.html#Why-adding-multiple-layers-of-processing-units-does-not-work) for an explanation). This capacity is important in so far **complex multi-level representation of phenomena** is -probably- what the human mind does when solving problems in language, perception, learning, etc. 
+Further, a side effect of the capacity to use multiple layers of non-linear units is that neural networks can form **complex internal representations of entities**. The perceptron and ADALINE did not have this capacity. They both are linear models, therefore, it doesn't matter how many layers of processing units you concatenate together, the representation learned by the network will be a linear model. You may as well dropped all the extra layers and the network eventually would learn the same solution that with multiple layers (see [Why adding multiple layers of processing units does not work](https://pabloinsente.github.io/the-perceptron) for an explanation). This capacity is important in so far **complex multi-level representation of phenomena** is -probably- what the human mind does when solving problems in language, perception, learning, etc. 
 
 Finally, the backpropagation algorithm effectively **automates the so-called "feature engineering" process**. If you have ever done data analysis of any kind, you may have come across variables or features that were not in the original data but was **created by transforming or combining other variables**. For instance, you may have variables for income and education, and combine those to create a socio-economic status variable. That variable may have a predictive capacity above and beyond income and education in isolation. With a multilayer neural network with non-linear units trained with backpropagatio such a *transformation process happens automatically* in the intermediate or **"hidden" layers of the network**. Those intermediate representations often are hard or impossible to interpret for humans. They may make no sense whatsoever for us but somehow help to solve the pattern recognition problem at hand, so the network will learn that representation. Does this mean that neural nets learn different representations from the human brain? Maybe, maybe not. The problem is that we don't have direct access to the kind of representations learned by the brain either, and a neural net will seldom be trained with the same data that a human brain is trained in real life.
 
@@ -52,11 +52,11 @@ The linear aggregation function is the same as in the perceptron and the ADALINE
 
 A **vector** is a collection of *ordered numbers* or *scalars*. If you are familiar with data analysis, a vector is like a column or row in a dataframe. If you are familiar with programming, a vector is like an array or a list. A generic Vector $\bf{x}$ is defined as:
 
-<img src="/assets/post-7/multi-perceptron/vector.png" width="60%">
+<img src="/assets/post-7/vector.png" width="60%">
 
 A **matrix** is a *collection of vectors* or *lists of numbers*. In data analysis, this is equivalent to a 2-dimensional dataframe. In programming is equivalent to a multidimensional array or a list of lists. A generic matrix $W$ is defined as:
 
-<img src="/assets/post-7/multi-perceptron/matrix.png" width="80%">
+<img src="/assets/post-7/matrix.png" width="80%">
 
 Using this notation, let's look at a simplified example of a network with:
 
@@ -67,7 +67,7 @@ Like the one in **Figure 1**
 
 **Figure 1**
 
-<img src="/assets/post-7/multi-perceptron/simple-net.png" width="40%">
+<img src="/assets/post-7/simple-net.png" width="40%">
 
 The input vector for our first training example would look like:
 
@@ -120,15 +120,15 @@ $$
 
 The previous matrix operation in summation notation equals to:
 
-<img src="/assets/post-7/multi-perceptron/linear-function-multi-perceptron.png" width="70%">
+<img src="/assets/post-7/linear-function-multi-perceptron.png" width="70%">
 
-Here, $f$ is a function of each element of the vector $\bf{x}$ and each element of the matrix $W$. The $m$ index identifies the rows in $W^T$ and the rows in $\bf{z}$. The $n$ index indicates the columns in $W^T$ and the rows in $\bf{x}$. Notice that we add a $b$ bias term, that has the role to simplify learning a proper threshold for the function. If you are curious about that [read this](https://com-cog-book.github.io/com-cog-book/features/perceptron.html#Linear-aggregation-function). In sum, the **linear function is a weighted sum of the inputs plus a bias**.
+Here, $f$ is a function of each element of the vector $\bf{x}$ and each element of the matrix $W$. The $m$ index identifies the rows in $W^T$ and the rows in $\bf{z}$. The $n$ index indicates the columns in $W^T$ and the rows in $\bf{x}$. Notice that we add a $b$ bias term, that has the role to simplify learning a proper threshold for the function. If you are curious about that [read the "Linear aggregation function" section here](https://pabloinsente.github.io/the-perceptron). In sum, the **linear function is a weighted sum of the inputs plus a bias**.
 
 ### Sigmoid function
 
 Each element of the $\bf{z}$ vector becomes an input for the sigmoid function $\sigma$():
 
-<img src="/assets/post-7/multi-perceptron/sigmoid-function-multi-perceptron.png" width="60%">
+<img src="/assets/post-7/sigmoid-function-multi-perceptron.png" width="60%">
 
 The output of $\sigma(z_m)$ is another $m$ dimensional vector $a$, one entry for each unit in the hidden layer like:
 
@@ -244,7 +244,7 @@ The cost function is the **measure of "goodness" or "badness"** (depending on ho
 
 Nowadays, you would probably want to use different cost functions for different types of problems. In their original work, Rumelhart, Hinton, and Williams used the **sum of squared errors** defined as:
 
-<img src="/assets/post-7/multi-perceptron/cost-function.png" width="60%">
+<img src="/assets/post-7/cost-function.png" width="60%">
 
 ### Forward propagation
 
@@ -252,7 +252,7 @@ All neural networks can be divided into two parts: a **forward propagation phase
 
 **Figure 2**
 
-<img src="/assets/post-7/multi-perceptron/forward-pass.png" width="100%">
+<img src="/assets/post-7/forward-pass.png" width="100%">
 
 The *forward propagation* phase involves "chaining" all the steps we defined so far: the *linear function*, the *sigmoid function*, and the *threshold function*. Consider the network in **Figure 2**. Let's label the linear function as $\lambda()$, the sigmoid function as $\sigma()$, and the threshold function as $\tau()$. Now, the network in **Figure 2** can be represented as:
 
@@ -268,11 +268,11 @@ $$
 
 ### Backpropagation algorithm
 
-In the [ADALINE chapter](https://com-cog-book.github.io/com-cog-book/features/adaline.html#The-ADALINE-error-surface) I introduced the ideas of **searching for a set of weights that minimize the error via gradient descent**, and the difference between **convex and non-convex optimization**. If you have not read that section, I'll encourage you to read that first. Otherwise, the important part is to remember that since we are introducing nonlinearities in the network the error surface of the multilayer perceptron is [non-convex](https://arxiv.org/pdf/1712.07897.pdf). This means that there are multiple "valleys" with "local minima", along with the "global minima", and that backpropagation **is not guaranteed to find the global minima**. Remember that the "global minima" is the point where the error (i.e., the value of the cost function) is at its minimum, whereas the "local minima" is the point of minimum error for a sub-section of the error surface. **Figure 3** illustrates these concepts on a 3D surface. The vertical axis represents the error of the surface, and the other two axes represent different combinations of weights for the network. In the figure, you can observe how different combinations of weights produce different values of error.
+In the [ADALINE blogpost](https://pabloinsente.github.io/the-adaline) I introduced the ideas of **searching for a set of weights that minimize the error via gradient descent**, and the difference between **convex and non-convex optimization**. If you have not read that section, I'll encourage you to read that first. Otherwise, the important part is to remember that since we are introducing nonlinearities in the network the error surface of the multilayer perceptron is [non-convex](https://arxiv.org/pdf/1712.07897.pdf). This means that there are multiple "valleys" with "local minima", along with the "global minima", and that backpropagation **is not guaranteed to find the global minima**. Remember that the "global minima" is the point where the error (i.e., the value of the cost function) is at its minimum, whereas the "local minima" is the point of minimum error for a sub-section of the error surface. **Figure 3** illustrates these concepts on a 3D surface. The vertical axis represents the error of the surface, and the other two axes represent different combinations of weights for the network. In the figure, you can observe how different combinations of weights produce different values of error.
 
 **Figure 3**
 
-<img src="/assets/post-7/multi-perceptron/sse-nonconvex.png" width="100%">
+<img src="/assets/post-7/sse-nonconvex.png" width="100%">
 
 Now we have all the ingredients to **introduce the almighty backpropagation algorithm**. Remember that our goal is to learn **how the error changes as we change the weights of the network by tiny amount** and that the cost function was defined as:
 
@@ -288,7 +288,7 @@ In my experience, tracing the indices in backpropagation is the most confusing p
 
 **Figure 4**
 
-<img src="/assets/post-7/multi-perceptron/single-unit.png" width="50%">
+<img src="/assets/post-7/single-unit.png" width="50%">
 
 The whole purpose of backpropagation is to answer the following question: **"How does the error change when we change the weights by a tiny amount?"** (be aware that I'll use the words "derivatives" and "gradients" interchangeably).
 
@@ -306,7 +306,7 @@ Therefore, we can trace a change of dependence on the weights. This means we hav
 
 Such sequence can be mathematically expressed with the **chain-rule of calculus** as:
 
-<img src="/assets/post-7/multi-perceptron/chain-rule.png"  width=70%>
+<img src="/assets/post-7/chain-rule.png"  width=70%>
 
 No deep knowledge of calculus is needed to understand the chain-rule. In essence, indicates **how to differentiate [composite functions](https://en.wikipedia.org/wiki/Function_composition)**, i.e.,  functions nested inside other functions. If you remember the section above this one, we showed that a multi-layer perceptron can be expressed as a composite function. Very convenient. The rule says that we take the derivative of the outermost function, and multiple by the derivative of the inside function, recursively. That's it.
 
@@ -438,7 +438,7 @@ And that's it! **Those are all the pieces for the backpropagation algorithm**. P
 
 **Figure 5**
 
-<img src="/assets/post-7/multi-perceptron/backprop.png" width="100%">
+<img src="/assets/post-7/backprop.png" width="100%">
 
 #### Backpropagation weight update 
 
@@ -470,7 +470,7 @@ $$
 
 Where $\eta$ is the *step size* or *learning rate*. 
 
-If you are not familiar with the idea of a learning rate, you can review the ADALINE chapter where I briefly explain the concept [here](https://com-cog-book.github.io/com-cog-book/features/adaline.html#Learning-procedure). In brief, a learning rate controls **how fast we descend over the error surface given the computed gradient**. This is important because we want to give steps just large enough to reach the minima of the surface at any point we may be when searching for the weights. You can see a more deep explanation [here](https://en.wikipedia.org/wiki/Learning_rate).
+If you are not familiar with the idea of a learning rate, you can review the ADALINE blogpost where [I briefly explain the concept](https://pabloinsente.github.io/the-adaline). In brief, a learning rate controls **how fast we descend over the error surface given the computed gradient**. This is important because we want to give steps just large enough to reach the minima of the surface at any point we may be when searching for the weights. You can see a more deep explanation [here](https://en.wikipedia.org/wiki/Learning_rate).
 
 I don't know about you but I have to go over several rounds of carefully studying the equations behind backpropagation to finally understand them fully. This may or not be true for you, but I believe the effort pays off as **backpropagation is the engine of every neural network model today**. Regardless, the good news is the modern numerical computation libraries like `NumPy`, `Tensorflow`, and `Pytorch` provide all the necessary methods and abstractions to make the implementation of neural networks and backpropagation relatively easy. 
 
@@ -684,7 +684,7 @@ Here is where we put everything together to train the network. The first part of
 
 ## Application: solving the XOR problem
 
-If you have read this and previous chapters, you should know by now that one of the problems that brought about the "demise" of the interest in neural network models was the infamous XOR (exclusive or) problem. This was just one example of a large class of problems that can't be solved with linear models as the perceptron and ADALINE. As an act of redemption for neural networks from this criticism, we will solve the XOR problem using our implementation of the multilayer-perceptron.
+If you have read this and the previous blogpost in this series, you should know by now that one of the problems that brought about the "demise" of the interest in neural network models was the infamous XOR (exclusive or) problem. This was just one example of a large class of problems that can't be solved with linear models as the perceptron and ADALINE. As an act of redemption for neural networks from this criticism, we will solve the XOR problem using our implementation of the multilayer-perceptron.
 
 ### Generate features and target
 
@@ -941,7 +941,7 @@ Again, we reached 100% of accuracy.
 
 ## Multilayer perceptron limitations
 
-Multilayer perceptrons (and multilayer neural networks more) generally have many limitations worth mentioning. I will focus on a few that are more evident at this point and I'll introduce more complex issues in later chapters.
+Multilayer perceptrons (and multilayer neural networks more) generally have many limitations worth mentioning. I will focus on a few that are more evident at this point and I'll introduce more complex issues in later blogposts.
 
 ### Training time
 
