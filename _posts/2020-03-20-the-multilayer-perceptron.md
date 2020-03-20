@@ -52,11 +52,11 @@ The linear aggregation function is the same as in the perceptron and the ADALINE
 
 A **vector** is a collection of *ordered numbers* or *scalars*. If you are familiar with data analysis, a vector is like a column or row in a dataframe. If you are familiar with programming, a vector is like an array or a list. A generic Vector $\bf{x}$ is defined as:
 
-<img src="/assets/post-7/vector.png" width="60%">
+<img src="/assets/post-7/vector.png" width="50%">
 
 A **matrix** is a *collection of vectors* or *lists of numbers*. In data analysis, this is equivalent to a 2-dimensional dataframe. In programming is equivalent to a multidimensional array or a list of lists. A generic matrix $W$ is defined as:
 
-<img src="/assets/post-7/matrix.png" width="80%">
+<img src="/assets/post-7/matrix.png" width="70%">
 
 Using this notation, let's look at a simplified example of a network with:
 
@@ -120,7 +120,7 @@ $$
 
 The previous matrix operation in summation notation equals to:
 
-<img src="/assets/post-7/linear-function-multi-perceptron.png" width="70%">
+<img src="/assets/post-7/linear-function-multi-perceptron.png" width="60%">
 
 Here, $f$ is a function of each element of the vector $\bf{x}$ and each element of the matrix $W$. The $m$ index identifies the rows in $W^T$ and the rows in $\bf{z}$. The $n$ index indicates the columns in $W^T$ and the rows in $\bf{x}$. Notice that we add a $b$ bias term, that has the role to simplify learning a proper threshold for the function. If you are curious about that [read the "Linear aggregation function" section here](https://pabloinsente.github.io/the-perceptron). In sum, the **linear function is a weighted sum of the inputs plus a bias**.
 
@@ -128,7 +128,7 @@ Here, $f$ is a function of each element of the vector $\bf{x}$ and each element 
 
 Each element of the $\bf{z}$ vector becomes an input for the sigmoid function $\sigma$():
 
-<img src="/assets/post-7/sigmoid-function-multi-perceptron.png" width="60%">
+<img src="/assets/post-7/sigmoid-function-multi-perceptron.png" width="50%">
 
 The output of $\sigma(z_m)$ is another $m$ dimensional vector $a$, one entry for each unit in the hidden layer like:
 
@@ -244,7 +244,7 @@ The cost function is the **measure of "goodness" or "badness"** (depending on ho
 
 Nowadays, you would probably want to use different cost functions for different types of problems. In their original work, Rumelhart, Hinton, and Williams used the **sum of squared errors** defined as:
 
-<img src="/assets/post-7/cost-function.png" width="60%">
+<img src="/assets/post-7/cost-function.png" width="50%">
 
 ### Forward propagation
 
@@ -252,7 +252,7 @@ All neural networks can be divided into two parts: a **forward propagation phase
 
 **Figure 2**
 
-<img src="/assets/post-7/forward-pass.png" width="100%">
+<img src="/assets/post-7/forward-pass.png" width="80%">
 
 The *forward propagation* phase involves "chaining" all the steps we defined so far: the *linear function*, the *sigmoid function*, and the *threshold function*. Consider the network in **Figure 2**. Let's label the linear function as $\lambda()$, the sigmoid function as $\sigma()$, and the threshold function as $\tau()$. Now, the network in **Figure 2** can be represented as:
 
@@ -438,7 +438,7 @@ And that's it! **Those are all the pieces for the backpropagation algorithm**. P
 
 **Figure 5**
 
-<img src="/assets/post-7/backprop.png" width="100%">
+<img src="/assets/post-7/backprop.png" width="70%">
 
 #### Backpropagation weight update 
 
