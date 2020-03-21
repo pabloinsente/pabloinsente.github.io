@@ -306,7 +306,7 @@ Therefore, we can trace a change of dependence on the weights. This means we hav
 
 Such sequence can be mathematically expressed with the **chain-rule of calculus** as:
 
-<img src="/assets/post-7/chain-rule.png"  width=70%>
+<img src="/assets/post-7/chain-rule.png"  width="70%">
 
 No deep knowledge of calculus is needed to understand the chain-rule. In essence, indicates **how to differentiate [composite functions](https://en.wikipedia.org/wiki/Function_composition)**, i.e.,  functions nested inside other functions. If you remember the section above this one, we showed that a multi-layer perceptron can be expressed as a composite function. Very convenient. The rule says that we take the derivative of the outermost function, and multiple by the derivative of the inside function, recursively. That's it.
 
