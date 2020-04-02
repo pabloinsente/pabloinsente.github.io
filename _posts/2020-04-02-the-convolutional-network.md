@@ -29,7 +29,7 @@ The work of Hubel and Wiesel served as the basis for the precursor of modern con
 
 **Figure 1: Simplified Neocognitrone**
 
-<img src="/assets/post-8/cov-net/neocognitron.png">
+<img src="/assets/post-8/neocognitron.png">
 
 The general idea behind the Neocognitron is the following: the **input layer $L_0$ works as the retina**, reading the raw input pattern. Then, each cell in a $S_1$ patch "reads" a sub-section of the input image based on a "preference" for a certain type of pattern. Any given layer $L_n$ will have several of these $S_j$ patches as a collection of **feature "filters"**. Some may detect a diagonal line, while other a small triangle, or a corner, or something else. Each $S_j$ patch connects to a $C_k$ cell, and such a cell fires if it gets any positive input from its corresponding patch. This process is also known as **"pooling"**. This cycle of "feature" detection and "pooling" is repeated as many times as intermediate layers in the network. The last layer corresponds to the output, where some neurons will fire depending on the input pattern. Mathematically, "feature detection" is accomplished by multiplying the input by a fixed matrix of weights, whereas "pooling" corresponding to taking an average of the connected patch of S-cells. 
 
@@ -37,7 +37,7 @@ You may have noticed that the behavior of the S-cells and C-cells replicate (to 
 
 **Figure 2**
 
-<img src="/assets/post-8/neocognitron-cells.png">
+<img src="/assets/post-8/neocognitron-cells.png" width="60%">
 
 The Neocognitron is also **robust to deformation**: it will detect the object even if it's enlarged, reduced in size, or blurred, by virtue of the same mechanism that allows robustness to positional shifting. It is also important to notice that the pooling operation will "blur" the input image, and the fact that C-cells take the average of its corresponding S-cells makes the pooling more robust to random noise added to the image. [Here](http://www.youtube.com/watch?v=Qil4kmvm2Sw) you can find a short video (from the 80s!) explaining the basics of the Neocognitron. 
 
@@ -72,7 +72,7 @@ Feature maps and receptive fields sound complicated. Here is a metaphor that may
 
 **Figure 4: Feature detection (convolution)**
 
-<img src="/assets/post-8/convolution.png">
+<img src="/assets/post-8/convolution.png" width="60%">
 
 The process of sliding over the image with the receptive field (sometimes called *kernels*) of feature maps equals to a mathematical operation called **convolution** (technically, equals to *cross-correlation*, more about this later), hence the name **convolutional network**. The full convolution operation involves repeating the process in **Figure 4** for each feature map. If you are wondering how do you come up with appropriated features detectors, the answer is that you don't need to: the **feature maps weights are learned in the training process**. More on the mathematics of this later.
 
@@ -113,7 +113,7 @@ Diagramming AlexNet is complicated because the architecture is large and, at the
 
 **Figure 7: AlexNet and LeNet architectures**
 
-<img src="/assets/post-8/alexnet.png">
+<img src="/assets/post-8/alexnet.png" width="60%">
 
 Each layer in AlexNet is three dimensional because it was designed to classify 1000 *color images* (LeNet-5 classified 10 grey-scale digits). The dimensions represent *width x height x RGB* (red, green, and blue) color values. This type of 3-D arrays of numbers is often referred to as [mathematical tensors](https://en.wikipedia.org/wiki/Tensor). The pooling operation is done by taking the maximum value in the receptive field instead of the average of all units, which is known as **max pooling**. The pattern of connectivity between convolutional and pooling layers is different from the one in LeNet-5 too. Other than that, AlexNet utilizes the same building blocks and operations as LeNet-5.
 
@@ -174,7 +174,7 @@ I'll use a trick to make the convolution operation clearer. I'll replace the ent
 
 **Figure 8**
 
-<img src="/assets/post-8/cartesian-matrix.png">
+<img src="/assets/post-8/cartesian-matrix.png" width="70%">
 
 Now, remember that we want to compute a feature map $F$ with dimensions equal to $K$. Consequently, we need to compute 4 convolutions:
 
@@ -209,7 +209,7 @@ We will color-code each entry in the matrices and compute the value for $F_{00}$
 
 **Figure 9**
 
-<img src="/assets/post-8/cartesian-matrix-1.png">
+<img src="/assets/post-8/cartesian-matrix-1.png" width="70%">
 
 We can fill in with the first $F_{00}$ entry (here is where you could add $b$ to the summation result):
 
@@ -224,7 +224,7 @@ If you observe the indices carefully, you'll notice the $P$ indices are the $K$ 
 
 **Figure 10**
 
-<img src="/assets/post-8/cartesian-matrix-rotations.png">
+<img src="/assets/post-8/cartesian-matrix-rotations.png" width="70%">
 
 Let's see what happens when we compute the next feature map entry $F_{01}$:
 
@@ -239,7 +239,7 @@ Graphically, this looks like:
 
 **Figure 11**
 
-<img src="/assets/post-8/cartesian-matrix-2.png">
+<img src="/assets/post-8/cartesian-matrix-2.png" width="70%">
 
 We can fill in with the second entry on $F_{01}$:
 
@@ -308,7 +308,7 @@ Notice that in cross-correlation there aren't reflections just offsets. This is 
 
 **Figure 12**
 
-<img src="/assets/post-8/cartesian-matrix-cross.png">
+<img src="/assets/post-8/cartesian-matrix-cross.png" width="70%">
 
 I'll not compute the cross-correlation values. The computation is as simple as overlaying the kernel matrix $K$ on top of the $P$ input matrix and take a weighted sum. This is the reason why you'll see most textbooks in deep learning explain convolutions as "sliding" the kernel over the image taking a stride of X. Essentially, cross-correlation is a **measure of similarity** between the kernel and the input image: *the better the alignment, the higher the cross-correlation value*.
 
@@ -669,7 +669,7 @@ Overfitting is usually approached with a mix of techniques in neural networks: d
 
 **Figure 13: overfitting, underfitting, and good-fitting**
 
-<img src="/assets/post-8/regularization.png">
+<img src="/assets/post-8/regularization.png" width="60%">
 
 From **Figure 13** is clear than when we move from the training data to the testing data, the "good-fitting" curve generalizes better than the other two.
 
@@ -731,7 +731,7 @@ for i in range(6):
     plt.imshow(x_train[i], cmap=plt.get_cmap('gray'))
 ```
 
-<img src="/assets/post-8/mnist-digits.png">
+<img src="/assets/post-8/mnist-digits.png" width="60%">
 
 
 ### Reshaping data
@@ -1087,7 +1087,7 @@ for i in range(6):
     plt.imshow(x_train[i])
 ```
 
-<img src="/assets/post-8/cifar10.png">
+<img src="/assets/post-8/cifar10.png" width="60%">
 
 
 ### Reshaping data
@@ -1424,7 +1424,7 @@ There is a funny phenomenon that brings elation to neural network critics: convo
 
 **Figure 14**
 
-<img src="/assets/post-8/panda.png">
+<img src="/assets/post-8/panda.png" width="80%">
 
 An important detail is that the perturbations (the image in the middle), although look random, are not random at all: **they are carefully "designed" to "fool" the network**. This carefully designed alterations are known as **adversarial attacks** or **adversarial examples**. By "designed" I don't mean handcrafted by humans but by another type of network known as Generative Adversarial Network (GAN). GANs are trained to generate images just "different enough" to fool your classifier network.
 
@@ -1494,14 +1494,9 @@ Zhang, A., Lipton, Z. C., Li, M., & Smola, A. J. (2020). 6. Convolutional Neural
 
 The internet is plenty of free great resources about convolutional networks. I  used Yann LeCun's interviews for the historical section.
 
-Yann LeCun: Deep Learning, Convolutional Neural Networks, and Self-Supervised Learning | AI Podcast. [YouTube Video](https://www.youtube.com/watch?v=SGSOCuByo24&t=16s).
-
-deeplearning.ai's Heroes of Deep Learning: Yann LeCun. [YouTube Video](https://www.youtube.com/watch?v=JS12eb1cTLE)
-
-Yann LeCun's Lecture: Convolutional neural networks. [YouTube Video](https://www.youtube.com/watch?v=FW5gFiJb-ig&t=2s)
-
-Practicum by Alfredo Canziani & Mark Goldstein: Natural signals properties and CNNs. [YouTube Video](https://www.youtube.com/watch?v=kwPWpVverkw)
-
-Practicum by Alfredo Canziani & Mark Goldstein: Listening to convolutions. [YouTube Video](https://www.youtube.com/watch?v=OrBEon3VlQg)
-
-MIT 6.S191 (2019): Convolutional Neural Networks. [YouTube Video](https://www.youtube.com/watch?v=H-HVZJ7kGI0)
+- Yann LeCun: Deep Learning, Convolutional Neural Networks, and Self-Supervised Learning | AI Podcast. [YouTube Video](https://www.youtube.com/watch?v=SGSOCuByo24&t=16s).
+- deeplearning.ai's Heroes of Deep Learning: Yann LeCun. [YouTube Video](https://www.youtube.com/watch?v=JS12eb1cTLE)
+- Yann LeCun's Lecture: Convolutional neural networks. [YouTube Video](https://www.youtube.com/watch?v=FW5gFiJb-ig&t=2s)
+- Practicum by Alfredo Canziani & Mark Goldstein: Natural signals properties and CNNs. [YouTube Video](https://www.youtube.com/watch?v=kwPWpVverkw)
+- Practicum by Alfredo Canziani & Mark Goldstein: Listening to convolutions. [YouTube Video](https://www.youtube.com/watch?v=OrBEon3VlQg)
+- MIT 6.S191 (2019): Convolutional Neural Networks. [YouTube Video](https://www.youtube.com/watch?v=H-HVZJ7kGI0)
