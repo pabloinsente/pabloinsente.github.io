@@ -29,7 +29,7 @@ The work of Hubel and Wiesel served as the basis for the precursor of modern con
 
 **Figure 1: Simplified Neocognitrone**
 
-<img src="/assets/post-8/neocognitron.png">
+<img src="/assets/post-8/neocognitron.png" width="70">
 
 The general idea behind the Neocognitron is the following: the **input layer $L_0$ works as the retina**, reading the raw input pattern. Then, each cell in a $S_1$ patch "reads" a sub-section of the input image based on a "preference" for a certain type of pattern. Any given layer $L_n$ will have several of these $S_j$ patches as a collection of **feature "filters"**. Some may detect a diagonal line, while other a small triangle, or a corner, or something else. Each $S_j$ patch connects to a $C_k$ cell, and such a cell fires if it gets any positive input from its corresponding patch. This process is also known as **"pooling"**. This cycle of "feature" detection and "pooling" is repeated as many times as intermediate layers in the network. The last layer corresponds to the output, where some neurons will fire depending on the input pattern. Mathematically, "feature detection" is accomplished by multiplying the input by a fixed matrix of weights, whereas "pooling" corresponding to taking an average of the connected patch of S-cells. 
 
@@ -84,13 +84,13 @@ There are many ways to sub-sample an image. In the LeNet-5, this operation perfo
 
 **Figure 5: sub-sampling effect**
 
-<img src="/assets/post-8/pixelated.png">
+<img src="/assets/post-8/pixelated.png" width="70">
 
 A sub-sampling layer will have as many "pixelated" feature maps as "normal" feature maps in the convolutional layer. The **mechanics of sub-sampling** are as follows: again, we have $n \times n$ receptive field that "perceives" a section of the "normal" feature map and connect to a unit in the "pixelated" feature map. This time, there is no overlap between each "stride" of the receptive field: each unit is connected to a *non-overlapping section* of the original feature map. You can think about this as taking "strides" of a size equal to $n$, e.g., for a $3 \times 3$ feature map, we take a stride of $3$. Then, we take a weighted average of each pixel in the receptive field and pass the resulting sum through a sigmoid function (or any other non-linear function). The *weights* in the weighted average are also parameters that the network learns with training. **Figure 6** shows this process for a *single* sub-sampled feature map.
 
 **Figure 6: Sub-sampling (pooling)**
 
-<img src="/assets/post-8/pooling.png">
+<img src="/assets/post-8/pooling.png" width="70">
 
 The result of sub-sampling is another grid of numbers (note that the numbers in **Figure 6** are made up). We went from a $12 \times 12$ input image, to a $3 \times 3$ feature map after convolution and pooling (keep in mind that I intentionally reduced LeNet-5 original dimensions to simplify the examples). Since in our original example we had 6 features map, we need to repeat the process in **Figure 6** 6 times, one of each feature map.
 
@@ -139,7 +139,7 @@ The convolution operation *convolutes* pairs of functions. Here I'm using the pl
 
 The convolution formula has different forms depending on the context. In the neural network context, we will compute a **discrete convolution**. The **convolution operator** is conventionally represented by the **$\bf{*}$ symbol**. Hence, we define the convolution between $P$ and $K$ as:
 
-<img src="/assets/post-8/convolution-math.png">
+<img src="/assets/post-8/convolution-math.png" width="70">
 
 Where ${ij}$ are the width and length of the input image, and ${mn}$ are the width and length of the kernel.
 
@@ -1494,7 +1494,7 @@ Zhang, A., Lipton, Z. C., Li, M., & Smola, A. J. (2020). 6. Convolutional Neural
 
 The internet is plenty of free great resources about convolutional networks. I  used Yann LeCun's interviews for the historical section.
 
-- Yann LeCun: Deep Learning, Convolutional Neural Networks, and Self-Supervised Learning | AI Podcast. [YouTube Video](https://www.youtube.com/watch?v=SGSOCuByo24&t=16s).
+- Yann LeCun: Deep Learning, Convolutional Neural Networks, and Self-Supervised Learning. [YouTube Video](https://www.youtube.com/watch?v=SGSOCuByo24&t=16s).
 - deeplearning.ai's Heroes of Deep Learning: Yann LeCun. [YouTube Video](https://www.youtube.com/watch?v=JS12eb1cTLE)
 - Yann LeCun's Lecture: Convolutional neural networks. [YouTube Video](https://www.youtube.com/watch?v=FW5gFiJb-ig&t=2s)
 - Practicum by Alfredo Canziani & Mark Goldstein: Natural signals properties and CNNs. [YouTube Video](https://www.youtube.com/watch?v=kwPWpVverkw)
