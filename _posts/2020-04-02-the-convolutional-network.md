@@ -1318,7 +1318,7 @@ model.summary()
     _________________________________________________________________
 
 
-## AlexNet Application: CIFAR-5 classification
+## AlexNet Application: CIFAR-10 classification
 
 Which such a large number of parameters training our model to a meaningful accuracy level in a typical CPU may take from hours to days. For instance, my [Intel i7-8550U](https://ark.intel.com/content/www/us/en/ark/products/122589/intel-core-i7-8550u-processor-8m-cache-up-to-4-00-ghz.html) takes around 14 minutes to run 1 epoch. Running 50 epochs would take around 12 hours. There are several alternatives to train large models:
 
