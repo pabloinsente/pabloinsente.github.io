@@ -25,7 +25,7 @@ Hopfield networks are known as a type of **energy-based** (instead of error-base
 
 **Figure 1: Hopfield Network**
 
-<img src="/assets/post-9/hopfield-net.png">
+<img src="/assets/post-9/hopfield-net.png" width="50%">
 
 Hopfield network's idea is that each configuration of binary-values $C$ in the network is associated with a **global energy value $-E$**. Here is a simplified picture of the training process: imagine you have a network with five neurons with a configuration of $C_1=(0, 1, 0, 1, 0)$. Now, imagine $C_1$ yields a global energy-value $E_1= 2$ (following the energy function formula). Your goal is to *minimize* $E$ by changing one element of the network $c_i$ at a time. By using the weight updating rule $\Delta w$, you can subsequently get a new configuration like $C_2=(1, 1, 0, 1, 0)$, as new weights will cause a change in the activation values $(0,1)$. If $C_2$ yields a *lower value of $E$*, let's say, $1.5$, you are moving in the right direction. If you keep iterating with new configurations the network will eventually "settle" into a **global energy minimum** (conditioned to the initial state of the network).
 
@@ -51,7 +51,7 @@ The **implicit** approach represents time by **its effect in intermediate comput
 
 **Figure 2: Jordan Network**
 
-<img src="/assets/post-9/jordan-net.png">
+<img src="/assets/post-9/jordan-net.png" width="50%">
 
 **Note**: Jordan's network diagrams exemplifies the two ways in which recurrent nets are usually represented. On the left, the **compact format** depicts the network structure as a circuit. On the right, the **unfolded representation** incorporates the notion of time-steps calculations. The unfolded representation also illustrates how a recurrent network can be constructed in a pure feed-forward fashion, with as many layers as time-steps in your sequence. One key consideration is that the weights will be identical on each time-step (or layer). Keep this unfolded representation in mind as will become important later.
 
@@ -59,7 +59,7 @@ Elman's innovation was twofold: **recurrent connections between hidden units and
 
 **Figure 3: Elman Network**
 
-<img src="/assets/post-9/elman-net.png">
+<img src="/assets/post-9/elman-net.png" width="50%">
 
 **Note**: there is something curious about Elman's architecture. What it is the point of "cloning" $h$ into $c$ at each time-step? You could bypass $c$ altogether by sending the value of $h_t$ straight into $h_{t+1}$, wich yield mathematically identical results. The most likely explanation for this was that Elman's starting point was Jordan's network, which had a separated memory unit. Regardless, keep in mind we don't need $c$ units to design a functionally identical network. 
 
@@ -84,7 +84,7 @@ In $\bf{s}$, the first and second elements, $s_1$ and $s_2$, represent $x_1$ and
 
 **Figure 4: Temporal XOR**
 
-<img src="/assets/post-9/temporal-xor.png">
+<img src="/assets/post-9/temporal-xor.png" width="50%">
 
 Elman trained his network with a 3,000 elements sequence for 600 iterations over the entire dataset, on the task of predicting the next item $s_{t+1}$ of the sequence $s$, meaning that he fed inputs to the network **one by one**. He showed that **error pattern** followed a predictable trend: the mean squared error was **lower every 3 outputs**, and higher in between, meaning the network learned to predict the third element in the sequence, as shown in **Chart 1** (the numbers are made up, but the pattern is the same found by Elman (1990)).
 
@@ -232,7 +232,7 @@ In LSTMs, instead of having a simple memory unit "cloning" values from the hidde
 
 **Figure 5: LSTM architecture**
 
-<img src="/assets/post-9/lstm-unit.png">
+<img src="/assets/post-9/lstm-unit.png" width="50%">
 
 In LSTMs $x_t$, $h_t$, and $c_t$ represent vectors of values. Lightish-pink circles represent element-wise operations, and darkish-pink boxes are fully-connected layers with trainable weights. The top part of the diagram acts as a **memory storage**, whereas the bottom part has a double role: (1) passing the hidden-state information from the previous time-step $t-1$ to the next time step $t$, and (2) to regulate the **influx** of information from $x_t$ and $h_{t-1}$ **into** the memory storage, and the **outflux** of information **from** the memory storage into the next hidden state $h-t$. The second role is the core idea behind LSTM. You can think about it as making **three decisions** at each time-step:
 
@@ -244,7 +244,7 @@ Decisions 1 and 2 will determine the information that keeps flowing through the 
 
 **Figure 6: LSTM as a sequence of decisions**
 
-<img src="/assets/post-9/lstm-choices.png">
+<img src="/assets/post-9/lstm-choices.png" width="50%">
 
 
 To put LSTMs in context, imagine the following simplified scenerio: we are trying to **predict the next word in a sequence**. Let's say, squences are about sports. From past sequences, we saved in the memory block the type of sport: "soccer". For the current sequence, we receive a phrase like "A basketball player...". In such a case, we first want to "forget" the previous type of sport "soccer" (*decision 1*) by multplying $c_{t-1} \odot f_t$. Next, we want to "update" memory with the new type of sport, "basketball" (*decision 2*), by adding $c_t = (c_{t-1} \odot f_t) + (i_t \odot \tilde{c_t})$. Finally, we want to output (*decision 3*) a verb relevant for "A basketball player...", like "shoot" or "dunk" by $\hat{y_t} = softmax(W_{hz}h_t + b_z)$.
@@ -277,13 +277,11 @@ The LSTM architecture can be desribed by:
 Following the indices for each function requires some definitions. I'll assume we have $h$ hidden units, training sequences of size $n$, and $d$ input units. 
 
 $$
-\begin{align}
-\text{input-units} &= x_i \in \mathbb{R}^d \\ 
-\text{training-sequence} &= s_i \in \mathbb{R}^n \\
-\text{output-class} &= y_i \in \mathbb{R}^k \\
-\text{Input-layer} &= X_t \in \mathbb{R}^{n\times d} \\
-\text{hidden-layer} &= H_t \in \mathbb{R}^{n\times h}
-\end{align}
+\text{input-units} = x_i \in \mathbb{R}^d \\ 
+\text{training-sequence} = s_i \in \mathbb{R}^n \\
+\text{output-class} = y_i \in \mathbb{R}^k \\
+\text{Input-layer} = X_t \in \mathbb{R}^{n\times d} \\
+\text{hidden-layer} = H_t \in \mathbb{R}^{n\times h}
 $$
 
 ## Forget function
@@ -350,10 +348,8 @@ $$
 The output function will depend upon the problem to be approached. For our our purposes, we will assume a multi-class problem, for which the **softmax function** is appropiated. For this, we first pass the hidden-state by a linear function, and then the softmax as:
 
 $$
-\begin{align}
-z_t &= (W_{hz}h_t + b_z)\\
-\hat{y}_t &= softmax(z_t) = \frac{e^{z_t}}{\sum_{j=1}^K e^{z_j}} 
-\end{align}
+z_t = (W_{hz}h_t + b_z)\\
+\hat{y}_t = softmax(z_t) = \frac{e^{z_t}}{\sum_{j=1}^K e^{z_j}} 
 $$
 
 The softmax computes the exponent for each $z_t$ and then normalized by dividing by the sum of every output value exponentiated. In this manner, the output of the softmax can be interpreted as the likelihood value $p$.
@@ -376,15 +372,13 @@ Originally, Hochreiter and Schmidhuber (1997) trained LSTMs with a combination o
 
 **Figure 7: Three-layer simplified RNN**
 
-<img src="/assets/post-9/simple-rnn.png">
+<img src="/assets/post-9/simple-rnn.png" width="50%">
 
 I reviewed backpropagation for a simple multilayer perceptron [here](https://pabloinsente.github.io/the-multilayer-perceptron). Nevertheless, I'll sketch BPTT for the simplest case as shown in **Figure 7**, this is, with a generic non-linear hidden-layer similar to Elman network without "context units" (some like to call it "vanilla" RNN, which I avoid because I believe is derogatory against vanilla!). This exercise will allow us to review backpropagation and to understand how it differs from BPTT. We begin by defining a simplified RNN as: 
 
 $$
-\begin{align}
 z_t &= W_{hz}h_t + b_z\\
 h_t &= \sigma(W_{hh}h_{t-1} + W_{xh}x_t+b_h)
-\end{align}
 $$
 
 Where $h_t$ and $z_t$ indicates a hidden-state (or layer) and  the output respectively. Therefore, **we have to compute gradients w.r.t. five sets of weights**: $\{W_{hz}, W_{hh}, W_{xh}, b_z, b_h\}$.
@@ -501,7 +495,7 @@ The process of parsing text into smaller units is called "tokenization", and eac
 
 **Figure 8: Tokenization**
 
-<img src="/assets/post-9/text-pro.png">
+<img src="/assets/post-9/text-pro.png" width="50%">
 
 Once a corpus of text has been parsed into tokens, we have to map such tokens into numerical vectors. Two common ways to do this are **one-hot encoding** approach and the **word embeddings** approach, as depicted in the bottom pane of **Figure 8**. We used one-hot encodings to transform the MNIST class-labels into vectors of numbers for classification in the [CovNets blogpost](https://pabloinsente.github.io/the-convolutional-network). In a one-hot encoding vector, each token is mapped into a *unique* vector of zeros and ones. The vector size is determined by the vocabullary size. For instance, for the set $x= \{"cat", "dog", "ferret"\}$, we could use a 3-dimensional one-hot encoding as:
 
