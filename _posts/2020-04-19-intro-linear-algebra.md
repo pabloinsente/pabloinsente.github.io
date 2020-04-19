@@ -1,5 +1,5 @@
 ---
-title: Introduction to Linear Algebra for Applied Machine Learning
+title: Introduction to Linear Algebra for Applied Machine Learning with Python
 published: true
 mathjax: true
 ---
