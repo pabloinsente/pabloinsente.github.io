@@ -43,7 +43,7 @@ Finally, keep in mind this is created by a non-mathematician for (mostly) non-ma
 - [Types of vectors](#types-of-vectors)
     - [Geometric vectors](#geometric-vectors)
     - [Polynomials](#polynomials)
-    - [Elements of $\mathbb{R}^n$](#elements-of-R)
+    - [Elements of $\mathbb{R}^n$](#elements-of-r)
 - [Vector dimensions and coordinate system](#vector-dimensions-and-coordinate-system) 
 - [Basic vector operations](#basic-vector-operations)
     - [Vector-vector addition](#vector-vector-addition)
@@ -56,7 +56,7 @@ Finally, keep in mind this is created by a non-mathematician for (mostly) non-ma
     - [Vector subspaces](#vector-subspaces)
 - [Linear dependence and independence](#linear-dependence-and-independence)
 - [Vector norms](#vector-norms)
-    - [Euclidean norm: $L_2$](#euclidean-norm-L_2)
+    - [Euclidean norm: $L_2$](#euclidean-norm)
     - [Manhattan norm: $L_1$](#manhattan-norm)
     - [Max norm: $L_\infty$](#max-norm)
 - [Vector inner product, length, and distance](#vector-inner-product-length-and-distance)
@@ -141,7 +141,7 @@ $$
 <img src="/assets/post-10/b-polynomials-vectors.svg">
 
 
-### Elements of $\mathbb{R}$
+### Elements of R
 
 **Elements of $\mathbb{R^n}$ are sets of real numbers**. This type of representation is arguably the most important for applied machine learning. It is how data is commonly represented in computers to build machine learning models. For instance, a vector in $\mathbb{R^3}$ takes the shape of:
 
@@ -472,7 +472,7 @@ a*x + b*y
 
 
 
-### Vector-vector multiplication: dot products
+### Vector-vector multiplication: dot product
 
 We covered vector addition and multiplication by scalars. Now I will define vector-vector multiplication, commonly known as a **dot product** or **inner product**. The dot product of $\bf{x}$ and $\bf{y}$ is defined as: 
 
@@ -631,7 +631,7 @@ Grasping the meaning of these three properties may be difficult at this point, b
 <img src="/assets/post-10/b-l2-norm.svg">
 
 
-### Euclidean norm: $L_2$
+### Euclidean norm$
 
 The Euclidean norm is one of the most popular norms in machine learning. It is so widely used that sometimes is refered simply as "the norm" of a vector. Is defined as:
 
@@ -667,7 +667,7 @@ np.linalg.norm(x, 2)
 
 If you remember the first "Pythagorean triple", you can confirm that the norm is correct.
 
-### Manhattan norm: $L_1$
+### Manhattan norm$
 
 The Manhattan or $L_1$ norm gets its name in analogy to measuring distances while moving in Manhattan, NYC. Since Manhattan has a grid-shape, the distance between any two points is measured by moving in vertical and horizontals lines (instead of diagonals as in the Euclidean norm). It is defined as:
 
@@ -695,7 +695,7 @@ np.linalg.norm(x, 1)
 
 Is easy to confirm that the sum of the absolute values of $3$ and $-4$ is $7$.
 
-### Max norm: $L_\infty$
+### Max norm$
 
 The max norm or infinity norm is simply the absolute value of the largest element in the vector. It is defined as:
 
