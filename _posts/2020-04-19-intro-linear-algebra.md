@@ -43,22 +43,22 @@ Finally, keep in mind this is created by a non-mathematician for (mostly) non-ma
 - [Types of vectors](#types-of-vectors)
     - [Geometric vectors](#geometric-vectors)
     - [Polynomials](#polynomials)
-    - [Elements of $\mathbb{R}^n$](#elements-of-$\mathbb{R}$)
-- [Vector dimensions and coordinate system](#vector-dimensions-and-coordinates-systems)
+    - [Elements of $\mathbb{R}^n$](#elements-of-R)
+- [Vector dimensions and coordinate system](#vector-dimensions-and-coordinate-system) 
 - [Basic vector operations](#basic-vector-operations)
     - [Vector-vector addition](#vector-vector-addition)
-    - [Vector-scalar multiplication: scaling](#vector-scalar-multiplication:-scaling)
+    - [Vector-scalar multiplication: scaling](#vector-scalar-multiplication-scaling)
     - [Linear combinations of vectors](#linear-combinations-of-vectors)
-    - [Vector-vector multiplication: dot product](#vector-vector-multiplication:-dot-product)
+    - [Vector-vector multiplication: dot product](#vector-vector-multiplication-dot-product)
 - [Vector spaces](#vector-spaces)
     - [Vector space](#vector-space)
     - [Vector span](#vector-span)
     - [Vector subspaces](#vector-subspaces)
 - [Linear dependence and independence](#linear-dependence-and-independence)
 - [Vector norms](#vector-norms)
-    - [Euclidean norm: $L_2$](#euclidean-norm:-$L_2$)
-    - [Manhattan norm: $L_1$](#manhattan-norm-$L_1$)
-    - [Max norm: $L_\infty$](#max-norm-$L_\infty$)
+    - [Euclidean norm: $L_2$](#euclidean-norm-L_2)
+    - [Manhattan norm: $L_1$](#manhattan-norm)
+    - [Max norm: $L_\infty$](#max-norm)
 - [Vector inner product, length, and distance](#vector-inner-product-length-and-distance)
 - [Vector angles and orthogonality](#vector-angles-and-orthogonality)
 - [Systems of linear equations](#systems-of-linear-equations)
@@ -1107,7 +1107,7 @@ $$
 a_{ij} \times \alpha, \text{such that } (\alpha \textit{A})_{ij} = \alpha(\textit{A})_{ij}
 $$
 
-Consider $\alpha=2$ and $\textit{A}=\begin{bmatrix}1 & 2 \\3 & 4\end{bmatrix}$, then:
+Consider $\alpha=2$ and $\textit{A}=\begin{bmatrix}1 & 2 \\ 3 & 4\end{bmatrix}$, then:
 
 $$
 \alpha \textit{A} =
@@ -1448,6 +1448,7 @@ y_{3}
 $$
 
 This is equivalent to:
+
 $$
 \begin{matrix}
 m_{11}w_{1} + m_{12}w_{2} + m_{13}w_{3} =y_{1} \\
