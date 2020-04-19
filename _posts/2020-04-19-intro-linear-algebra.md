@@ -39,39 +39,39 @@ Finally, keep in mind this is created by a non-mathematician for (mostly) non-ma
 
 # Table of contents
 
-**Vectors**:
-- [Types of vectors](#heading-types-of-vectors)
+**[Vectors](#vectors)**:
+- [Types of vectors](#types-of-vectors)
     - [Geometric vectors](#geometric-vectors)
-    - Polynomials (functions)
-    - Elements of $\mathbb{R}^n$
-- Vector dimensions and coordinate system
-- Vector basic operations
-    - Vector-vector addition
-    - Vector-scalar multiplication: scaling
-    - Linear combinations of vectors
-    - Vector-vector multiplication: dot product
-- Vector space, basis, span, and subspace
-    - Vector space
-    - Vector span
-    - Vector subspaces
-- Linear dependence and independence
-- Vector norms
-    - Euclidean norm: $L^2$
-    - Manhattan norm:  $L^1$
-    - Max norm:  $L^\infty$
-- Vector inner product, length, and distance
-- Vector angles and orthogonality
-- Systems of linear equations
+    - [Polynomials](#polynomials)
+    - [Elements of $\mathbb{R}^n$](#elements-of-$\mathbb{R}$)
+- [Vector dimensions and coordinate system](#vector-dimensions-and-coordinates-systems)
+- [Basic vector operations](#basic-vector-operations)
+    - [Vector-vector addition](#vector-vector-addition)
+    - [Vector-scalar multiplication: scaling](#vector-scalar-multiplication:-scaling)
+    - [Linear combinations of vectors](#linear-combinations-of-vectors)
+    - [Vector-vector multiplication: dot product](#vector-vector-multiplication:-dot-product)
+- [Vector spaces](#vector-spaces)
+    - [Vector space](#vector-space)
+    - [Vector span](#vector-span)
+    - [Vector subspaces](#vector-subspaces)
+- [Linear dependence and independence](#linear-dependence-and-independence)
+- [Vector norms](#vector-norms)
+    - [Euclidean norm: $L_2$](#euclidean-norm:-$L_2$)
+    - [Manhattan norm: $L_1$](#manhattan-norm-$L_1$)
+    - [Max norm: $L_\infty$](#max-norm-$L_\infty$)
+- [Vector inner product, length, and distance](#vector-inner-product-length-and-distance)
+- [Vector angles and orthogonality](#vector-angles-and-orthogonality)
+- [Systems of linear equations](#systems-of-linear-equations)
 
-**Matrices**:
+**[Matrices](#matrices)**:
 
-- Matrix basic operations
-    - Matrix-matrix addition
-    - Matrix-scalar multiplication
-    - Matrix-vector multiplication
-    - Matrix-matix multiplication
-    - Hadamard product
-- Matrices as systems of linear equations
+- [Basic matrix operations](#basic-matrix-operations)
+    - [Matrix-matrix addition](#matrix-matrix-addition)
+    - [Matrix-scalar multiplication](#matrix-scalar-multiplication)
+    - [Matrix-vector multiplication: dot product](#matrix-vector-multiplication-dot-product)
+    - [Matrix-matrix multiplication](#matrix-matrix-multiplication)
+    - [Hadamard product](#hadamard-product)
+- [Matrices as systems of linear equations](#matrices-as-systems-of-linear-equations)
 
 **Future sections**:
 
@@ -119,7 +119,7 @@ Vectors come in three flavors: (1) **geometric vectors**, (2) **polynomials**, (
 <img src="/assets/post-10/b-geometric-vectors.svg">
 <center/>
 
-### Polynomials (functions)
+### Polynomials
 
 **A polynomial is an expression like $f(x) = x^2 + y + 1$**. This is, a expression adding multiple "terms" (nomials). Polynomials are vectors because they meet the definition of a vector: they can be added together to get another polynomial, and they can be multiplied together to get another polynomial. 
 
@@ -228,7 +228,7 @@ print(f'A 3-dimensional vector:\n{x}')
      [3]]
 
 
-## Vector dimensions and coordinates
+## Vector dimensions and coordinate system
 
 Vectors can have any number of dimensions. The most common are the 2-dimensional cartesian plane, and the 3-dimensional space. Vectors in 2 and 3 dimensions are used often for pedgagogical purposes since we can visualize them as geometric vectors. Nevetheless, most problems in machine learning entail more dimensions, sometiome hundreds or thousands of dimensions. The notation for a vector $\bf{x}$ of arbitrary dimensions, $n$ is:
 
@@ -631,7 +631,7 @@ Grasping the meaning of these three properties may be difficult at this point, b
 <img src="/assets/post-10/b-l2-norm.svg">
 <center/>
 
-### Euclidean norm: $L^2$
+### Euclidean norm: $L_2$
 
 The Euclidean norm is one of the most popular norms in machine learning. It is so widely used that sometimes is refered simply as "the norm" of a vector. Is defined as:
 
@@ -667,7 +667,7 @@ np.linalg.norm(x, 2)
 
 If you remember the first "Pythagorean triple", you can confirm that the norm is correct.
 
-### Manhattan norm: $L^1$
+### Manhattan norm: $L_1$
 
 The Manhattan or $L_1$ norm gets its name in analogy to measuring distances while moving in Manhattan, NYC. Since Manhattan has a grid-shape, the distance between any two points is measured by moving in vertical and horizontals lines (instead of diagonals as in the Euclidean norm). It is defined as:
 
@@ -695,7 +695,7 @@ np.linalg.norm(x, 1)
 
 Is easy to confirm that the sum of the absolute values of $3$ and $-4$ is $7$.
 
-### Max norm: $L^\infty$
+### Max norm: $L_\infty$
 
 The max norm or infinity norm is simply the absolute value of the largest element in the vector. It is defined as:
 
@@ -1270,7 +1270,7 @@ np.dot(A, x)
 
 
 
-### Matrix-matrix multiplication: dot product
+### Matrix-matrix multiplication
 
 Matrix-matrix multiplication is a dot produt as well. To work, the number of columns in the first matrix $\textit{A}$ has to be equal to the number of rows in the second matrix $\textit{B}$. Hence, $\textit{A} \in \mathbb{R^{m\times n}}$ times $\textit{B} \in \mathbb{R^{n\times p}}$ to be valid. One way to see matrix-matrix multiplication is by taking a series of dot products: the 1st column of $\textit{A}$ times the 1st row of $\textit{B}$, the 2nd column of $\textit{A}$ times the 2nd row of $\textit{B}$, until the $n_{th}$ column of $\textit{A}$ times the $n_{th}$ row of $\textit{B}$. 
 
