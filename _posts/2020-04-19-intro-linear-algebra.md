@@ -113,11 +113,11 @@ Vectors come in three flavors: (1) **geometric vectors**, (2) **polynomials**, (
 
 **Geometric vectors are oriented segments**. Therse are the kind of vectors you probably learned about in high-school physics and geometry. Many linear algebra concepts come from the geometric point of view of vectors: space, plane, distance, etc.
 
-<center> Fig. 1: Geometric vectors <center/>
+**Fig. 1: Geometric vectors**
 
-<center>
+
 <img src="/assets/post-10/b-geometric-vectors.svg">
-<center/>
+
 
 ### Polynomials
 
@@ -135,11 +135,11 @@ $$
 5 \times f(x)
 $$
 
-<center> Fig. 2: Polynomials <center/>
+**Fig. 2: Polynomials**
 
-<center>
+
 <img src="/assets/post-10/b-polynomials-vectors.svg">
-<center/>
+
 
 ### Elements of $\mathbb{R}$
 
@@ -246,11 +246,11 @@ $$\bf{x} = \begin{bmatrix} 3 \\ 2 \\ 1 \end{bmatrix} \in \mathbb{R}^3$$
 
 we are saying: starting from the origin, move 3 units in the 1st perpendicular axis, 2 units in the 2nd perpendicular axis, and 1 unit in the 3rd perpendicular axis. We will see later that when we have a set of perpendicular axes we obtain the basis of a vector space.
 
-<center> Fig. 3: Coordinate systems <center/>
+**Fig. 3: Coordinate systems**
 
-<center>
+
 <img src="/assets/post-10/b-coordinate-system.svg">
-<center/>
+
 
 ## Basic vector operations
 
@@ -546,11 +546,11 @@ In my experience remembering  these properties is not really important, but it's
 
 Consider the vectors $\bf{x}$ and $\bf{y}$ and the scalars $\alpha$ and $\beta$. If we take *all* possible linear combinations of $\alpha \bf{x} + \beta \bf{y}$ we would obtain the **span** of such vectors. This is easier to grasp when you think about geometric vectors. If our vectors $\bf{x}$ and $\bf{y}$ point into **different directions** in the 2-dimensional space, we get that the $span(x,y)$ is equal to **the entire 2-dimensional plane**, as shown in the middle-pane in **Fig. 4**. Just imagine having an unlimited number of two types of sticks: one pointing vertically, and one pointing horizontally. Now, you can reach any point in the 2-dimensional space by simply combining the necessary number of vertical and horizontal sticks (including taking fractions of sticks). 
 
-<center> Fig. 4: Vector Span <center/>
+**Fig. 4: Vector Span**
 
-<center>
+
 <img src="/assets/post-10/b-vector-span.svg">
-<center/>
+
 
 What would happen if the vectors point in the same direction? Now, if you combine them, you just can **span a line**, as shown in the left-pane in **Fig. 4**. If you have ever heard of the term "multicollinearity", it's closely related to this issue: when two variables are "colinear" they are pointing in the same direction, hence they provide redundant information, so can drop one without information loss.
 
@@ -566,11 +566,11 @@ A **vector subspace (or linear subspace) is a vector space that lies within a la
 2. Closure under multiplication 
 3. Closure under addition
 
-<center> Fig. 5: Vector subspaces <center/>
+**Fig. 5: Vector subspaces**
 
-<center>
+
 <img src="/assets/post-10/b-vector-subspace.svg">
-<center/>
+
 
 Consider the following questions: Is $\bf{x}=\begin{bmatrix} 1 \\ 1 \end{bmatrix}$ a valid subspace of $\mathbb{R^2}$? Let's evaluate $\bf{x}$ on the three conditions:
 
@@ -597,11 +597,11 @@ $$
 
 The left-pane shows a triplet of **linearly dependent** vectors, whereas the right-pane shows a triplet of **linearly independent** vectors.
 
-<center> Fig. 6: Linear dependence and independence <center/>
+**Fig. 6: Linear dependence and independence**
 
-<center>
+
 <img src="/assets/post-10/b-linear-independence.svg">
-<center/>
+
 
 A set of vectors is **linearly dependent** if at least one vector can be obtained as a linear combination of other vectors in the set. As you can see in the left pane, we can combine vectors $x$ and $y$ to obtain $z$. 
 
@@ -625,11 +625,11 @@ Norms "map" vectors to non-negative values. In this sense are functions that ass
 
 Grasping the meaning of these three properties may be difficult at this point, but they probably become clearer as you improve your understanding of linear algebra.
 
-<center> Fig. 7: Vector norms <center/>
+**Fig. 7: Vector norms**
 
-<center>
+
 <img src="/assets/post-10/b-l2-norm.svg">
-<center/>
+
 
 ### Euclidean norm: $L_2$
 
@@ -807,11 +807,11 @@ $$
 c^2 = a^2 + b^2 - 2ab \cos \theta
 $$
 
-<center> Fig. 8: Law of cosines and Angle between vectors <center/>
+**Fig. 8: Law of cosines and Angle between vectors**
 
-<center>
+
 <img src="/assets/post-10/b-vector-angle.svg">
-<center/>
+
 
 We can replace this expression with vectors lengths as: 
 
@@ -877,11 +877,11 @@ We say that a pair of vectors $\bf{x}$ and $\bf{y}$ are **orthogonal** if their 
 
 Here is an example of orthogonal vectors
 
-<center> Fig. 9: Orthogonal vectors <center/>
+**Fig. 9: Orthogonal vectors**
 
-<center>
+
 <img src="/assets/post-10/b-orthogonal-vectors.svg">
-<center/>
+
 
 
 ```python
@@ -1458,11 +1458,11 @@ $$
 
 Geometrically, the solution for this representation equals to plot a **set of planes in 3-dimensional space**, one for each equation, and to find the segment where the planes intersect.
 
-<center> Fig. 10: Visualiation system of equations as planes <center/>
+**Fig. 10: Visualiation system of equations as planes**
 
-<center>
+
 <img src="/assets/post-10/b-planes-intersection.svg">
-<center/>
+
 
 An alternative way, which I personally prefer to use, is to represent the system as a **linear combination of the column vectors times a scaling term**:
 
@@ -1494,8 +1494,8 @@ $$
 
 Geometrically, the solution for this representation equals to plot a set of **vectors in 3-dimensional** space, one for each column vector, then scale them by $w_i$ and add them up, tip to tail, to find the resulting vector $y$.
 
-<center> Fig. 11: Visualiation system of equations as linear combination of vectors <center/>
+**Fig. 11: Visualiation system of equations as linear combination of vectors**
 
-<center>
+
 <img src="/assets/post-10/b-vectors-combination.svg">
-<center/>
+
