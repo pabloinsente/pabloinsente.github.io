@@ -631,7 +631,7 @@ Grasping the meaning of these three properties may be difficult at this point, b
 <img src="/assets/post-10/b-l2-norm.svg">
 
 
-### Euclidean norm$
+### Euclidean norm
 
 The Euclidean norm is one of the most popular norms in machine learning. It is so widely used that sometimes is refered simply as "the norm" of a vector. Is defined as:
 
@@ -667,7 +667,7 @@ np.linalg.norm(x, 2)
 
 If you remember the first "Pythagorean triple", you can confirm that the norm is correct.
 
-### Manhattan norm$
+### Manhattan norm
 
 The Manhattan or $L_1$ norm gets its name in analogy to measuring distances while moving in Manhattan, NYC. Since Manhattan has a grid-shape, the distance between any two points is measured by moving in vertical and horizontals lines (instead of diagonals as in the Euclidean norm). It is defined as:
 
@@ -695,7 +695,7 @@ np.linalg.norm(x, 1)
 
 Is easy to confirm that the sum of the absolute values of $3$ and $-4$ is $7$.
 
-### Max norm$
+### Max norm
 
 The max norm or infinity norm is simply the absolute value of the largest element in the vector. It is defined as:
 
