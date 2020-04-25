@@ -14,7 +14,7 @@ $$
 \hat{y} = \hat{w}_0 + \sum_{j=1}^nx_j\hat{w}_j = \hat{w}_0 + \hat{w}_1x_1 + \cdots + \hat{w}_nx_n
 $$
 
-Where $\hat{w_0}$ is the *bias* or *intercept*. Note we add a "hat" to the unknown estimated parameters to distinguish them from known given values. To express the linear model expression in matrix notation, we can incorporate a constant vector $x_i=1$ to $\textit{X}$, and the bias $\hat{w_0}$ into the vector of weights $\hat{w}$, to obtain:
+Where $\hat{w_0}$ is the *bias* or *intercept*. Note we add a "hat" to the unknown estimated parameters to distinguish them from known given values. To express a linear regression in matrix notation, we can incorporate a constant vector $x_i=1$ to $\textit{X}$, and the bias $\hat{w_0}$ into the vector of weights $\hat{w}$, to obtain:
 
 $$
 \hat{y} = X^T\bf{\hat{w}}
@@ -41,7 +41,7 @@ $$
 In machine learning is common to take the mean of the SSE to obtain the Mean Squared Error (MSE) as:
 
 $$
-MSE(w) = \frac{1}{m} \sum_{i=1}^n(y_i - x_i^Tw)^2
+MSE(w) = \frac{1}{n} \sum_{i=1}^n(y_i - x_i^Tw)^2
 $$
 
 ## Model training
@@ -64,9 +64,9 @@ $$
 \end{align}
 $$
 
-Note that the solution $(\textit{X}^T \textit{X})^{-1} \textit{X}^T y = w$ works only if $\textit{X}$ is *nonsingular* or *invertible* (see here). Geometrically, this means that each vector in $\textit{X}$ is independent of each other. Otherwise, we can compute the *minimum norm solution* for the singular case (see [here](https://see.stanford.edu/materials/lsoeldsee263/08-min-norm.pdf)). If you are familiar with iterative methods, you can think of the closed-form solution as a one-step solution.
+Note that the solution $(\textit{X}^T \textit{X})^{-1} \textit{X}^T y = w$ works only if $\textit{X}$ is *nonsingular* or *invertible* (see [here](https://en.wikipedia.org/wiki/Invertible_matrix)). Geometrically, this means that each vector in $\textit{X}$ is independent of each other. Otherwise, we can compute the *minimum norm solution* for the singular case (see [here](https://see.stanford.edu/materials/lsoeldsee263/08-min-norm.pdf)). If you are familiar with iterative methods, you can think of the closed-form solution as a one-step solution.
 
-A different approach to solve a linear model with iterative methods like *gradient descent*. This method is preferred when the matrix is large, as inverting large matrices is computationally expensive. I won't describe gradient descent in this section (which you can review here), to maintain our focus in the linear regression problem.
+A different approach to solve a linear model with iterative methods like *gradient descent*. This method is preferred when the matrix is large, as inverting large matrices is computationally expensive. I won't describe gradient descent in this section (which you can review [here](https://www.youtube.com/watch?v=IHZwWFHWa-w)), to maintain our focus in the linear regression problem.
 
 ## Simple linear regression example
 
