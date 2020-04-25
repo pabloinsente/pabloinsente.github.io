@@ -1,10 +1,8 @@
 ---
-title: Introduction to Linear Regression: mathematics and application with Python
+title: Introduction to Linear Regression - mathematics and application with Python
 published: true
 mathjax: true
 ---
-
-# Linear Regression Trained with Least Squares
 
 Linear regression is among the most widely used tools in machine learning. Linear models are *linear* simply because the outputs are modeled as *linear combinations* of input vectors. Hence, we want to learn a function $f$ that describes with as little error as possible, the linear relationship between inputs and outputs. 
 
