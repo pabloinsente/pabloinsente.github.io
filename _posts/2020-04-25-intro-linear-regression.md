@@ -304,6 +304,14 @@ print(f'R2 coefficient of determination multivariable regression: {np.round(R2_m
     R2 coefficient of determination multivariable regression: 0.59
 
 
-Based on a single feature, we obtain a $SSE\approx3411.8$, a $MSE\approx33.45$, and a $R^2\approx0.59$. As expected, the error measures went down and the association measure went up, as more features provide more information for prediction.
+Based on the 13 features, we obtain a $SSE\approx3411.8$, a $MSE\approx33.45$, and a $R^2\approx0.59$. As expected, the error measures went down and the association measure went up, as more features provide more information for prediction.
 
-Visualization is not possible for a 13 features regression, but you can make your best effort by imaging a 3D space and thinking "13!" with all your might. 
+Visualization is not possible for a 13 features regression, but you can make your best effort by imaging a 3D space and thinking "13!" with all your might.
+
+## References
+
+- Bishop, C. M. (2006). 3. Linear models for regression. Pattern recognition and machine learning. springer.
+
+- Deisenroth, M. P., Faisal, A. A., & Ong, C. S. (2020) 9. Linear Regression. In Mathematics for machine learning. Cambridge University Press.
+
+- Friedman, J., Hastie, T., & Tibshirani, R. (2009). 3. Linear Methods for Regression. In The elements of statistical learning (Vol. 1, No. 10). New York: Springer series in statistics.
