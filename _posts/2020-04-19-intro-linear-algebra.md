@@ -4,17 +4,18 @@ published: true
 mathjax: true
 ---
 
-<<<***This is a work in progress as 2020-04-19***>>>
+<<<***Note: I plan to complete this mini-project in 4 updates. As 2020-29-19, I'm on update 2. Around 60% of the project is complete***>>>
 
 Linear algebra is to machine learning as flour to bakery: **every machine learning model is based in linear algebra, as every cake is based in flour**. It is not the only ingredient, of course. Machine learning models need vector calculus, probability, and optimization, as cakes need sugar, eggs, and butter. Applied machine learning, like bakery, is essentially about combining these mathematical ingredients in clever ways to create useful (tasty?) models. 
 
-This document contains **introductory level linear algebra notes for applied machine learning**. It is meant as a reference rather than a comprehensive review. If you ever get confused by matrix multiplication, don't remember what was the $L^2$ norm, or the conditions for linear independence, this can serve as a quick reference. It also a good introduction for people that don't need a deep understanding of linear algebra, but still want to learn about the fundamentals to read about machine learning or to use pre-packaged machine learning solutions. Further, it is a good source for people that learned linear algebra a while ago and need a refresher.
+This document contains **introductory level linear algebra notes for applied machine learning**. It is meant as a reference rather than a comprehensive review. If you ever get confused by matrix multiplication, don't remember what was the $L_2$ norm, or the conditions for linear independence, this can serve as a quick reference. It also a good introduction for people that don't need a deep understanding of linear algebra, but still want to learn about the fundamentals to read about machine learning or to use pre-packaged machine learning solutions. Further, it is a good source for people that learned linear algebra a while ago and need a refresher.
 
 These notes are based in a series of (mostly) freely available textbooks, video lectures, and classes I've read, watched and taken in the past. If you want to obtain a deeper understanding or to find exercises for each topic, you may want to consult those sources directly. 
 
 **Free resources**:
 
 - **Mathematics for Machine Learning** by Deisenroth, Faisal, and Ong. 1st Ed. [Book link](https://mml-book.github.io/).
+- **Introduction to Applied Linear Algebra** by Boyd and Vandenberghe. 1sr Ed. [Book link](http://vmls-book.stanford.edu/)
 - **Linear Algebra Ch. in Deep Learning** by Goodfellow, Bengio, and Courville. 1st Ed. [Chapter link](https://www.deeplearningbook.org/contents/linear_algebra.html).
 - **Linear Algebra Ch. in Dive into Deep Learning** by Zhang, Lipton, Li, And Smola. [Chapter link](https://d2l.ai/chapter_preliminaries/linear-algebra.html).
 - **Prof. Pavel Grinfeld's Linear Algebra Lectures** at Lemma. [Videos link](https://www.lem.ma/books/AIApowDnjlDDQrp-uOZVow/landing).
@@ -29,7 +30,7 @@ These notes are based in a series of (mostly) freely available textbooks, video 
 
 I've consulted all these resources at one point or another. Pavel Grinfeld's lectures are my absolute favorites. Salman Khan's lectures are really good for absolute beginners (they are long though). The famous 3blue1brown series in linear algebra is delightful to watch and to get a solid high-level view of linear algebra.
 
-The Linear Algebra Chapter in Goodfellow et al is a nice and concise introduction, but it may require some previous exposure to linear algebra concepts. Deisenroth et all book is probably the best and most comprehensive source for linear algebra for machine learning I've found, although it assumes that you are good at reading math (and at math more generally). Savov's book it's also great for beginners but requires time to digest. Professor Strang lectures are great too but I won't recommend it for absolute beginners.
+If you have to pic one book, I'd pic **Boyd's and Vandenberghe's Intro to applied linear algebra**, as it is the most beginner friendly book on linear algebra I've encounter. Every aspect of the notation is clearly explained and pretty much all the key content for applied machine learning is covered. The Linear Algebra Chapter in Goodfellow et al is a nice and concise introduction, but it may require some previous exposure to linear algebra concepts. Deisenroth et all book is probably the best and most comprehensive source for linear algebra for machine learning I've found, although it assumes that you are good at reading math (and at math more generally). Savov's book it's also great for beginners but requires time to digest. Professor Strang lectures are great too but I won't recommend it for absolute beginners.
 
 I'll do my best to keep notation consistent. Nevertheless, learning to adjust to changing or inconsistent notation is a useful skill, since most authors will use their own preferred notation, and everyone seems to think that its/his/her own notation is better.
 
@@ -39,22 +40,26 @@ Finally, keep in mind this is created by a non-mathematician for (mostly) non-ma
 
 # Table of contents
 
-**[Vectors](#vectors)**:
+**Note:** _underlined sections_ are the newest sections and/or corrected ones.
+
+**[_Vectors_](#vectors)**:
 - [Types of vectors](#types-of-vectors)
     - [Geometric vectors](#geometric-vectors)
     - [Polynomials](#polynomials)
-    - [Elements of $\mathbb{R}^n$](#elements-of-r)
+    - [Elements of R](#elements-of-r)
+- [_Zero vector, unit vector, and sparce vector_](#zero-vector-unit-vector-and-sparce-vector)
 - [Vector dimensions and coordinate system](#vector-dimensions-and-coordinate-system) 
 - [Basic vector operations](#basic-vector-operations)
-    - [Vector-vector addition](#vector-vector-addition)
-    - [Vector-scalar multiplication: scaling](#vector-scalar-multiplication-scaling)
+    - [_Vector-vector addition_](#vector-vector-addition)
+    - [_Vector-scalar multiplication_](#vector-scalar-multiplication)
     - [Linear combinations of vectors](#linear-combinations-of-vectors)
     - [Vector-vector multiplication: dot product](#vector-vector-multiplication-dot-product)
-- [Vector spaces](#vector-spaces)
+- [Vector space, span, and subspace](#vector-space-span-and-subspace)
     - [Vector space](#vector-space)
     - [Vector span](#vector-span)
     - [Vector subspaces](#vector-subspaces)
-- [Linear dependence and independence](#linear-dependence-and-independence)
+- [_Linear dependence and independence_](#linear-dependence-and-independence)
+- [Vector null space](#vector-null-space)
 - [Vector norms](#vector-norms)
     - [Euclidean norm: $L_2$](#euclidean-norm)
     - [Manhattan norm: $L_1$](#manhattan-norm)
@@ -69,17 +74,31 @@ Finally, keep in mind this is created by a non-mathematician for (mostly) non-ma
     - [Matrix-matrix addition](#matrix-matrix-addition)
     - [Matrix-scalar multiplication](#matrix-scalar-multiplication)
     - [Matrix-vector multiplication: dot product](#matrix-vector-multiplication-dot-product)
-    - [Matrix-matrix multiplication](#matrix-matrix-multiplication)
+    - [_Matrix-matrix multiplication_](#matrix-matrix-multiplication)
+    - [_Matrix identity_](#matrix-identity)
+    - [_Matrix inverse_](#matrix-inverse)
+    - [_Matrix transpose_](#matrix-transpose)
     - [Hadamard product](#hadamard-product)
 - [Matrices as systems of linear equations](#matrices-as-systems-of-linear-equations)
-
+- [_The four fundamental matrix subsapces_](#the-four-fundamental-matrix-subsapces)
+    - [_The column space_](#the-column-space)
+    - [_The row space_](#the-row-space)
+    - [_The null space_](#the-null-space)
+    - [_The null space of the transpose_](#the-null-space-of-the-transpose)
+- [_Solving systems of linear equations with matrices_](#solving-systems-of-linear-equations-with-matrices)
+    - [_Gaussian Elimination_](#gaussian-elimination)
+    - [_Gauss-Jordan Elmination_](#gauss-jordan-elmination)
+- [_Matrix basis and rank_](#matrix-basis-and-rank)
+   
 **Future sections**:
 
-- Solving systems of linear equations with Gaussian elimination
-- Matrix identity
-- Matrix inverse
-- Matrix transpose
-- Matrix basis and rank
+- Geometric transformations
+    - Scaling
+    - Dilation
+    - Rotation
+    - Reflection
+    - Projection onto a line
+- Linear and affine functions
 - Linear mappings
 - Affine spaces
 - Affine transformations
@@ -101,9 +120,9 @@ import altair as alt
 
 # Vectors
 
-Linear algebra is the study of vectors. Vectors are the most fundamental mathematical object in machine learning. We use them to **represent attributes of entities**: age, sex, test scores, etc. We represent vectors by a bold lower-case letter like $\bf{v}$ or as a lower-case letter with an arrow on top like $\vec{v}$.
+Linear algebra is the study of vectors. At the most general level, vectors are **ordered finite lists of numbers**. Vectors are the most fundamental mathematical object in machine learning. We use them to **represent attributes of entities**: age, sex, test scores, etc. We represent vectors by a bold lower-case letter like $\bf{v}$ or as a lower-case letter with an arrow on top like $\vec{v}$.
 
-Vectors are a type of mathematical object that can be **added together** and/or **multiplied by a number** to obtain another object of **the same kind**. For instance, if we have a vector $\bf{x} = \text{age}$ and a second vector $\bf{y} = \text{age}$, we can add them together and obtain a third vector $\bf{z} = x + y$ of *the same kind*. We can also multiply $2 \times \bf{x}$ to obtain $2\bf{x}$, again, a vector of *the same kind*. 
+Vectors are a type of mathematical object that can be **added together** and/or **multiplied by a number** to obtain another object of **the same kind**. For instance, if we have a vector $\bf{x} = \text{age}$ and a second vector $\bf{y} = \text{weight}$, we can add them together and obtain a third vector $\bf{z} = x + y$. We can also multiply $2 \times \bf{x}$ to obtain $2\bf{x}$, again, a vector. This is what we mean by *the same kind*: the returning object is still a *vector*. 
 
 ## Types of vectors
 
@@ -117,7 +136,6 @@ Vectors come in three flavors: (1) **geometric vectors**, (2) **polynomials**, (
 
 
 <img src="/assets/post-10/b-geometric-vectors.svg">
-
 
 ### Polynomials
 
@@ -140,18 +158,18 @@ $$
 
 <img src="/assets/post-10/b-polynomials-vectors.svg">
 
-
 ### Elements of R
 
-**Elements of $\mathbb{R^n}$ are sets of real numbers**. This type of representation is arguably the most important for applied machine learning. It is how data is commonly represented in computers to build machine learning models. For instance, a vector in $\mathbb{R^3}$ takes the shape of:
+**Elements of $\mathbb{R}^n$ are sets of real numbers**. This type of representation is arguably the most important for applied machine learning. It is how data is commonly represented in computers to build machine learning models. For instance, a vector in $\mathbb{R}^3$ takes the shape of:
 
-$$\bf{x}=
+$$
+\bf{x}=
 \begin{bmatrix}
 x_1 \\
 x_2 \\
 x_3
 \end{bmatrix}
-\in \mathbb{R^3}
+\in \mathbb{R}^3
 $$
 
 Indicating that it contains three dimensions.
@@ -228,6 +246,47 @@ print(f'A 3-dimensional vector:\n{x}')
      [3]]
 
 
+## Zero vector, unit vector, and sparce vector
+
+There are a couple of  "special" vectors worth to remember as they will be mentioned frequently on applied linear algebra: (1) zero vector, (2) unit vector, (3) sparse vectors
+
+**Zero vectors**, are vectors composed of zeros, and zeros only. It is common to see this vector denoted as simply $0$, regardless of the dimensionality. Hence, you may see a 3-dimensional or 10-dimensional with all entries equal to 0, refered as "the 0" vector. For instance:
+
+$$
+\bf{0} = 
+\begin{bmatrix}
+0\\
+0\\
+0
+\end{bmatrix}
+$$
+
+**Unit vectors**, are vectors composed of a single element equal to one, and the rest to zero. Unit vectors are important to understand applications like norms. For instance, $\bf{x_1}$, $\bf{x_2}$, and $\bf{x_3}$ are unit vectors:
+
+$$
+\bf{x_1} = 
+\begin{bmatrix}
+1\\
+0\\
+0
+\end{bmatrix},
+\bf{x_2} = 
+\begin{bmatrix}
+0\\
+1\\
+0
+\end{bmatrix},
+\bf{x_3} = 
+\begin{bmatrix}
+0\\
+0\\
+1
+\end{bmatrix}
+$$
+
+**Sparse vectors**, are vectors with most of its elements equal to zero. We denote the number of nonzero elements of a vector $\bf{x}$ as $nnz(x)$. The sparser possible vector is the zero vector. Sparse vectors are common in machine learning applications and often require some type of method to deal with them effectively.  
+
+
 ## Vector dimensions and coordinate system
 
 Vectors can have any number of dimensions. The most common are the 2-dimensional cartesian plane, and the 3-dimensional space. Vectors in 2 and 3 dimensions are used often for pedgagogical purposes since we can visualize them as geometric vectors. Nevetheless, most problems in machine learning entail more dimensions, sometiome hundreds or thousands of dimensions. The notation for a vector $\bf{x}$ of arbitrary dimensions, $n$ is:
@@ -250,7 +309,6 @@ we are saying: starting from the origin, move 3 units in the 1st perpendicular a
 
 
 <img src="/assets/post-10/b-coordinate-system.svg">
-
 
 ## Basic vector operations
 
@@ -303,6 +361,13 @@ $$
 \end{bmatrix}
 $$
 
+Vector addition has a series of **fundamental properties** worth mentioning:
+
+1. Commutativity: $x + y = y + x$
+2. Associativity: $(x + y) + z = x + (y + z)$
+3. Adding the zero vector has no effect: $x + 0 = 0 + x = x$
+4. Substracting a vector from itself returns the zero vector: $x - x = 0$
+
 In `NumPy`, we add two vectors of the same with the `+` operator or the `add` method:
 
 
@@ -340,7 +405,7 @@ np.add(x,y)
 
 
 
-### Vector-scalar multiplication: scaling
+### Vector-scalar multiplication
 
 Vector-scalar multiplication is an element-wise operation. It's defined as:
 
@@ -368,6 +433,13 @@ $$
 6
 \end{bmatrix}
 $$
+
+Vector-scalar multiplication satisfies a series of important properties:
+
+1. Associativity: $(\alpha \beta) \bf{x} = \alpha (\beta \bf{x})$
+2. Left-distributive property: $(\alpha + \beta) \bf{x} = \alpha \bf{x} + \beta \bf{x}$
+3. Right-distributive property: $\bf{x} (\alpha + \beta) = \bf{x} \alpha + \bf{x} \beta$
+4. Right-distributive property for vector addition: $\alpha (\bf{x} + \bf{y}) = \alpha \bf{x} + \alpha \bf{y}$
 
 In `NumPy`, we compute scalar-vector multiplication with the `*` operator:
 
@@ -472,7 +544,7 @@ a*x + b*y
 
 
 
-### Vector-vector multiplication: dot product
+### Vector-vector multiplication: dot products
 
 We covered vector addition and multiplication by scalars. Now I will define vector-vector multiplication, commonly known as a **dot product** or **inner product**. The dot product of $\bf{x}$ and $\bf{y}$ is defined as: 
 
@@ -481,6 +553,13 @@ $$
 \begin{bmatrix}
 x_1 \\
 x_2
+\end{bmatrix}^T
+\begin{bmatrix}
+y_1 \\
+y_2
+\end{bmatrix} =
+\begin{bmatrix}
+x_1 & x_2
 \end{bmatrix}
 \begin{bmatrix}
 y_1 \\
@@ -489,13 +568,20 @@ y_2
 x_1 \times y_1 + x_2 \times y_2 
 $$
 
-For instance:
+Where the $T$ superscript denotes the transpose of the vector. Transposing a vector just means to "flip" the column vector to a row vector counterclockwise. For instance:
 
 $$
 \bf{x} \cdot \bf{y} =
 \begin{bmatrix}
 -2 \\
 2
+\end{bmatrix}
+\begin{bmatrix}
+4 \\
+-3
+\end{bmatrix} =
+\begin{bmatrix}
+-2 & 2
 \end{bmatrix}
 \begin{bmatrix}
 4 \\
@@ -525,7 +611,7 @@ x.T @ y
 
 
 
-## Vector spaces
+## Vector space, span, and subspace
 
 ### Vector space
 
@@ -551,7 +637,6 @@ Consider the vectors $\bf{x}$ and $\bf{y}$ and the scalars $\alpha$ and $\beta$.
 
 <img src="/assets/post-10/b-vector-span.svg">
 
-
 What would happen if the vectors point in the same direction? Now, if you combine them, you just can **span a line**, as shown in the left-pane in **Fig. 4**. If you have ever heard of the term "multicollinearity", it's closely related to this issue: when two variables are "colinear" they are pointing in the same direction, hence they provide redundant information, so can drop one without information loss.
 
 With three vectors pointing into different directions, we can span the entire 3-dimensional space or a **hyper-plane**, as in the right-pane of **Fig. 4**. Note that the sphere is just meant as a 3-D reference, not as a limit.
@@ -560,17 +645,18 @@ Four vectors pointing into different directions will span the 4-dimensional spac
 
 ### Vector subspaces
 
-A **vector subspace (or linear subspace) is a vector space that lies within a larger vector space**. These are also known as linear subspaces. For a vector to be a valid subspace it has to meet **three conditions**:
+A **vector subspace (or linear subspace) is a vector space that lies within a larger vector space**. These are also known as linear subspaces. Consider a subspace $S$. For a vector to be a valid subspace it has to meet **three conditions**:
 
-1. Contains the zero vector
-2. Closure under multiplication 
-3. Closure under addition
+1. Contains the zero vector, $\bf{0} \in S$
+2. Closure under multiplication, $\forall \alpha \in \mathbb{R} \rightarrow  \alpha \times s_i \in S$
+3. Closure under addition, $\forall s_i \in S \rightarrow  s_1 + s_2 \in S$
+
+Intuitively, you can think in closure as being unable to "jump out" from space into another. A pair of vectors laying flat in the 2-dimensional space, can't, by either addition or multiplication, "jump out" into the 3-dimensional space. 
 
 **Fig. 5: Vector subspaces**
 
 
 <img src="/assets/post-10/b-vector-subspace.svg">
-
 
 Consider the following questions: Is $\bf{x}=\begin{bmatrix} 1 \\ 1 \end{bmatrix}$ a valid subspace of $\mathbb{R^2}$? Let's evaluate $\bf{x}$ on the three conditions:
 
@@ -589,9 +675,9 @@ $$
 \end{bmatrix}
 $$
 
-**Closure under multiplication** implies that if take any vector belonging to $\bf{x}$ and multiply by any real scalar $\alpha$, the resulting vector stays within the span of $\bf{x}$. Algebraically is easy to see that we can multiply $\begin{bmatrix} 1 \\ 1 \end{bmatrix}$ by any scalar $\alpha$, and the resulting vector remains in the 2-dimensional plane (i.e., the span of $\bf{x}$).
+**Closure under multiplication** implies that if take any vector belonging to $\bf{x}$ and multiply by any real scalar $\alpha$, the resulting vector stays within the span of $\bf{x}$. Algebraically is easy to see that we can multiply $\begin{bmatrix} 1 \\ 1 \end{bmatrix}$ by any scalar $\alpha$, and the resulting vector remains in the 2-dimensional plane (i.e., the span of $\mathbb{R}^2$).
 
-**Closure under addition** implies that if we add together any vectors belonging to $\bf{x}$, the resulting vector remains within the span of $\bf{x}$. Again, algebraically is clear that if we add any vectors from $\bf{x}$ span, the resulting vector will remain in such a span. There is no way to get to $\mathbb{R^3}$ or $\mathbb{R^4}$ or any space outside the two-dimensional plane.
+**Closure under addition** implies that if we add together any vectors belonging to $\bf{x}$, the resulting vector remains within the span of $\mathbb{R}^2$. Again, algebraically is clear that if we add $\bf{x}$ + $\bf{x}$, the resulting vector will remain in $\mathbb{R}^2$. There is no way to get to $\mathbb{R^3}$ or $\mathbb{R^4}$ or any space outside the two-dimensional plane by adding $\bf{x}$ multiple times. 
 
 ## Linear dependence and independence 
 
@@ -602,16 +688,33 @@ The left-pane shows a triplet of **linearly dependent** vectors, whereas the rig
 
 <img src="/assets/post-10/b-linear-independence.svg">
 
-
 A set of vectors is **linearly dependent** if at least one vector can be obtained as a linear combination of other vectors in the set. As you can see in the left pane, we can combine vectors $x$ and $y$ to obtain $z$. 
 
-There is more rigurous (but slightly harder to grasp) definition of linear dependence. Consider a set of vectors $x_1, ..., x_k$ and scalars $\beta \in \mathbb{R}$. If there is a way to get $0 = \sum_{i=1}^k \beta_i x_i$ with at least one $\beta \ne 0$, we have linearly dependent vectors.
+There is more rigurous (but slightly harder to grasp) definition of linear dependence. Consider a set of vectors $x_1, ..., x_k$ and scalars $\beta \in \mathbb{R}$. If there is a way to get $0 = \sum_{i=1}^k \beta_i x_i$ with at least one $\beta \ne 0$, we have linearly dependent vectors. In other words, if we can get the zero vector as a linear combination of the vectors in the set, with weights that *are not* all zero, we have a linearly dependent set.
 
-A set of vectors is **linearly independent** if none vector can be obtained a linear combination of other vectors in the set. As you can see in the right pane, there is no way for us to combine vectors $x$ and $y$ to obtain $z$. 
-
-Again, consider a set of vectors $x_1, ..., x_k$ and scalars $\beta \in \mathbb{R}$. If the only way to get $0 = \sum_{i=1}^k \beta_i x_i$ requires all $\beta_1, ..., \beta_k = 0$, the we have linearly independent vectors. 
+A set of vectors is **linearly independent** if none vector can be obtained as a linear combination of other vectors in the set. As you can see in the right pane, there is no way for us to combine vectors $x$ and $y$ to obtain $z$. Again, consider a set of vectors $x_1, ..., x_k$ and scalars $\beta \in \mathbb{R}$. If the only way to get $0 = \sum_{i=1}^k \beta_i x_i$ requires all $\beta_1, ..., \beta_k = 0$, the we have linearly independent vectors. In words, the only way to get the zero vectors in by multoplying each vector in the set by $0$.
 
 The importance of the concepts of linear dependence and independence will become clearer in more advanced topics. For now, the important points to remember are: linearly dependent vectors contain **redundant information**, whereas linearly independent vectors do not.
+
+## Vector null space
+
+Now that we know what subspaces and linear dependent vectors are, we can introduce the idea of the **null space**. Intuitively, the null space of a set of vectors are **all linear combinations that "map" into the zero vector**. Consider a set of geometric vectors $\bf{w}$, $\bf{x}$, $\bf{y}$, and $\bf{z}$ as in **Fig. 7**. By inspection, we can see that vectors $\bf{x}$ and $\bf{z}$ are parallel to each other, hence, independent. On the contrary, vectors $\bf{w}$ and $\bf{y}$ can be obtained as linear combinations of $\bf{x}$ and $\bf{z}$, therefore, dependent. 
+
+**Fig. 7: Vector null space**
+
+<img src="/assets/post-10/b-vector-null-space.svg">
+
+
+As result, with this four vectors, we can form the following two combinations that will "map" into the origin of the coordinate system, this is, the zero vector $(0,0)$:
+
+$$
+\begin{matrix}
+z - y + x = 0 \\
+z - x + w = 0
+\end{matrix}
+$$
+
+We will see how this idea of the null space extends naturally in the context of matrices later.
 
 ## Vector norms
 
@@ -625,11 +728,10 @@ Norms "map" vectors to non-negative values. In this sense are functions that ass
 
 Grasping the meaning of these three properties may be difficult at this point, but they probably become clearer as you improve your understanding of linear algebra.
 
-**Fig. 7: Vector norms**
+**Fig. 8: Vector norms**
 
 
 <img src="/assets/post-10/b-l2-norm.svg">
-
 
 ### Euclidean norm
 
@@ -639,17 +741,17 @@ $$
 \lVert \bf{x} \rVert_2 := \sqrt{\sum_{i=1}^n x_i^2} = \sqrt{x^Tx} 
 $$
 
-Hence, in **two dimensions** the $L^2$ norm is:
+Hence, in **two dimensions** the $L_2$ norm is:
 
 $$
-\lVert \bf{x} \rVert_2 \in \mathbb{R^2} = \sqrt {x_1^2  \cdot x_2^2 } 
+\lVert \bf{x} \rVert_2 \in \mathbb{R}^2 = \sqrt {x_1^2  \cdot x_2^2 } 
 $$
 
 Which is equivalent to the formula for the hypotenuse a triangle with sides $x_1^2$ and $x_2^2$. 
 
 The same pattern follows for higher dimensions of $\mathbb{R^n}$
 
-In `NumPy`, we can compute the $L^2$ norm as:
+In `NumPy`, we can compute the $L_2$ norm as:
 
 
 ```python
@@ -807,11 +909,10 @@ $$
 c^2 = a^2 + b^2 - 2ab \cos \theta
 $$
 
-**Fig. 8: Law of cosines and Angle between vectors**
+**Fig. 9: Law of cosines and Angle between vectors**
 
 
 <img src="/assets/post-10/b-vector-angle.svg">
-
 
 We can replace this expression with vectors lengths as: 
 
@@ -877,11 +978,10 @@ We say that a pair of vectors $\bf{x}$ and $\bf{y}$ are **orthogonal** if their 
 
 Here is an example of orthogonal vectors
 
-**Fig. 9: Orthogonal vectors**
+**Fig. 10: Orthogonal vectors**
 
 
 <img src="/assets/post-10/b-orthogonal-vectors.svg">
-
 
 
 ```python
@@ -941,12 +1041,12 @@ equation1 + equation2
 
 
 
-<div id="altair-viz-c53535f19fb746f5abec52b2bb7ee5d7"></div>
+<div id="altair-viz-744c93812e5c4e4895e017d6e249c3d0"></div>
 <script type="text/javascript">
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-c53535f19fb746f5abec52b2bb7ee5d7") {
-      outputDiv = document.getElementById("altair-viz-c53535f19fb746f5abec52b2bb7ee5d7");
+    if (outputDiv.id !== "altair-viz-744c93812e5c4e4895e017d6e249c3d0") {
+      outputDiv = document.getElementById("altair-viz-744c93812e5c4e4895e017d6e249c3d0");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
@@ -994,6 +1094,14 @@ equation1 + equation2
 
 
 # Matrices
+
+
+```python
+# Libraries for this section 
+import numpy as np
+import pandas as pd
+import altair as alt
+```
 
 Matrices are as fundamental as vectors in machine learning. With vectors, we can represent single variables as sets of numbers or instances. With matrices, we can represent sets of variables. In this sense, a matrix is simply an ordered **collection of vectors**. Conventionally, column vectors, but it's always wise to pay attention to the authors' notation when reading matrices. Since computer screens operate in two dimensions, matrices are the way in which we interact with data in practice.
 
@@ -1107,7 +1215,7 @@ $$
 a_{ij} \times \alpha, \text{such that } (\alpha \textit{A})_{ij} = \alpha(\textit{A})_{ij}
 $$
 
-Consider $\alpha=2$ and $\textit{A}=\begin{bmatrix}1 & 2 \\ 3 & 4\end{bmatrix}$, then:
+Consider $\alpha=2$ and $\textit{A}=\begin{bmatrix}1 & 2 \\3 & 4\end{bmatrix}$, then:
 
 $$
 \alpha \textit{A} =
@@ -1323,6 +1431,15 @@ $$
 \end{bmatrix}
 $$
 
+Matrix-matrix multiplication has a series of important properties:
+
+- Associativity: $(\textit{A}\textit{B}) \textit{C} = \textit{A}(\textit{B}\textit{C})$
+- Associativity with scalar multiplication: $\alpha (\textit{A}\textit{B}) = (\alpha \textit{A}) \textit{B}$
+- Distributivity with addition: $\textit{A}(\textit{B}+\textit{C}) = A+B + AC$
+- Transpose of product: $(\textit{A}\textit{B})^T = \textit{B}^T\textit{A}^T$
+
+It's also important to remember that **matrix-matrix multiplication orders matter**, this is, it is **not commutative**. Hence, in general, $AB \ne BA$.
+
 In `NumPy`, we obtan the matrix-matrix product with the `@` operator or `dot` method: 
 
 
@@ -1356,6 +1473,155 @@ np.dot(A, B)
 
     array([[4, 2],
            [9, 7]])
+
+
+
+### Matrix identity
+
+An identity matrix is a square matrix with ones on the diagonal from the upper left to the bottom right, and zeros everywhere else. We denote the identity matrix as $\textit{I}_n$. We define $\textit{I} \in \mathbb{R}^{n \times n}$ as:
+
+$$
+\textit{I}_n := 
+\begin{bmatrix}
+1 & 0 & \cdots & 0 & 0 \\
+0 & 1 & \cdots & 0 & 0 \\
+0 & 0 & \ddots & 0 & 0 \\
+0 & 0 & \cdots & 1 & 0 \\
+0 & 0 & \cdots & 0 & 1
+\end{bmatrix}
+\in \mathbb{R}^{n \times n}
+$$
+
+For example:
+
+$$
+\textit{I}_3 =
+\begin{bmatrix}
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 1
+\end{bmatrix}
+$$
+
+You can think in the inverse as playing the same role than $1$ in operations with real numbers. The inverse matrix does not look very interesting in itself, but it plays an important role in some proofs and for the inverse matrix (which can be used to solve system of linear equations). 
+
+### Matrix inverse
+
+In the context of real numbers, the *multiplicative inverse (or reciprocal)* of a number $x$, is the number that when multiplied by $x$ yields $1$. We denote this by $x^{-1}$ or $\frac{1}{x}$. Take the number $5$. Its multiplicative inverse equals to $5 \times \frac{1}{5} = 1$.
+
+If you recall the matrix identity section, we said that the identity plays a similar role than the number one but for matrices. Again, by analogy, we can see the *inverse* of a matrix as playing the same role than the multiplicative inverse for numbers but for matrices. Hence, the *inverse matrix* is a matrix than when multiplies another matrix *from either the right or the left side*, returns the identity matrix. 
+
+More formally, consider the square matrix $\textit{A} \in \mathbb{R}^{n \times n}$. We define $\textit{A}^{-1}$ as matrix with the property:
+
+$$
+\textit{A}^{-1}\textit{A} = \textit{I}_n = \textit{A}\textit{A}^{-1}
+$$
+
+The main reason we care about the inverse, is because it allows to **solve systems of linear equations** in certain situations. Consider a system of linear equations as:
+
+$$
+\textit{A}\bf{x} = \bf{y}
+$$
+
+Assuming $\textit{A}$ has an inverse, we can multiply by the inverse on both sides:
+
+$$
+\textit{A}^{-1}\textit{A}\bf{x} = \textit{A}^{-1}\bf{y}
+$$
+
+And get: 
+
+$$
+\textit{I}\bf{x} = \textit{A}^{-1}\bf{y}
+$$
+
+Since the $\textit{I}$ does not affect $\bf{x}$ at all, our final expression becomes:
+
+$$
+\bf{x} = \textit{A}^{-1}\bf{y}
+$$
+
+This means that we just need to know the inverse of $\textit{A}$, multiply by the target vector $\bf{y}$, and we obtain the solution for our system. I mentioned that this works only in *certain situations*. By this I meant: **if and only if $\textit{A}$ happens to have an inverse**. Not all matrices have an inverse. When $\textit{A}^{-1}$ exist, we say $\textit{A}$ is *nonsingular* or *invertible*, otherwise, we say it is *noninvertible* or *singular*.
+
+The lingering question is how to find the inverse of a matrix. We can do it by reducing $\textit{A}$ to its *reduced row echelon form* by using Gauss-Jordan Elimination. If $\textit{A}$ has an inverse, we will obtain the identity matrix as the row echelon form of $\textit{A}$. I haven't introduced either just yet. You can jump to the *Solving systems of linear equations with matrices* if you are eager to learn about it now. For now, we relie on `NumPy`. 
+
+In `NumPy`, we can compute the inverse of a matrix with the `.linalg.inv` method:
+
+
+```python
+A = np.array([[1, 2, 1],
+              [4, 4, 5],
+              [6, 7, 7]])
+```
+
+
+```python
+A_i = np.linalg.inv(A)
+print(f'A inverse:\n{A_i}')
+```
+
+    A inverse:
+    [[-7. -7.  6.]
+     [ 2.  1. -1.]
+     [ 4.  5. -4.]]
+
+
+We can check the $\textit{A}^{-1}$ is correct by multiplying. If so, we should obtain the identity $\textit{I}_3$
+
+
+```python
+I = np.round(A_i @ A)
+print(f'A_i times A resulsts in I_3:\n{I}')
+```
+
+    A_i times A resulsts in I_3:
+    [[ 1.  0.  0.]
+     [ 0.  1. -0.]
+     [ 0. -0.  1.]]
+
+
+### Matrix transpose 
+
+Consider a matrix $\textit{A} \in \mathbb{R}^{m \times n}$. The **transpose** of $\textit{A}$ is denoted as $\textit{A}^T \in \mathbb{R}^{m \times n}$. We obtain $\textit{A}^T$ as:
+
+$$
+(\textit{A}^T)_{ij} = \textit{A}_ji  
+$$
+
+In other words, we get the $\textit{A}^T$ by switching the columns by the rows of $\textit{A}$. For instance:
+
+$$
+\begin{bmatrix}
+1 & 2 \\
+3 & 4 \\
+5 & 6
+\end{bmatrix}^T
+= 
+\begin{bmatrix}
+1 & 3 & 5 \\
+2 & 4 & 6
+\end{bmatrix}
+$$
+
+In `NumPy`, we obtain the transpose with the `T` method:
+
+
+```python
+A = np.array([[1, 2],
+              [3, 4],
+              [5, 6]])
+```
+
+
+```python
+A.T
+```
+
+
+
+
+    array([[1, 3, 5],
+           [2, 4, 6]])
 
 
 
@@ -1427,7 +1693,7 @@ np.multiply(A, B)
 
 I introduced the idea of systems of linear equations as a way to figure out the right combination of linear segments to obtain an outcome. I did this in the context of vectors, now we can extend this to the context of matrices. 
 
-Matrices are ideal to represent systems of linear equations. Consider the matrix $M$ and vectors $w$ and $y$ in $\in \mathbb{R}^3$. We can set up a system of linear equations as $Mw = y$ as:
+Matrices are ideal to represent systems of linear equations. Consider the matrix $\textit{M}$ and vectors $w$ and $y$ in $\in \mathbb{R}^3$. We can set up a system of linear equations as $\textit{M}w = y$ as:
 
 $$
 \begin{bmatrix}
@@ -1448,7 +1714,6 @@ y_{3}
 $$
 
 This is equivalent to:
-
 $$
 \begin{matrix}
 m_{11}w_{1} + m_{12}w_{2} + m_{13}w_{3} =y_{1} \\
@@ -1459,11 +1724,10 @@ $$
 
 Geometrically, the solution for this representation equals to plot a **set of planes in 3-dimensional space**, one for each equation, and to find the segment where the planes intersect.
 
-**Fig. 10: Visualiation system of equations as planes**
+**Fig. 11: Visualiation system of equations as planes**
 
 
 <img src="/assets/post-10/b-planes-intersection.svg">
-
 
 An alternative way, which I personally prefer to use, is to represent the system as a **linear combination of the column vectors times a scaling term**:
 
@@ -1495,8 +1759,451 @@ $$
 
 Geometrically, the solution for this representation equals to plot a set of **vectors in 3-dimensional** space, one for each column vector, then scale them by $w_i$ and add them up, tip to tail, to find the resulting vector $y$.
 
-**Fig. 11: Visualiation system of equations as linear combination of vectors**
+**Fig. 12: Visualiation system of equations as linear combination of vectors**
 
 
 <img src="/assets/post-10/b-vectors-combination.svg">
 
+
+## The four fundamental matrix subsapces
+
+Let's recall the definition of a subspace in the context of vectors:
+
+1. Contains the zero vector, $\bf{0} \in S$
+2. Closure under multiplication, $\forall \alpha \in \mathbb{R} \rightarrow  \alpha \times s_i \in S$
+3. Closure under addition, $\forall s_i \in S \rightarrow  s_1 + s_2 \in S$ 
+
+These conditions carry on to matrices since matrices are simply collections of vectors. Thus, now we can ask what are all possible subspaces that can be "covered" by a collection of vectors in a matrix. Turns out, there are four fundamental subspaces that can be "covered" by a matrix of valid vectors: (1) the column space, (2) the row space, (3) the null space, and (4) the left null space or null space of the transpose. 
+
+These subspaces are considered fundamental because they express many important properties of matrices in linear algebra.
+
+### The column space
+
+The column space of a matrix $\textit{A}$ is composed by **all linear combinations of the columns of $\textit{A}$**. We denote the column space as $C(\textit{A})$. In other words, $C(\textit{A})$ equals to the **span of the columns of $\textit{A}$**. This view of a matrix is what we represented in **Fig. 11**: vectors in $\mathbb{R}^n$ scaled by real numbers. 
+
+For a matrix $\textit{A} \in \mathbb{R}^{m\times n}$ and a vector $\bf{v} \in \mathbb{R}^m$, the column space is defined as:
+
+$$
+C(\textit{A}) := \{ \bf{w} \in \mathbb{R}^n \vert \bf{w} = \textit{A}\bf{v} \text{ for some } \bf{v}\in \mathbb{R}^m \}
+$$
+
+In words: all linear combinations of the column vectors of $\textit{A}$ and entries of an $n$ dimensional vector $\bf{v}$.
+
+### The row space
+
+The row space of a matrix $\textit{A}$ is composed of all linear combinations of the rows of a matrix. We denote
+the row space as $R(\textit{A})$. In other words, $R(\textit{A})$ equals to the **span of the rows** of $\textit{A}$. Geometrically, this is the way we represented a matrix in **Fig. 10**: each row equation represented as planes. Now, a different way to see the row space, is by transposing $\textit{A}^T$. Now, we can define the row space simply as $R(\textit{A}^T)$
+
+For a matrix $\textit{A} \in \mathbb{R}^{m\times n}$ and a vector $\bf{w} \in \mathbb{R}^m$, the row space is defined as:
+
+$$
+R(\textit{A}) := \{ \bf{v} \in \mathbb{R}^m \vert \bf{v} = \textit{A}\bf{w}^T \text{ for some } \bf{w}\in \mathbb{R}^n \}
+$$
+
+In words: all linear combinations of the row vectors of $\textit{A}$ and entries of an $m$ dimensional vector $\bf{w}$.
+
+### The null space
+
+The null space of a matrix $\textit{A}$ is composed of all vectors that are map into the zero vector when multiplied by $\textit{A}$. We denote the null space as $N(\textit{A})$. 
+
+For a matrix $\textit{A} \in \mathbb{R}^{m\times n}$ and a vector $\bf{v} \in \mathbb{R}^n$, the null space is defined as:
+
+$$
+N(\textit{A}) := \{ \bf{v} \in \mathbb{R}^m \vert \textit{A}\bf{v} = 0\}
+$$
+
+### The null space of the transpose
+
+The left null space of a matrix $\textit{A}$ is composed of all vectors that are map into the zero vector when multiplied by $\textit{A}$ from the left. By "from the left", the vectors on the left of $\textit{A}$. We denote the left null space as $N(\textit{A}^T)$
+
+For a matrix $\textit{A} \in \mathbb{R}^{m\times n}$ and a vector $\bf{w} \in \mathbb{R}^m$, the null space is defined as:
+
+$$
+N(\textit{A}^T) := \{ \bf{w} \in \mathbb{R}^n \vert \bf{v^T} \textit{A} = 0^T\}
+$$
+
+## Solving systems of linear equations with Matrices
+
+### Gaussian Elimination
+
+When I was in high school, I learned to solve systems of two or three equations by the methods of elimination and substitution. Nevertheless, as systems of equations get larger and more complicated, such inspection-based methods become impractical. By inspection-based, I mean "just by looking at the equations and using common sense". Thus, to approach such kind of systems we can use the method of **Gaussian Elimination**.   
+
+**Gaussian Elimination**, is a robust algorithm to solve linear systems. We say is robust, because it works in general, it all possible circumstances. It works by *eliminating* terms from a system of equations, such that it is simplified to the point where we obtain the **row echelon form** of the matrix. A matrix is in row echelon form when all rows contain zeros at the bottom left of the matrix. For instance:
+
+$$
+\begin{bmatrix}
+p_1 & a & b \\
+0 & p_2 & c \\
+0 & 0 & p_3 
+\end{bmatrix}
+$$
+
+The $p$ values along the diagonal are the **pivots** also known as basic variables of the matrix. An important remark about the pivots, is that they indicate which vectors are linearly independent in the matrix, once the matrix has been reduced to the row echelon form.
+
+There are three *elementary transformations* in Gaussian Elimination that when combined, allow simplifying any system to its row echelon form:
+
+1. Addition and subtraction of two equations (rows) 
+2. Multiplication of an equation (rows) by a number 
+3. Switching equations (rows)
+
+Consider the following system $\textit{A} \bf{w} = \bf{y}$:
+
+$$
+\begin{bmatrix}
+1 & 3 & 5 \\
+2 & 2 & -1 \\
+1 & 3 & 2 
+\end{bmatrix}
+\begin{bmatrix}
+w_{1} \\
+w_{2} \\
+w_{3}
+\end{bmatrix}=
+\begin{bmatrix}
+-1 \\
+1 \\
+2
+\end{bmatrix}
+$$
+
+We want to know what combination of columns of $\textit{A}$ will generate the target vector $\bf{y}$. Alternatively, we can see this as a decomposition problem, as how can we decompose $\bf{y}$ into columns of $\textit{A}$. To aid the application of Gaussian Elimination, we can generate an **augmented matrix** $(\textit{A} \vert \bf{y})$, this is, appending $\bf{y}$ to $\textit{A}$ on this manner:
+
+$$
+\left[
+\begin{matrix}
+1 & 3 & 5 \\
+2 & 2 & -1 \\
+1 & 3 & 2 
+\end{matrix}
+  \left|
+    \,
+\begin{matrix}
+-1 \\
+1 \\
+2
+\end{matrix}
+  \right.
+\right]
+$$
+
+
+We start by multiplying row 1 by and substracting it from row 2 as $R_2 - 2R_1$ to obtain:
+
+$$
+\left[
+\begin{matrix}
+1 & 3 & 5 \\
+0 & -4 & -11 \\
+1 & 3 & 2 
+\end{matrix}
+  \left|
+    \,
+\begin{matrix}
+-1 \\
+3 \\
+2
+\end{matrix}
+  \right.
+\right]
+$$
+
+If we substract row 1 from row 3 as $R_3 - R_1$ we get:
+
+$$
+\left[
+\begin{matrix}
+1 & 3 & 5 \\
+0 & -4 & -11 \\
+0 & 0 & -3 
+\end{matrix}
+  \left|
+    \,
+\begin{matrix}
+-1 \\
+3 \\
+3
+\end{matrix}
+  \right.
+\right]
+$$
+
+At this point, we have found the row echelon form of $\textit{A}$. If we divide row 3 by -3, We know that $w_3 = -1$. By **backsubsitution**, we can solve for $w_2$ as:
+
+$$
+\begin{matrix}
+-4w_2 + -11(-1) = 3 \\
+-4w_2 = -8 \\
+w_2 = 2
+\end{matrix}
+$$
+
+Again, taking $w_2=2$ and $w_3=-1$ we can solve for $w_1$ as:
+
+$$
+w_1 + 3(2) + 5(-1) = -1 \\
+w_1 + 6 - 5 = -1 \\
+w_1 = -2
+$$
+
+In this manner, we have found that the solution for our system is $w_1 = -2$, $w_2=2$, and $w_3 = -1$.  
+
+In `NumPy`, we can solve a system of equations with Gaussian Elimination with the `linalg.solve` method as:
+
+
+```python
+A = np.array([[1, 3, 5],
+              [2, 2, -1],
+              [1, 3, 2]])
+y = np.array([[-1],
+              [1],
+              [2]])
+```
+
+
+```python
+np.linalg.solve(A, y)
+```
+
+
+
+
+    array([[-2.],
+           [ 2.],
+           [-1.]])
+
+
+
+Which confirms our solution is correct.
+
+### Gauss-Jordan Elimination
+
+The only difference between **Gaussian Elimination** and **Gauss-Jordan Elimination**, is that this time we "keep going" with the elemental row operations until we obtain the **reduced row echelon form**. The *reduced* part means two additionak things: (1) the pivots must be $1$, (2) and the entries above the pivots must be $0$. This is simplest form a system of linear equations can take. For instance, for a 3x3 matrix:
+
+$$
+\begin{bmatrix}
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 1 
+\end{bmatrix}
+$$
+
+Let's retake from where we left Gaussian elimination in the above section. If we divide row 3 by -3 and row 2 by -4 as $\frac{R_3}{-3}$ and $\frac{R_2}{-4}$, we get:
+
+$$
+\left[
+\begin{matrix}
+1 & 3 & 5 \\
+0 & 1 & 2.75 \\
+0 & 0 & 1 
+\end{matrix}
+  \left|
+    \,
+\begin{matrix}
+-1 \\
+-0.75 \\
+-1
+\end{matrix}
+  \right.
+\right]
+$$
+
+Again, by this point we we know $w_3 = -1$. If we multiply row 2 by 3 and substract from row 1 as $R_1 - 3R_2$:
+
+$$
+\left[
+\begin{matrix}
+1 & 0 & -3.25 \\
+0 & 1 & 2.75 \\
+0 & 0 & 1 
+\end{matrix}
+  \left|
+    \,
+\begin{matrix}
+1.25 \\
+-0.75 \\
+-1
+\end{matrix}
+  \right.
+\right]
+$$
+
+Finally, we can add 3.25 times row 3 to row 1, and substract 2.75 times row 3 to row 2, as $R_1 + 3.25R_3$ and $R_2 - 2.75R_3$ to get the **reduced row echelon form** as:
+
+$$
+\left[
+\begin{matrix}
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 1 
+\end{matrix}
+  \left|
+    \,
+\begin{matrix}
+-2 \\
+2 \\
+-1
+\end{matrix}
+  \right.
+\right]
+$$
+
+
+Now, by simply following the rules of matrix-vector multiplication, we get =
+
+$$
+w_1
+\begin{bmatrix}
+1\\
+0\\
+0
+\end{bmatrix}+
+w_2
+\begin{bmatrix}
+0\\
+1\\
+0
+\end{bmatrix}+
+w_3
+\begin{bmatrix}
+0\\
+0\\
+1
+\end{bmatrix}=
+\begin{bmatrix}
+w_1\\
+w_2\\
+w_3
+\end{bmatrix}=
+\begin{bmatrix}
+-2 \\
+2 \\
+-1
+\end{bmatrix}
+$$
+
+There you go, we obtained that $w_1 = -2$, $w_2 = 2$, and $w_3 = -1$.
+
+## Matrix basis and rank
+
+A set of $n$ linearly independent column vectors with $n$ elements forms a **basis**. For instance, the column vectors of $\textit{A}$ are a basis:
+
+$$\textit{A}=
+\begin{bmatrix}
+1 & 0 \\
+0 & 1
+\end{bmatrix}
+$$
+
+"A basis for what?" You may be wondering. In the case of $\textit{A}$, for any vector $\bf{y} \in \mathbb{R}^2$. On the contrary, the column vectors for $\textit{B}$ *do not* form a basis for $\mathbb{R}^2$:
+
+$$\textit{B}=
+\begin{bmatrix}
+1 & 0 & 1\\
+0 & 1 & 1
+\end{bmatrix}
+$$
+
+In the case of $\textit{B}$, the third column vector is a linear combination of first and second column vectors. 
+
+The definition of a *basis* depends on the **independence-dimension inequality**, which states that a *linearly independent set of $n$ vectors can have at most $n$ elements*. Alternatively, we say that any set of $n$ vectors with $n+1$ elements is, *necessarily*, linearly dependent. Given that each vector in a *basis* is linearly independent, we say that any vector $\bf{y}$ with $n$ elements, can be generated in a unique linear combination of the *basis* vectors. Hence, any matrix more columns than rows (as in $\textit{B}$) will have dependent vectors. *Basis* are sometimes referred to as the *minimal generating set*.
+
+An important question is how to find the *basis* for a matrix. Another way to put the same question is to found out which vectors are linearly independent of each other. Hence, we need to solve:
+
+$$
+\sum_{i=1}^k \beta_i a_i = 0
+$$
+
+Where $a_i$ are the column vectors of $\textit{A}$. We can approach this by using **Gaussian Elimination** or **Gauss-Jordan Elimination** and reducing $\textit{A}$ to its **row echelon form** or **reduced row echelon form**. In either case, recall that the *pivots* of the echelon form indicate the set of linearly independent vectors in a matrix.
+
+
+`NumPy` does not have a method to obtain the row echelon form of a matrix. But, we can use `Sympy`, a Python library for symbolic mathematics that counts with a module for Matrices operations.`SymPy` has a method to obtain the reduced row echelon form and the pivots, `rref`. 
+
+
+```python
+from sympy import Matrix 
+```
+
+
+```python
+A = Matrix([[1, 0, 1],
+            [0, 1, 1]])
+```
+
+
+```python
+B = Matrix([[1, 2, 3, -1],
+            [2, -1, -4, 8],
+            [-1, 1, 3, -5],
+            [-1, 2, 5, -6],
+            [-1, -2, -3, 1]])
+```
+
+
+```python
+A_rref, A_pivots = A.rref()
+```
+
+
+```python
+print('Reduced row echelon form of A:')
+```
+
+    Reduced row echelon form of A:
+
+
+
+```python
+A_rref
+```
+
+
+
+
+$\displaystyle \left[\begin{matrix}1 & 0 & 1\\0 & 1 & 1\end{matrix}\right]$
+
+
+
+
+```python
+print(f'Column pivots of A: {A_pivots}')
+```
+
+    Column pivots of A: (0, 1)
+
+
+
+```python
+B_rref, B_pivots = B.rref()
+```
+
+
+```python
+print('Reduced row echelon form of B:')
+B_rref
+```
+
+    Reduced row echelon form of B:
+
+
+
+
+
+$\displaystyle \left[\begin{matrix}1 & 0 & -1 & 0\\0 & 1 & 2 & 0\\0 & 0 & 0 & 1\\0 & 0 & 0 & 0\\0 & 0 & 0 & 0\end{matrix}\right]$
+
+
+
+
+```python
+print(f'Column pivots of A: {B_pivots}')
+```
+
+    Column pivots of A: (0, 1, 3)
+
+
+For $\textit{A}$, we found that the first and second column vectors are the *basis*, whereas for $\textit{B}$ is the first, second, and fourth.
+
+Now that we know about a *basis* and how to find it, understanding the concept of *rank* is simpler. The **rank** of a matrix $\textit{A}$ is the dimensionality of the vector space generated by its number of linearly independent column vectors. This happens to be identical to the dimensionality of the vector space generated by its row vectors. We denote the *rank* of matrix as $rk(\textit{A})$ or $rank(\textit{A})$.
+
+For an square matrix $\mathbb{R}^{m\times n}$ (i.e., $m=n$), we say is **full rank** when every column and/or row is linearly independent. For a non-square matrix with $m>n$ (i.e., more rows than columns), we say is **full rank** when every row is linearly independent. When $m<n$ (i.e., more columns than rows), we say is **full rank** when every column is linearly independent.
+
+From an applied machine learning perspective, the *rank* of a matrix is relevant as a measure of the [information content of the matrix](https://math.stackexchange.com/questions/21100/importance-of-matrix-rank). Take matrix $\textit{B}$ from the example above. Although the original matrix has 5 columns, we know is rank 4, hence, it has less information than it appears at first glance. 
