@@ -47,7 +47,7 @@ Finally, keep in mind this is created by a non-mathematician for (mostly) non-ma
     - [Geometric vectors](#geometric-vectors)
     - [Polynomials](#polynomials)
     - [Elements of R](#elements-of-r)
-- [_Zero vector, unit vector, and sparce vector_](#zero-vector-unit-vector-and-sparce-vector)
+- [_Zero vector, unit vector, and sparse vector_](#zero-vector-unit-vector-and-sparse-vector)
 - [Vector dimensions and coordinate system](#vector-dimensions-and-coordinate-system) 
 - [Basic vector operations](#basic-vector-operations)
     - [_Vector-vector addition_](#vector-vector-addition)
@@ -246,7 +246,7 @@ print(f'A 3-dimensional vector:\n{x}')
      [3]]
 
 
-## Zero vector, unit vector, and sparce vector
+## Zero vector, unit vector, and sparse vector
 
 There are a couple of  "special" vectors worth to remember as they will be mentioned frequently on applied linear algebra: (1) zero vector, (2) unit vector, (3) sparse vectors
 
