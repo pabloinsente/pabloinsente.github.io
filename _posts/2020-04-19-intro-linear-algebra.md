@@ -2159,8 +2159,12 @@ A_rref
 
 
 
-$\displaystyle \left[\begin{matrix}1 & 0 & 1\\0 & 1 & 1\end{matrix}\right]$
-
+$$
+\begin{bmatrix}
+1 & 0 & 1\\
+0 & 1 & 1
+\end{bmatrix}$
+$$
 
 
 
@@ -2187,8 +2191,15 @@ B_rref
 
 
 
-
-$\displaystyle \left[\begin{matrix}1 & 0 & -1 & 0\\0 & 1 & 2 & 0\\0 & 0 & 0 & 1\\0 & 0 & 0 & 0\\0 & 0 & 0 & 0\end{matrix}\right]$
+$$
+\begin{bmatrix}
+1 & 0 & -1 & 0\\
+0 & 1 & 2 & 0\\
+0 & 0 & 0 & 1\\
+0 & 0 & 0 & 0\\
+0 & 0 & 0 & 0
+\end{bmatrix}$
+$$
 
 
 
