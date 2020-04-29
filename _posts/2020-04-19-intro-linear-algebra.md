@@ -87,7 +87,7 @@ Finally, keep in mind this is created by a non-mathematician for (mostly) non-ma
     - [_The null space of the transpose_](#the-null-space-of-the-transpose)
 - [_Solving systems of linear equations with matrices_](#solving-systems-of-linear-equations-with-matrices)
     - [_Gaussian Elimination_](#gaussian-elimination)
-    - [_Gauss-Jordan Elmination_](#gauss-jordan-elmination)
+    - [_Gauss-Jordan Elimination_](#gauss-jordan-elimination)
 - [_Matrix basis and rank_](#matrix-basis-and-rank)
    
 **Future sections**:
@@ -544,7 +544,7 @@ a*x + b*y
 
 
 
-### Vector-vector multiplication: dot products
+### Vector-vector multiplication: dot product
 
 We covered vector addition and multiplication by scalars. Now I will define vector-vector multiplication, commonly known as a **dot product** or **inner product**. The dot product of $\bf{x}$ and $\bf{y}$ is defined as: 
 
@@ -1215,7 +1215,7 @@ $$
 a_{ij} \times \alpha, \text{such that } (\alpha \textit{A})_{ij} = \alpha(\textit{A})_{ij}
 $$
 
-Consider $\alpha=2$ and $\textit{A}=\begin{bmatrix}1 & 2 \\3 & 4\end{bmatrix}$, then:
+Consider $\alpha=2$ and $\textit{A}=\begin{bmatrix}1 & 2 \\ 3 & 4\end{bmatrix}$, then:
 
 $$
 \alpha \textit{A} =
@@ -2163,7 +2163,7 @@ $$
 \begin{bmatrix}
 1 & 0 & 1\\
 0 & 1 & 1
-\end{bmatrix}$
+\end{bmatrix}
 $$
 
 
@@ -2198,7 +2198,7 @@ $$
 0 & 0 & 0 & 1\\
 0 & 0 & 0 & 0\\
 0 & 0 & 0 & 0
-\end{bmatrix}$
+\end{bmatrix}
 $$
 
 
