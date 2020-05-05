@@ -111,7 +111,7 @@ Finally, keep in mind this is created by a non-mathematician for (mostly) non-ma
     - [_Affine combination of vectors_](#affine-combination-of-vectors)
     - [_Affine_span_](#affine-span)
     - [_Affine space and subspace_](#affine-space-and-subspace)
-    - [_Affine mappings using the augmented matrix](#affine-mappings-using-the-augmented-matrix)
+    - [_Affine mappings using the augmented matrix_](#affine-mappings-using-the-augmented-matrix)
 
 **Future sections**:
 
@@ -2312,8 +2312,12 @@ A_rref
 
 
 
-$\displaystyle \left[\begin{matrix}1 & 0 & 1\\0 & 1 & 1\end{matrix}\right]$
-
+$$
+\begin{bmatrix}
+1 & 0 & 1\\
+0 & 1 & 1
+\end{bmatrix}
+$$
 
 
 
@@ -2340,8 +2344,16 @@ B_rref
 
 
 
+$$
+\begin{bmatrix}
+1 & 0 & -1 & 0\\
+0 & 1 & 2 & 0\\
+0 & 0 & 0 & 1\\
+0 & 0 & 0 & 0\\
+0 & 0 & 0 & 0
+\end{bmatrix}
+$$
 
-$\displaystyle \left[\begin{matrix}1 & 0 & -1 & 0\\0 & 1 & 2 & 0\\0 & 0 & 0 & 1\\0 & 0 & 0 & 0\\0 & 0 & 0 & 0\end{matrix}\right]$
 
 
 
