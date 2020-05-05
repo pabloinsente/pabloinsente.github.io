@@ -3,10 +3,9 @@ title: Introduction to Linear Algebra for Applied Machine Learning with Python
 published: true
 mathjax: true
 ---
+<<<***Note: I plan to complete this mini-project in 5 updates. As 2020-05-05, I'm on update 3. Around 70% of the project is complete***>>>
 
-<<<***Note: I plan to complete this mini-project in 4 updates. As 2020-29-19, I'm on update 2. Around 60% of the project is complete***>>>
-
-Linear algebra is to machine learning as flour to bakery: **every machine learning model is based in linear algebra, as every cake is based in flour**. It is not the only ingredient, of course. Machine learning models need vector calculus, probability, and optimization, as cakes need sugar, eggs, and butter. Applied machine learning, like bakery, is essentially about combining these mathematical ingredients in clever ways to create useful (tasty?) models. 
+Linear algebra is to machine learning as flour to bakery: **every machine learning model is based in linear algebra, as every cake is based in flour**. It is not the only ingredient, of course. Machine learning models need vector calculus, probability, and optimization, as cakes need sugar, eggs, and butter. Applied machine learning, like bakery, is essentially about combining these mathematical ingredients in clever ways to create useful (tasty?) models.
 
 This document contains **introductory level linear algebra notes for applied machine learning**. It is meant as a reference rather than a comprehensive review. If you ever get confused by matrix multiplication, don't remember what was the $L_2$ norm, or the conditions for linear independence, this can serve as a quick reference. It also a good introduction for people that don't need a deep understanding of linear algebra, but still want to learn about the fundamentals to read about machine learning or to use pre-packaged machine learning solutions. Further, it is a good source for people that learned linear algebra a while ago and need a refresher.
 
@@ -42,23 +41,31 @@ Finally, keep in mind this is created by a non-mathematician for (mostly) non-ma
 
 **Note:** _underlined sections_ are the newest sections and/or corrected ones.
 
-**[_Vectors_](#vectors)**:
+**[_Preliminary concepts_](#preliminary-concepts)**:
+- [_Sets_](#sets)
+- [_Belonging and inclusion_](#belonging-and-inclusion)
+- [_Set specification_](#set-specification)
+- [_Ordered pairs_](#ordered-pairs)
+- [_Relations_](#relations)
+- [_Functions_](#functions)
+
+**[Vectors](#vectors)**:
 - [Types of vectors](#types-of-vectors)
     - [Geometric vectors](#geometric-vectors)
     - [Polynomials](#polynomials)
     - [Elements of R](#elements-of-r)
-- [_Zero vector, unit vector, and sparse vector_](#zero-vector-unit-vector-and-sparse-vector)
+- [Zero vector, unit vector, and sparse vector](#zero-vector-unit-vector-and-sparse-vector)
 - [Vector dimensions and coordinate system](#vector-dimensions-and-coordinate-system) 
 - [Basic vector operations](#basic-vector-operations)
-    - [_Vector-vector addition_](#vector-vector-addition)
-    - [_Vector-scalar multiplication_](#vector-scalar-multiplication)
+    - [Vector-vector addition](#vector-vector-addition)
+    - [Vector-scalar multiplication](#vector-scalar-multiplication)
     - [Linear combinations of vectors](#linear-combinations-of-vectors)
     - [Vector-vector multiplication: dot product](#vector-vector-multiplication-dot-product)
 - [Vector space, span, and subspace](#vector-space-span-and-subspace)
     - [Vector space](#vector-space)
     - [Vector span](#vector-span)
     - [Vector subspaces](#vector-subspaces)
-- [_Linear dependence and independence_](#linear-dependence-and-independence)
+- [Linear dependence and independence](#linear-dependence-and-independence)
 - [Vector null space](#vector-null-space)
 - [Vector norms](#vector-norms)
     - [Euclidean norm: $L_2$](#euclidean-norm)
@@ -74,41 +81,181 @@ Finally, keep in mind this is created by a non-mathematician for (mostly) non-ma
     - [Matrix-matrix addition](#matrix-matrix-addition)
     - [Matrix-scalar multiplication](#matrix-scalar-multiplication)
     - [Matrix-vector multiplication: dot product](#matrix-vector-multiplication-dot-product)
-    - [_Matrix-matrix multiplication_](#matrix-matrix-multiplication)
-    - [_Matrix identity_](#matrix-identity)
-    - [_Matrix inverse_](#matrix-inverse)
-    - [_Matrix transpose_](#matrix-transpose)
+    - [Matrix-matrix multiplication](#matrix-matrix-multiplication)
+    - [Matrix identity](#matrix-identity)
+    - [Matrix inverse](#matrix-inverse)
+    - [Matrix transpose](#matrix-transpose)
     - [Hadamard product](#hadamard-product)
 - [Matrices as systems of linear equations](#matrices-as-systems-of-linear-equations)
-- [_The four fundamental matrix subsapces_](#the-four-fundamental-matrix-subsapces)
-    - [_The column space_](#the-column-space)
-    - [_The row space_](#the-row-space)
-    - [_The null space_](#the-null-space)
-    - [_The null space of the transpose_](#the-null-space-of-the-transpose)
-- [_Solving systems of linear equations with matrices_](#solving-systems-of-linear-equations-with-matrices)
-    - [_Gaussian Elimination_](#gaussian-elimination)
-    - [_Gauss-Jordan Elimination_](#gauss-jordan-elimination)
-- [_Matrix basis and rank_](#matrix-basis-and-rank)
-   
+- [The four fundamental matrix subsapces](#the-four-fundamental-matrix-subsapces)
+    - [The column space](#the-column-space)
+    - [The row space](#the-row-space)
+    - [The null space](#the-null-space)
+    - [The null space of the transpose](#the-null-space-of-the-transpose)
+- [Solving systems of linear equations with matrices](#solving-systems-of-linear-equations-with-matrices)
+    - [Gaussian Elimination](#gaussian-elimination)
+    - [Gauss-Jordan Elimination](#gauss-jordan-elimination)
+- [Matrix basis and rank](#matrix-basis-and-rank)
+- [_Matrix norm_](#matrix-norm)
+
+**[_Linear and affine mappings_](#linear-and-affine-mappings)**:
+
+- [_Linear mappings_](#linear-mappings)
+- [_Examples of linear mappings_](#examples-of-linear-mappings)
+    - [_Negation matrix_](#negation-matrix)
+    - [_Reversal matrix_](#reversal-matrix)
+- [_Examples of nonlinear mappings_](#examples-of-nonlinear-mappings)
+    - [_Norms_](#norms)
+    - [_Translation_](#translation)
+- [_Affine mappings_](#affine-mappings)
+    - [_Affine combination of vectors_](#affine-combination-of-vectors)
+    - [_Affine_span_](#affine-span)
+    - [_Affine space and subspace_](#affine-space-and-subspace)
+    - [_Affine mappings using the augmented matrix](#affine-mappings-using-the-augmented-matrix)
+
 **Future sections**:
 
-- Geometric transformations
+*Geometric transformations*:
+
     - Scaling
     - Dilation
     - Rotation
     - Reflection
+    - Shear
     - Projection onto a line
-- Linear and affine functions
-- Linear mappings
-- Affine spaces
-- Affine transformations
-- Orthogonal projections
-- Matrices norms
-- Eigenvalues and eigenvectors
-- Eigendecomposition and diagonalization
-- Singular value decomposition
-- Eigenvalue decomposition vs Singular value decomposition
-- LU decomposition
+
+*Decompositions*:
+
+    - Orthogonal projections
+    - Eigenvalues and eigenvectors
+    - Eigendecomposition and diagonalization
+    - Singular value decomposition
+    - Eigenvalue decomposition vs Singular value decomposition
+    - LU decomposition
+
+# Preliminary concepts
+
+While writing about linear mappings, I realized the importance of having a basic understanding of a few concepts before approaching the study of linear algebra. If you are like me, you may not have formal mathematical training beyond high school. If so, I encourage you to read this section and spent some time wrapping your head around these concepts before going over the linear algebra content (otherwise, you might prefer to skip this part). I believe that reviewing these concepts is of great help to understand the *notation*, which in my experience is one of the main barriers to understand mathematics for nonmathematicians: we are *non*native speakers, so we are continuously building up our vocabulary. I'll keep this section very short, as is not the focus of this mini-course.
+
+For this section, my notes are based on readings of:
+
+- **Geometric transformations (Vol. 1)** (1966) by Modenov & Parkhomenko
+- **Naive Set Theory** (1960) by P.R. Halmos
+- **Abstract Algebra: Theory and Applications** (2016) by Judson & Beeer. [Book link](http://abstract.pugetsound.edu/download/aata-20160809.pdf)
+
+## Sets
+
+Sets are one of the most fundamental concepts in mathematics. They are so fundamental that they are not defined in terms of anything else. On the contrary, other branches of mathematics are defined in terms of sets, including linear algebra. Put simply, **sets are well-defined collections of objects**. Such objects are called **elements or members** of the set. The crew of a ship, a caravan of camels, and the LA Lakers roster, are all examples of sets. The captain of the ship, the first camel in the caravan, and LeBron James are all examples of "members" or "elements" of their corresponding sets. We denote a set with an upper case italic letter as $\textit{A}$. In the context of linear algebra, we say that a line is a set of points, and the set of all lines in the plane is a set of sets. Similarly, we can say that *vectors* are sets of points, and *matrices* sets of vectors.
+
+## Belonging and inclusion
+
+We build sets using the notion of **belonging**. We denote that $a$ *belongs* (or is an *element* or *member* of) to $\textit{A}$ with the Greek letter epsilon as:
+
+$$
+a \in \textit{A}
+$$
+
+Another important idea is **inclusion**, which allow us to build *subsets*. Consider sets $\textit{A}$ and $\textit{B}$. When every element of $\textit{A}$ is an element of $\textit{B}$, we say that $\textit{A}$ is a *subset* of $\textit{B}$, or that $\textit{B}$ *includes* $\textit{A}$. The notation is:
+
+$$
+\textit{A} \subset \textit{B}
+$$
+
+or
+
+$$
+\textit{B} \supset \textit{A}
+$$
+
+Belonging and inclusion are derived from **axion of extension**: *two sets are equal if and only if they have the same elements*. This axiom may sound trivially obvious but is necessary to make belonging and inclusion rigorous.
+
+## Set specification
+
+In general, anything we assert about the elements of a set results in **generating a subset**. In other words, asserting things about sets is a way to manufacture subsets. Take as an example the set of all dogs, that I'll denote as $\textit{D}$. I can assert now "$d$ is black". Such an assertion is true for some members of the set of all dogs and false for others. Hence, such a sentence, evaluated for *all* member of $\textit{D}$, generates a subset: *the set of all black dogs*. This is denoted as:
+
+$$
+\textit{B} = \{ d \in \textit{D} : \text{d is black} \}
+$$
+
+or 
+
+$$
+\textit{B} = \{ d \in \textit{D} \vert \text{ d is black} \}
+$$
+
+The colon ($:$) or vertical bar ($\vert$) read as "such that". Therefore, we can read the above expression as: *all elements of $d$ in $\textit{D}$ such that $d$ is black*. And that's how we obtain the set $\textit{B}$ from $\textit{A}$. 
+
+Set generation, as defined before, depends on the **axiom of specification**: *to every set $\textit{A}$ and to every condition $\textit{S}(x)$ there corresponds a set $\textit{B}$ whose elements are exactly those elements $a \in \textit{A}$ for which $\textit{S}(x)$ holds.*
+
+A condition $\textit{S}(x)$ is any *sentence* or *assertion* about elements of $\textit{A}$. Valid sentences are either of *belonging* or *equality*. When we combine belonging and equality assertions with logic operators (not, if, and or, etc), we can build any legal set.  
+
+## Ordered pairs 
+
+Pairs of sets come in two flavors: *unordered* and *ordered*. We care about pairs of sets as we need them to define a notion of relations and functions (from here I'll denote sets with lower-case for convenience, but keep in mind we're still talking about sets).
+
+Consider a pair of sets $\textit{x}$ and $\textit{y}$. An **unordered pair** is a set whose elements are $\{ \textit{x},\textit{y} \}$, and $\{ \textit{x},\textit{y} \} = \{ \textit{y},\textit{x} \} $. Therefore, presentation order does not matter, the set is the same.
+
+In machine learning, we usually do care about presentation order. For this, we need to define an **ordered pair** (I'll introduce this at an intuitive level, to avoid to introduce too many new concepts). An **ordered pair** is denoted as $( \textit{x},\textit{y} )$, with $\textit{x}$ as the *first coordinate* and $\textit{y}$ as the *second coordinate*. A valid ordered pair has the property that $( \textit{x},\textit{y} ) \ne ( \textit{y},\textit{x} )$.
+
+## Relations
+
+From ordered pairs, we can derive the idea of **relations** among sets or between elements and sets. Relations can be binary, ternary, quaternary, or N-ary. Here we are just concerned with binary relationships. In set theory, **relations** are defined as *sets of ordered pairs*, and denoted as $\textit{R}$. Hence, we can express the relation between $\textit{x}$ and $\textit{y}$ as:
+
+$$
+\textit{x R y}
+$$
+
+Further, for any $\textit{z} \in \textit{R}$, there exist $\textit{x}$ and $\textit{y}$ such that $\textit{z} = (\textit{x}, \textit{y})$. 
+
+From the definition of $\textit{R}$, we can obtain the notions of **domain** and **range**. The **domain** is a set defined as:
+
+$$
+\text{dom } \textit{R} = \{ \textit{x:  for some y } ( \textit{x R y)} \}
+$$
+
+This reads as: the values of $\textit{x}$ such that for at least one element of $\textit{y}$, $\textit{x}$ has a relation with $\textit{y}$. 
+
+The **range** is a set defined as:
+
+$$
+\text{ran } \textit{R} = \{ \textit{y:  for some x } ( \textit{x R y)} \}
+$$
+
+This reads: the set formed by the values of $\text{y}$ such that at least one element of $\textit{x}$, $\textit{x}$ has a relation with $\textit{y}$. 
+
+## Functions
+
+Consider a pair of sets $\textit{X}$ and $\textit{Y}$. We say that a **function** from $\textit{X}$ to $\textit{Y}$ is relation such that:
+
+- $dom \textit{ f} = \textit{X}$ and
+- such that for each $\textit{x} \in \textit{X}$ there is a unique element of  $\textit{y} \in \textit{Y}$ with $(\textit{x}, \textit{y}) \in {f}$ 
+
+More informally, we say that a function "*transform*" or "*maps*" or "*sends*" $\textit{x}$ onto $\textit{y}$, and for each "*argument*" $\textit{x}$ there is a unique value $\textit{y}$ that $\textit{f }$ "*assummes*" or "*takes*".
+
+We typically denote a relation or function or transformation or mapping from X onto Y as:
+
+$$
+\textit{f}: \textit{X} \rightarrow \textit{Y}
+$$
+
+or
+
+$$
+\textit{f}(\textit{x}) = \textit{y} 
+$$
+
+The simples way to see the effect of this definition of a function is with a chart. In Fig. 1, the left-pane shows a valid function, i.e., each value $\textit{f}(\textit{x})$ *maps* uniquely onto one value of $\textit{y}$. The right-pane is not a function, since each value $\textit{f}(\textit{x})$ *maps* onto multiple values of $\textit{y}$. 
+
+**Fig. 1: Functions**
+
+<img src="/assets/post-10/b-function.svg">
+
+
+For $\textit{f}: \textit{X} \rightarrow \textit{Y}$, the *domain* of $\textit{f}$ equals to $\textit{X}$, but the *range* does not necessarily equals to  $\textit{Y}$. Just recall that the *range* includes only the elements for which $\textit{Y}$ has a relation with $\textit{X}$. 
+
+**The ultimate goal of machine learning is learning functions from data**, i.e., transformations or mappings from the *domain* onto the *range* of a function. This may sound simplistic, but it's true. The *domain* $\textit{X}$ is usually a vector (or set) of *variables* or *features* mapping onto a vector of *target* values. Finally, I want to emphasize that in machine learning the words transformation and mapping are used interchangeably, but both just mean function.
+
+This is all I'll cover about sets and functions. My goals were just to introduce: (1) **the concept of a set**, (2) **basic set notation**, (3) **how sets are generated**, (4) **how sets allow the definition of functions**, (5) **the concept of a function**. Set theory is a monumental field, but there is no need to learn everything about sets to understand linear algebra. Halmo's **Naive set theory** (not free, but you can find a copy for ~\\$8-$10 US) is a fantastic book for people that just need to understand the most fundamental ideas in a relatively informal manner.  
 
 
 ```python
@@ -132,10 +279,10 @@ Vectors come in three flavors: (1) **geometric vectors**, (2) **polynomials**, (
 
 **Geometric vectors are oriented segments**. Therse are the kind of vectors you probably learned about in high-school physics and geometry. Many linear algebra concepts come from the geometric point of view of vectors: space, plane, distance, etc.
 
-**Fig. 1: Geometric vectors**
-
+**Fig. 2: Geometric vectors**
 
 <img src="/assets/post-10/b-geometric-vectors.svg">
+
 
 ### Polynomials
 
@@ -153,10 +300,10 @@ $$
 5 \times f(x)
 $$
 
-**Fig. 2: Polynomials**
-
+**Fig. 3: Polynomials**
 
 <img src="/assets/post-10/b-polynomials-vectors.svg">
+
 
 ### Elements of R
 
@@ -305,10 +452,10 @@ $$\bf{x} = \begin{bmatrix} 3 \\ 2 \\ 1 \end{bmatrix} \in \mathbb{R}^3$$
 
 we are saying: starting from the origin, move 3 units in the 1st perpendicular axis, 2 units in the 2nd perpendicular axis, and 1 unit in the 3rd perpendicular axis. We will see later that when we have a set of perpendicular axes we obtain the basis of a vector space.
 
-**Fig. 3: Coordinate systems**
-
+**Fig. 4: Coordinate systems**
 
 <img src="/assets/post-10/b-coordinate-system.svg">
+
 
 ## Basic vector operations
 
@@ -521,7 +668,7 @@ $$
 
 Note that $:=$ means "*is defined as*".
 
-Linear combinations are the most fundamental operation in linear algebra. Everything in linear algebra results from linear combinations. For instance, linear regression is a linear combination of vectors. **Fig. 1** shows an example of how adding two geometrical vectors looks like for intuition.
+Linear combinations are the most fundamental operation in linear algebra. Everything in linear algebra results from linear combinations. For instance, linear regression is a linear combination of vectors. **Fig. 2** shows an example of how adding two geometrical vectors looks like for intuition.
 
 In `NumPy`, we do linear combinations as:
 
@@ -630,16 +777,16 @@ In my experience remembering  these properties is not really important, but it's
 
 ### Vector span
 
-Consider the vectors $\bf{x}$ and $\bf{y}$ and the scalars $\alpha$ and $\beta$. If we take *all* possible linear combinations of $\alpha \bf{x} + \beta \bf{y}$ we would obtain the **span** of such vectors. This is easier to grasp when you think about geometric vectors. If our vectors $\bf{x}$ and $\bf{y}$ point into **different directions** in the 2-dimensional space, we get that the $span(x,y)$ is equal to **the entire 2-dimensional plane**, as shown in the middle-pane in **Fig. 4**. Just imagine having an unlimited number of two types of sticks: one pointing vertically, and one pointing horizontally. Now, you can reach any point in the 2-dimensional space by simply combining the necessary number of vertical and horizontal sticks (including taking fractions of sticks). 
+Consider the vectors $\bf{x}$ and $\bf{y}$ and the scalars $\alpha$ and $\beta$. If we take *all* possible linear combinations of $\alpha \bf{x} + \beta \bf{y}$ we would obtain the **span** of such vectors. This is easier to grasp when you think about geometric vectors. If our vectors $\bf{x}$ and $\bf{y}$ point into **different directions** in the 2-dimensional space, we get that the $span(x,y)$ is equal to **the entire 2-dimensional plane**, as shown in the middle-pane in **Fig. 5**. Just imagine having an unlimited number of two types of sticks: one pointing vertically, and one pointing horizontally. Now, you can reach any point in the 2-dimensional space by simply combining the necessary number of vertical and horizontal sticks (including taking fractions of sticks). 
 
-**Fig. 4: Vector Span**
-
+**Fig. 5: Vector Span**
 
 <img src="/assets/post-10/b-vector-span.svg">
 
-What would happen if the vectors point in the same direction? Now, if you combine them, you just can **span a line**, as shown in the left-pane in **Fig. 4**. If you have ever heard of the term "multicollinearity", it's closely related to this issue: when two variables are "colinear" they are pointing in the same direction, hence they provide redundant information, so can drop one without information loss.
 
-With three vectors pointing into different directions, we can span the entire 3-dimensional space or a **hyper-plane**, as in the right-pane of **Fig. 4**. Note that the sphere is just meant as a 3-D reference, not as a limit.
+What would happen if the vectors point in the same direction? Now, if you combine them, you just can **span a line**, as shown in the left-pane in **Fig. 5**. If you have ever heard of the term "multicollinearity", it's closely related to this issue: when two variables are "colinear" they are pointing in the same direction, hence they provide redundant information, so can drop one without information loss.
+
+With three vectors pointing into different directions, we can span the entire 3-dimensional space or a **hyper-plane**, as in the right-pane of **Fig. 5**. Note that the sphere is just meant as a 3-D reference, not as a limit.
 
 Four vectors pointing into different directions will span the 4-dimensional space, and so on. From here our geometrical intuition can't help us. This is an example of how linear algebra can describe the behavior of vectors beyond our basics intuitions. 
 
@@ -653,10 +800,10 @@ A **vector subspace (or linear subspace) is a vector space that lies within a la
 
 Intuitively, you can think in closure as being unable to "jump out" from space into another. A pair of vectors laying flat in the 2-dimensional space, can't, by either addition or multiplication, "jump out" into the 3-dimensional space. 
 
-**Fig. 5: Vector subspaces**
-
+**Fig. 6: Vector subspaces**
 
 <img src="/assets/post-10/b-vector-subspace.svg">
+
 
 Consider the following questions: Is $\bf{x}=\begin{bmatrix} 1 \\ 1 \end{bmatrix}$ a valid subspace of $\mathbb{R^2}$? Let's evaluate $\bf{x}$ on the three conditions:
 
@@ -683,10 +830,11 @@ $$
 
 The left-pane shows a triplet of **linearly dependent** vectors, whereas the right-pane shows a triplet of **linearly independent** vectors.
 
-**Fig. 6: Linear dependence and independence**
+**Fig. 7: Linear dependence and independence**
 
 
 <img src="/assets/post-10/b-linear-independence.svg">
+
 
 A set of vectors is **linearly dependent** if at least one vector can be obtained as a linear combination of other vectors in the set. As you can see in the left pane, we can combine vectors $x$ and $y$ to obtain $z$. 
 
@@ -698,9 +846,10 @@ The importance of the concepts of linear dependence and independence will become
 
 ## Vector null space
 
-Now that we know what subspaces and linear dependent vectors are, we can introduce the idea of the **null space**. Intuitively, the null space of a set of vectors are **all linear combinations that "map" into the zero vector**. Consider a set of geometric vectors $\bf{w}$, $\bf{x}$, $\bf{y}$, and $\bf{z}$ as in **Fig. 7**. By inspection, we can see that vectors $\bf{x}$ and $\bf{z}$ are parallel to each other, hence, independent. On the contrary, vectors $\bf{w}$ and $\bf{y}$ can be obtained as linear combinations of $\bf{x}$ and $\bf{z}$, therefore, dependent. 
+Now that we know what subspaces and linear dependent vectors are, we can introduce the idea of the **null space**. Intuitively, the null space of a set of vectors are **all linear combinations that "map" into the zero vector**. Consider a set of geometric vectors $\bf{w}$, $\bf{x}$, $\bf{y}$, and $\bf{z}$ as in **Fig. 8**. By inspection, we can see that vectors $\bf{x}$ and $\bf{z}$ are parallel to each other, hence, independent. On the contrary, vectors $\bf{w}$ and $\bf{y}$ can be obtained as linear combinations of $\bf{x}$ and $\bf{z}$, therefore, dependent. 
 
-**Fig. 7: Vector null space**
+**Fig. 8: Vector null space**
+
 
 <img src="/assets/post-10/b-vector-null-space.svg">
 
@@ -723,15 +872,16 @@ Measuring vectors is another important operation in machine learning application
 Norms "map" vectors to non-negative values. In this sense are functions that assign length $\lVert \bf{x} \rVert \in \mathbb{R^n}$ to a vector $\bf{x}$. To be valid, a norm has to satisfy these properties (keep in mind these properties are a bit abstruse to understand):
 
 1. **Absolutely homogeneous**: $\forall \alpha \in \mathbb{R},  \lVert \alpha \bf{x} \rVert = \vert \alpha \Vert \lVert \bf{x} \rVert$. In words: for all real-valued scalars, the norm scales proportionally with the value of the scalar.
-2. **Triangle inequality**: $\lVert \bf{x} + \bf{y} \rVert \le \lVert \bf{x} \rVert + \lVert \bf{x} \rVert $. In words: in geometric terms, for any triangle the sum of any two sides must be greater or equal to the lenght of the third side. This is easy to see experimentally: grab a piece of rope, form triangles of different sizes, measure all the sides, and test this property.
+2. **Triangle inequality**: $\lVert \bf{x} + \bf{y} \rVert \le \lVert \bf{x} \rVert + \lVert \bf{y} \rVert $. In words: in geometric terms, for any triangle the sum of any two sides must be greater or equal to the lenght of the third side. This is easy to see experimentally: grab a piece of rope, form triangles of different sizes, measure all the sides, and test this property.
 3. **Positive definite**: $\lVert \bf{x} \rVert \ge 0$ and $ \lVert \bf{x} \rVert = 0 \Longleftrightarrow \bf{x}= 0$. In words: the length of any $\bf{x}$ has to be a positive value (i.e., a vector can't have negative length), and a length of $0$ occurs only of $\bf{x}=0$ 
 
 Grasping the meaning of these three properties may be difficult at this point, but they probably become clearer as you improve your understanding of linear algebra.
 
-**Fig. 8: Vector norms**
+**Fig. 9: Vector norms**
 
 
 <img src="/assets/post-10/b-l2-norm.svg">
+
 
 ### Euclidean norm
 
@@ -909,10 +1059,11 @@ $$
 c^2 = a^2 + b^2 - 2ab \cos \theta
 $$
 
-**Fig. 9: Law of cosines and Angle between vectors**
+**Fig. 10: Law of cosines and Angle between vectors** 
 
 
 <img src="/assets/post-10/b-vector-angle.svg">
+
 
 We can replace this expression with vectors lengths as: 
 
@@ -978,10 +1129,11 @@ We say that a pair of vectors $\bf{x}$ and $\bf{y}$ are **orthogonal** if their 
 
 Here is an example of orthogonal vectors
 
-**Fig. 10: Orthogonal vectors**
+**Fig. 11: Orthogonal vectors**
 
 
 <img src="/assets/post-10/b-orthogonal-vectors.svg">
+
 
 
 ```python
@@ -1041,12 +1193,12 @@ equation1 + equation2
 
 
 
-<div id="altair-viz-744c93812e5c4e4895e017d6e249c3d0"></div>
+<div id="altair-viz-7c1c09a11ece4157917984e1443d9674"></div>
 <script type="text/javascript">
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-744c93812e5c4e4895e017d6e249c3d0") {
-      outputDiv = document.getElementById("altair-viz-744c93812e5c4e4895e017d6e249c3d0");
+    if (outputDiv.id !== "altair-viz-7c1c09a11ece4157917984e1443d9674") {
+      outputDiv = document.getElementById("altair-viz-7c1c09a11ece4157917984e1443d9674");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
@@ -1724,10 +1876,11 @@ $$
 
 Geometrically, the solution for this representation equals to plot a **set of planes in 3-dimensional space**, one for each equation, and to find the segment where the planes intersect.
 
-**Fig. 11: Visualiation system of equations as planes**
+**Fig. 12: Visualiation system of equations as planes**
 
 
 <img src="/assets/post-10/b-planes-intersection.svg">
+
 
 An alternative way, which I personally prefer to use, is to represent the system as a **linear combination of the column vectors times a scaling term**:
 
@@ -1759,7 +1912,7 @@ $$
 
 Geometrically, the solution for this representation equals to plot a set of **vectors in 3-dimensional** space, one for each column vector, then scale them by $w_i$ and add them up, tip to tail, to find the resulting vector $y$.
 
-**Fig. 12: Visualiation system of equations as linear combination of vectors**
+**Fig. 13: System of equations as linear combination of vectors**
 
 
 <img src="/assets/post-10/b-vectors-combination.svg">
@@ -1779,7 +1932,7 @@ These subspaces are considered fundamental because they express many important p
 
 ### The column space
 
-The column space of a matrix $\textit{A}$ is composed by **all linear combinations of the columns of $\textit{A}$**. We denote the column space as $C(\textit{A})$. In other words, $C(\textit{A})$ equals to the **span of the columns of $\textit{A}$**. This view of a matrix is what we represented in **Fig. 11**: vectors in $\mathbb{R}^n$ scaled by real numbers. 
+The column space of a matrix $\textit{A}$ is composed by **all linear combinations of the columns of $\textit{A}$**. We denote the column space as $C(\textit{A})$. In other words, $C(\textit{A})$ equals to the **span of the columns of $\textit{A}$**. This view of a matrix is what we represented in **Fig. 12**: vectors in $\mathbb{R}^n$ scaled by real numbers. 
 
 For a matrix $\textit{A} \in \mathbb{R}^{m\times n}$ and a vector $\bf{v} \in \mathbb{R}^m$, the column space is defined as:
 
@@ -1792,7 +1945,7 @@ In words: all linear combinations of the column vectors of $\textit{A}$ and entr
 ### The row space
 
 The row space of a matrix $\textit{A}$ is composed of all linear combinations of the rows of a matrix. We denote
-the row space as $R(\textit{A})$. In other words, $R(\textit{A})$ equals to the **span of the rows** of $\textit{A}$. Geometrically, this is the way we represented a matrix in **Fig. 10**: each row equation represented as planes. Now, a different way to see the row space, is by transposing $\textit{A}^T$. Now, we can define the row space simply as $R(\textit{A}^T)$
+the row space as $R(\textit{A})$. In other words, $R(\textit{A})$ equals to the **span of the rows** of $\textit{A}$. Geometrically, this is the way we represented a matrix in **Fig. 11**: each row equation represented as planes. Now, a different way to see the row space, is by transposing $\textit{A}^T$. Now, we can define the row space simply as $R(\textit{A}^T)$
 
 For a matrix $\textit{A} \in \mathbb{R}^{m\times n}$ and a vector $\bf{w} \in \mathbb{R}^m$, the row space is defined as:
 
@@ -2159,12 +2312,8 @@ A_rref
 
 
 
-$$
-\begin{bmatrix}
-1 & 0 & 1\\
-0 & 1 & 1
-\end{bmatrix}
-$$
+$\displaystyle \left[\begin{matrix}1 & 0 & 1\\0 & 1 & 1\end{matrix}\right]$
+
 
 
 
@@ -2191,15 +2340,8 @@ B_rref
 
 
 
-$$
-\begin{bmatrix}
-1 & 0 & -1 & 0\\
-0 & 1 & 2 & 0\\
-0 & 0 & 0 & 1\\
-0 & 0 & 0 & 0\\
-0 & 0 & 0 & 0
-\end{bmatrix}
-$$
+
+$\displaystyle \left[\begin{matrix}1 & 0 & -1 & 0\\0 & 1 & 2 & 0\\0 & 0 & 0 & 1\\0 & 0 & 0 & 0\\0 & 0 & 0 & 0\end{matrix}\right]$
 
 
 
@@ -2218,3 +2360,463 @@ Now that we know about a *basis* and how to find it, understanding the concept o
 For an square matrix $\mathbb{R}^{m\times n}$ (i.e., $m=n$), we say is **full rank** when every column and/or row is linearly independent. For a non-square matrix with $m>n$ (i.e., more rows than columns), we say is **full rank** when every row is linearly independent. When $m<n$ (i.e., more columns than rows), we say is **full rank** when every column is linearly independent.
 
 From an applied machine learning perspective, the *rank* of a matrix is relevant as a measure of the [information content of the matrix](https://math.stackexchange.com/questions/21100/importance-of-matrix-rank). Take matrix $\textit{B}$ from the example above. Although the original matrix has 5 columns, we know is rank 4, hence, it has less information than it appears at first glance. 
+
+## Matrix norm
+
+As with vectors, we can measure the size of a matrix by computing its **norm**. There are multiple ways to define the norm for a matrix, as long it satisfies the same properties defined for vectors norms: (1) absolutely homogeneous, (2) triangle inequality, (3) positive definite (see vector norms section). For our purposes, I'll cover two of the most commonly used norms in machine learning: (1) **Frobenius norm**, (2) **max norm**, (3) **spectral norm**.
+
+
+**Note**: I won't cover the spectral norm just yet, because it depends on concepts that I have not introduced at this point. 
+
+### Frobenius norm
+
+The **Frobenius norm** is an element-wise norm named after the German mathematician Ferdinand Georg Frobenius. We denote this norm as $\Vert \textit{A} \Vert_F$. You can thing about this norm as flattening out the matrix into a long vector. For instance, a $3 \times 3$ matrix would become a vector with $n=9$ entries. We define the Frobenius norm as:
+
+$$
+\Vert \textit{A} \Vert_F := \sqrt{\sum_{i=1}^m \sum_{j=1}^n a_{ij}^2} 
+$$
+
+In words: square each entry of $\textit{A}$, add them together, and then take the square root. 
+
+In `NumPy`, we can compute the Frobenius norm as with the `linal.norm` method ant `fro` as the argument:
+
+
+```python
+A = np.array([[1, 2, 3],
+              [4, 5, 6], 
+              [7, 8, 9]])
+```
+
+
+```python
+np.linalg.norm(A, 'fro')
+```
+
+
+
+
+    16.881943016134134
+
+
+
+### Max norm
+
+The **max norm** or **infinity norm** of a matrix equals to the largest sum of the absolute value of row vectors. We denote the max norm as $\Vert \textit{A} \Vert_max$. Consider $\textit{A} \in \mathbb{R}^{m \times n}$. We define the max norm for $\textit{A}$ as:
+
+$$
+\Vert \textit{A} \Vert_{max} := \text{max}_{i} \sum_{j=1}^n\vert a_{ij} \vert
+$$
+
+This equals to go row by row, adding the absolute value of each entry, and then selecting the largest sum.
+
+In `Numpy`, we compute the max norm as:
+
+
+```python
+A = np.array([[1, 2, 3],
+              [4, 5, 6], 
+              [7, 8, 9]])
+```
+
+
+```python
+np.linalg.norm(A, np.inf)
+```
+
+
+
+
+    24.0
+
+
+
+In this case, is easy to see that the third row has the largest absolute value.
+
+# Linear and affine mappings
+
+## Linear mappings
+
+Now we have covered the basics of vectors and matrices, we are ready to introduce the idea of a linear mapping. **Linear mappings**, also known as *linear transformations* and *linear functions*, indicate the correspondence between vectors in a vector space $\textit{V}$ and the same vectors in a different vector space $\textit{W}$. This is an abstract idea. I like to think about this in the following manner: imagine there is a multiverse as in Marvel comics, but instead of humans, aliens, gods, stars, galaxies, and superheroes, we have *vectors*. In this context, a linear mapping would indicate the *correspondence* of entities (i.e., planets, humans, superheroes, etc) *between universes*. Just imagine us, placidly existing in our own universe, and suddenly a *linear mapping* happens: our entire universe would be transformed into a different one, according to whatever rules the linear mapping has enforced. Now, switch *universes* for *vector spaces* and *us* by vectors, and you'll get the full picture. 
+
+So, linear mappings transform vector spaces into others. Yet, such transformations are constrained to a spefic kind: **linear ones**. Consider a linear mapping $\textit{T}$ and a pair of vectors $\bf{x}$ and $\bf{y}$. To be valid, a linear mapping must satisfies these rules:
+
+$$
+\begin{matrix}
+\begin{align*}
+\textit{T}(\bf{x} + \bf{y}) &= \textit{T}(\bf{x}) + \textit{T}(\bf{y}) \\
+\text{T}(\alpha \bf{x}) &= \alpha\textit{T} (\bf{x}) \text{, } \forall \alpha
+\end{align*}
+\end{matrix}
+$$
+
+In words: 
+- The transformation of the sum of the vectors must be equal to taking the transformation of each vector individually and then adding them up.
+- The transformation of a scaled version of a vector must be equal to taking the transformation of the vector first and then scaling the result.
+
+The two properties above can be condenced into one, the **superposition property**:
+
+$$
+\textit{T}(\alpha \bf{x} + \beta \bf{y}) = \alpha \textit{T}(\bf{x}) + \beta \textit{T}(\bf{y})
+$$
+
+As a result of satisfying those properties, linear mappings **preserve the structure of the original vector space**. Imagine a vector space $\in \mathbb{R}^2$, like a grid on lines in a cartesian plane. Visually, preserving the structure of the vector space after a mapping means to: (1) the origin of the coordinate space remains fixed, and (2) the lines remain lines and parallel to each other.
+
+In linear algebra, linear mappings are represented as matrices and performed by matrix multiplication. Take a vector $\bf{x}$ and a matrix $\textit{A}$. We say that when $\textit{A}$ multiplies $\bf{x}$, the matrix transform the vector into another one: 
+
+$$
+\textit{T}(\bf{x}) = \textit{A}\bf{x}
+$$
+
+The typicall notation for a linear mapping is the same we used for functions. For the vector spaces $\textit{V}$ and $\textit{W}$, we indicate the linear mapping as $\textit{T}: \textit{V} \rightarrow \textit{W}$  
+
+
+<<< linear-mapping.svg >>>
+
+## Examples of linear mappings
+
+Let's examine a couple of examples of proper linear mappings. In general, *dot products are linear mappings*. This should come as no surprise since dot products are linear operations by definition. Dot products sometimes take special names, when they have a well-known effect on a linear space. I'll examine two simple cases: **negation** and **reversal**. Keep in mind that although we will test this for one vector, this mapping work on the entire vector space (i.e., the span) of a given dimensionality.
+
+### Negation matrix
+
+A **negation matrix** returns the opposite sign of each element of a vector. It can be defined as:
+
+$$
+\textit{T} := \textit{A} := \textit{-I}
+$$
+
+This is, the negative identity matrix. Consider a pair of vectors $\bf{x} \in \mathbb{R}^3$ and $\bf{x} \in \mathbb{y}^3$, and the negation matrix $\textit{-I} \in \mathbb{R}^{3 \times 3}$. Let's test the linear mapping properties with `NumPy`: 
+
+
+```python
+x = np.array([[-1],
+              [0],
+              [1]])
+
+y = np.array([[-3],
+              [0],
+              [2]])
+
+T = np.array([[-1,0,0],
+              [0,-1,0],
+              [0,0,-1]])
+```
+
+We first test $\textit{T}(\bf{x} + \bf{y}) = \textit{T}(\bf{x}) + \textit{T}(\bf{y})$:
+
+
+```python
+left_side_1 = T @ (x+y)
+right_side_1 = (T @ x) + (T @ y)
+print(f"Left side of the equation:\n{left_side_1}")
+print(f"Right side of the equation:\n{right_side_1}")
+```
+
+    Left side of the equation:
+    [[ 4]
+     [ 0]
+     [-3]]
+    Right side of the equation:
+    [[ 4]
+     [ 0]
+     [-3]]
+
+
+Hence, we confirm we get the same results.
+
+Let's check the second property $\text{T}(\alpha \bf{x}) = \alpha\textit{T} (\bf{x}) \text{, } \forall \alpha$
+
+
+```python
+alpha = 2
+left_side_2 = T @ (alpha * x)
+right_side_2 = alpha * (T @ x)
+print(f"Left side of the equation:\n{left_side_2}")
+print(f"Right side of the equation:\n{right_side_2}")
+```
+
+    Left side of the equation:
+    [[ 2]
+     [ 0]
+     [-2]]
+    Right side of the equation:
+    [[ 2]
+     [ 0]
+     [-2]]
+
+
+Again, we confirm we get the same results for both sides of the equation
+
+### Reversal matrix
+
+A **reversal matrix** returns reverses the order of the elements of a vector. This is, the last become the first, the second to last becomes the second, and so on. For a matrix in $\mathbb{R}^{3 \times 3}$ is defined as:
+
+$$
+\textit{T} := 
+\begin{bmatrix}
+0 & 0 & 1 \\
+0 & 1 & 0 \\
+1 & 0 & 0
+\end{bmatrix}
+$$
+
+In general, it is the *identity matrix but backwards*, with ones from the bottom left corner to the top right corern. Consider a pair of vectors $\bf{x} \in \mathbb{R}^3$ and $\bf{x} \in \mathbb{y}^3$, and the reversal matrix $\textit{T} \in \mathbb{R}^{3 \times 3}$. Let's test the linear mapping properties with `NumPy`: 
+
+
+```python
+x = np.array([[-1],
+              [0],
+              [1]])
+
+y = np.array([[-3],
+              [0],
+              [2]])
+
+T = np.array([[0,0,1],
+              [0,1,0],
+              [1,0,0]])
+```
+
+We first test $\textit{T}(\bf{x} + \bf{y}) = \textit{T}(\bf{x}) + \textit{T}(\bf{y})$:
+
+
+```python
+x_reversal = T @ x
+y_reversal = T @ y
+left_side_1 = T @ (x+y)
+right_side_1 = (T @ x) + (T @ y)
+print(f"x before reversal:\n{x}\nx after reversal \n{x_reversal}")
+print(f"y before reversal:\n{y}\ny after reversal \n{y_reversal}")
+print(f"Left side of the equation (add reversed vectors):\n{left_side_1}")
+print(f"Right side of the equation (add reversed vectors):\n{right_side_1}")
+```
+
+    x before reversal:
+    [[-1]
+     [ 0]
+     [ 1]]
+    x after reversal 
+    [[ 1]
+     [ 0]
+     [-1]]
+    y before reversal:
+    [[-3]
+     [ 0]
+     [ 2]]
+    y after reversal 
+    [[ 2]
+     [ 0]
+     [-3]]
+    Left side of the equation (add reversed vectors):
+    [[ 3]
+     [ 0]
+     [-4]]
+    Right side of the equation (add reversed vectors):
+    [[ 3]
+     [ 0]
+     [-4]]
+
+
+This works fine. Let's check the second property $\text{T}(\alpha \bf{x}) = \alpha\textit{T} (\bf{x}) \text{, } \forall \alpha$
+
+
+```python
+alpha = 2
+left_side_2 = T @ (alpha * x)
+right_side_2 = alpha * (T @ x)
+print(f"Left side of the equation:\n{left_side_2}")
+print(f"Right side of the equation:\n{right_side_2}")
+```
+
+    Left side of the equation:
+    [[ 2]
+     [ 0]
+     [-2]]
+    Right side of the equation:
+    [[ 2]
+     [ 0]
+     [-2]]
+
+
+## Examples of nonlinear mappings
+
+As with most subjects, examining examples of *what things are not* can be enlightening. Let's take a couple of non-linear mappings: **norms** and **translation**. 
+
+### Norms 
+
+This may come as a surprise, but norms are not linear transformations. Not "some" norms, but all norms. This is because of the very definition of a norm, in particular, the **triangle inequality** and **positive definite** properties, colliding with the requirements of linear mappings.  
+
+First, the triangle inequality defines: $\lVert \bf{x} + \bf{y} \rVert \le \lVert \bf{x} \rVert + \lVert \bf{y} \rVert$. Whereas the first requirement for linear mappings demands: $\textit{T}(\bf{x} + \bf{y}) = \textit{T}(\bf{x}) + \textit{T}(\bf{y})$. The problem here is in the $\le$ condition, which means adding two vectors and then taking the norm *can* be less than the sum of the norms of the individual vectors. Such condition is, by defnition, not allowed for linear mappings.
+
+Second, the positive definite defines: $\lVert \bf{x} \rVert \ge 0$ and $ \lVert \bf{x} \rVert = 0 \Longleftrightarrow \bf{x}= 0$. Put simply, norms *have to* be a postive value. For instance, the norm of $\Vert - x \Vert = \Vert x \Vert$, instead of $\Vert - x \Vert$. But, the second property for linear mappings requires $\Vert -\alpha \bf{x} \Vert = -\alpha \Vert \bf{x} \Vert$. Hence, it fails when we multiply by a negative number (i.e., it can preserve the negative sign).
+
+### Translation
+
+Translation is a geometric transformation that moves every vector in a vector space by the same distance in a given direction. Translation is an operation that matches our everyday life intuitions: move a cup of coffee from your left to your right, and you would have performed translation in $\mathbb{R}^3$ space.
+
+Contrary to what we have seen so far, the translation matrix is represented with **homogeneous coordinates** instead of cartesian coordinates. Put simply, the homogeneous coordinate system adds a extra $1$ at the end of vectros. For instance, the vector in $\mathbb{R}^2$ cartesian coordinates:
+
+$$
+\bf{x} = 
+\begin{bmatrix}
+2 \\
+2 \\
+\end{bmatrix}
+$$
+
+Becomes the following in $\mathbb{R}^2$ homogeneous coordinates:
+
+$$
+\bf{x} = 
+\begin{bmatrix}
+2 \\
+2 \\
+1
+\end{bmatrix}
+$$
+
+
+In fact, the translation matrix for the general case can't be represented with cartesian coordinates. Homogeneous coordinates are the standard in fields like computer graphics since they allow us to better represent a series of transformations (or mappings) like scaling, translation, rotation, etc. 
+
+
+A translation matrix in $\mathbb{R}^3$ can be denoted as:
+
+$$\textit{T}_v =
+\begin{bmatrix}
+1 & 0 & v_1 \\
+0 & 1 & v_2 \\
+0 & 0 & 1
+\end{bmatrix}
+$$
+
+Where $v_1$ and $v_2$ are the values added to each dimension for translation. For instance, consider $\bf{x} = \begin{bmatrix} 2 & 2 \end{bmatrix}^T \in \mathbb{R}^2$. If we want translate this $3$ units in the first dimension, and $1$ units in the second dimension, we first transfor the vector to homogeneous coordinates $\bf{x} = \begin{bmatrix} 2 & 2 & 1 \end{bmatrix}^T$ , and then perfom matrix-vector multiplication as usual:
+
+$$\textit{T}_v =
+\begin{bmatrix}
+1 & 0 & 3 \\
+0 & 1 & 1 \\
+0 & 0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+2 \\
+2 \\
+1
+\end{bmatrix}=
+\begin{bmatrix}
+5 \\
+3 \\
+1
+\end{bmatrix}
+$$
+
+The first two vectors in the translation matrix simple reproduce the original vector (i.e., the identity), and the third vector is the one actually "moving" the vectors.
+
+Translation is **not a linear mapping** simply because $\textit{T}(\bf{x} + \bf{y}) = \textit{T}(\bf{x}) + \textit{T}(\bf{y})$ **does not hold**. In the case of translation $\textit{T}(\bf{x} + \bf{y})  = \textit{T}(\bf{x} + v_1) + \textit{T}(\bf{y} + + v_1)$, which invalidates the operation as a linear mapping. This type of mapping is known as an **affine mapping or transformation**, which is the topic I'll review next.
+
+## Affine mappings
+
+The simplest way to describe affine mappings (or transformations) is as a *linear mapping* + *translation*. Hence, an affine mapping $\textit{M}$ takes the form of:
+
+$$
+\textit{M}(\textbf{x}) = \textit{A}\textbf{x} + \textbf{b}
+$$
+
+Where $\textit{A}$ is a linear mapping or transformation and $\textbf{b}$ is the translation vector.
+
+If you are familiar with linear regression, you would notice that the above expression is its matrix form. Linear regression is usually analyzed as a linear mapping plus noise, but it can also be seen as an affine mapping. Alternative, we can say that $\textit{A}\textbf{x} + \textbf{b}$ is a linear mapping *if and only if* $\textbf{b}=0$.
+
+From a geometrical perspective, affine mappings displace spaces (lines or hyperplanes) from the origin of the coordinate space. Consequently, affine mappings do not operate over *vector spaces* as the zero vector condition $\bf{0} \in S$ does not hold anymore. Affine mappings act onto *affine subspaces*, that I'll define later in this section.
+
+**Fig. 13: Affine mapping**
+
+
+<img src="/assets/post-10/b-affine-mapping.svg">
+
+
+## Affine combination of vectors
+
+We can think in affine combinations of vectors, as linear combinations with an added constraint. 
+Let's recall de definitoon for a linear combination. Consider a set of vectors $x_1, ..., x_k$ and scalars $\beta_1, ..., \beta_k \in \mathbb{R}$, then a linear combination is:   
+
+$$
+\sum_{j=1}^k \beta_j x_j := \beta_1x_1 + ... + \beta_kx_k
+$$
+
+For affine combinations, we add the condition:
+
+$$
+\sum_{j=1}^k \beta_j = 1
+$$
+
+In words, we constrain the sum of the weights $\beta$ to $1$. In practice, this defines a *weighted average of the vectors*. This restriction has a palpable effect which is easier to grasp from a geometric perspective.
+
+**Fig. 14: Affine combinations**
+
+
+<img src="/assets/post-10/b-affine-combination.svg">
+
+
+Fig. 14 shows two affine combinations. The first combination with weights $\beta_1 = \frac{1}{2}$ and $\beta_2 = \frac{1}{2}$, which yields the midpoint between vectors $\bf{x}$ and $\bf{y}$. The second combination with weights $\beta_1 = 3$ and $\beta_2 =-1$ (add up to $1$), which yield a point over the vector $\bf{z}$. In both cases, we have that the resulting vector lies on the same line. This is a general consequence of constraining the sum of the weights to $1$: *every affine combination of the same set of vectors will map onto the same space*. 
+
+## Affine span
+
+The set of all linear combinations, define the the vector span. Similarly, the set of all affine combinations determine the **affine span**. As we saw in Fig. 14, every affine of vectors $\textbf{x}$ and $\textbf{y}$ maps onto the line $\textbf{z}$. More generally, we say that the **affine span** of vectors $\textbf{x}_1, \cdots, \textbf{x}_k$ is:
+
+$$
+\textbf{x}_1, \cdots, \textbf{x}_k := \sum_{j=1}^k \beta_j \textbf{x}_j, \vert  \sum_{j=1} \beta_j = 1 \in \mathbb{R} \forall \beta
+$$
+
+Again, in words: the affine span is the set of all linear combinations of the vector set, such that the weights add up to $1$ and all weights are real numbers. Hence, the fundamental difference between vector spaces and affine spaces, is the former will span the entire $\mathbb{R}^n$ space (assuming independent vectors), whereas the latter will span a line.
+
+Let's consider three cases in $\mathbb{R}^3$: (1) three linearly independent vectors; (2) two linearly independent vectors and one dependent vector; (3) three linearly dependent vectors. In case (1), the affine span is the 2-dimensional plane containing those vectors. In case (2), the affine space is a line. Finally, in case (3), the span a single point. This may not be entirely obvious, so I encourage you to draw and the three cases, take the affine combinations and see what happens. 
+
+## Affine space and subspace
+
+In simple terms, **affine spaces** are *translates* of vector spaces, this is, vector spaces that have been offset from the origin of the coordinate system. Such a notion makes sound affine spaces as a special case of vector spaces, but they are actually more general. Indeed, affine spaces provide a more general framework to do geometric manipulation, as they work independently of the choice of the coordinate system (i.e., it is not constrained to the origin). For instance, the set of solutions of the system of linear equations $\textit{A}\textbf{x}=\textbf{y}$ (i.e., linear regression), is an affine space, not a linear vector space. 
+
+Consider a vector space $\textit{V}$, a vector $\textbf{x}_0 \in \textit{V}$, and a subset $\textit{U} \subseteq \textit{V}$. We define an affine subspace $\textit{L}$ as:
+
+$$\textit{L} =
+\textbf{x}_0 + \textit{U} := \{ \textbf{x}_0 + \textbf{u}: \textbf{u} \in \textit{U} \}  
+$$
+
+Further, any point, line, plane, or hyperplane in $\mathbb{R}^n$ that does not go through the origin, is an affine subspace.
+
+## Affine mappings using the augmented matrix
+
+Consider the matrix $\textit{A} \in \mathbb{R}^{m \times n}$, and vectors $\textbf{x}, \textbf{b}, \textbf{y} \in  \mathbb{R}^n$
+
+We can represent the system of linear equations:
+
+$$
+\textit{A}\textbf{x} + \textbf{b}  = \textbf{y} 
+$$
+
+As a single matrix vector multiplication, by using an **augmented matrix** of the form:
+
+$$
+\left[
+\begin{matrix}
+& \textit{} &\\
+& \textit{A} &\\
+& \textit{} &\\
+0 & \cdots & 1 
+\end{matrix}
+  \left|
+    \,
+\begin{matrix}
+x_1 \\
+\vdots \\
+x_n \\
+1
+\end{matrix}
+  \right.
+\right] =
+\begin{bmatrix}
+y_1 \\
+\vdots \\
+y_n \\
+1
+\end{bmatrix}
+$$
+
+This form is known as the **affine transformation matrix**. We made use of this form when we exemplified *translation*, which happens to be an affine mapping. 
