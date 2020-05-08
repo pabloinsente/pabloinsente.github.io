@@ -3,9 +3,10 @@ title: Introduction to Linear Algebra for Applied Machine Learning with Python
 published: true
 mathjax: true
 ---
-<<<***Note: I plan to complete this mini-project in 5 updates. As 2020-05-05, I'm on update 3. Around 70% of the project is complete***>>>
 
-Linear algebra is to machine learning as flour to bakery: **every machine learning model is based in linear algebra, as every cake is based in flour**. It is not the only ingredient, of course. Machine learning models need vector calculus, probability, and optimization, as cakes need sugar, eggs, and butter. Applied machine learning, like bakery, is essentially about combining these mathematical ingredients in clever ways to create useful (tasty?) models.
+<<<***Note: I plan to complete this mini-project in 5 updates. As May 8th of 2020, I'm on update 4. Around 80% of the project is complete***>>>
+
+Linear algebra is to machine learning as flour to bakery: **every machine learning model is based in linear algebra, as every cake is based in flour**. It is not the only ingredient, of course. Machine learning models need vector calculus, probability, and optimization, as cakes need sugar, eggs, and butter. Applied machine learning, like bakery, is essentially about combining these mathematical ingredients in clever ways to create useful (tasty?) models. 
 
 This document contains **introductory level linear algebra notes for applied machine learning**. It is meant as a reference rather than a comprehensive review. If you ever get confused by matrix multiplication, don't remember what was the $L_2$ norm, or the conditions for linear independence, this can serve as a quick reference. It also a good introduction for people that don't need a deep understanding of linear algebra, but still want to learn about the fundamentals to read about machine learning or to use pre-packaged machine learning solutions. Further, it is a good source for people that learned linear algebra a while ago and need a refresher.
 
@@ -35,19 +36,21 @@ I'll do my best to keep notation consistent. Nevertheless, learning to adjust to
 
 To make everything more dynamic and practical, I'll introduce bits of Python code to exemplify each mathematical operation (when possible) with `NumPy`, which is the facto standard package for scientific computing in Python.
 
-Finally, keep in mind this is created by a non-mathematician for (mostly) non-mathematicians. If you find any mistake in notes feel free to reach me out at pcaceres@wisc.edu and to https://pablocaceres.org/ so I can correct the issue.
+Finally, keep in mind this is created by a non-mathematician for (mostly) non-mathematicians. I wrote this as if I were talking to myself or a dear friend, which explains why my writing is sometimes conversational and informal.
+
+If you find any mistake in notes feel free to reach me out at pcaceres@wisc.edu and to https://pablocaceres.org/ so I can correct the issue.
 
 # Table of contents
 
 **Note:** _underlined sections_ are the newest sections and/or corrected ones.
 
-**[_Preliminary concepts_](#preliminary-concepts)**:
-- [_Sets_](#sets)
-- [_Belonging and inclusion_](#belonging-and-inclusion)
-- [_Set specification_](#set-specification)
-- [_Ordered pairs_](#ordered-pairs)
-- [_Relations_](#relations)
-- [_Functions_](#functions)
+**[Preliminary concepts](#preliminary-concepts)**:
+- [Sets](#sets)
+- [Belonging and inclusion](#belonging-and-inclusion)
+- [Set specification](#set-specification)
+- [Ordered pairs](#ordered-pairs)
+- [Relations](#relations)
+- [Functions](#functions)
 
 **[Vectors](#vectors)**:
 - [Types of vectors](#types-of-vectors)
@@ -86,6 +89,19 @@ Finally, keep in mind this is created by a non-mathematician for (mostly) non-ma
     - [Matrix inverse](#matrix-inverse)
     - [Matrix transpose](#matrix-transpose)
     - [Hadamard product](#hadamard-product)
+- [Special matrices](#special-matrices)
+    - [_Rectangular matrix_](#rectangular-matrix)
+    - [_Square matrix_](#square-matrix)
+    - [_Diagonal matrix_](#diagonal-matrix)
+    - [_Upper triangular matrix_](#upper-triangular-matrix)
+    - [_Lower triangular matrix_](#lower-triangular-matrix)
+    - [_Symmetric matrix_](#symmetric-matrix)
+    - [_Identity matrix_](#identity-matrix)
+    - [_Scalar matrix_](#scalar-matrix)
+    - [_Null or zero matrix_](#null-or-zero-matrix)
+    - [_Echelon matrix_](#echelon-matrix)
+    - [_Antidiagonal matrix_](#antidiagonal-matrix)
+    - [_Design matrix_](#design-matrix)
 - [Matrices as systems of linear equations](#matrices-as-systems-of-linear-equations)
 - [The four fundamental matrix subsapces](#the-four-fundamental-matrix-subsapces)
     - [The column space](#the-column-space)
@@ -96,42 +112,45 @@ Finally, keep in mind this is created by a non-mathematician for (mostly) non-ma
     - [Gaussian Elimination](#gaussian-elimination)
     - [Gauss-Jordan Elimination](#gauss-jordan-elimination)
 - [Matrix basis and rank](#matrix-basis-and-rank)
-- [_Matrix norm_](#matrix-norm)
+- [Matrix norm](#matrix-norm)
 
-**[_Linear and affine mappings_](#linear-and-affine-mappings)**:
+**[Linear and affine mappings](#linear-and-affine-mappings)**:
 
-- [_Linear mappings_](#linear-mappings)
-- [_Examples of linear mappings_](#examples-of-linear-mappings)
-    - [_Negation matrix_](#negation-matrix)
-    - [_Reversal matrix_](#reversal-matrix)
-- [_Examples of nonlinear mappings_](#examples-of-nonlinear-mappings)
-    - [_Norms_](#norms)
-    - [_Translation_](#translation)
-- [_Affine mappings_](#affine-mappings)
-    - [_Affine combination of vectors_](#affine-combination-of-vectors)
-    - [_Affine_span_](#affine-span)
-    - [_Affine space and subspace_](#affine-space-and-subspace)
-    - [_Affine mappings using the augmented matrix_](#affine-mappings-using-the-augmented-matrix)
+- [Linear mappings](#linear-mappings)
+- [Examples of linear mappings](#examples-of-linear-mappings)
+    - [Negation matrix](#negation-matrix)
+    - [Reversal matrix](#reversal-matrix)
+- [Examples of nonlinear mappings](#examples-of-nonlinear-mappings)
+    - [Norms](#norms)
+    - [Translation](#translation)
+- [Affine mappings](#affine-mappings)
+    - [Affine combination of vectors](#affine-combination-of-vectors)
+    - [Affine span](#affine-span)
+    - [Affine space and subspace](#affine-space-and-subspace)
+    - [Affine mappings using the augmented matrix](#affine-mappings-using-the-augmented-matrix)
+- [_Special linear mappings_](#special-linear-mappings)
+    - [_Scaling_](#scaling)
+    - [_Reflection_](#reflection)
+    - [_Shear_](#shear)
+    - [_Rotation_](#rotation)
+- [_Projections_](#projections)
+    - [_Projections onto a line_](#projections-onto-a-line)
+    - [_Projections onto general subspaces_](#projections-onto-general-subspaces)
+    - [_Projections as approximate solutions to systems of linear equations_](#projections-as-approximate-solutions-to-systems-of-linear-equations)
 
 **Future sections**:
 
-*Geometric transformations*:
-
-    - Scaling
-    - Dilation
-    - Rotation
-    - Reflection
-    - Shear
-    - Projection onto a line
-
 *Decompositions*:
 
-    - Orthogonal projections
+    - Determinant and trace
+    - LU decomposition
+    - QR decomposition
+    - Cholesky Decomposition
     - Eigenvalues and eigenvectors
+    - Symmetric Positive Definite Matrices
     - Eigendecomposition and diagonalization
     - Singular value decomposition
-    - Eigenvalue decomposition vs Singular value decomposition
-    - LU decomposition
+    - Principal components and best low rank matrix approximation
 
 # Preliminary concepts
 
@@ -244,9 +263,10 @@ $$
 \textit{f}(\textit{x}) = \textit{y} 
 $$
 
-The simples way to see the effect of this definition of a function is with a chart. In Fig. 1, the left-pane shows a valid function, i.e., each value $\textit{f}(\textit{x})$ *maps* uniquely onto one value of $\textit{y}$. The right-pane is not a function, since each value $\textit{f}(\textit{x})$ *maps* onto multiple values of $\textit{y}$. 
+The simples way to see the effect of this definition of a function is with a chart. In **Fig. 1**, the left-pane shows a valid function, i.e., each value $\textit{f}(\textit{x})$ *maps* uniquely onto one value of $\textit{y}$. The right-pane is not a function, since each value $\textit{f}(\textit{x})$ *maps* onto multiple values of $\textit{y}$. 
 
-**Fig. 1: Functions**
+**Fig. 1: Geometric vectors**
+
 
 <img src="/assets/post-10/b-function.svg">
 
@@ -263,7 +283,15 @@ This is all I'll cover about sets and functions. My goals were just to introduce
 import numpy as np
 import pandas as pd
 import altair as alt
+alt.themes.enable('dark')
 ```
+
+
+
+
+    ThemeRegistry.enable('dark')
+
+
 
 # Vectors
 
@@ -280,6 +308,7 @@ Vectors come in three flavors: (1) **geometric vectors**, (2) **polynomials**, (
 **Geometric vectors are oriented segments**. Therse are the kind of vectors you probably learned about in high-school physics and geometry. Many linear algebra concepts come from the geometric point of view of vectors: space, plane, distance, etc.
 
 **Fig. 2: Geometric vectors**
+
 
 <img src="/assets/post-10/b-geometric-vectors.svg">
 
@@ -301,6 +330,7 @@ $$
 $$
 
 **Fig. 3: Polynomials**
+
 
 <img src="/assets/post-10/b-polynomials-vectors.svg">
 
@@ -453,6 +483,7 @@ $$\bf{x} = \begin{bmatrix} 3 \\ 2 \\ 1 \end{bmatrix} \in \mathbb{R}^3$$
 we are saying: starting from the origin, move 3 units in the 1st perpendicular axis, 2 units in the 2nd perpendicular axis, and 1 unit in the 3rd perpendicular axis. We will see later that when we have a set of perpendicular axes we obtain the basis of a vector space.
 
 **Fig. 4: Coordinate systems**
+
 
 <img src="/assets/post-10/b-coordinate-system.svg">
 
@@ -781,6 +812,7 @@ Consider the vectors $\bf{x}$ and $\bf{y}$ and the scalars $\alpha$ and $\beta$.
 
 **Fig. 5: Vector Span**
 
+
 <img src="/assets/post-10/b-vector-span.svg">
 
 
@@ -801,6 +833,7 @@ A **vector subspace (or linear subspace) is a vector space that lies within a la
 Intuitively, you can think in closure as being unable to "jump out" from space into another. A pair of vectors laying flat in the 2-dimensional space, can't, by either addition or multiplication, "jump out" into the 3-dimensional space. 
 
 **Fig. 6: Vector subspaces**
+
 
 <img src="/assets/post-10/b-vector-subspace.svg">
 
@@ -846,7 +879,7 @@ The importance of the concepts of linear dependence and independence will become
 
 ## Vector null space
 
-Now that we know what subspaces and linear dependent vectors are, we can introduce the idea of the **null space**. Intuitively, the null space of a set of vectors are **all linear combinations that "map" into the zero vector**. Consider a set of geometric vectors $\bf{w}$, $\bf{x}$, $\bf{y}$, and $\bf{z}$ as in **Fig. 8**. By inspection, we can see that vectors $\bf{x}$ and $\bf{z}$ are parallel to each other, hence, independent. On the contrary, vectors $\bf{w}$ and $\bf{y}$ can be obtained as linear combinations of $\bf{x}$ and $\bf{z}$, therefore, dependent. 
+Now that we know what subspaces and linear dependent vectors are, we can introduce the idea of the **null space**. Intuitively, the null space of a set of vectors are **all linear combinations that "map" onto the zero vector**. Consider a set of geometric vectors $\bf{w}$, $\bf{x}$, $\bf{y}$, and $\bf{z}$ as in **Fig. 8**. By inspection, we can see that vectors $\bf{x}$ and $\bf{z}$ are parallel to each other, hence, independent. On the contrary, vectors $\bf{w}$ and $\bf{y}$ can be obtained as linear combinations of $\bf{x}$ and $\bf{z}$, therefore, dependent. 
 
 **Fig. 8: Vector null space**
 
@@ -1059,7 +1092,7 @@ $$
 c^2 = a^2 + b^2 - 2ab \cos \theta
 $$
 
-**Fig. 10: Law of cosines and Angle between vectors** 
+**Fig. 10: Law of cosines and Angle between vectors**
 
 
 <img src="/assets/post-10/b-vector-angle.svg">
@@ -1193,12 +1226,12 @@ equation1 + equation2
 
 
 
-<div id="altair-viz-7c1c09a11ece4157917984e1443d9674"></div>
+<div id="altair-viz-5028eee7ca234b15a3b079381ccf4999"></div>
 <script type="text/javascript">
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-7c1c09a11ece4157917984e1443d9674") {
-      outputDiv = document.getElementById("altair-viz-7c1c09a11ece4157917984e1443d9674");
+    if (outputDiv.id !== "altair-viz-5028eee7ca234b15a3b079381ccf4999") {
+      outputDiv = document.getElementById("altair-viz-5028eee7ca234b15a3b079381ccf4999");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
@@ -1240,7 +1273,7 @@ equation1 + equation2
         .catch(showError)
         .then(() => displayChart(vegaEmbed));
     }
-  })({"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "layer": [{"mark": "line", "encoding": {"x": {"type": "quantitative", "field": "x1"}, "y": {"type": "quantitative", "field": "y1"}}}, {"mark": {"type": "line", "color": "red"}, "encoding": {"x": {"type": "quantitative", "field": "x2"}, "y": {"type": "quantitative", "field": "y2"}}}], "data": {"name": "data-57ffab6a26a928c2ff17e40b29b8a272"}, "$schema": "https://vega.github.io/schema/vega-lite/v4.8.1.json", "datasets": {"data-57ffab6a26a928c2ff17e40b29b8a272": [{"x1": 0, "y1": 8, "x2": 0.5, "y2": 0}, {"x1": 2, "y1": 3, "x2": 2.0, "y2": 3}]}}, {"mode": "vega-lite"});
+  })({"usermeta": {"embedOptions": {"theme": "dark"}}, "config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "layer": [{"mark": "line", "encoding": {"x": {"type": "quantitative", "field": "x1"}, "y": {"type": "quantitative", "field": "y1"}}}, {"mark": {"type": "line", "color": "red"}, "encoding": {"x": {"type": "quantitative", "field": "x2"}, "y": {"type": "quantitative", "field": "y2"}}}], "data": {"name": "data-57ffab6a26a928c2ff17e40b29b8a272"}, "$schema": "https://vega.github.io/schema/vega-lite/v4.8.1.json", "datasets": {"data-57ffab6a26a928c2ff17e40b29b8a272": [{"x1": 0, "y1": 8, "x2": 0.5, "y2": 0}, {"x1": 2, "y1": 3, "x2": 2.0, "y2": 3}]}}, {"mode": "vega-lite"});
 </script>
 
 
@@ -1841,6 +1874,162 @@ np.multiply(A, B)
 
 
 
+## Special matrices
+
+There are several matrices with special names that are commonly found in machine learning theory and applications. Knowing these matrices beforehand can improve your linear algebra fluency, so we will briefly review a selection of 12 common matrices. For an extended list of special matrices see [here](https://en.wikipedia.org/wiki/List_of_named_matrices) and [here](http://www.ee.ic.ac.uk/hp/staff/dmb/matrix/special.html).
+
+### Rectangular matrix
+
+Matrices are said to be *rectangular* when the number of rows is $\ne$ to the number of columns, i.e.,  $\textit{A}^{m \times n}$ with $m \ne n$. For instance: 
+
+$$
+\begin{bmatrix}
+1 & 2 & 3 \\
+4 & 5 & 6
+\end{bmatrix}
+$$
+
+### Square matrix
+
+Matrices are said to be **square** when the number of rows $=$ the number of columns, i.e., $\textit{A}^{n \times n}$. For instance:
+
+$$
+\begin{bmatrix}
+1 & 2 & 3 \\
+4 & 5 & 6 \\
+7 & 8 & 9
+\end{bmatrix}
+$$
+
+### Diaginal matrix
+
+Square matrices are said to be **diagonal** when each of its non-diagonal elements is zero, i.e., For $\textit{D} = (d_{i,j})$, we have $\forall i,j \in n, i \ne j \implies d_{i,j} = 0$. For instance:
+
+$$
+\begin{bmatrix}
+1 & 0 & 0 \\
+0 & 5 & 0 \\
+0 & 0 & 9
+\end{bmatrix}
+$$
+
+### Upper triangular matrix
+
+Square matrices are said to be **upper triangular** when the elements below the main diagonal are zero, i.e., For $\textit{D} = (d_{i,j})$, we have $d_{i,j} = 0, \text{for } i>j$. For instance:
+
+$$
+\begin{bmatrix}
+1 & 2 & 3 \\
+0 & 5 & 6 \\
+0 & 0 & 9
+\end{bmatrix}
+$$
+
+### Lower triangular matrix
+
+Square matrices are said to be **lower triangular** when the elements above the main diagonal are zero, i.e., For $\textit{D} = (d_{i,j})$, we have $d_{i,j} = 0, \text{for } i<j$. For instance:
+
+$$
+\begin{bmatrix}
+1 & 0 & 0 \\
+4 & 5 & 0 \\
+7 & 8 & 9
+\end{bmatrix}
+$$
+
+### Symetric matrix
+
+Square matrices are said to be symmetric its equal to its transpose, i.e., $\textit{A} = \textit{A}^T$. For instance:
+
+$$
+\begin{bmatrix}
+1 & 2 & 3 \\
+2 & 1 & 6 \\
+3 & 6 & 1
+\end{bmatrix}
+$$
+
+### Identity matrix
+
+A diagonal matrix is said to be the identity when the elements along its main diagonal are equal to one. For instance:
+
+$$
+\begin{bmatrix}
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 1
+\end{bmatrix}
+$$
+
+### Scalar matrix
+
+Diagonal matrices are said to be scalar when all the elements along its main diaonal are equal, i.e., $\textit{D} = \alpha\textit{I}$.  For instance:
+
+$$
+\begin{bmatrix}
+2 & 0 & 0 \\
+0 & 2 & 0 \\
+0 & 0 & 2
+\end{bmatrix}
+$$
+
+
+### Null or zero matrix
+
+Matrices are said to be null or zero matrices when all its elements equal to zero, wich is denoted as $0_{m \times n}$. For instance:
+
+$$
+\begin{bmatrix}
+0 & 0 & 0 \\
+0 & 0 & 0 \\
+0 & 0 & 0
+\end{bmatrix}
+$$
+
+### Echelon matrix
+
+Matrices are said to be on **echelon form** when it has undergone the process of Gaussian elimination. More specifically:
+
+- Zero rows are at the bottom of the matrix
+- The leading entry (pivot) of each nonzero row is to the right of the leading entry of the row above it 
+- Each leading entry is the only nonzero entry in its column
+
+For instance: 
+
+$$
+\begin{bmatrix}
+1 & 3 & 5 \\
+2 & 2 & -1 \\
+1 & 3 & 2 
+\end{bmatrix}
+$$
+
+In echelon form after Gaussian Elimination becomes:
+
+$$
+\begin{bmatrix}
+1 & 3 & 5 \\
+0 & -4 & -11 \\
+0 & 0 & -3 
+\end{bmatrix}
+$$
+
+### Antidiagonal matrix
+
+Matrices are said to be **antidiagonal** when all the entries are zero but the antidiagonal (i.e., the diagonal starting from the bottom left corner to the upper right corner). For instance:
+
+$$
+\begin{bmatrix}
+0 & 0 & 3 \\
+0 & 5 & 0 \\
+7 & 0 & 0
+\end{bmatrix}
+$$
+
+### Design matrix
+
+**Design matrix** is a special name for matrices containing explanatory variables or features in the context of statistics and machine learning. Some authors favor this name to refer to the set of variables or features in a model.
+
 ## Matrices as systems of linear equations
 
 I introduced the idea of systems of linear equations as a way to figure out the right combination of linear segments to obtain an outcome. I did this in the context of vectors, now we can extend this to the context of matrices. 
@@ -2304,21 +2493,12 @@ print('Reduced row echelon form of A:')
     Reduced row echelon form of A:
 
 
-
-```python
-A_rref
-```
-
-
-
-
 $$
 \begin{bmatrix}
 1 & 0 & 1\\
 0 & 1 & 1
 \end{bmatrix}
 $$
-
 
 
 ```python
@@ -2336,12 +2516,9 @@ B_rref, B_pivots = B.rref()
 
 ```python
 print('Reduced row echelon form of B:')
-B_rref
 ```
 
     Reduced row echelon form of B:
-
-
 
 
 $$
@@ -2353,9 +2530,6 @@ $$
 0 & 0 & 0 & 0
 \end{bmatrix}
 $$
-
-
-
 
 
 ```python
@@ -2446,6 +2620,22 @@ In this case, is easy to see that the third row has the largest absolute value.
 
 # Linear and affine mappings
 
+
+```python
+# Libraries for this section 
+import numpy as np
+import pandas as pd
+import altair as alt
+alt.themes.enable('dark')
+```
+
+
+
+
+    ThemeRegistry.enable('dark')
+
+
+
 ## Linear mappings
 
 Now we have covered the basics of vectors and matrices, we are ready to introduce the idea of a linear mapping. **Linear mappings**, also known as *linear transformations* and *linear functions*, indicate the correspondence between vectors in a vector space $\textit{V}$ and the same vectors in a different vector space $\textit{W}$. This is an abstract idea. I like to think about this in the following manner: imagine there is a multiverse as in Marvel comics, but instead of humans, aliens, gods, stars, galaxies, and superheroes, we have *vectors*. In this context, a linear mapping would indicate the *correspondence* of entities (i.e., planets, humans, superheroes, etc) *between universes*. Just imagine us, placidly existing in our own universe, and suddenly a *linear mapping* happens: our entire universe would be transformed into a different one, according to whatever rules the linear mapping has enforced. Now, switch *universes* for *vector spaces* and *us* by vectors, and you'll get the full picture. 
@@ -2481,8 +2671,6 @@ $$
 
 The typicall notation for a linear mapping is the same we used for functions. For the vector spaces $\textit{V}$ and $\textit{W}$, we indicate the linear mapping as $\textit{T}: \textit{V} \rightarrow \textit{W}$  
 
-
-<<< linear-mapping.svg >>>
 
 ## Examples of linear mappings
 
@@ -2738,7 +2926,7 @@ If you are familiar with linear regression, you would notice that the above expr
 
 From a geometrical perspective, affine mappings displace spaces (lines or hyperplanes) from the origin of the coordinate space. Consequently, affine mappings do not operate over *vector spaces* as the zero vector condition $\bf{0} \in S$ does not hold anymore. Affine mappings act onto *affine subspaces*, that I'll define later in this section.
 
-**Fig. 13: Affine mapping**
+**Fig. 14: Affine mapping**
 
 
 <img src="/assets/post-10/b-affine-mapping.svg">
@@ -2761,17 +2949,17 @@ $$
 
 In words, we constrain the sum of the weights $\beta$ to $1$. In practice, this defines a *weighted average of the vectors*. This restriction has a palpable effect which is easier to grasp from a geometric perspective.
 
-**Fig. 14: Affine combinations**
+**Fig. 15: Affine combinations**
 
 
 <img src="/assets/post-10/b-affine-combination.svg">
 
 
-Fig. 14 shows two affine combinations. The first combination with weights $\beta_1 = \frac{1}{2}$ and $\beta_2 = \frac{1}{2}$, which yields the midpoint between vectors $\bf{x}$ and $\bf{y}$. The second combination with weights $\beta_1 = 3$ and $\beta_2 =-1$ (add up to $1$), which yield a point over the vector $\bf{z}$. In both cases, we have that the resulting vector lies on the same line. This is a general consequence of constraining the sum of the weights to $1$: *every affine combination of the same set of vectors will map onto the same space*. 
+**Fig. 15** shows two affine combinations. The first combination with weights $\beta_1 = \frac{1}{2}$ and $\beta_2 = \frac{1}{2}$, which yields the midpoint between vectors $\bf{x}$ and $\bf{y}$. The second combination with weights $\beta_1 = 3$ and $\beta_2 =-1$ (add up to $1$), which yield a point over the vector $\bf{z}$. In both cases, we have that the resulting vector lies on the same line. This is a general consequence of constraining the sum of the weights to $1$: *every affine combination of the same set of vectors will map onto the same space*. 
 
 ## Affine span
 
-The set of all linear combinations, define the the vector span. Similarly, the set of all affine combinations determine the **affine span**. As we saw in Fig. 14, every affine of vectors $\textbf{x}$ and $\textbf{y}$ maps onto the line $\textbf{z}$. More generally, we say that the **affine span** of vectors $\textbf{x}_1, \cdots, \textbf{x}_k$ is:
+The set of all linear combinations, define the the vector span. Similarly, the set of all affine combinations determine the **affine span**. As we saw in **Fig. 15**, every affine of vectors $\textbf{x}$ and $\textbf{y}$ maps onto the line $\textbf{z}$. More generally, we say that the **affine span** of vectors $\textbf{x}_1, \cdots, \textbf{x}_k$ is:
 
 $$
 \textbf{x}_1, \cdots, \textbf{x}_k := \sum_{j=1}^k \beta_j \textbf{x}_j, \vert  \sum_{j=1} \beta_j = 1 \in \mathbb{R} \forall \beta
@@ -2832,3 +3020,1144 @@ y_n \\
 $$
 
 This form is known as the **affine transformation matrix**. We made use of this form when we exemplified *translation*, which happens to be an affine mapping. 
+
+## Special linear mappings
+
+There are several important linear mappings (or transformations) that can be expressed as matrix-vector multiplications of the form $\textbf{y} = \textit{A}\textbf{x}$. Such mappings are common in image processing, computer vision, and other linear applications. Further, combinations of linear and nonlinear mappings are what complex models as neural networks do to learn mappings from inputs to outputs. Here we briefly review six of the most important linear mappings.
+
+### Scaling
+
+**Scaling** is a mapping of the form $\textbf{y} = \textit{A}\textbf{x}$, with $\textit{A} = \alpha \textit{I}$. Scaling *stretches* $\textbf{x}$ by a factor $\vert \alpha \vert$ when $\alpha < 1$, *shrinks* $\textbf{x}$ when $\alpha < 1$, and *reverses* the direction of the vector when $\alpha < 0$. For geometrical objects in Euclidean space, scaling changes the size but not the shape of objects. An scaling matrix in $\mathbb{R}^2$ takes the form:
+
+$$
+\begin{bmatrix}
+s_1 & 0 \\
+0   & s_2
+\end{bmatrix}
+$$
+
+Where $s_1, s_2$ are the scaling factors. 
+
+Let's scale a vector using `NumPy`. We will define a scaling matrix $\textit{A}$, a vector $\textbf{x}$ to scale, and then plot the original and scaled vectors with Altair.
+
+
+```python
+A = np.array([[2.0, 0],
+              [0, 2.0]])
+
+x = np.array([[0, 2.0,],
+              [0, 4.0,]])
+```
+
+To scale $\textbf{x}$, we perform matrix-vector multiplication as usual
+
+
+```python
+y = A @ x
+```
+
+
+```python
+z = np.column_stack((y,x))
+```
+
+
+```python
+df = pd.DataFrame({'dim-1': z[0], 'dim-2':z[1], 'type': ['tran', 'tran', 'base', 'base']})
+```
+
+
+```python
+df
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>dim-1</th>
+      <th>dim-2</th>
+      <th>type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>tran</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4.0</td>
+      <td>8.0</td>
+      <td>tran</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>base</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2.0</td>
+      <td>4.0</td>
+      <td>base</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+We see that the resulting scaled vector ('tran') is indeed two times the original vector ('base'). Now let's plot. The light blue line solid line represents the original vector, whereas the dashed orange line represents the scaled vector. 
+
+
+```python
+chart = alt.Chart(df).mark_line(opacity=0.8).encode(
+    x='dim-1',
+    y='dim-2',
+    color='type',
+    strokeDash='type')
+
+chart
+```
+
+
+
+
+
+<div id="altair-viz-91ec4e19dbba468f9a97e817e78b40b3"></div>
+<script type="text/javascript">
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "altair-viz-91ec4e19dbba468f9a97e817e78b40b3") {
+      outputDiv = document.getElementById("altair-viz-91ec4e19dbba468f9a97e817e78b40b3");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm//vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm//vega-lite@4.8.1?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm//vega-embed@6?noext",
+    };
+
+    function loadScript(lib) {
+      return new Promise(function(resolve, reject) {
+        var s = document.createElement('script');
+        s.src = paths[lib];
+        s.async = true;
+        s.onload = () => resolve(paths[lib]);
+        s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+        document.getElementsByTagName("head")[0].appendChild(s);
+      });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else if (typeof vegaEmbed === "function") {
+      displayChart(vegaEmbed);
+    } else {
+      loadScript("vega")
+        .then(() => loadScript("vega-lite"))
+        .then(() => loadScript("vega-embed"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"usermeta": {"embedOptions": {"theme": "dark"}}, "config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "data": {"name": "data-9f7a3cb65390d8e1f055fe5dbda17177"}, "mark": {"type": "line", "opacity": 0.8}, "encoding": {"color": {"type": "nominal", "field": "type"}, "strokeDash": {"type": "nominal", "field": "type"}, "x": {"type": "quantitative", "field": "dim-1"}, "y": {"type": "quantitative", "field": "dim-2"}}, "$schema": "https://vega.github.io/schema/vega-lite/v4.8.1.json", "datasets": {"data-9f7a3cb65390d8e1f055fe5dbda17177": [{"dim-1": 0.0, "dim-2": 0.0, "type": "tran"}, {"dim-1": 4.0, "dim-2": 8.0, "type": "tran"}, {"dim-1": 0.0, "dim-2": 0.0, "type": "base"}, {"dim-1": 2.0, "dim-2": 4.0, "type": "base"}]}}, {"mode": "vega-lite"});
+</script>
+
+
+
+### Reflection
+
+**Reflection** is the mirror image of an object in Euclidean space. For the general case, reflection of a vector $\textbf{x}$ through a line that passes through the origin is obtained as:
+
+$$
+\begin{bmatrix}
+\cos (2 \theta) & \sin (2 \theta) \\
+\sin (2 \theta) & -\cos (2 \theta)
+\end{bmatrix} \textbf{x}
+$$
+
+where $\theta$ are radians of inclination with respect to the horizontal axis. I've been purposely avoiding trigonometric functions, so let's examine a couple of special cases for a vector $\textbf{x}$ in $\mathbb{R}^2$ (that can be extended to an arbitrary number of dimensions). 
+
+Reflection along the horizontal axis, or around the line at $0^{\circ}$ from the origin:
+
+$$
+\begin{bmatrix}
+1 & 0 \\
+0 & -1
+\end{bmatrix}
+$$
+
+Reflection along the vertical axis, or around the line at $90^{\circ}$ from the origin:
+
+$$
+\begin{bmatrix}
+-1 & 0 \\
+0 & 1
+\end{bmatrix}
+$$
+
+Reflection along the line where the horizontal axis equals the vertical axis, or around the line at $45^{\circ}$ from the origin:
+
+$$
+\begin{bmatrix}
+0 & 1 \\
+1 & 0
+\end{bmatrix}
+$$
+
+Reflection along the line where the horizontal axis equals the negative of the vertical axis, or around the line at $-45^{\circ}$ from the origin:
+
+$$
+\begin{bmatrix}
+0 & -1 \\
+-1 & 0
+\end{bmatrix}
+$$
+
+Let's reflect a vector using `NumPy`. We will define a reflection matrix $\textit{A}$, a vector $\textbf{x}$ to reflect, and then plot the original and reflected vectors with Altair.
+
+
+```python
+# rotation along the horiontal axis
+A1 = np.array([[1.0, 0],
+               [0, -1.0]])
+
+# rotation along the vertical axis
+A2 = np.array([[-1.0, 0],
+               [0, 1.0]])
+
+# rotation along the line at 45 degrees from the origin
+A3 = np.array([[0, 1.0],
+               [1.0, 0]])
+
+# rotation along the line at -45 degrees from the origin
+A4 = np.array([[0, -1.0],
+               [-1.0, 0]])
+
+x = np.array([[0, 2.0,],
+              [0, 4.0,]])
+```
+
+
+```python
+y1 = A1 @ x
+y2 = A2 @ x
+y3 = A3 @ x
+y4 = A4 @ x
+```
+
+
+```python
+z = np.column_stack((x, y1, y2, y3, y4))
+```
+
+
+```python
+df = pd.DataFrame({'dim-1': z[0], 'dim-2':z[1],
+                   'reflection': ['original', 'original',
+                                  '0-degrees', '0-degrees',
+                                  '90-degrees', '90-degrees', 
+                                  '45-degrees', '45-degrees', 
+                                  'neg-45-degrees', 'neg-45-degrees']})
+```
+
+
+```python
+df
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>dim-1</th>
+      <th>dim-2</th>
+      <th>reflection</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>original</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2.0</td>
+      <td>4.0</td>
+      <td>original</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0-degrees</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2.0</td>
+      <td>-4.0</td>
+      <td>0-degrees</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>90-degrees</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>-2.0</td>
+      <td>4.0</td>
+      <td>90-degrees</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>45-degrees</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>4.0</td>
+      <td>2.0</td>
+      <td>45-degrees</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>neg-45-degrees</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>-4.0</td>
+      <td>-2.0</td>
+      <td>neg-45-degrees</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+def base_coor(ran1: float, ran2: float):
+    '''return base chart with coordinate space'''
+    df_base = pd.DataFrame({'horizontal': np.linspace(ran1, ran2, num=2), 'vertical': np.zeros(2)})
+
+    h = alt.Chart(df_base).mark_line(color='white').encode(
+        x='horizontal',
+        y='vertical')
+    v = alt.Chart(df_base).mark_line(color='white').encode(
+        y='horizontal',
+        x='vertical')
+    base = h + v
+
+    return base
+```
+
+
+```python
+chart = alt.Chart(df).mark_line().encode(
+    x=alt.X('dim-1', axis=alt.Axis(title='horizontal-axis')),
+    y=alt.Y('dim-2', axis=alt.Axis(title='vertical-axis')),
+    color='reflection')
+
+base_coor(-5.0, 5.0) + chart
+```
+
+
+
+
+
+<div id="altair-viz-0fe77bd9155648ed967538d3d4958ffa"></div>
+<script type="text/javascript">
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "altair-viz-0fe77bd9155648ed967538d3d4958ffa") {
+      outputDiv = document.getElementById("altair-viz-0fe77bd9155648ed967538d3d4958ffa");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm//vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm//vega-lite@4.8.1?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm//vega-embed@6?noext",
+    };
+
+    function loadScript(lib) {
+      return new Promise(function(resolve, reject) {
+        var s = document.createElement('script');
+        s.src = paths[lib];
+        s.async = true;
+        s.onload = () => resolve(paths[lib]);
+        s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+        document.getElementsByTagName("head")[0].appendChild(s);
+      });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else if (typeof vegaEmbed === "function") {
+      displayChart(vegaEmbed);
+    } else {
+      loadScript("vega")
+        .then(() => loadScript("vega-lite"))
+        .then(() => loadScript("vega-embed"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"usermeta": {"embedOptions": {"theme": "dark"}}, "config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "layer": [{"mark": {"type": "line", "color": "white"}, "encoding": {"x": {"type": "quantitative", "field": "horizontal"}, "y": {"type": "quantitative", "field": "vertical"}}}, {"mark": {"type": "line", "color": "white"}, "encoding": {"x": {"type": "quantitative", "field": "vertical"}, "y": {"type": "quantitative", "field": "horizontal"}}}, {"data": {"name": "data-d6c1c641e6407b304d469e8de4bf7492"}, "mark": "line", "encoding": {"color": {"type": "nominal", "field": "reflection"}, "x": {"type": "quantitative", "axis": {"title": "horizontal-axis"}, "field": "dim-1"}, "y": {"type": "quantitative", "axis": {"title": "vertical-axis"}, "field": "dim-2"}}}], "data": {"name": "data-dc621955550350bfc1b0624dd9983169"}, "$schema": "https://vega.github.io/schema/vega-lite/v4.8.1.json", "datasets": {"data-dc621955550350bfc1b0624dd9983169": [{"horizontal": -5.0, "vertical": 0.0}, {"horizontal": 5.0, "vertical": 0.0}], "data-d6c1c641e6407b304d469e8de4bf7492": [{"dim-1": 0.0, "dim-2": 0.0, "reflection": "original"}, {"dim-1": 2.0, "dim-2": 4.0, "reflection": "original"}, {"dim-1": 0.0, "dim-2": 0.0, "reflection": "0-degrees"}, {"dim-1": 2.0, "dim-2": -4.0, "reflection": "0-degrees"}, {"dim-1": 0.0, "dim-2": 0.0, "reflection": "90-degrees"}, {"dim-1": -2.0, "dim-2": 4.0, "reflection": "90-degrees"}, {"dim-1": 0.0, "dim-2": 0.0, "reflection": "45-degrees"}, {"dim-1": 4.0, "dim-2": 2.0, "reflection": "45-degrees"}, {"dim-1": 0.0, "dim-2": 0.0, "reflection": "neg-45-degrees"}, {"dim-1": -4.0, "dim-2": -2.0, "reflection": "neg-45-degrees"}]}}, {"mode": "vega-lite"});
+</script>
+
+
+
+### Shear
+
+**Shear** mappings are hard to describe in words but easy to understand with images. I recommend to look at the shear mapping below and then read this description: a shear mapping displaces points of an object in a given direction (e.g., all points to the right), in a proportion equal to their perpendicular distance from an axis (e.g., the line on the $x$ axis) that remains fixed. A "proportion equal to their perpendicular distance" means that points further away from the reference axis displace more than points near to the axis. 
+
+For an object in $\mathbb{R}^2$, a **horizontal shear** matrix (i.e., paraller to the horizontal axis) takes the form:
+
+$$
+\begin{bmatrix}
+1 & m \\
+0 & 1
+\end{bmatrix}
+$$
+
+Where $m$ is the *shear factor*, that essentially determines how pronounced is the shear.
+
+For an object in $\mathbb{R}^2$, a **vertical shear** matrix (i.e., paraller to the vertical axis) takes the form:
+
+$$
+\begin{bmatrix}
+1 & 0 \\
+m & 1
+\end{bmatrix}
+$$
+
+Let's shear a vector using `NumPy`. We will define a shear matrix $\textit{A}$, a pair of vectors $\textbf{x}$ and $\textbf{u}$ to shear, and then plot the original and shear vectors with Altair. The reason we define two vectors, is that shear mappings are easier to appreciate with planes or multiple sides figures than single lines.
+
+
+```python
+# shear along the horiontal axis
+A1 = np.array([[1.0, 1.5],
+               [0, 1.0]])
+
+x = np.array([[0, 2.0,],
+              [0, 4.0,]])
+
+u = np.array([[2, 4.0,],
+              [0, 4.0,]])
+```
+
+
+```python
+y1 = A1 @ x
+v1 = A1 @ u
+
+z = np.column_stack((x, y1, u, v1))
+```
+
+
+```python
+df = pd.DataFrame({'dim-1': z[0], 'dim-2':z[1],
+                   'shear': ['original', 'original',
+                             'horizontal', 'horizontal',
+                             'original-2', 'original-2',
+                             'horizontal-2', 'horizontal-2'
+                            ]})
+```
+
+
+```python
+chart = alt.Chart(df).mark_line().encode(
+    x=alt.X('dim-1', axis=alt.Axis(title='horizontal-axis')),
+    y=alt.Y('dim-2', axis=alt.Axis(title='vertical-axis')),
+    color='shear')
+
+base_coor(-5.0, 10.0) + chart
+```
+
+
+
+
+
+<div id="altair-viz-89fc587bb090451f86094c0d5d349b41"></div>
+<script type="text/javascript">
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "altair-viz-89fc587bb090451f86094c0d5d349b41") {
+      outputDiv = document.getElementById("altair-viz-89fc587bb090451f86094c0d5d349b41");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm//vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm//vega-lite@4.8.1?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm//vega-embed@6?noext",
+    };
+
+    function loadScript(lib) {
+      return new Promise(function(resolve, reject) {
+        var s = document.createElement('script');
+        s.src = paths[lib];
+        s.async = true;
+        s.onload = () => resolve(paths[lib]);
+        s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+        document.getElementsByTagName("head")[0].appendChild(s);
+      });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else if (typeof vegaEmbed === "function") {
+      displayChart(vegaEmbed);
+    } else {
+      loadScript("vega")
+        .then(() => loadScript("vega-lite"))
+        .then(() => loadScript("vega-embed"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"usermeta": {"embedOptions": {"theme": "dark"}}, "config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "layer": [{"mark": {"type": "line", "color": "white"}, "encoding": {"x": {"type": "quantitative", "field": "horizontal"}, "y": {"type": "quantitative", "field": "vertical"}}}, {"mark": {"type": "line", "color": "white"}, "encoding": {"x": {"type": "quantitative", "field": "vertical"}, "y": {"type": "quantitative", "field": "horizontal"}}}, {"data": {"name": "data-d2b6d700081f3dc3271961cd2c42922c"}, "mark": "line", "encoding": {"color": {"type": "nominal", "field": "shear"}, "x": {"type": "quantitative", "axis": {"title": "horizontal-axis"}, "field": "dim-1"}, "y": {"type": "quantitative", "axis": {"title": "vertical-axis"}, "field": "dim-2"}}}], "data": {"name": "data-29b144b3d9944f86f2a8e5d58a2cc2b0"}, "$schema": "https://vega.github.io/schema/vega-lite/v4.8.1.json", "datasets": {"data-29b144b3d9944f86f2a8e5d58a2cc2b0": [{"horizontal": -5.0, "vertical": 0.0}, {"horizontal": 10.0, "vertical": 0.0}], "data-d2b6d700081f3dc3271961cd2c42922c": [{"dim-1": 0.0, "dim-2": 0.0, "shear": "original"}, {"dim-1": 2.0, "dim-2": 4.0, "shear": "original"}, {"dim-1": 0.0, "dim-2": 0.0, "shear": "horizontal"}, {"dim-1": 8.0, "dim-2": 4.0, "shear": "horizontal"}, {"dim-1": 2.0, "dim-2": 0.0, "shear": "original-2"}, {"dim-1": 4.0, "dim-2": 4.0, "shear": "original-2"}, {"dim-1": 2.0, "dim-2": 0.0, "shear": "horizontal-2"}, {"dim-1": 10.0, "dim-2": 4.0, "shear": "horizontal-2"}]}}, {"mode": "vega-lite"});
+</script>
+
+
+
+### Rotation
+
+**Rotation** mappings do exactly what their name indicates: they move objects (by convection) counterclockwise in Euclidean space. For the general case in $\mathbb{R}^2$, counterclockwise of vector $\textbf{x}$ by $\theta$ radiants rotations is obtained as:
+
+$$
+\begin{bmatrix}
+\cos \theta & -\sin \theta \\
+\sin \theta & \cos \theta 
+\end{bmatrix} \textbf{x}
+$$
+
+Again, let's examine a couple of special cases.
+
+A $90^{\circ}$ rotation matrix in $\mathbb{R}^2$ :
+
+$$
+\begin{bmatrix}
+0 & -1 \\
+1 & 0
+\end{bmatrix} \textbf{x}
+$$
+
+A $180^{\circ}$ rotation matrix in $\mathbb{R}^2$:
+
+$$
+\begin{bmatrix}
+-1 & 0 \\
+0 & -1
+\end{bmatrix} \textbf{x}
+$$
+
+A $270^{\circ}$ rotation matrix in $\mathbb{R}^2$:
+
+$$
+\begin{bmatrix}
+0 & 1 \\
+-1 & 0
+\end{bmatrix} \textbf{x}
+$$
+
+Let's rotate a vector using `NumPy`. We will define a rotation matrix $\textit{A}$, a vector $\textbf{x}$, and then plot the original and rotated vectors with Altair.
+
+
+```python
+# 90-degrees roration 
+A1 = np.array([[0, -1.0],
+               [1, 0]])
+
+# 180-degrees roration 
+A2 = np.array([[-1.0, 0],
+               [0, -1.0]])
+
+# 270-degrees roration 
+A3 = np.array([[0, 1.0],
+               [-1.0, 0]])
+
+x = np.array([[0, 2.0,],
+              [0, 4.0,]])
+```
+
+
+```python
+y1 = A1 @ x
+y2 = A2 @ x
+y3 = A3 @ x
+
+z = np.column_stack((x, y1, y2, y3))
+```
+
+
+```python
+df = pd.DataFrame({'dim-1': z[0], 'dim-2':z[1],
+                   'rotation': ['original', 'original',
+                             '90-degrees', '90-degrees',
+                             '180-degrees', '180-degrees',
+                             '270-degrees', '270-degrees'
+                            ]})
+```
+
+
+```python
+df
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>dim-1</th>
+      <th>dim-2</th>
+      <th>rotation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>original</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2.0</td>
+      <td>4.0</td>
+      <td>original</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>90-degrees</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-4.0</td>
+      <td>2.0</td>
+      <td>90-degrees</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>180-degrees</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>-2.0</td>
+      <td>-4.0</td>
+      <td>180-degrees</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>270-degrees</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>4.0</td>
+      <td>-2.0</td>
+      <td>270-degrees</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+chart = alt.Chart(df).mark_line().encode(
+    x=alt.X('dim-1', axis=alt.Axis(title='horizontal-axis')),
+    y=alt.Y('dim-2', axis=alt.Axis(title='vertical-axis')),
+    color='rotation')
+
+base_coor(-5.0, 5.0) + chart
+```
+
+
+
+
+
+<div id="altair-viz-a47269fbb76249f6a7dc4feb06accc30"></div>
+<script type="text/javascript">
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "altair-viz-a47269fbb76249f6a7dc4feb06accc30") {
+      outputDiv = document.getElementById("altair-viz-a47269fbb76249f6a7dc4feb06accc30");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm//vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm//vega-lite@4.8.1?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm//vega-embed@6?noext",
+    };
+
+    function loadScript(lib) {
+      return new Promise(function(resolve, reject) {
+        var s = document.createElement('script');
+        s.src = paths[lib];
+        s.async = true;
+        s.onload = () => resolve(paths[lib]);
+        s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+        document.getElementsByTagName("head")[0].appendChild(s);
+      });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else if (typeof vegaEmbed === "function") {
+      displayChart(vegaEmbed);
+    } else {
+      loadScript("vega")
+        .then(() => loadScript("vega-lite"))
+        .then(() => loadScript("vega-embed"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"usermeta": {"embedOptions": {"theme": "dark"}}, "config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "layer": [{"mark": {"type": "line", "color": "white"}, "encoding": {"x": {"type": "quantitative", "field": "horizontal"}, "y": {"type": "quantitative", "field": "vertical"}}}, {"mark": {"type": "line", "color": "white"}, "encoding": {"x": {"type": "quantitative", "field": "vertical"}, "y": {"type": "quantitative", "field": "horizontal"}}}, {"data": {"name": "data-fdd0ac9e41bb6cb891458e6886636a2f"}, "mark": "line", "encoding": {"color": {"type": "nominal", "field": "rotation"}, "x": {"type": "quantitative", "axis": {"title": "horizontal-axis"}, "field": "dim-1"}, "y": {"type": "quantitative", "axis": {"title": "vertical-axis"}, "field": "dim-2"}}}], "data": {"name": "data-dc621955550350bfc1b0624dd9983169"}, "$schema": "https://vega.github.io/schema/vega-lite/v4.8.1.json", "datasets": {"data-dc621955550350bfc1b0624dd9983169": [{"horizontal": -5.0, "vertical": 0.0}, {"horizontal": 5.0, "vertical": 0.0}], "data-fdd0ac9e41bb6cb891458e6886636a2f": [{"dim-1": 0.0, "dim-2": 0.0, "rotation": "original"}, {"dim-1": 2.0, "dim-2": 4.0, "rotation": "original"}, {"dim-1": 0.0, "dim-2": 0.0, "rotation": "90-degrees"}, {"dim-1": -4.0, "dim-2": 2.0, "rotation": "90-degrees"}, {"dim-1": 0.0, "dim-2": 0.0, "rotation": "180-degrees"}, {"dim-1": -2.0, "dim-2": -4.0, "rotation": "180-degrees"}, {"dim-1": 0.0, "dim-2": 0.0, "rotation": "270-degrees"}, {"dim-1": 4.0, "dim-2": -2.0, "rotation": "270-degrees"}]}}, {"mode": "vega-lite"});
+</script>
+
+
+
+## Projections
+
+**Projections** are a fundamental type of linear (and affine) mappings for machine learning. If you have ever heard concepts like "embeddings", "low-dimensional representation", or "dimensionality reduction", they all are examples of projections. Even linear regression and principal component analysis are exemplars of projections. Thus, projections allow working with high-dimensional spaces (i.e., problems with many features or variables) more efficiently, by projecting such spaces into lower-dimensional spaces. this works because is often the case that a few dimensions contain most of the information to understand the relation between inputs and outputs.  
+
+Put simply, projections are *mappings from a space onto a subpace*, or from a set of vectors onto a subset of vectors. Additionally, projections are "idempotent", this is, the projection has the property to be *equal to its composition with itself*. In other words, when you wrap a projection $\phi(x) = y$ into itself as $\phi (\phi (x))$, the result does not change, i.e., $\phi (\phi (x)) = y$. Formally, for a vector space $\textit{V}$ and a vector subset $\textit{U} \subset \textit{V}$, we define a projection $\phi$ as:
+
+$$
+\phi : \textit{V} \rightarrow \textit{U}
+$$
+
+with 
+
+$$
+\phi^2 : \phi \circ  \phi = \phi
+$$
+
+Here we are concerned with the matrix representation of projections, which receive the special name of **projection matrices**, denoted as $\textit{P}_\phi$. By extension, projection matrices are also "idempotent":
+
+$$
+\textit{P}_\phi^2 = \textit{P}_\phi \circ  \textit{P}_\phi = \textit{P}_\phi
+$$
+
+### Projections onto lines
+
+In Freudian psychoanalysis, *projection* is a defense mechanism of the "ego" (i.e., the sense of self), where a person denies the possession of an undesired characteristic while attributing it to someone else, i.e., "projecting" what we don't like of us onto others. 
+
+It turns out, that the concept of projection in mathematics is not that different from the Freudian one. Just make the following analogy: imagine you and foe of you are represented as vectors in a 2-dimensional cartesian plane, as $\textit{x}$ and $\textit{y}$ respectively. The way on which you would project yourself onto your foe is by tracing a perpendicular line ($\textit{z}$) from you onto him. Why perpendicular? Because this is the shortest distance between you and him, hence, the most efficient way to project yourself onto him. Now, the projection would be "how much" of yourself was "splattered" onto him, which is represented by the segment $\textit{p}$ from the origin until the point where the perpendicular line touched your foe. 
+
+Now, recall that lines crossing the origin form subspaces, hence vector $\textbf{y}$ is a subspace, and that perpendicular lines form $90^{\circ}$ angles, hence the **projection is orthogonal**. More formally, we can define the projection of $\textbf{x} \in \mathbb{R}^2$ onto subspace $\textit{U} \in \mathbb{R}^2$ formed by $\textbf{y}$ as:
+
+$$
+\phi_{\textit{U}}(\textbf{x}) \in \textit{U}
+$$
+
+Where $\phi_{\textit{U}}(\textbf{x})$ must be the minimal distance between $\textbf{x}$ and $\textbf{y}$ (i.e., $\textbf{x}$ and $\textit{U}$), where distance is:
+
+$$
+\Vert \textbf{x} - \phi_{\textit{U}}(\textbf{x}) \Vert
+$$
+
+Further, the resulting projection $\phi_{\textit{U}}(\textbf{x})$ must lie in the span of $\textit{U}$. Therefore, we can conclude that $\phi_{\textit{U}}(\textbf{x}) = \alpha \textbf{y}$, where alpha is a scalar in $\mathbb{R}$.
+
+The formula to find the orthogonal projection (I'm skipping the derivation on purpose) $\phi_{\textit{U}}(\textbf{x})$ is:
+
+$$
+\phi_{\textit{U}}(\textbf{x}) = \alpha \textbf{y} = 
+\frac{\langle \textbf{x,y} \rangle}{\Vert \textbf{y} \Vert ^2} \textbf{y} = 
+\frac{\textbf{y}^T\cdot \textbf{x}}{\Vert \textbf{y} \Vert ^2} \textbf{y}
+$$
+
+In words: we take the dot product between $\textbf{x}$ and $\textbf{y}$, divide by the norm of $\textbf{y}$, and multiply by $\textbf{y}$. In this case, $\textbf{y}$ is also known as a basis vector, so we can say that $\textbf{x}$ is projected onto the basis $\textbf{y}$.
+
+Now, we want to express projections as matrices, i.e., as the matrix vector product $\textit{P}_\phi \textbf{x}$. For this, recall that matrix-scalar multiplication is *commutative*,  hence we can perform a little of algeabric manipulation to find:
+
+$$
+\phi_{\textit{U}}(\textbf{x}) = 
+\textbf{y} \alpha = \textbf{y} \frac{\textbf{y}^T\cdot \textbf{x}}{\Vert \textbf{y} \Vert ^2} =
+\frac{\textbf{y} \cdot \textbf{y}^T}{\Vert \textbf{y} \Vert ^2} \textbf{x}
+$$
+
+In this form, we can indeed express the projection as a matrix-vector multiplication, because
+$\textbf{y} \cdot \textbf{y}^T$ results in a symmetrix matrix, and $\Vert \textbf{y} \Vert ^2$ is a scalar, which means that it can be expressed as a matrix:
+
+$$
+\textit{P}_\phi =  \frac{\textbf{y} \cdot \textbf{y}^T}{\Vert \textbf{y} \Vert ^2}
+$$
+
+In sum, the matrix $\textit{P}_\phi$ will project any vector onto $\textbf{y}$.
+
+Let's use `NumPy` to find the projection $\textit{P}_\phi$ from $\textbf{x}$ onto a basis vector $\textbf{y}$. 
+
+
+```python
+# base vector
+y = np.array([[3],
+              [2]])
+
+x = np.array([[1],
+              [3]])
+
+P = (y @ y.T)/(y.T @ y)
+```
+
+
+```python
+print(f'Projection matrix for y:\n{P}')
+```
+
+    Projection matrix for y:
+    [[0.69230769 0.46153846]
+     [0.46153846 0.30769231]]
+
+
+
+```python
+z = P @ x
+```
+
+
+```python
+print(f'Projection from x onto y:\n{z}')
+```
+
+    Projection from x onto y:
+    [[2.07692308]
+     [1.38461538]]
+
+
+Let's plot the vectors to make things clearer
+
+
+```python
+# origin coordinate space
+o = np.array([[0],
+              [0]])
+
+v = np.column_stack((o, x, o, y, o, z, x, z))
+```
+
+
+```python
+df = pd.DataFrame({'dim-1': v[0], 'dim-2':v[1],
+                   'vector': ['x-vector', 'x-vector',
+                              'y-base-vector', 'y-base-vector',
+                              'z-projection', 'z-projection',
+                              'orthogonal-vector', 'orthogonal-vector'],
+                  'size-line': [2, 2, 2, 2, 4, 4, 2, 2]})
+```
+
+
+```python
+df
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>dim-1</th>
+      <th>dim-2</th>
+      <th>vector</th>
+      <th>size-line</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>x-vector</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1.000000</td>
+      <td>3.000000</td>
+      <td>x-vector</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>y-base-vector</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3.000000</td>
+      <td>2.000000</td>
+      <td>y-base-vector</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>z-projection</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2.076923</td>
+      <td>1.384615</td>
+      <td>z-projection</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>1.000000</td>
+      <td>3.000000</td>
+      <td>orthogonal-vector</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>2.076923</td>
+      <td>1.384615</td>
+      <td>orthogonal-vector</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+chart = alt.Chart(df).mark_line().encode(
+    x=alt.X('dim-1', axis=alt.Axis(title='horizontal-axis')),
+    y=alt.Y('dim-2', axis=alt.Axis(title='vertical-axis')),
+    color='vector', 
+    strokeDash='vector',
+    size = 'size-line')
+
+base_coor(-1.0, 4.0) + chart
+```
+
+
+
+
+
+<div id="altair-viz-1e9d41e4993448638098154b8b6b427b"></div>
+<script type="text/javascript">
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "altair-viz-1e9d41e4993448638098154b8b6b427b") {
+      outputDiv = document.getElementById("altair-viz-1e9d41e4993448638098154b8b6b427b");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm//vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm//vega-lite@4.8.1?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm//vega-embed@6?noext",
+    };
+
+    function loadScript(lib) {
+      return new Promise(function(resolve, reject) {
+        var s = document.createElement('script');
+        s.src = paths[lib];
+        s.async = true;
+        s.onload = () => resolve(paths[lib]);
+        s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+        document.getElementsByTagName("head")[0].appendChild(s);
+      });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else if (typeof vegaEmbed === "function") {
+      displayChart(vegaEmbed);
+    } else {
+      loadScript("vega")
+        .then(() => loadScript("vega-lite"))
+        .then(() => loadScript("vega-embed"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"usermeta": {"embedOptions": {"theme": "dark"}}, "config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "layer": [{"mark": {"type": "line", "color": "white"}, "encoding": {"x": {"type": "quantitative", "field": "horizontal"}, "y": {"type": "quantitative", "field": "vertical"}}}, {"mark": {"type": "line", "color": "white"}, "encoding": {"x": {"type": "quantitative", "field": "vertical"}, "y": {"type": "quantitative", "field": "horizontal"}}}, {"data": {"name": "data-fae3a4238031b3bda30da25b0bfbb236"}, "mark": "line", "encoding": {"color": {"type": "nominal", "field": "vector"}, "size": {"type": "quantitative", "field": "size-line"}, "strokeDash": {"type": "nominal", "field": "vector"}, "x": {"type": "quantitative", "axis": {"title": "horizontal-axis"}, "field": "dim-1"}, "y": {"type": "quantitative", "axis": {"title": "vertical-axis"}, "field": "dim-2"}}}], "data": {"name": "data-e28b18115621143603ed81a2a2f08951"}, "$schema": "https://vega.github.io/schema/vega-lite/v4.8.1.json", "datasets": {"data-e28b18115621143603ed81a2a2f08951": [{"horizontal": -1.0, "vertical": 0.0}, {"horizontal": 4.0, "vertical": 0.0}], "data-fae3a4238031b3bda30da25b0bfbb236": [{"dim-1": 0.0, "dim-2": 0.0, "vector": "x-vector", "size-line": 2}, {"dim-1": 1.0, "dim-2": 3.0, "vector": "x-vector", "size-line": 2}, {"dim-1": 0.0, "dim-2": 0.0, "vector": "y-base-vector", "size-line": 2}, {"dim-1": 3.0, "dim-2": 2.0, "vector": "y-base-vector", "size-line": 2}, {"dim-1": 0.0, "dim-2": 0.0, "vector": "z-projection", "size-line": 4}, {"dim-1": 2.0769230769230766, "dim-2": 1.3846153846153846, "vector": "z-projection", "size-line": 4}, {"dim-1": 1.0, "dim-2": 3.0, "vector": "orthogonal-vector", "size-line": 2}, {"dim-1": 2.0769230769230766, "dim-2": 1.3846153846153846, "vector": "orthogonal-vector", "size-line": 2}]}}, {"mode": "vega-lite"});
+</script>
+
+
+
+### Projections onto general subspaces
+
+From the previous section, we learned that the projection matrix for the one-dimensional project of $\textbf{x}$ onto $\textit{U}$ (i.e. $\textbf{y}$)  $\phi_{\textit{U}}(\textbf{x})$ can be expressed as:
+
+$$
+\textit{P}_\phi = \alpha \textbf{y} = \frac{\textbf{y} \cdot \textbf{y}^T}{\Vert \textbf{y} \Vert ^2}
+$$
+
+Which implies that we the projection is entirely defined in terms of the basis subspace. Now, we are interested in projections for the general case, this is, for **set of basis vectors $\textbf{y}_1, \cdots, \textbf{y}_m$**. By extension, we can define such projection as:
+
+$$
+\phi_{\textit{U}}(\textbf{x}) = \sum_{i=1}^m \textbf{y}_i \alpha = \textit{Y} \alpha
+$$
+
+Where $\textit{Y}$ is the matrix of basis vectors.
+
+Nothing fancy going on here: we just need to take the sum for the product between each basis vector and $\alpha$. As with the one-dimensional case, we want the projection to be the minimal distance from $\textbf{x}$ onto $\textit{Y}$, which we know implies orthogonal lines (or hyperplanes) connecting $\textbf{x}$ with $\textit{Y}$. The condition for orthogonality (again, I'm skipping the derivation on purpose) here equals:
+
+$$
+\textit{Y}^T (\textbf{x} - \textit{Y} \alpha) = 0
+$$
+
+Now, recall what we really want is to find $\alpha$ (we know $\textit{Y}$ already). Therefore, with a bit of algeabric manipulation we can clear the expression above as:
+
+$$
+\alpha = (\textit{Y}^T \textit{Y})^{-1} \textit{Y}^T  \textbf{x}
+$$
+
+Such expression is known as the *pseudo-inverse* or *Moore–Penrose inverse* of $\textit{Y}$. To work, it requires $\textit{Y}$ to be full rank (i.e., independent columns, which should be the case for basis). It can be used to solve linear regression problems, although you'll probably find the notation flipped as: $\alpha = (\textit{X}^T \textit{X})^{-1} \textit{X}^T  \textbf{y}$ (my bad choice of notation!). 
+
+Going back to our Freudian projection analogy, this is like a group of people projecting themselves onto someone else, with that person representing a rough approximation of the character of the group.
+
+### Projections as approximate solutions to systems of linear equations
+
+Machine learning prediction problems usually require to find a solution to systems of linear equations of the form:
+
+$$
+\textit{A}\textbf{x} = \textbf{y}
+$$
+
+In other words, to represent $\textbf{y}$ as linear combinations of the columns of $\textit{A}$. Unfortunately, in most cases $\textbf{y}$ is not in the column space of $\textit{A}$, i.e., *there is no way to find a linear combination of its columns to obtain the target* $\textbf{y}$. In such cases, we can use orthogonal projections to find **approximate solutions** to the system. We usually denote approximated solutions for systems of linear equations as $\hat{\textbf{y}}$. Now, $\hat{\textbf{y}}$ will be in the span of the columns of $\textit{A}$ and will be the result of projecting $\textbf{y}$ onto the subspace of the columns of $\textit{A}$. That solution will be the best (closest) approximation of $\textbf{y}$ given the span of the columns of $\textit{A}$. In sum: **the approximated solution $\hat{\textbf{y}}$ is the orthogonal projection of $\textbf{y}$ onto $\textit{A}$**.
