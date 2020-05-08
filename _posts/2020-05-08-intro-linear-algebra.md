@@ -134,7 +134,7 @@ If you find any mistake in notes feel free to reach me out at pcaceres@wisc.edu 
     - [_Shear_](#shear)
     - [_Rotation_](#rotation)
 - [_Projections_](#projections)
-    - [_Projections onto a line_](#projections-onto-a-line)
+    - [_Projections onto lines_](#projections-onto-lines)
     - [_Projections onto general subspaces_](#projections-onto-general-subspaces)
     - [_Projections as approximate solutions to systems of linear equations_](#projections-as-approximate-solutions-to-systems-of-linear-equations)
 
@@ -1901,7 +1901,7 @@ $$
 \end{bmatrix}
 $$
 
-### Diaginal matrix
+### Diagonal matrix
 
 Square matrices are said to be **diagonal** when each of its non-diagonal elements is zero, i.e., For $\textit{D} = (d_{i,j})$, we have $\forall i,j \in n, i \ne j \implies d_{i,j} = 0$. For instance:
 
@@ -1937,7 +1937,7 @@ $$
 \end{bmatrix}
 $$
 
-### Symetric matrix
+### Symmetric matrix
 
 Square matrices are said to be symmetric its equal to its transpose, i.e., $\textit{A} = \textit{A}^T$. For instance:
 
