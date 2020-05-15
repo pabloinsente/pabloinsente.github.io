@@ -4182,9 +4182,9 @@ In other words, to represent $\textbf{y}$ as linear combinations of the columns 
 
 In the Japanese manga/anime series *[Fullmetal Alchemist](https://en.wikipedia.org/wiki/Fullmetal_Alchemist)*, [Alchemy](https://fma.fandom.com/wiki/Alchemy) is understood as the metaphysical science of altering objects by manipulating its natural components, act known as *Transmutation* (Rensei). There are three steps to Transmutation: (1) *Comprehension*, to understand the atomic structure and properties of the object, (2) *Deconstruction*, to break down the structure of the object into its fundamental elements (3) *Reconstruction*, to use the natural flow of energy to reform the object into a new shape. 
 
-Metaphorically speaking, we can understand linear combinations and matrix decompositions in analogy to *Transmutation*. **Matrix decomposition** is essentially about to break down a matrix into its basic linear elements (deconstruction), which allows us to better understand its fundamental structure (comprehension). Linear combinations are essentially about taking the fundamental linear elements of a matrix (i.e., set of vectors) to generate a new object. 
+Metaphorically speaking, we can understand linear combinations and matrix decompositions in analogy to *Transmutation*. **Matrix decomposition** is essentially about to break down a matrix into simpler "elements" or matrices (deconstruction), which allows us to better understand its fundamental structure (comprehension). Linear combinations are essentially about taking the fundamental elements of a matrix (i.e., set of vectors) to generate a new object. 
 
-Matrix decomposition is also known as **matrix factorization**, about the fact that matrices can be broken down into simpler matrices, more on less in the same way that Prime factorization breaks down large numbers into simpler primes (e.g., $112 = 2 \times 2 \times 2 \times 2 \times 7$).
+Matrix decomposition is also known as **matrix factorization**, in reference the fact that matrices can be broken down into simpler matrices, more on less in the same way that Prime factorization breaks down large numbers into simpler primes (e.g., $112 = 2 \times 2 \times 2 \times 2 \times 7$).
 
 There are several important applications of matrix factorization in machine learning: clustering, recommender systems, dimensionality reduction, topic modeling, and others. In what follows I'll cover a selection of several basic and common matrix decomposition techniques.
 
@@ -4254,7 +4254,7 @@ $$
 
 From the column perspective, we added $-3$ times the third column to the second column. From the row perspective, we added $-3$ times the second row to the third row. 
 
-You can sprobably see the pattern by now: by performing simple or "elementary" column or row operations, this is, *multiplication* and *addition*, we can obtain any lower triangular matrix. This type of matrices are what we call **elementary matrices**. In a way, we can say elementary matrices "encode" fundamental column and row operations. To see this, consider the following generic matrix: 
+You can probably see the pattern by now: by performing simple or "elementary" column or row operations, this is, *multiplication* and *addition*, we can obtain any lower triangular matrix. This type of matrices are what we call **elementary matrices**. In a way, we can say elementary matrices "encode" fundamental column and row operations. To see this, consider the following generic matrix: 
 
 $$ \textit{A} =
 \begin{bmatrix}
@@ -4692,7 +4692,7 @@ print(f'PLU multiplicatin:\n{A_recover.astype(int)}')
      [6 7 9 8]]
 
 
-We recover $\textit{A}$ prfectly.
+We recover $\textit{A}$ perfectly.
 
 ## QR decomposition
 
@@ -4822,7 +4822,7 @@ print(f'Inner product normalized y with itself:\n{np.round(y_unit.T @ y_unit,1)}
     [[1.]]
 
 
-Sets of vectors can be represented as matrices. **We denote as $\textit{Q}$ the special case of a matrix composed of orthonormal vectors**. The same properties we defined for sets of vectors, hold when represented in matrix form. 
+Sets of vectors can be represented as matrices. **We denote as $\textit{Q}$ the special case of a matrix composed of orthonormal vectors**. The same properties we defined for sets of vectors hold when represented in matrix form. 
 
 ### Orthonormal basis transpose
 
@@ -4910,7 +4910,7 @@ A.T @ A
 
 To build our orthogonal set, we begin by denoting $\textbf{a}_1$ as $\textbf{q}_1$.
 
-Our **first step** is to generate the vector $\textbf{q}_2$ from $\textbf{a}_2$ such that is orthogonal to $\textbf{q}_1$ (i.e., $\textbf{a}_1$ ). To do this, we start with $\textbf{a}_2$ and subtract its projection along $\textbf{q}_1$, which yields the following expression:
+Our **first step** is to generate the vector $\textbf{q}_2$ from $\textbf{a}_2$ such that is orthogonal to $\textbf{q}_1$ (i.e., $\textbf{a}_1$). To do this, we start with $\textbf{a}_2$ and subtract its projection along $\textbf{q}_1$, which yields the following expression:
 
 $$
 \textbf{q}_2 = \textbf{a}_2 - \frac{\textbf{q}_1^T \textbf{a}_2}{\textbf{q}_1^T \textbf{q}_1} \textbf{q}_1
@@ -5185,7 +5185,7 @@ Recall that matrices can be thought of as function action on vectors or other ma
 
 From a geometric perspective, determinants indicate the $\textit{sign}$ **area of a parallelogram** (e.g., a rectangular area) and the $\textit{sign}$ **volume of the parallelepiped**, for a matrix whose columns consist of the basis vectors in Euclidean space. 
 
-Let's parse out the above phrase: the $\textit{sign}$ area indicates the absolute value of the area, and the $\textit{sign}$ volume equals the absolute value of the volume. You may be wondering why we need to take the absolute value since real-life objects can't have a negative is area or volume. In linear algebra, we say the area of a parallelogram is **negative** when the vectors forming the figure are *clockwise oriented* (i.e., negatively oriented), and **positive** when the vectors forming the figure are *counterclockwise oriented* (i.e., positively oriented). 
+Let's parse out the above phrase: the $\textit{sign}$ area indicates the absolute value of the area, and the $\textit{sign}$ volume equals the absolute value of the volume. You may be wondering why we need to take the absolute value since real-life objects can't have negative area or volume. In linear algebra, we say the area of a parallelogram is **negative** when the vectors forming the figure are *clockwise oriented* (i.e., negatively oriented), and **positive** when the vectors forming the figure are *counterclockwise oriented* (i.e., positively oriented). 
 
 Here is an example of a matrix $\textit{A}$ with vectors *clockwise* or *negatively* oriented:
 
@@ -5223,9 +5223,9 @@ The situation for the $\textit{sign}$ volume of the parallelepiped is no differe
 
 ### The 2 X 2 determinant
 
-Recall that matrices are invertible or nonsingular when their columns are linearly independent. By extension, the determinant, allow us to whether the columns of a matrix a linearly independent. To understand this method, let's examine the $2 \times 2$ special case first.
+Recall that matrices are invertible or nonsingular when their columns are linearly independent. By extension, the determinant allow us to whether the columns of a matrix a linearly independent. To understand this method, let's examine the $2 \times 2$ special case first.
 
-Consider a generic square matrix as:
+Consider a square matrix as:
 
 $$ \textit{A} =
 \begin{bmatrix}
@@ -5234,19 +5234,21 @@ $$ \textit{A} =
 \end{bmatrix}
 $$
 
-How can we decide whether the columns are linearly independent? A strategy that I often use in simple cases like this, is just to examine whether the second column equals the first column times some factor. In the case of $\textit{A}$ is easy to see that the second column equals four times the first column, so the columns are linearly *dependent*. We can express such criteria by comparing the elementwise division between the second column by the first column as:
-
+How can we decide whether the columns are linearly independent? A strategy that I often use in simple cases like this, is just to examine whether the second column equals the first column times some factor. In the case of $\textit{A}$ is easy to see that the second column equals four times the first column, so the columns are linearly *dependent*. We can express such criteria by comparing the *elementwise division* between each element of the second column by each element of the first column as:
+ 
 $$
 \begin{bmatrix}
-\frac{4}{1} = \frac{8}{2}
+\frac{4}{1} =
+\frac{8}{2}
 \end{bmatrix}
 = 
 \begin{bmatrix}
-4 = 4
+4 =
+4
 \end{bmatrix}
 $$
 
-We obtain that both sides equal $4$, meaning that the second column can be divided exactly by the first column (i.e., linearly *dependent*).
+We obtain that both entries equal $4$, meaning that the second column can be divided exactly by the first column (i.e., linearly *dependent*).
 
 
 Consider this matrix now:
@@ -5262,15 +5264,17 @@ Let's try again our method for $\textit{B}$:
 
 $$
 \begin{bmatrix}
-\frac{4}{0} = \frac{8}{0}
+\frac{4}{0} =
+\frac{8}{0}
 \end{bmatrix}
 = 
 \begin{bmatrix}
-4 = 4
+\textit{undef} =
+\textit{undef}
 \end{bmatrix}
 $$
 
-Now we got into a problem because division by $0$ is undefined, so we can determine the relationship between columns of $\textit{B}$. Yet, by inspection, we can see the first column is simply $0$ times the second column, therefore linearly dependent. Here is when **determinants** come to the rescue. 
+Now we got into a problem because division by $0$ is undefined, so we can determine the relationship between columns of $\textit{B}$. Yet, by inspection, we can see the first column is simply $0$ times the second column, therefore linearly dependent. Here is when **determinants** come to the rescue.
 
 Consider the generic matrix:
 
@@ -5365,7 +5369,7 @@ $$
 \vert \textit{A} \vert = \sum_{\sigma} \textit{sign}(\sigma) \prod_{i=1}^n a_{\sigma(i),i} 
 $$
 
-Where $\sigma$ computes the permutation for the rows and columns vectors of the matrix. If of little importance for us to break down the meaning of this formula since we are interested in its applicability and conceptual value. What is important to notice, is that for an arbitrary square $n \times n$ matrix, we will have $n!$ terms to sum over. For instance, for a $10 \times 10$ matrix, $10! = 3,628,800$, which is a gigantic number considering the size of the matrix. In machine learning, we care about matrices with thousands or even millions of columns, so there is no use for such formula. Nonetheless, this does not mean that the determinant is useless, but the direct calculation with the above algebraic expression is not used. 
+Where $\sigma$ computes the permutation for the rows and columns vectors of the matrix. Is of little importance for us to break down the meaning of this formula since we are interested in its applicability and conceptual value. What is important to notice, is that for an arbitrary square $n \times n$ matrix, we will have $n!$ terms to sum over. For instance, for a $10 \times 10$ matrix, $10! = 3,628,800$, which is a gigantic number considering the size of the matrix. In machine learning, we care about matrices with thousands or even millions of columns, so there is no use for such formula. Nonetheless, this does not mean that the determinant is useless, but the direct calculation with the above algebraic expression is not used. 
 
 ### Determinants as scaling factors
 
@@ -5393,7 +5397,7 @@ Is easy to see that the parallelogram formed by the basis vectors of $\textbf{x}
 A = np.array([[4, 0],
               [0, 3]])
 
-x = np.array([[1,1]])
+x = np.array([1,1])
 ```
 
 
@@ -5404,12 +5408,11 @@ A @ x.T
 
 
 
-    array([[4],
-           [3]])
+    array([4, 3])
 
 
 
-Meaning that the vertical axis was scaled by $4$ and the horizontal axis by $3$, hence, the new parallelogram has area $4 \times 3 = 12$. Since the new area has increased by a factor of $12$, the determinant $\vert \textit{A} \vert =  12$. Although we exemplified this with the basis vectors in $\textit{x}$, the determinant of $\textit{A}$ for mappings of the entire vector space. 
+Meaning that the vertical axis was scaled by $4$ and the horizontal axis by $3$, hence, the new parallelogram has area $4 \times 3 = 12$. Since the new area has increased by a factor of $12$, the determinant $\vert \textit{A} \vert =  12$. Although we exemplified this with the basis vectors in $\textit{x}$, the determinant of $\textit{A}$ for mappings of the entire vector space. The figure below illustrates this idea.
 
 **Fig. 18: Determinants**
 
@@ -5419,4 +5422,4 @@ Meaning that the vertical axis was scaled by $4$ and the horizontal axis by $3$,
 
 ### The importance of determinants
 
-Considering that computing determinants are not computationally feasible for large matrices and that we can determine linear independence via Gaussian Elimination, you may be wondering what's the point of learning about determinants in the first place. I also asked myself more than once. It turns out that determinants play a crucial conceptual role in other topics in matrix decomposition, particularly eigenvalues and eigenvectors. Actually, some books I reviewed devote a ton of space to determinants, whereas others (like Strang) do not.
+Considering that calculating the determinant is not computationally feasible for large matrices and that we can determine linear independence via Gaussian Elimination, you may be wondering what's the point of learning about determinants in the first place. I also asked myself more than once. It turns out that determinants play a crucial conceptual role in other topics in matrix decomposition, particularly eigenvalues and eigenvectors. Some books I reviewed devote a ton of space to determinants, whereas others (like Strang's Intro to Linear Algebra) do not. In any case, we study determinants mostly because of its conceptual value to better understand linear algebra and matrix decomposition.
