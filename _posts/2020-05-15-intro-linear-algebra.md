@@ -4,7 +4,7 @@ published: true
 mathjax: true
 ---
 
-<<<***Note: I plan to complete this mini-project in 5 updates. As May 8th of 2020, I'm on update 4. Around 80% of the project is complete***>>>
+<***Note: I plan to complete this mini-project in 6 updates. As May 15th of 2020, I'm on update 5. Around 90% of the project is complete***>
 
 Linear algebra is to machine learning as flour to bakery: **every machine learning model is based in linear algebra, as every cake is based in flour**. It is not the only ingredient, of course. Machine learning models need vector calculus, probability, and optimization, as cakes need sugar, eggs, and butter. Applied machine learning, like bakery, is essentially about combining these mathematical ingredients in clever ways to create useful (tasty?) models. 
 
@@ -128,23 +128,39 @@ If you find any mistake in notes feel free to reach me out at pcaceres@wisc.edu 
     - [Affine span](#affine-span)
     - [Affine space and subspace](#affine-space-and-subspace)
     - [Affine mappings using the augmented matrix](#affine-mappings-using-the-augmented-matrix)
-- [_Special linear mappings_](#special-linear-mappings)
-    - [_Scaling_](#scaling)
-    - [_Reflection_](#reflection)
-    - [_Shear_](#shear)
-    - [_Rotation_](#rotation)
-- [_Projections_](#projections)
-    - [_Projections onto lines_](#projections-onto-lines)
-    - [_Projections onto general subspaces_](#projections-onto-general-subspaces)
-    - [_Projections as approximate solutions to systems of linear equations_](#projections-as-approximate-solutions-to-systems-of-linear-equations)
+- [Special linear mappings](#special-linear-mappings)
+    - [Scaling](#scaling)
+    - [Reflection](#reflection)
+    - [Shear](#shear)
+    - [Rotation](#rotation)
+- [Projections](#projections)
+    - [Projections onto lines](#projections-onto-lines)
+    - [Projections onto general subspaces](#projections-onto-general-subspaces)
+    - [Projections as approximate solutions to systems of linear equations](#projections-as-approximate-solutions-to-systems-of-linear-equations)
+
+**[Matrix decompositions](#matrix-decompositions)**:
+- [LU decomposition](#lu-decomposition)
+    - [Elementary matrices](#elementary-matrices)
+    - [The inverse of elementary matrices](#the-inverse-of-elementary-matrices)
+    - [LU decomposition as Gaussian Elimination](#lu-decomposition-as-gaussian-elimination)
+    - [LU decomposition with pivoting](#lu-decomposition-with-pivoting)
+- [QR decomposition](#qr-decomposition)
+    - [Orthonormal basis](#orthonormal-basis)
+    - [Orthonormal basis transpose](#orthonormal-basis-transpose)
+    - [Gram-Schmidt Orthogonalization ](#gram-schmidt-orthogonalization)
+    - [QR decomposition as Gram-Schmidt Orthogonalization](#qr-decomposition-as-gram-schmidt-orthogonalization)
+- [Determinant](#determinant)
+    - [Determinant as measures of volume](#determinant-as-measures-of-volume)
+    - [The 2X2 determinant](#the-2x2-determinant)
+    - [The NXN determinant](#the-nxn-determinant)
+    - [Determinants as scaling factors](#determinants-as-scaling-factors)
+    - [The importance of determinants](#the-importance-of-determinants)
 
 **Future sections**:
 
 *Decompositions*:
 
-    - Determinant and trace
-    - LU decomposition
-    - QR decomposition
+    - Trace
     - Cholesky Decomposition
     - Eigenvalues and eigenvectors
     - Symmetric Positive Definite Matrices
@@ -240,7 +256,7 @@ $$
 \text{ran } \textit{R} = \{ \textit{y:  for some x } ( \textit{x R y)} \}
 $$
 
-This reads: the set formed by the values of $\text{y}$ such that at least one element of $\textit{x}$, $\textit{x}$ has a relation with $\textit{y}$. 
+This reads: the set formed by the values of $\text{y}$ such that at least one element of $\textit{x}$, $\textit{x}$ has a relation with $\textit{y}$.
 
 ## Functions
 
@@ -879,7 +895,7 @@ The importance of the concepts of linear dependence and independence will become
 
 ## Vector null space
 
-Now that we know what subspaces and linear dependent vectors are, we can introduce the idea of the **null space**. Intuitively, the null space of a set of vectors are **all linear combinations that "map" onto the zero vector**. Consider a set of geometric vectors $\bf{w}$, $\bf{x}$, $\bf{y}$, and $\bf{z}$ as in **Fig. 8**. By inspection, we can see that vectors $\bf{x}$ and $\bf{z}$ are parallel to each other, hence, independent. On the contrary, vectors $\bf{w}$ and $\bf{y}$ can be obtained as linear combinations of $\bf{x}$ and $\bf{z}$, therefore, dependent. 
+Now that we know what subspaces and linear dependent vectors are, we can introduce the idea of the **null space**. Intuitively, the null space of a set of vectors are **all linear combinations that "map" into the zero vector**. Consider a set of geometric vectors $\bf{w}$, $\bf{x}$, $\bf{y}$, and $\bf{z}$ as in **Fig. 8**. By inspection, we can see that vectors $\bf{x}$ and $\bf{z}$ are parallel to each other, hence, independent. On the contrary, vectors $\bf{w}$ and $\bf{y}$ can be obtained as linear combinations of $\bf{x}$ and $\bf{z}$, therefore, dependent. 
 
 **Fig. 8: Vector null space**
 
@@ -1226,12 +1242,12 @@ equation1 + equation2
 
 
 
-<div id="altair-viz-5028eee7ca234b15a3b079381ccf4999"></div>
+<div id="altair-viz-aea40df1d2194371ab5d0c58c07a6cd0"></div>
 <script type="text/javascript">
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-5028eee7ca234b15a3b079381ccf4999") {
-      outputDiv = document.getElementById("altair-viz-5028eee7ca234b15a3b079381ccf4999");
+    if (outputDiv.id !== "altair-viz-aea40df1d2194371ab5d0c58c07a6cd0") {
+      outputDiv = document.getElementById("altair-viz-aea40df1d2194371ab5d0c58c07a6cd0");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
@@ -3145,12 +3161,12 @@ chart
 
 
 
-<div id="altair-viz-91ec4e19dbba468f9a97e817e78b40b3"></div>
+<div id="altair-viz-d7705720424e440eb96806cacefe0ede"></div>
 <script type="text/javascript">
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-91ec4e19dbba468f9a97e817e78b40b3") {
-      outputDiv = document.getElementById("altair-viz-91ec4e19dbba468f9a97e817e78b40b3");
+    if (outputDiv.id !== "altair-viz-d7705720424e440eb96806cacefe0ede") {
+      outputDiv = document.getElementById("altair-viz-d7705720424e440eb96806cacefe0ede");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
@@ -3422,12 +3438,12 @@ base_coor(-5.0, 5.0) + chart
 
 
 
-<div id="altair-viz-0fe77bd9155648ed967538d3d4958ffa"></div>
+<div id="altair-viz-f1f31af606b84bd68cbaa424a5e30b07"></div>
 <script type="text/javascript">
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-0fe77bd9155648ed967538d3d4958ffa") {
-      outputDiv = document.getElementById("altair-viz-0fe77bd9155648ed967538d3d4958ffa");
+    if (outputDiv.id !== "altair-viz-f1f31af606b84bd68cbaa424a5e30b07") {
+      outputDiv = document.getElementById("altair-viz-f1f31af606b84bd68cbaa424a5e30b07");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
@@ -3545,12 +3561,12 @@ base_coor(-5.0, 10.0) + chart
 
 
 
-<div id="altair-viz-89fc587bb090451f86094c0d5d349b41"></div>
+<div id="altair-viz-ddc801f01e3041aba1561a1d95672830"></div>
 <script type="text/javascript">
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-89fc587bb090451f86094c0d5d349b41") {
-      outputDiv = document.getElementById("altair-viz-89fc587bb090451f86094c0d5d349b41");
+    if (outputDiv.id !== "altair-viz-ddc801f01e3041aba1561a1d95672830") {
+      outputDiv = document.getElementById("altair-viz-ddc801f01e3041aba1561a1d95672830");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
@@ -3776,12 +3792,12 @@ base_coor(-5.0, 5.0) + chart
 
 
 
-<div id="altair-viz-a47269fbb76249f6a7dc4feb06accc30"></div>
+<div id="altair-viz-b646bf5d980a4cff98b829d0a02ba9af"></div>
 <script type="text/javascript">
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-a47269fbb76249f6a7dc4feb06accc30") {
-      outputDiv = document.getElementById("altair-viz-a47269fbb76249f6a7dc4feb06accc30");
+    if (outputDiv.id !== "altair-viz-b646bf5d980a4cff98b829d0a02ba9af") {
+      outputDiv = document.getElementById("altair-viz-b646bf5d980a4cff98b829d0a02ba9af");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
@@ -3830,7 +3846,7 @@ base_coor(-5.0, 5.0) + chart
 
 ## Projections
 
-**Projections** are a fundamental type of linear (and affine) mappings for machine learning. If you have ever heard concepts like "embeddings", "low-dimensional representation", or "dimensionality reduction", they all are examples of projections. Even linear regression and principal component analysis are exemplars of projections. Thus, projections allow working with high-dimensional spaces (i.e., problems with many features or variables) more efficiently, by projecting such spaces into lower-dimensional spaces. this works because is often the case that a few dimensions contain most of the information to understand the relation between inputs and outputs.  
+**Projections** are a fundamental type of linear (and affine) mappings for machine learning. If you have ever heard concepts like "embeddings", "low-dimensional representation", or "dimensionality reduction", they all are examples of projections. Even linear regression and principal component analysis are exemplars of projections. Thus, projections allow working with high-dimensional spaces (i.e., problems with many features or variables) more efficiently, by projecting such spaces into lower-dimensional spaces. this works because is often the case that a few dimensions contain most of the information to understand the relation between inputs and outputs. Moreover, projections can be represented as *matrices acting on vectors*.
 
 Put simply, projections are *mappings from a space onto a subpace*, or from a set of vectors onto a subset of vectors. Additionally, projections are "idempotent", this is, the projection has the property to be *equal to its composition with itself*. In other words, when you wrap a projection $\phi(x) = y$ into itself as $\phi (\phi (x))$, the result does not change, i.e., $\phi (\phi (x)) = y$. Formally, for a vector space $\textit{V}$ and a vector subset $\textit{U} \subset \textit{V}$, we define a projection $\phi$ as:
 
@@ -4068,12 +4084,12 @@ base_coor(-1.0, 4.0) + chart
 
 
 
-<div id="altair-viz-1e9d41e4993448638098154b8b6b427b"></div>
+<div id="altair-viz-ae6d66b7a3504a4e9c49a82a003a9f9d"></div>
 <script type="text/javascript">
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-1e9d41e4993448638098154b8b6b427b") {
-      outputDiv = document.getElementById("altair-viz-1e9d41e4993448638098154b8b6b427b");
+    if (outputDiv.id !== "altair-viz-ae6d66b7a3504a4e9c49a82a003a9f9d") {
+      outputDiv = document.getElementById("altair-viz-ae6d66b7a3504a4e9c49a82a003a9f9d");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
@@ -4161,3 +4177,1246 @@ $$
 $$
 
 In other words, to represent $\textbf{y}$ as linear combinations of the columns of $\textit{A}$. Unfortunately, in most cases $\textbf{y}$ is not in the column space of $\textit{A}$, i.e., *there is no way to find a linear combination of its columns to obtain the target* $\textbf{y}$. In such cases, we can use orthogonal projections to find **approximate solutions** to the system. We usually denote approximated solutions for systems of linear equations as $\hat{\textbf{y}}$. Now, $\hat{\textbf{y}}$ will be in the span of the columns of $\textit{A}$ and will be the result of projecting $\textbf{y}$ onto the subspace of the columns of $\textit{A}$. That solution will be the best (closest) approximation of $\textbf{y}$ given the span of the columns of $\textit{A}$. In sum: **the approximated solution $\hat{\textbf{y}}$ is the orthogonal projection of $\textbf{y}$ onto $\textit{A}$**.
+
+# Matrix decompositions
+
+In the Japanese manga/anime series *[Fullmetal Alchemist](https://en.wikipedia.org/wiki/Fullmetal_Alchemist)*, [Alchemy](https://fma.fandom.com/wiki/Alchemy) is understood as the metaphysical science of altering objects by manipulating its natural components, act known as *Transmutation* (Rensei). There are three steps to Transmutation: (1) *Comprehension*, to understand the atomic structure and properties of the object, (2) *Deconstruction*, to break down the structure of the object into its fundamental elements (3) *Reconstruction*, to use the natural flow of energy to reform the object into a new shape. 
+
+Metaphorically speaking, we can understand linear combinations and matrix decompositions in analogy to *Transmutation*. **Matrix decomposition** is essentially about to break down a matrix into its basic linear elements (deconstruction), which allows us to better understand its fundamental structure (comprehension). Linear combinations are essentially about taking the fundamental linear elements of a matrix (i.e., set of vectors) to generate a new object. 
+
+Matrix decomposition is also known as **matrix factorization**, about the fact that matrices can be broken down into simpler matrices, more on less in the same way that Prime factorization breaks down large numbers into simpler primes (e.g., $112 = 2 \times 2 \times 2 \times 2 \times 7$).
+
+There are several important applications of matrix factorization in machine learning: clustering, recommender systems, dimensionality reduction, topic modeling, and others. In what follows I'll cover a selection of several basic and common matrix decomposition techniques.
+
+## LU decomposition
+
+There are multiple ways to decompose or factorize matrices. One of the simplest ways is by decomposition a matrix into a **lower triangular matrix** and an **upper triangular matrix**, the so-called **LU or Lower-Upper decomposition**.
+
+LU decomposition is of great interest to us since it's one of the methods computers use to solve linear algebra problems. In particular, LU decomposition is a way to represent **Gaussian Elimination in numerical linear algebra**. LU decomposition is flexible as it can be obtained from noninvertible or singular matrices, and from non-square matrices. 
+
+The general expression for LU decomposition is:
+
+$$
+\textit{A} = \textit{L}\textit{U}
+$$
+
+Meaning that $\textit{A}$ can be represented as the product of the lower triangular matrix $\textit{L}$ and upper triangular matrix $\textit{U}$. In the next sections, we explain the mechanics of the LU decomposition.
+
+### Elementary matrices
+
+Our first step to approach LU decomposition is to introduce **elementary matrices**. When considering matrices as functions or mappings, we can associate special meaning to a couple of basic or "elementary" operations performed by matrices. Our starting point is the **identity matrix**, for instance: 
+
+$$ \textit{I} =
+\begin{bmatrix}
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 1
+\end{bmatrix}
+$$
+
+As we saw before, the identity matrix does not change the values of another matrix under multiplication:
+
+$$
+\textit{A} \textit{I} = \textit{I} \textit{A} = \textit{A}  
+$$
+
+Because it is essentially saying: *give me $1$ of each column of the matrix*, i.e., return the original matrix. Now, consider the following matrix:
+
+$$ \textit{I}_2 =
+\begin{bmatrix}
+2 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 1
+\end{bmatrix}
+$$
+
+The only thing we did to the $\textit{I}$ to obtain $\textit{I}_2$ was to multiply the first row by $2$. This can be considered an elementary operation. Here is another example: 
+
+$$ \textit{I}_3 =  
+\begin{bmatrix}
+1 & 0 & 0 \\
+2 & 1 & 0 \\
+0 & 0 & 1
+\end{bmatrix}
+$$
+
+Clearly, we can't obtain $\textit{I}_3$ by multiplication only. From a column perspective, what we did was to add $2$ times the second column to the first column. Alternatively, from a row perspective, we can say we added $2$ times the first row to the second row. 
+
+One last example:
+
+$$ \textit{I}_4 = 
+\begin{bmatrix}
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & -3 & 1
+\end{bmatrix}
+$$
+
+From the column perspective, we added $-3$ times the third column to the second column. From the row perspective, we added $-3$ times the second row to the third row. 
+
+You can sprobably see the pattern by now: by performing simple or "elementary" column or row operations, this is, *multiplication* and *addition*, we can obtain any lower triangular matrix. This type of matrices are what we call **elementary matrices**. In a way, we can say elementary matrices "encode" fundamental column and row operations. To see this, consider the following generic matrix: 
+
+$$ \textit{A} =
+\begin{bmatrix}
+a & b & c \\
+d & e & f \\
+g & h & i
+\end{bmatrix}
+$$
+
+Let's what happens when we multiply $\textit{A}\textit{I}_3$:
+
+$$ \textit{A}\textit{I}_3 =
+\begin{bmatrix}
+a & b & c \\
+d & e & f \\
+g & h & i
+\end{bmatrix}
+\begin{bmatrix}
+1 & 0 & 0 \\
+2 & 1 & 0 \\
+0 & 0 & 1
+\end{bmatrix} =
+\begin{bmatrix}
+a+2b & b & c \\
+d+2e & e & f \\
+g+2h & h & i
+\end{bmatrix}
+$$
+
+The result of $\textit{A}\textit{I}_3$ reflects the same elementary operations we performed on $\textit{I}$ to obtain $\textit{I}_3$ from the **column perspective**: to add $2$ times the second column to the first one.  
+
+Now consider what happens when we multiply from the left: 
+
+$$\textit{I}_3 \textit{A} =
+\begin{bmatrix}
+1 & 0 & 0 \\
+2 & 1 & 0 \\
+0 & 0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+a & b & c \\
+d & e & f \\
+g & h & i
+\end{bmatrix}
+ =
+\begin{bmatrix}
+a & b & c \\
+d+2a & e+2b & f+2c \\
+g & h & i
+\end{bmatrix}
+$$
+
+Now we obtain the same elementary operations we performed on $\textit{I}$ to obtain $\textit{I}_3$ from the **row perspective**: to add $2$ times the first row to the second one.
+
+### The inverse of elementary matrices
+
+A nice property of elementary matrices, is that the inverse is simply the opposite operation. For instance, the inverse of $\textit{I}_2$ is:
+
+$$
+\begin{bmatrix}
+\frac{1}{2} & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 1
+\end{bmatrix}
+$$
+
+This is because instead of multiplying the first row of $\textit{I}$ by $2$, we divide it by $2$. Similarly, the inverse of $\textit{I}_3$ is:
+
+$$
+\begin{bmatrix}
+1 & 0 & 0 \\
+-2 & 1 & 0 \\
+0 & 0 & 1
+\end{bmatrix}
+$$
+
+Again, instead of adding $2$, we add $-2$ (or substract $2$). Finally, the inverse of $\textit{I}_4$ is:
+
+$$  
+\begin{bmatrix}
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 3 & 1
+\end{bmatrix}
+$$
+
+The reason we care about elementary matrices and its inverse is that it will be fundamental to understand LU decomposition.
+
+### LU decomposition as Gaussian Elimination
+
+Let's briefly recall Gaussian Elimination: it's an robust algorithm to solve systems of linear equations, by sequentially applying three elementary transformations: 
+
+1. Addition and subtraction of two equations (rows) 
+2. Multiplication of an equation (rows) by a number 
+3. Switching equations (rows)
+
+Gaussian Elimination will reduce matrices to its **row echelon form**, which is an upper triangular matrix, with zero rows at the bottom, and zeros below the pivot for each column. 
+
+It turns out, there is a clever way to organize the steps from Gaussian Elimination: with **elementary matrices**.
+
+Consider the following matrix $\textit{A}$: 
+
+$$
+\begin{bmatrix}
+1 & 3 & 5  \\
+2 & 2 & -1 \\
+1 & 3 & 2 
+\end{bmatrix}
+$$
+
+The first step consist of substracting two times row 1 from row 1. Before, we represented this operation as $R_2 - 2R_1$, and write down the result, which is: 
+
+$$
+\begin{bmatrix}
+1 & 3 & 5  \\
+0 & -4 & -11 \\
+1 & 3 & 2 
+\end{bmatrix}
+$$
+
+Alternatively, as we learned in the previous section, *we can represent row operations as multiplication by elementary matrices*, to obtain the same result. Since we want to substract $2$ times the first row from the second, we need to (1) multiply from the left, and (2) add a $-2$ to the first element of the second row: 
+
+$$
+\begin{bmatrix}
+1 & 0 & 0 \\
+-2 & 1 & 0 \\
+0 & 0 & 1 
+\end{bmatrix}
+\begin{bmatrix}
+1 & 3 & 5 \\
+2 & 2 & -1 \\
+1 & 3 & 2 
+\end{bmatrix} = 
+\begin{bmatrix}
+1 & 3 & 5  \\
+0 & -4 & -11 \\
+1 & 3 & 2 
+\end{bmatrix}
+$$
+
+You don't have to believe me. Let's confirm this is correct with `NumPy`:
+
+
+```python
+A = np.array([[1, 3, 5],
+              [2, 2, -1],
+              [1, 3, 2]])
+
+l1 = np.array([[1, 0, 0],
+               [-2, 1, 0],
+               [0, 0, 1]])
+```
+
+
+```python
+l1 @ A
+```
+
+
+
+
+    array([[  1,   3,   5],
+           [  0,  -4, -11],
+           [  1,   3,   2]])
+
+
+
+As you can see, the result is exactly what we obtained before by $R_2 - 2R_1$. But, we are not done. We still need to get rid of the $1$ and $3$ in the third row. For this, we would normally do $R_3 - R_1$ to obtain:
+
+$$
+\begin{bmatrix}
+1 & 3 & 5  \\
+0 & -4 & -11 \\
+0 & 0 & -3 
+\end{bmatrix}
+$$
+
+Again, we can encode this using elementary matrices as:
+
+$$
+\begin{bmatrix}
+1 & 0 & 0 \\
+-2 & 1 & 0 \\
+-1 & 0 & 1 
+\end{bmatrix}
+\begin{bmatrix}
+1 & 3 & 5 \\
+2 & 2 & -1 \\
+1 & 3 & 2 
+\end{bmatrix} = 
+\begin{bmatrix}
+1 & 3 & 5  \\
+0 & -4 & -11 \\
+0 & 0 & -3 
+\end{bmatrix}
+$$
+
+Once again, let's confirm this with `NumPy`:
+
+
+```python
+A = np.array([[1, 3, 5],
+              [2, 2, -1],
+              [1, 3, 2]])
+
+l2 = np.array([[1, 0, 0],
+               [-2, 1, 0],
+               [-1, 0, 1]])
+```
+
+
+```python
+l2 @ A
+```
+
+
+
+
+    array([[  1,   3,   5],
+           [  0,  -4, -11],
+           [  0,   0,  -3]])
+
+
+
+Indeed, the result is correct. At this point, we have reduced $\textit{A}$ to its **row echelon form**. We will call $\textit{U}$ to the resulting matrix from $\textit{l} \textit{A}$, as it is an *upper triangular matrix*. Hence, we arrived to the identity:
+
+$$
+\textit{l} \textit{A} = \textit{U}
+$$
+
+This is not quite LU decomposition. To get there, we just need to multiply both sides of the equality by the inverse of $\textit{l}$, that we will call $\textit{L}$, which yields:
+
+$$
+\textit{A} = \textit{L} \textit{U} 
+$$
+
+There you go: we arrived to the LU decomposition expression. As a final note, recall that the inverse of $\textit{l}$ is:
+
+$$
+\begin{bmatrix}
+1 & 0 & 0 \\
+2 & 1 & 0 \\
+1 & 0 & 1 
+\end{bmatrix}
+$$
+
+Let's confirm with `NumPy` this works, by multiplying $\textit{L}$ by $\textit{U}$:
+
+
+```python
+# inverse of l
+L = np.array([[1, 0, 0],
+               [2, 1, 0],
+               [1, 0, 1]])
+
+# upper triangular resulting from Gaussian Elimination
+U = np.array([[1, 3, 5],
+              [0, -4, -11],
+              [0, 0, -3]])
+```
+
+
+```python
+L @ U 
+```
+
+
+
+
+    array([[ 1,  3,  5],
+           [ 2,  2, -1],
+           [ 1,  3,  2]])
+
+
+
+Indeed, we recover $\textit{A}$ by multiplying $\textit{L}\textit{U}$.
+
+### LU decomposition with pivoting
+
+If you recall the three elementary operations allowed in Gaussian Elimination, we had: (1) multiplication, (2) addition, (3) switching. At this point, we haven't seen switching with LU decomposition. It turns out, that LU decomposition does not work when switching or permutations of rows are required to solve a system of linear equations. Further, even when pivoting is not required to solve a system, the numerical stability of Gaussian Elimination when implemented in computers is problematic, and pivoting helps to tackle that issue as well. 
+
+Let's see a simple example of pivoting. Consider the following matrix $\textit{A}$:
+
+$$
+\begin{bmatrix}
+0 & 1 \\
+1 & 1
+\end{bmatrix}
+$$
+
+In this case, we can't get rid of the first $1$ in the second column by substraction. If we do that, we obtain:
+
+$$
+\begin{bmatrix}
+0 & 1 \\
+1 & 0
+\end{bmatrix}
+$$
+
+Which is the opposite of what we want. A simple way to fix this is by switching rows 1 and 2 as:
+
+$$
+\begin{bmatrix}
+1 & 1 \\
+0 & 1
+\end{bmatrix}
+$$
+
+And then substracting row 1 from row 2 to obtain: 
+
+$$
+\begin{bmatrix}
+1 & 0 \\
+0 & 1
+\end{bmatrix}
+$$
+
+Bam! Problem fixed. Now, as with multiplication and addition, we can **represent permutations with matrices** as well. In particular, by using **permutation matrices**. For our previous example, we can do:
+
+$$\textit{P}\textit{A}=
+\begin{bmatrix}
+0 & 1 \\
+1 & 0
+\end{bmatrix}
+\begin{bmatrix}
+0 & 1 \\
+1 & 1
+\end{bmatrix} =
+\begin{bmatrix}
+1 & 1 \\
+0 & 1
+\end{bmatrix}
+$$
+
+Let's confirm this is correct with `NumPy`
+
+
+```python
+P = np.array([[0, 1],
+              [1, 0]])
+A = np.array([[0, 1],
+              [1, 1]])
+```
+
+
+```python
+P @ A
+```
+
+
+
+
+    array([[1, 1],
+           [0, 1]])
+
+
+
+It works. Now we can put all the pieces together and decompose $\textit{A}$ by using the following expression:
+
+$$
+\textit{P}\textit{A} = \textit{L} \textit{U}
+$$
+
+This is known as LU decomposition with pivoting. An alternative expression of the same decomposition is:
+
+$$
+\textit{A} = \textit{L} \textit{U} \textit{P}
+$$
+
+In `Python`, we can use `SciPy` to perform LUP decomposition by using the `linalg.lu` method. Let's decompose a larger matrix to make things more interesting. 
+
+
+```python
+from scipy.linalg import lu
+
+A = np.array([[2, 1, 1, 0],
+              [4, 3, 3, 1],
+              [8, 7, 9, 5],
+              [6, 7, 9, 8]])
+```
+
+
+```python
+P, L, U = lu(A)
+```
+
+
+```python
+print(f'Pivot matrix:\n{P}')
+```
+
+    Pivot matrix:
+    [[0. 0. 0. 1.]
+     [0. 0. 1. 0.]
+     [1. 0. 0. 0.]
+     [0. 1. 0. 0.]]
+
+
+
+```python
+print(f'Lower triangular matrix:\n{np.round(L, 2)}')
+```
+
+    Lower triangular matrix:
+    [[ 1.    0.    0.    0.  ]
+     [ 0.75  1.    0.    0.  ]
+     [ 0.5  -0.29  1.    0.  ]
+     [ 0.25 -0.43  0.33  1.  ]]
+
+
+
+```python
+print(f'Upper triangular matrix:\n{np.round(U, 2)}')
+```
+
+    Upper triangular matrix:
+    [[ 8.    7.    9.    5.  ]
+     [ 0.    1.75  2.25  4.25]
+     [ 0.    0.   -0.86 -0.29]
+     [ 0.    0.    0.    0.67]]
+
+
+We can confirm the decomposition is correct by multiplying the obtained matrices
+
+
+```python
+A_recover = np.round(P @ L @ U, 1)
+print(f'PLU multiplicatin:\n{A_recover.astype(int)}')
+```
+
+    PLU multiplicatin:
+    [[2 1 1 0]
+     [4 3 3 1]
+     [8 7 9 5]
+     [6 7 9 8]]
+
+
+We recover $\textit{A}$ prfectly.
+
+## QR decomposition
+
+**QR decomposition** or **QR factorization**, is another very relevant decomposition in the context of numerical linear algebra. As with LU decomposition, It can be used to solve systems of linear equations like least square problems and to find eigenvalues of a general matrix. 
+
+QR decomposition works by decomposing $\textit{A}$ into an orthogonal matrix $\textit{Q}$, and a upper traingular matrix $\textit{R}$ as:
+
+$$
+\textit{A} = \textit{Q}\textit{R}
+$$
+
+Next, we will review a few concepts to properly explain QR decomposition.
+
+### Orthonormal basis
+
+In previous sections we learned about *basis* and *orthogonal basis*. Specifically, we said that a set of $n$ linearly independent column vectors with $n$ elements forms a **basis**. We also said that a pair of vectors $\bf{x}$ and $\bf{y}$ are **orthogonal** if their inner product is zero, $\langle x,y \rangle = 0$ or $\textbf{x}^T \textbf{y} = 0$. Consequently, *a set of orthogonal vectors form an orthogonal basis for a matrix $\textit{A}$ and for the vector space spanned by such matrix*. 
+
+To go from orthogonal basis vectors to **orthonomal basis vectors**, we just need to divide each vector by its lenght or norm. When we divide a basis vector by its norm we obtain a **unit basis vector**. More formally, a set of vectors $\textbf{x}_1, \cdots,\textbf{x}_n$ is orthonormal if:
+
+$$
+\textbf{x}_i^T \textbf{x}_j=
+\begin{cases}
+    0, & \text{when} & i\ne j & \text{orthogonal vectors}\\
+    1, & \text{when} & i = j & \text{unit vectors}
+\end{cases}
+$$
+
+In words: when we take the inner product of a pair of orthogonal vectors, it results in $0$; when we take the inner product of a vector with itself, it results in $1$. 
+
+For instance, consider $\textbf{x}$ and $\textbf{y}$:
+
+$$
+\textbf{x} = 
+\begin{bmatrix}
+3 \\
+4 \\
+0
+\end{bmatrix}
+\textbf{y} = 
+\begin{bmatrix}
+-4 \\
+3 \\
+2
+\end{bmatrix}
+$$
+
+To obtain the normalized version of $\textbf{x}$ or $\textbf{y}$, we divide by its Euclidean norm as:
+
+$$
+\hat{\textbf{x}} = \frac{\textbf{x}}{\Vert \textbf{x} \Vert} 
+$$
+
+We add a "hat" to the normalized vector to distinguish it from the un-normalized version.
+
+Let's try an example with `NumPy`. I'll define vectors $\textbf{x},\textbf{y} \in \mathbb{R}^3$, compute its Euclidean norm, and then perform element-wise division $\frac{\textbf{x}}{\Vert \textbf{x} \Vert}$:
+
+
+```python
+x, y = np.array([[3],[4],[0]]), np.array([[-4],[3],[2]])
+
+# euclidean norm of x and y
+x_norm = np.linalg.norm(x, 2)
+y_norm = np.linalg.norm(y, 2)
+
+# normalized x or unit vector
+x_unit = x * (1/x_norm)  
+y_unit = y * (1/y_norm)  
+```
+
+
+```python
+print(f'Euclidean norm of x:\n{x_norm}\n')
+print(f'Euclidean norm of y:\n{y_norm}\n')
+
+print(f'Normalized x:\n{x_unit}\n')
+print(f'Normalized y:\n{y_unit}')
+```
+
+    Euclidean norm of x:
+    5.0
+    
+    Euclidean norm of y:
+    5.385164807134504
+    
+    Normalized x:
+    [[0.6]
+     [0.8]
+     [0. ]]
+    
+    Normalized y:
+    [[-0.74278135]
+     [ 0.55708601]
+     [ 0.37139068]]
+
+
+We can confirm that the Euclidean norm of the normalized versions of $\hat{\textbf{x}}$ and $\hat{\textbf{y}}$ equals $1$ by:
+
+
+```python
+print(f'Euclidean norm of normalized x:\n{np.round(np.linalg.norm(x_unit, 2),1)}\n')
+print(f'Euclidean norm of normalized y:\n{np.round(np.linalg.norm(y_unit, 2),1)}')
+```
+
+    Euclidean norm of normalized x:
+    1.0
+    
+    Euclidean norm of normalized y:
+    1.0
+
+
+Taking $\hat{\textbf{x}}$ and $\hat{\textbf{y}}$ as a set, we can confirm the conditions for the definition of orthonormal vectors are correct. 
+
+
+```python
+print(f'Inner product normalized vectors:\n{np.round(x_unit.T @ y_unit,1)}\n')
+print(f'Inner product normalized x with itself:\n{np.round(x_unit.T @ x_unit,1)}\n') 
+print(f'Inner product normalized y with itself:\n{np.round(y_unit.T @ y_unit,1)}') 
+```
+
+    Inner product normalized vectors:
+    [[-0.]]
+    
+    Inner product normalized x with itself:
+    [[1.]]
+    
+    Inner product normalized y with itself:
+    [[1.]]
+
+
+Sets of vectors can be represented as matrices. **We denote as $\textit{Q}$ the special case of a matrix composed of orthonormal vectors**. The same properties we defined for sets of vectors, hold when represented in matrix form. 
+
+### Orthonormal basis transpose
+
+A nice property of $\textit{Q}$ is that *the matrix product with its transpose equals the identity*:
+
+$$
+\textit{Q}^T \textit{Q}= \textit{I}
+$$
+
+This is true even when $\textit{Q}$ is not square. Let's see this with the $\textit{Q} \in \mathbb{R}^{3 \times 3}$ orthonormal matrix resulting from stacking $\hat{\textbf{x}}$ and $\hat{\textbf{y}}$.
+
+
+```python
+Q = np.column_stack((x_unit, y_unit))
+print(f'Orthonormal matrix Q:\n{Q}')
+```
+
+    Orthonormal matrix Q:
+    [[ 0.6        -0.74278135]
+     [ 0.8         0.55708601]
+     [ 0.          0.37139068]]
+
+
+Now we confirm $\textit{Q}^T \textit{Q}= \textit{I}$
+
+
+```python
+np.round(Q.T @ Q,1)
+```
+
+
+
+
+    array([[ 1., -0.],
+           [-0.,  1.]])
+
+
+
+This property will be useful for several applications. For instance, the *coupling matrix* or *correlation matrix* of a matrix $\textit{A}$ equals $\textit{A}^T \textit{A}$. If we are able to transform the vectors of $\textit{A}$ into orthonormal vectors, such expressions reduces to $\textit{Q}^T \textit{Q}= \textit{I}$. Other applications are the Fourier series and Least Square problems (as we will see later).
+
+### Gram-Schmidt Orthogonalization
+
+In the previous section, I selected orthogonal vectors to illustrate the idea of an orthonormal basis. Unfortunately, in most cases, matrices are not full rank, i.e., not composed of a set of orthogonal vectors. Fortunately, there are ways to *transform a set of non-orthogonal vectors into orthogonal vectors*. This is the so-called **Gram-Schmidt orthogonalization procedure**. 
+
+The Gram-Schmidt orthogonalization consist of *taking the vectors of a matrix, one by one, and making each subsequent vector orthonormal to the previous one*. This is easier to grasp with an example. Consider the matrix $\textit{A}$:
+
+$$
+\begin{bmatrix}
+2 & 1 & -2 \\
+7 & -3 & 1 \\
+-3 & 5 & -1
+\end{bmatrix}
+$$
+
+What we want to do, is to find the set of orthonormal vectors $\textbf{q}_1, \textbf{q}_2, \textbf{q}_3$, starting from the columns of $\textit{A}$, i.e., $\textbf{a}_1, \textbf{a}_2, \textbf{a}_3$. We can select any vector to begin with. Recall that we normalize vectors by dividing by its norm as:
+
+$$
+\hat{\textbf{a}} = \frac{\textbf{a}}{\Vert \textbf{a} \Vert} 
+$$
+
+Let's approach this with `NumPy`:
+
+
+```python
+A = np.array([[2, 1, -2],
+              [7, -3, 1],
+              [-3, 5, -1]])
+```
+
+A simple way to check the columns of $\textit{A}$ are not orthonormal is to compute $\textit{A}^T \textit{A}$, which should be equal to the identity in the orthonormal case.
+
+
+```python
+A.T @ A
+```
+
+
+
+
+    array([[ 62, -34,   6],
+           [-34,  35, -10],
+           [  6, -10,   6]])
+
+
+
+To build our orthogonal set, we begin by denoting $\textbf{a}_1$ as $\textbf{q}_1$.
+
+Our **first step** is to generate the vector $\textbf{q}_2$ from $\textbf{a}_2$ such that is orthogonal to $\textbf{q}_1$ (i.e., $\textbf{a}_1$ ). To do this, we start with $\textbf{a}_2$ and subtract its projection along $\textbf{q}_1$, which yields the following expression:
+
+$$
+\textbf{q}_2 = \textbf{a}_2 - \frac{\textbf{q}_1^T \textbf{a}_2}{\textbf{q}_1^T \textbf{q}_1} \textbf{q}_1
+$$
+
+Think in this expression carefully. What are we doing, is to subtract $\frac{\textbf{q}_1^T \textbf{a}_2}{\textbf{q}_1^T \textbf{q}_1}$ *times* the first column from the second column. Let's denote $\frac{\textbf{q}_1^T \textbf{a}_2}{\textbf{q}_1^T \textbf{q}_1}$ as $\alpha$, then, we can rewrite our expression as:
+
+$$
+\textbf{q}_2 = \textbf{a}_2 - \alpha \textbf{q}_1
+$$
+
+As we will see, $\alpha$ is a scalar, so effectively we are substracting an scaled version of column one from column two. The figure below express geometrically, what I have been saying: the *non-orthogonal* $\textbf{a}_2$ is projected onto $\textbf{q}_1$. Then, we subtract the projection $\textbf{p}$ from $\textbf{a}_2$ to obtain $\textbf{q}_2$ which is orthogonal to $\textbf{q}_1$ as you can appreciate visually (recall $\textbf{a}_1 = \textbf{q}_1$). 
+
+Keep these ideas in mind as it will be important later for QR decomposition.
+
+**Fig. 16: Orthogonalization**
+
+
+<img src="/assets/post-10/b-gram-schmidt.svg">
+
+
+Let's compute $\textbf{q}_2$ now:
+
+
+```python
+q1 = A[:, 0]
+a2 = A[:, 1]
+q2 = a2 - ((q1.T @ a2)/(q1.T @ q1)) * q1
+```
+
+Let's check that $\textbf{q}_1$ and $\textbf{q}_2$ are actually orthogonal. If so, their dot product should be $0$.
+
+
+```python
+np.round(q1 @ q2, 2)
+```
+
+
+
+
+    -0.0
+
+
+
+Next, we need to generate $\textbf{q}_3$ from $\textbf{a}_3$. This time, we want $\textbf{q}_3$ to be orthogonal to both $\textbf{q}_1$ and $\textbf{q}_2$. Therefore, we need to subtract its projection along $\textbf{q}_1$ and $\textbf{q}_2$, which yields:
+
+$$
+\textbf{q}_3 = 
+\textbf{a}_3 - \frac{\textbf{q}_1^T \textbf{a}_3}{\textbf{q}_1^T \textbf{q}_1} \textbf{q}_1 -
+\frac{\textbf{q}_2^T \textbf{a}_3}{\textbf{q}_2^T \textbf{q}_2} \textbf{q}_2 
+$$
+
+
+```python
+a3 = A[:, 2]
+q3 = a3 - (((q1.T @ a3)/(q1.T @ q1)) * q1) - (((q2.T @ a3)/(q2.T @ q2)) * q2) 
+```
+
+Verify orthogonality
+
+
+```python
+print(f'Dot product q1 and q3:\n{np.round(q1 @ q3, 1)}\n')
+print(f'Dot product q2 and q3:\n{np.round(q2 @ q3, 1)}')
+```
+
+    Dot product q1 and q3:
+    -0.0
+    
+    Dot product q2 and q3:
+    0.0
+
+
+We can put $\textbf{q}_1, \textbf{q}_2, \textbf{q}_3$ into $\textit{Q}'$:
+
+
+```python
+Q_prime = np.column_stack((q1, q2, q3))
+print(f'Orthogonal matrix Q:\n{Q_prime}')
+```
+
+    Orthogonal matrix Q:
+    [[ 2.          2.09677419 -1.33333333]
+     [ 7.          0.83870968  0.66666667]
+     [-3.          3.35483871  0.66666667]]
+
+
+The reason we call this matrix $\textit{Q}'$ is that although vectors are orthogonal, they are not normal. 
+
+
+```python
+Q_norms = np.linalg.norm(Q_prime, 2, axis=0)
+print(f'Norms of vectors in Q-prime:\n{Q_norms}')
+```
+
+    Norms of vectors in Q-prime:
+    [7.87400787 4.04411161 1.63299316]
+
+
+We rename $\textit{Q}'$ to $\textit{Q}$ by normalizing its vectors.
+
+
+```python
+Q = Q_prime / Q_norms
+np.linalg.norm(Q , 2, axis=0)
+```
+
+
+
+
+    array([1., 1., 1.])
+
+
+
+To confirm we did this right, let's evaluate $\textit{Q}^T \textit{Q}$, that should return the identity:
+
+
+```python
+np.round(Q.T @ Q, 1)
+```
+
+
+
+
+    array([[ 1., -0., -0.],
+           [-0.,  1.,  0.],
+           [-0.,  0.,  1.]])
+
+
+
+There you go: we performed Gram-Schmidt orthogonalization of $\textit{A}$
+
+### QR decomposition as Gram-Schmidt Orthogonalization
+
+Gaussian Elimination can be represented as LU decomposition. Similarly, **Gram-Schmidt Orthogonalization can be represented as QR decomposition**. 
+
+We learned $\textit{Q}$ is an orthonormal matrix. Now let's examine $\textit{R}$, which is an upper triangular matrix. In LU decomposition, we used **elementary matrices** to perform *row operations*. Similarly, in the case of QR decomposition, we will use **elementary matrices** to perform *column operations*. We used a lower triangular matrix to perform row operations in LU decomposition by multiplying $\textit{A}$ from the *left side*. This time, we will use an upper triangular matrix to perform column operations in QR decomposition by multiplying $\textit{A}$ from the *right side*.   
+
+Once again, our starting point is the identity matrix. The idea is to alter the identity with the operations we want to perform over $\textit{A}$. Consider the matrix from our previous example: 
+
+$$\textit{A} =
+\begin{bmatrix}
+2 & 1 & -2 \\
+7 & -3 & 1 \\
+-3 & 5 & -1
+\end{bmatrix}
+$$
+
+What we did in out first step, wast to subtract $\alpha = \frac{\textbf{a}_1 \cdot \textbf{a}_2} {\textbf{a}_1 \cdot \textbf{a}_1}$ of column $\textbf{a}_1$ from column $\textbf{a}_2$. Let's compute $\alpha$ first:
+
+
+```python
+A = np.array([[2, 1, -2],
+              [7, -3, 1],
+              [-3, 5, -1]])
+
+a1 = A[:, 0]
+a2 = A[:, 1]
+
+alpha = (a1.T @ a2)/(a1.T @ a1)
+
+print(f'alpha factor:{np.round(alpha, 2)}')
+```
+
+    alpha factor:-0.55
+
+
+Now we need to subtract $\alpha = -0.55$ times $\textbf{a}_1$ from $\textbf{a}_2$. We can represent this operation with an **elementary matrix**, by doing applying the same operations the identity:
+
+$$ \textit{l} =
+\begin{bmatrix}
+1 & -0.55 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 1
+\end{bmatrix}
+$$
+
+Next, we have to subtract $\beta = \frac{\textbf{a}_1 \cdot \textbf{a}_3} {\textbf{a}_1 \cdot \textbf{a}_1}$ times column $\textbf{a}_1$ and $\gamma = \frac{\textbf{a}_2 \cdot \textbf{a}_3} {\textbf{a}_2 \cdot \textbf{a}_2}$ times $\textbf{a}_2$ from $\textbf{a}_3$. Let's compute the new $\beta$ and $\gamma$:
+
+
+```python
+a3 = A[:, 2]
+
+beta = (a1.T @ a3)/(a1.T @ a1)
+gamma = (a2.T @ a3)/(a2.T @ a2)
+
+print(f'beta factor:{np.round(beta, 2)}')
+print(f'gamma factor:{np.round(gamma, 2)}')
+```
+
+    beta factor:0.1
+    gamma factor:-0.29
+
+
+We can add this operations to our elementary matrix by subtracting $0.1$ times the first column from the third, and $-0.29$ times the second from the third:
+    
+$$ \textit{l} =
+\begin{bmatrix}
+1 & -0.55 & 0.1 \\
+0 & 1 & -0.29 \\
+0 & 0 & 1
+\end{bmatrix}
+$$
+
+The last step is to normalize each vector of $\textit{l}$
+
+
+```python
+l = np.array([[1, alpha, beta],
+              [0, 1, gamma], 
+              [0, 0, 1]])
+```
+
+At this point, we should be able to recover $\textit{A}$:
+
+$$
+\begin{bmatrix}
+2 & 1 & -2 \\
+7 & -3 & 1 \\
+-3 & 5 & -1
+\end{bmatrix}
+$$
+
+As the matrix product of $\textit{Q}'$ and $\textit{l}$
+
+
+```python
+print(f'Q-prime and l product:\n{np.round(Q_prime @ l)}')
+```
+
+    Q-prime and l product:
+    [[ 2.  1. -2.]
+     [ 7. -3.  1.]
+     [-3.  5. -1.]]
+
+
+It works! Now, to recover $\textit{Q}$ will be difficult because of numerical stability and approximation issues in how we have computed things. Actually, if you remove the rounding from `np.round(Q_prime @ l)` you will obtain different numbers. Fortunately, there is no need to compute $\textit{Q}$ and $\textit{R}$ by hand. We follow the previous steps merely for pedagogical purposes. In `NumPy`, we can compute the QR decomposition as: 
+
+
+```python
+Q_1, R = np.linalg.qr(A)
+```
+
+Let's compare our $\textit{Q}$ with $\textit{Q}_1$
+
+
+```python
+print(f'Q:\n{Q}\n')
+print(f'Q:\n{Q_1}')
+```
+
+    Q:
+    [[ 0.25400025  0.51847585 -0.81649658]
+     [ 0.88900089  0.20739034  0.40824829]
+     [-0.38100038  0.82956136  0.40824829]]
+    
+    Q:
+    [[-0.25400025  0.51847585 -0.81649658]
+     [-0.88900089  0.20739034  0.40824829]
+     [ 0.38100038  0.82956136  0.40824829]]
+
+
+The numbers are the same, but some signs are flipped. This stability and approximation issues is why you probably always want to use `NumPy` functions (when available). 
+
+## Determinant
+
+If matrices had personality, the **determinant** would be the personality trait that reveals most information about the matrix character. The determinant of a matrix is a single number that tells **whether a matrix is invertible or singular**, this is, whether its columns are linearly independent or not, which is one of the most important things you can learn about a matrix. Actually, the name "determinant" refers to the property of "determining" if the matrix is singular or not. Specifically, for an square matrix $\textit{A} \in \mathbb{R}^{n \times n}$, a determinant equal to $0$, denoted as $\text{det}(\textit{A}=0)$, implies *the matrix is singular* (i.e., noninvertible), whereas a determinant equal to $1$,  denoted as $\text{det}(\textit{A})=1$, implies the *matrix is not singular* (i.e., invertible). Although determinants can reveal if matrices are singular with a single number, it's not used for large matrices as Gaussian Elimination is faster. 
+
+Recall that matrices can be thought of as function action on vectors or other matrices. Thus, the determinant can also be considered a linear mapping of a matrix $\textit{A}$ onto a single number. But, what does that number mean? So far, we have defined determinants based on their utility of determining matrix invertibility. Before going into the calculation of determinants, let's examine determinants from a geometrical perspective to gain insight into the meaning of determinants.
+
+### Determinant as measures of volume
+
+From a geometric perspective, determinants indicate the $\textit{sign}$ **area of a parallelogram** (e.g., a rectangular area) and the $\textit{sign}$ **volume of the parallelepiped**, for a matrix whose columns consist of the basis vectors in Euclidean space. 
+
+Let's parse out the above phrase: the $\textit{sign}$ area indicates the absolute value of the area, and the $\textit{sign}$ volume equals the absolute value of the volume. You may be wondering why we need to take the absolute value since real-life objects can't have a negative is area or volume. In linear algebra, we say the area of a parallelogram is **negative** when the vectors forming the figure are *clockwise oriented* (i.e., negatively oriented), and **positive** when the vectors forming the figure are *counterclockwise oriented* (i.e., positively oriented). 
+
+Here is an example of a matrix $\textit{A}$ with vectors *clockwise* or *negatively* oriented:
+
+$$
+\textit{A} =
+\begin{bmatrix}
+0 & 2 \\
+2 & 0
+\end{bmatrix}
+$$
+
+The elements of the first column, indicate the first vector of the matrix, while the elements of the second column, the second vector of the matrix. Therefore, when we measure the area of the parallelogram formed by the pair of vectors, we move from left to right, i.e., *clockwise*, meaning that the vectors are **negatively oriented**, and the **area of the matrix will be negative**. 
+
+Here is the same matrix $\textit{A}$ with vectors *counterclockwise* or *positively* oriented:
+
+$$
+\textit{A} =
+\begin{bmatrix}
+2 & 0 \\
+0 & 2
+\end{bmatrix}
+$$
+
+Again, the elements of the *first column*, indicate the *first vector* of the matrix, while the elements of the *second column*, the *second vector* of the matrix. Therefore, when we measure the area of the parallelogram formed by the pair of vectors, we move from *right to left*, i.e., *counterclockwise*, meaning that the vectors are **positively oriented**, and the **area of the matrix will be positive**. 
+
+The figure below exemplifies what I just said.
+
+**Fig. 17: Vector orientation**
+
+
+<img src="/assets/post-10/b-determinant-orientation.svg">
+
+
+The situation for the $\textit{sign}$ volume of the parallelepiped is no different: when the vectors are *counterclockwise* oriented, we say the vectors are *positively oriented* (i.e., positive volume); when the vectors are *clockwise* oriented, we say the vectors are *negatively oriented* (i.e., negative volume).
+
+### The 2 X 2 determinant
+
+Recall that matrices are invertible or nonsingular when their columns are linearly independent. By extension, the determinant, allow us to whether the columns of a matrix a linearly independent. To understand this method, let's examine the $2 \times 2$ special case first.
+
+Consider a generic square matrix as:
+
+$$ \textit{A} =
+\begin{bmatrix}
+1 & 4 \\
+2 & 8
+\end{bmatrix}
+$$
+
+How can we decide whether the columns are linearly independent? A strategy that I often use in simple cases like this, is just to examine whether the second column equals the first column times some factor. In the case of $\textit{A}$ is easy to see that the second column equals four times the first column, so the columns are linearly *dependent*. We can express such criteria by comparing the elementwise division between the second column by the first column as:
+
+$$
+\begin{bmatrix}
+\frac{4}{1} = \frac{8}{2}
+\end{bmatrix}
+= 
+\begin{bmatrix}
+4 = 4
+\end{bmatrix}
+$$
+
+We obtain that both sides equal $4$, meaning that the second column can be divided exactly by the first column (i.e., linearly *dependent*).
+
+
+Consider this matrix now:
+
+$$ \textit{B} =
+\begin{bmatrix}
+0 & 4 \\
+0 & 8
+\end{bmatrix}
+$$
+
+Let's try again our method for $\textit{B}$:
+
+$$
+\begin{bmatrix}
+\frac{4}{0} = \frac{8}{0}
+\end{bmatrix}
+= 
+\begin{bmatrix}
+4 = 4
+\end{bmatrix}
+$$
+
+Now we got into a problem because division by $0$ is undefined, so we can determine the relationship between columns of $\textit{B}$. Yet, by inspection, we can see the first column is simply $0$ times the second column, therefore linearly dependent. Here is when **determinants** come to the rescue. 
+
+Consider the generic matrix:
+
+$$
+\begin{bmatrix}
+a & b \\
+c & d
+\end{bmatrix}
+$$
+
+According to our previous strategy, we had:
+
+$$
+\frac{b}{a} = \frac{d}{c}
+$$
+
+This is, we tested the elementwise division of the second column by the first column. Before, we failed because of division, so we probably want a method that does not involve it. Notice that we can rearrange our expression as:
+
+$$
+ad = bc
+$$
+
+Let's try again with this method for $\textit{A}$: 
+
+$$
+\begin{bmatrix}
+1 \times 8 = 4 \times 2 \\
+\end{bmatrix}
+\begin{bmatrix}
+8 = 8
+\end{bmatrix}
+$$
+
+And for $\textit{B}$:
+
+$$
+\begin{bmatrix}
+0 \times 8 = 4 \times 0 \\
+\end{bmatrix}
+\begin{bmatrix}
+0 = 0
+\end{bmatrix}
+$$
+
+It works. Indeed, $ad = bc$ are equal for both matrices, $\textit{A}$ and $\textit{B}$, meaning their columns are linearly dependent. Finally, notice that we can rearange all the terms on one side of the equation as: 
+
+$$ 
+(ad) - (bc)=0 
+$$
+
+There you go: the above expression is what is known as the **determinant of a matrix**. We denote the determinant as:
+
+$$\vert \textit{A} \vert = 
+\begin{vmatrix}
+a & b \\
+c & d
+\end{vmatrix} =
+(ad) - (bc)
+$$
+
+Or 
+
+$$\textit{det (A)} = 
+\begin{vmatrix}
+a & b \\
+c & d
+\end{vmatrix} =
+(ad) - (bc)
+$$
+
+### The N X N determinant
+
+As matrices larger, computing the determinant gets more complicated. Consider the $3 \times 3$ case as:
+
+$$\vert \textit{A} \vert = 
+\begin{vmatrix}
+a & b & c\\
+d & e & f\\
+g & h & i
+\end{vmatrix}
+$$
+
+The problem now is that linearly independent columns can be either: (1) multiples of another column, and (2) linear combinations of pairs of columns. The determinant for a $3 \times 3$ is:
+
+$$
+\vert \textit{A} \vert = aei - afh + bfg - bdi + cdh - ceg 
+$$
+
+Such expression is hard to memorize, and it will get even more complicated for larger matrices. For instance, the $4 \times 4$ entails 24 terms. As with most things in mathematics, there is a general formula to express the determinant compactly, which is known as the Leibniz's formula:
+
+$$
+\vert \textit{A} \vert = \sum_{\sigma} \textit{sign}(\sigma) \prod_{i=1}^n a_{\sigma(i),i} 
+$$
+
+Where $\sigma$ computes the permutation for the rows and columns vectors of the matrix. If of little importance for us to break down the meaning of this formula since we are interested in its applicability and conceptual value. What is important to notice, is that for an arbitrary square $n \times n$ matrix, we will have $n!$ terms to sum over. For instance, for a $10 \times 10$ matrix, $10! = 3,628,800$, which is a gigantic number considering the size of the matrix. In machine learning, we care about matrices with thousands or even millions of columns, so there is no use for such formula. Nonetheless, this does not mean that the determinant is useless, but the direct calculation with the above algebraic expression is not used. 
+
+### Determinants as scaling factors
+
+When we think in matrices as linear mappings, this is, as functions applied to vectors (or vectors spaces), the determinant acquires an intuitive geometrical interpretation: **as the factor by which areas are scaled under a mapping**. Plainly, if you do a mapping or transformation, and  the area increases by a factor of $3$, then the determinant of the transformation matrix equals $3$. Consider the matrix $\textit{A}$ and the basis vector $\textbf{x}$:
+
+$$
+\textit{A} =
+\begin{bmatrix}
+4 & 0 \\
+0 & 3
+\end{bmatrix}
+$$
+
+$$ \textbf{x} =
+\begin{bmatrix}
+1 \\
+1 
+\end{bmatrix}
+$$
+
+Is easy to see that the parallelogram formed by the basis vectors of $\textbf{x}$ is $1 \times 1 = 1$. When we apply $\textit{A}\textbf{x}$, we get: 
+
+
+```python
+A = np.array([[4, 0],
+              [0, 3]])
+
+x = np.array([[1,1]])
+```
+
+
+```python
+A @ x.T
+```
+
+
+
+
+    array([[4],
+           [3]])
+
+
+
+Meaning that the vertical axis was scaled by $4$ and the horizontal axis by $3$, hence, the new parallelogram has area $4 \times 3 = 12$. Since the new area has increased by a factor of $12$, the determinant $\vert \textit{A} \vert =  12$. Although we exemplified this with the basis vectors in $\textit{x}$, the determinant of $\textit{A}$ for mappings of the entire vector space. 
+
+**Fig. 18: Determinants**
+
+
+<img src="/assets/post-10/b-determinant-scaling.svg">
+
+
+### The importance of determinants
+
+Considering that computing determinants are not computationally feasible for large matrices and that we can determine linear independence via Gaussian Elimination, you may be wondering what's the point of learning about determinants in the first place. I also asked myself more than once. It turns out that determinants play a crucial conceptual role in other topics in matrix decomposition, particularly eigenvalues and eigenvectors. Actually, some books I reviewed devote a ton of space to determinants, whereas others (like Strang) do not.
