@@ -151,8 +151,8 @@ If you find any mistake in notes feel free to reach me out at pcaceres@wisc.edu 
     - [QR decomposition as Gram-Schmidt Orthogonalization](#qr-decomposition-as-gram-schmidt-orthogonalization)
 - [Determinant](#determinant)
     - [Determinant as measures of volume](#determinant-as-measures-of-volume)
-    - [The 2X2 determinant](#the-2x2-determinant)
-    - [The NXN determinant](#the-nxn-determinant)
+    - [The 2X2 determinant](#the-2-x-2-determinant)
+    - [The NXN determinant](#the-n-x-n-determinant)
     - [Determinants as scaling factors](#determinants-as-scaling-factors)
     - [The importance of determinants](#the-importance-of-determinants)
 
