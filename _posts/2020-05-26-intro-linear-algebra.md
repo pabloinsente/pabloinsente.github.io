@@ -168,7 +168,7 @@ If you find any mistake in notes feel free to reach me out at pcaceres@wisc.edu 
     - [Singular Value Decomposition vs Eigendecomposition](#singular-value-decomposition-vs-eigendecomposition)
 - [Matrix Approximation](#matrix-approximation):
     - [Best rank-k approximation with SVD](#best-rank-k-approximation-with-svd)
-    - [Best rank-k approximation as a minimization problem](#best-rank-k-approximation-as-a-minimization-problem)
+    - [Best low-rank approximation as a minimization problem](#best-low-rank-approximation-as-a-minimization-problem)
     
 **[Epilogue](#epilogue)**
 
@@ -5991,7 +5991,7 @@ print(f'Reconstruction of A with Eigen Decomposition of A:\n{X @ L @ X_inv}')
      [ 4. -2.  2.]]
 
 
-### Eigenbasis are a good a basis
+### Eigenbasis are a good basis
 
 There are cases when a transformation or mapping $\textit{T}$ has associated a full set of eigenvectors, i.e., as many eigenvectors as dimensions in $\textit{T}$. We call this set of eigenvectors an **eigenbasis**.   
 
@@ -6053,7 +6053,7 @@ $$
 \textit{A} \textit{A}^{-1} = \textit{I}
 $$
 
-### Geometric interpretation of the Eigendecomposition
+### Geometric interpretation of Eigendecomposition
 
 We said that Eigenbasis is a good basis as it allows us to perform computations more easily and to better understand the nature of linear mappings or transformations. The geometric interpretation of Eigendecomposition further reinforces that point. In concrete, the Eigendecomposition elements can be interpreted as follow: 
 
