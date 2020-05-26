@@ -4,13 +4,11 @@ published: true
 mathjax: true
 ---
 
-<***Note: I plan to complete this mini-project in 6 updates. As May 15th of 2020, I'm on update 5. Around 90% of the project is complete***>
-
-Linear algebra is to machine learning as flour to bakery: **every machine learning model is based in linear algebra, as every cake is based in flour**. It is not the only ingredient, of course. Machine learning models need vector calculus, probability, and optimization, as cakes need sugar, eggs, and butter. Applied machine learning, like bakery, is essentially about combining these mathematical ingredients in clever ways to create useful (tasty?) models. 
+Linear algebra is to machine learning as flour to bakery: **every machine learning model is based in linear algebra, as every cake is based in flour**. It is not the only ingredient, of course. Machine learning models need vector calculus, probability, and optimization, as cakes need sugar, eggs, and butter. Applied machine learning, like bakery, is essentially about combining these mathematical ingredients in clever ways to create useful (tasty?) models.
 
 This document contains **introductory level linear algebra notes for applied machine learning**. It is meant as a reference rather than a comprehensive review. If you ever get confused by matrix multiplication, don't remember what was the $L_2$ norm, or the conditions for linear independence, this can serve as a quick reference. It also a good introduction for people that don't need a deep understanding of linear algebra, but still want to learn about the fundamentals to read about machine learning or to use pre-packaged machine learning solutions. Further, it is a good source for people that learned linear algebra a while ago and need a refresher.
 
-These notes are based in a series of (mostly) freely available textbooks, video lectures, and classes I've read, watched and taken in the past. If you want to obtain a deeper understanding or to find exercises for each topic, you may want to consult those sources directly. 
+These notes are based in a series of (mostly) freely available textbooks, video lectures, and classes I've read, watched and taken in the past. If you want to obtain a deeper understanding or to find exercises for each topic, you may want to consult those sources directly.
 
 **Free resources**:
 
@@ -90,18 +88,18 @@ If you find any mistake in notes feel free to reach me out at pcaceres@wisc.edu 
     - [Matrix transpose](#matrix-transpose)
     - [Hadamard product](#hadamard-product)
 - [Special matrices](#special-matrices)
-    - [_Rectangular matrix_](#rectangular-matrix)
-    - [_Square matrix_](#square-matrix)
-    - [_Diagonal matrix_](#diagonal-matrix)
-    - [_Upper triangular matrix_](#upper-triangular-matrix)
-    - [_Lower triangular matrix_](#lower-triangular-matrix)
-    - [_Symmetric matrix_](#symmetric-matrix)
-    - [_Identity matrix_](#identity-matrix)
-    - [_Scalar matrix_](#scalar-matrix)
-    - [_Null or zero matrix_](#null-or-zero-matrix)
-    - [_Echelon matrix_](#echelon-matrix)
-    - [_Antidiagonal matrix_](#antidiagonal-matrix)
-    - [_Design matrix_](#design-matrix)
+    - [Rectangular matrix](#rectangular-matrix)
+    - [Square matrix](#square-matrix)
+    - [Diagonal matrix](#diagonal-matrix)
+    - [Upper triangular matrix](#upper-triangular-matrix)
+    - [Lower triangular matrix](#lower-triangular-matrix)
+    - [Symmetric matrix](#symmetric-matrix)
+    - [Identity matrix](#identity-matrix)
+    - [Scalar matrix](#scalar-matrix)
+    - [Null or zero matrix](#null-or-zero-matrix)
+    - [Echelon matrix](#echelon-matrix)
+    - [Antidiagonal matrix](#antidiagonal-matrix)
+    - [Design matrix](#design-matrix)
 - [Matrices as systems of linear equations](#matrices-as-systems-of-linear-equations)
 - [The four fundamental matrix subsapces](#the-four-fundamental-matrix-subsapces)
     - [The column space](#the-column-space)
@@ -155,18 +153,24 @@ If you find any mistake in notes feel free to reach me out at pcaceres@wisc.edu 
     - [The NXN determinant](#the-n-x-n-determinant)
     - [Determinants as scaling factors](#determinants-as-scaling-factors)
     - [The importance of determinants](#the-importance-of-determinants)
-
-**Future sections**:
-
-*Decompositions*:
-
-    - Trace
-    - Cholesky Decomposition
-    - Eigenvalues and eigenvectors
-    - Symmetric Positive Definite Matrices
-    - Eigendecomposition and diagonalization
-    - Singular value decomposition
-    - Principal components and best low rank matrix approximation
+- [Eigenthings](#eigenthings)
+    - [Change of basis](#change-of-basis)
+    - [Eigenvectors, Eigenvalues, and Eigenspaces](#eigenvectors-eigenvalues-and-eigenspaces)
+    - [Trace and determinant with eigenvalues](#trace-and-determinant-with-eigenvalues)
+    - [Eigendecomposition](#eigendecomposition)
+    - [Eigenbasis are a good basis](#eigenbasis-are-a-good-basis)
+    - [Geometric interpretation of Eigendecomposition](#geometric-interpretation-of-eigendecomposition)
+    - [The problem with Eigendecomposition](#the-problem-with-eigendecomposition)
+- [Singular Value Decomposition](#singular-value-decomposition):
+    - [Singular Value Decomposition Theorem](#singular-value-decomposition-theorem)
+    - [Singular Value Decomposition computation](#singular-value-decomposition-computation)
+    - [Geometric interpretation of the Singular Value Decomposition](#geometric-interpretation-of-the-singular-value-decomposition)
+    - [Singular Value Decomposition vs Eigendecomposition](#singular-value-decomposition-vs-eigendecomposition)
+- [Matrix Approximation](#matrix-approximation):
+    - [Best rank-k approximation with SVD](#best-rank-k-approximation-with-svd)
+    - [Best rank-k approximation as a minimization problem](#best-rank-k-approximation-as-a-minimization-problem)
+    
+**[Epilogue](#epilogue)**
 
 # Preliminary concepts
 
@@ -256,7 +260,7 @@ $$
 \text{ran } \textit{R} = \{ \textit{y:  for some x } ( \textit{x R y)} \}
 $$
 
-This reads: the set formed by the values of $\text{y}$ such that at least one element of $\textit{x}$, $\textit{x}$ has a relation with $\textit{y}$.
+This reads: the set formed by the values of $\text{y}$ such that at least one element of $\textit{x}$, $\textit{x}$ has a relation with $\textit{y}$. 
 
 ## Functions
 
@@ -1242,12 +1246,12 @@ equation1 + equation2
 
 
 
-<div id="altair-viz-aea40df1d2194371ab5d0c58c07a6cd0"></div>
+<div id="altair-viz-a98fc3f32a7644beb047a3d0ab4bef27"></div>
 <script type="text/javascript">
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-aea40df1d2194371ab5d0c58c07a6cd0") {
-      outputDiv = document.getElementById("altair-viz-aea40df1d2194371ab5d0c58c07a6cd0");
+    if (outputDiv.id !== "altair-viz-a98fc3f32a7644beb047a3d0ab4bef27") {
+      outputDiv = document.getElementById("altair-viz-a98fc3f32a7644beb047a3d0ab4bef27");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
@@ -2634,6 +2638,39 @@ np.linalg.norm(A, np.inf)
 
 In this case, is easy to see that the third row has the largest absolute value.
 
+### Spectral norm
+
+To understand this norm, is necessary to first learn about eigenvectors and eigenvalues, which I cover later. 
+
+The **spectral norm** of a matrix equals to the largest singular value $\sigma_1$. We denote the spectral norm as $\Vert \textit{A} \Vert_2$. Consider $\textit{A} \in \mathbb{R}^{m \times n}$. We define the spectral for $\textit{A}$ as:
+
+$$
+\Vert \textit{A} \Vert_2 := 
+\text{max}_{x} 
+\frac{\Vert \textit{A}\textbf{x} \Vert_2}{\Vert \textbf{x} \Vert_2}
+$$
+
+In `Numpy`, we compute the max norm as:
+
+
+```python
+A = np.array([[1, 2, 3],
+              [4, 5, 6], 
+              [7, 8, 9]])
+```
+
+
+```python
+np.linalg.norm(A, 2)
+```
+
+
+
+
+    16.84810335261421
+
+
+
 # Linear and affine mappings
 
 
@@ -3161,12 +3198,12 @@ chart
 
 
 
-<div id="altair-viz-d7705720424e440eb96806cacefe0ede"></div>
+<div id="altair-viz-50a6b2133b244c91b1bc42a228990ef5"></div>
 <script type="text/javascript">
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-d7705720424e440eb96806cacefe0ede") {
-      outputDiv = document.getElementById("altair-viz-d7705720424e440eb96806cacefe0ede");
+    if (outputDiv.id !== "altair-viz-50a6b2133b244c91b1bc42a228990ef5") {
+      outputDiv = document.getElementById("altair-viz-50a6b2133b244c91b1bc42a228990ef5");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
@@ -3438,12 +3475,12 @@ base_coor(-5.0, 5.0) + chart
 
 
 
-<div id="altair-viz-f1f31af606b84bd68cbaa424a5e30b07"></div>
+<div id="altair-viz-ea6b72385c0e4d57a622d722c24f7e1e"></div>
 <script type="text/javascript">
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-f1f31af606b84bd68cbaa424a5e30b07") {
-      outputDiv = document.getElementById("altair-viz-f1f31af606b84bd68cbaa424a5e30b07");
+    if (outputDiv.id !== "altair-viz-ea6b72385c0e4d57a622d722c24f7e1e") {
+      outputDiv = document.getElementById("altair-viz-ea6b72385c0e4d57a622d722c24f7e1e");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
@@ -3561,12 +3598,12 @@ base_coor(-5.0, 10.0) + chart
 
 
 
-<div id="altair-viz-ddc801f01e3041aba1561a1d95672830"></div>
+<div id="altair-viz-74ba8ab9d1a74346854d14f7ff2c667d"></div>
 <script type="text/javascript">
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-ddc801f01e3041aba1561a1d95672830") {
-      outputDiv = document.getElementById("altair-viz-ddc801f01e3041aba1561a1d95672830");
+    if (outputDiv.id !== "altair-viz-74ba8ab9d1a74346854d14f7ff2c667d") {
+      outputDiv = document.getElementById("altair-viz-74ba8ab9d1a74346854d14f7ff2c667d");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
@@ -3792,12 +3829,12 @@ base_coor(-5.0, 5.0) + chart
 
 
 
-<div id="altair-viz-b646bf5d980a4cff98b829d0a02ba9af"></div>
+<div id="altair-viz-f7fb1b4711f94113ae71f3e4bf99c11e"></div>
 <script type="text/javascript">
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-b646bf5d980a4cff98b829d0a02ba9af") {
-      outputDiv = document.getElementById("altair-viz-b646bf5d980a4cff98b829d0a02ba9af");
+    if (outputDiv.id !== "altair-viz-f7fb1b4711f94113ae71f3e4bf99c11e") {
+      outputDiv = document.getElementById("altair-viz-f7fb1b4711f94113ae71f3e4bf99c11e");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
@@ -4084,12 +4121,12 @@ base_coor(-1.0, 4.0) + chart
 
 
 
-<div id="altair-viz-ae6d66b7a3504a4e9c49a82a003a9f9d"></div>
+<div id="altair-viz-f8f4f43ba87149c9a10704ec132e0004"></div>
 <script type="text/javascript">
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-ae6d66b7a3504a4e9c49a82a003a9f9d") {
-      outputDiv = document.getElementById("altair-viz-ae6d66b7a3504a4e9c49a82a003a9f9d");
+    if (outputDiv.id !== "altair-viz-f8f4f43ba87149c9a10704ec132e0004") {
+      outputDiv = document.getElementById("altair-viz-f8f4f43ba87149c9a10704ec132e0004");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
@@ -5235,7 +5272,7 @@ $$ \textit{A} =
 $$
 
 How can we decide whether the columns are linearly independent? A strategy that I often use in simple cases like this, is just to examine whether the second column equals the first column times some factor. In the case of $\textit{A}$ is easy to see that the second column equals four times the first column, so the columns are linearly *dependent*. We can express such criteria by comparing the *elementwise division* between each element of the second column by each element of the first column as:
- 
+
 $$
 \begin{bmatrix}
 \frac{4}{1} =
@@ -5274,7 +5311,7 @@ $$
 \end{bmatrix}
 $$
 
-Now we got into a problem because division by $0$ is undefined, so we can determine the relationship between columns of $\textit{B}$. Yet, by inspection, we can see the first column is simply $0$ times the second column, therefore linearly dependent. Here is when **determinants** come to the rescue.
+Now we got into a problem because division by $0$ is undefined, so we can determine the relationship between columns of $\textit{B}$. Yet, by inspection, we can see the first column is simply $0$ times the second column, therefore linearly dependent. Here is when **determinants** come to the rescue. 
 
 Consider the generic matrix:
 
@@ -5385,8 +5422,7 @@ $$
 
 $$ \textbf{x} =
 \begin{bmatrix}
-1 \\
-1 
+1 & 1 
 \end{bmatrix}
 $$
 
@@ -5412,7 +5448,7 @@ A @ x.T
 
 
 
-Meaning that the vertical axis was scaled by $4$ and the horizontal axis by $3$, hence, the new parallelogram has area $4 \times 3 = 12$. Since the new area has increased by a factor of $12$, the determinant $\vert \textit{A} \vert =  12$. Although we exemplified this with the basis vectors in $\textit{x}$, the determinant of $\textit{A}$ for mappings of the entire vector space. The figure below illustrates this idea.
+Meaning that the vertical axis was scaled by $4$ and the horizontal axis by $3$, hence, the new parallelogram has area $4 \times 3 = 12$. Since the new area has increased by a factor of $12$, the determinant $\vert \textit{A} \vert =  12$. Although we exemplified this with the basis vectors in $\textit{x}$, the determinant of $\textit{A}$ for mappings of the entire vector space. The figure below visually illustrates this idea. 
 
 **Fig. 18: Determinants**
 
@@ -5423,3 +5459,993 @@ Meaning that the vertical axis was scaled by $4$ and the horizontal axis by $3$,
 ### The importance of determinants
 
 Considering that calculating the determinant is not computationally feasible for large matrices and that we can determine linear independence via Gaussian Elimination, you may be wondering what's the point of learning about determinants in the first place. I also asked myself more than once. It turns out that determinants play a crucial conceptual role in other topics in matrix decomposition, particularly eigenvalues and eigenvectors. Some books I reviewed devote a ton of space to determinants, whereas others (like Strang's Intro to Linear Algebra) do not. In any case, we study determinants mostly because of its conceptual value to better understand linear algebra and matrix decomposition.
+
+## Eigenthings
+
+Eigenvectors, eigenvalues, and their associated mathematical objects and properties (which I call "Eigen-things") have important applications in machine learning like Principal Component Analysis (PCA), Spectral Clustering (K-means), Google's PageRank algorithm, Markov processes, and others. Next, we will review several of these "eigen-things".
+
+### Change of basis
+
+Previously, we said that a set of $n$ linearly independent vectors with $n$ elements forms a **basis** for a vector space. For instance, we say that the *orthogonal* pair of vectors $\textbf{x}$ and $\textbf{y}$ (or horizontal and vertical axes), describe the Cartesian plane or $\mathbb{R}^2$ space. Further, if we think in the $\textbf{x}$ and $\textbf{y}$ pair as unit vectors, then we can describe any vector in $\mathbb{R}^2$ as a linear combination of $\textbf{x}$ and $\textbf{y}$. For example, the vector:
+
+$$
+\textbf{c}=
+\begin{bmatrix}
+- 3 \\
+- 1
+\end{bmatrix}
+$$
+
+Can be described as scaling the unit vector $\textbf{x}=\begin{bmatrix} 1 \\ 0 \end{bmatrix}$ by $-3$, and scaling the unit vector $\textbf{y}=\begin{bmatrix} 0 \\ 1 \end{bmatrix}$ by $-1$.  
+
+If you are like me, you have probably gotten use to the idea of describing any 2-dimensional space as $\textbf{x}$ and $\textbf{y}$ coordinates, with $\textbf{x}$ lying perfectly horizontal and $\textbf{y}$ perpendicular to it, as if this were the only natural way of thinking on coordinates in space. It turns out, there is nothing "natural" about it. You could literally draw a pair of orthogonal vectors on any orientation in space, define the first one as $\textbf{x'}=\begin{bmatrix} 1 \\ 0 \end{bmatrix}$, and the second one as $\textbf{y'}=\begin{bmatrix} 0 \\ 1 \end{bmatrix}$, and that would be perfectly fine. It may look different, but every single mathematical property we have studied so far about vectors would hold. For instance, in Fig 19. the **alternative coordinates** $\textbf{x'}$ and $\textbf{y'}$ are equivalent to the vectors $\textbf{a}=\begin{bmatrix} -2 \\ 2 \end{bmatrix}$ and $\textbf{b}=\begin{bmatrix} 2 \\ 2 \end{bmatrix}$, in the standard $\textbf{x}$ and $\textbf{y}$ coordinates.
+
+**Fig. 19: Change of basis**
+
+
+<img src="/assets/post-10/b-change-basis.svg">
+
+
+The question now is how to "move" from one set of basis vectors to the other. The answer is with **linear mappings**. We know already that $\textbf{x', y'}$ equals to $\textbf{a}=\begin{bmatrix} -2 \\ 2 \end{bmatrix}$ and $\textbf{b}=\begin{bmatrix} 2 \\ 2 \end{bmatrix}$ in $\textbf{x, y}$ coordinates. To find the values of $\textbf{x, y}$ in $\textbf{x', y'}$, we need to take the **inverse of $\textit{T}$**. Think about it in this way: we represented $\textbf{x'=a, y'=a}$ in $\textbf{x, y}$ by scaling its unit vectors by the transformation matrix $\textit{T}$ as:
+
+$$
+\textit{T}\textit{A} =
+\begin{bmatrix} 
+-2 & 2 \\ 
+2 & 2
+\end{bmatrix}
+\begin{bmatrix} 
+1 & 0 \\ 
+0 & 1
+\end{bmatrix} = 
+\begin{bmatrix} 
+-2 & 2 \\ 
+2 & 2
+\end{bmatrix}
+$$
+
+Now, to do the *opposite*, i.e., to "translate" the values of the coordinates $\textbf{x, y}$ to values in $\textbf{x', y'}$, we scale $\textbf{x, y}$ by the inverse of $\textit{T}$ as:
+
+
+```python
+# Transformation or mapping matrix
+T = np.array([[2, -2],
+              [2,  2]])
+
+# Inverse of T
+T_i = np.linalg.inv(T)
+
+# x, y vectors
+A = np.array([[1, 0],
+              [0,1]])
+
+print(f"x, y vectors in x', y' coordinates:\n{T_i @ A}")
+```
+
+    x, y vectors in x', y' coordinates:
+    [[ 0.25  0.25]
+     [-0.25  0.25]]
+
+
+That is our answer: $\textbf{x, y}$ equals to $\begin{bmatrix}0.25 \\ -0.25 \end{bmatrix}$ and $\begin{bmatrix}0.25 \\ 0.25 \end{bmatrix}$ in $\textbf{x', y'}$ coordinate space. **Fig. 19** illustrate this as well.
+
+This may become clearer by mapping $\textbf{c}=\begin{bmatrix}-3 \\ -1 \end{bmatrix}$ in $\textbf{x, y}$, onto $\textbf{c'}$ in $\textbf{x', y'}$ alternative coordinates. To do the mapping, again, we need to multiply $\textbf{c}$ by $\textit{T}^{-1}$. Let's try this out with `NumPy`:
+
+
+```python
+# vector to map
+a = np.array([[-3],[-1]])
+print(f'Vector a=[1,3] in x\' and y\' basis:\n{T_i@a}')
+```
+
+    Vector a=[1,3] in x' and y' basis:
+    [[-1. ]
+     [ 0.5]]
+
+
+In **Fig. 19**, we can confirm the mapping by simply visual inspection.
+
+### Eigenvectors, Eigenvalues and Eigenspaces
+
+*Eigen* is a German word meaning "own" or "characteristic". Thus, roughly speaking, the eigenvector and eigenvalue of a matrix refer to their "characteristic vector" and "characteristic value" for that vector, respectively. As a cognitive scientist, I like to think in eigenvectors as the "pivotal" personality trait of someone, i.e., the personality "axis" around which everything else revolves, and the eigenvalue as the "intensity" of that trait. 
+
+Put simply, the **eigenvector of a matrix** is a non-zero vector that *only gets scaled* when multiplied by a transformation matrix $\textit{A}$. In other words, the vector does not rotate or change direction in any manner. It just gets larger or shorter. The **eigenvalue of a matrix** is the factor by which the eigenvector gets scaled. This is a bit of a stretch, but in terms of the personality analogy, we can think in the eigenvector as the personality trait that does not change even when an individual change of context: Lisa Simpson "pivotal" personality trait is *conscientiousness*, and no matter where she is, home, school, etc., their personality revolves around that. Following the analogy, the eigenvalue would represent the magnitude or intensity of such traits in Lisa. Fig 20. illustrate the geometrical representation of an eigenvector with a cube rotation.
+
+**Fig. 20: Eigenvector in a 3-dimensional rotation**
+
+
+<img src="/assets/post-10/b-eigenvector.svg">
+
+
+More formally, we define eigenvectors and eigenvalues as:
+
+$$
+\textit{A}\textbf{x} := \lambda \textbf{x}
+$$
+
+Where $\textit{A}$ is a square matrix in $\mathbb{R}^{n \times n}$, $\textbf{x}$ the eigenvector, and $\lambda$ an scalar in $\mathbb{R}$. This identity may look weird to you: **How do we go from matrix-vector multiplication to scalar-vector multiplication?** We are basically saying that somehow multiplying $\textbf{x}$ by a matrix $\textit{A}$ or a scalar $\lambda$ yields the same result. To make sense of this, recall our discussion about the effects of a matrix on a vector. Mappings or transformation like reflection and shear boils down to *a combination of scaling and rotation*. If a mapping $\textit{A}$ does not rotate $\textbf{x}$, it makes sense that such mapping can be reduced to a simpler scalar-vector multiplication $\lambda \textbf{x}$.
+
+If you recall our discussion about elementary matrices, you may see a simple way to make the $\textit{A}\textbf{x} = \lambda \textbf{x}$ more intuitive. Elementary matrices allow us to encode row and column operations on a matrix. Scalar multiplication, can be represented as by multiplying either the rows or columns of the identity matrix by the desired factor. For instance, for $\lambda = 2$:
+
+$$
+2
+\begin{bmatrix}
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 1
+\end{bmatrix} =
+\begin{bmatrix}
+2 & 0 & 0 \\
+0 & 2 & 0 \\
+0 & 0 & 2
+\end{bmatrix}
+$$
+
+This allow us to rewrite as $\lambda \textit{I}\textbf{x}$, and to maintain the matrix-vector multiplication form as:
+
+$$
+\textit{A}\textbf{x} = \lambda \textit{I}\textbf{x}
+$$
+
+We can go further, and rearange our expression to:
+
+$$
+\textit{A}\textbf{x} -\lambda \textit{I}\textbf{x} = 0
+$$
+
+And to factor our $\textbf{x}$ to get:
+
+$$
+(\textit{A} -\lambda \textit{I})\textbf{x} = 0
+$$
+
+The first part of our new expression, $(\textit{A} -\lambda \textit{I})$, will yield a matrix, meaning that now we have matrix-vector multiplication. In particular, we want a non-zero vector $\textbf{x}$ that when multiplied by $(\textit{A} -\lambda \textit{I})$ yields $0$. The only way to achieve this is when the scaling factor associated with $(\textit{A} -\lambda \textit{I})$ is $0$ as well. Here is when **determinants** come into play. Recall that the determinant of a matrix represents the scaling factor of such mapping, which in this specific case, happens to be the *eigenvalue* of the matrix. Consequently, we want: 
+
+$$
+\textit{det}(\textit{A} -\lambda \textit{I}) = 0
+$$
+
+Since $\textit{A}$ and $\textit{I}$ are fixed, in practice, we want to find a value of $\lambda$ that will yield a $0$ determinant of the matrix. Any matrix with a determinant of $0$ will be *singular*. This time, we want the matrix to be singular, as we are trying to solve a problem with three unknowns and two equations, therefore, it is the only way to solve it. 
+
+By finding a value for $\lambda$ that makes the determinat $0$, we are effectively making the equality $(\textit{A} -\lambda \textit{I})\textbf{x} = 0$ true. 
+
+Let's do an example to make these ideas more concrete. Consider the following matrix: 
+
+$$
+\begin{bmatrix}
+4 & 2 \\
+1 & 3
+\end{bmatrix}
+$$
+
+Let's first multiply $\textit{A} -\lambda \textit{I}$ to get a single matrix: 
+
+$$
+\begin{bmatrix}
+4 & 2 \\
+1 & 3
+\end{bmatrix} -
+\lambda 
+\begin{bmatrix}
+1 & 0 \\
+0 & 1
+\end{bmatrix}
+= 
+\begin{bmatrix}
+4 & 2 \\
+1 & 3
+\end{bmatrix} -
+\begin{bmatrix}
+\lambda  & 0 \\
+0 & \lambda 
+\end{bmatrix}
+=
+\begin{bmatrix}
+4 - \lambda & 2 \\
+1 & 3 - \lambda
+\end{bmatrix} 
+$$
+
+We begin by computing the determinant as:
+
+$$\textit{det (A)} = 
+\begin{vmatrix}
+a & b \\
+c & d
+\end{vmatrix} =
+(ad) - (bc)
+$$
+
+Which yield the following polynomial:
+
+$$
+\begin{vmatrix}
+4 - \lambda & 2 \\
+1 & 3 - \lambda
+\end{vmatrix} =
+(4 - \lambda) (3 - \lambda) - 2 \times 1
+$$
+
+That we solve as any other quadratic polynomial, which receives the special name of **characteristc polynomial**. When we equate the characteristic polynomial to $0$, we call such expression the **characteristic equation**. The roots of the characteristic equation, are the eigenvalues of the matrix: 
+
+$$
+(4 - \lambda) (3 - \lambda) - 2 \times 1 = 
+12 - 4\lambda - 3\lambda + \lambda^2 -3 = 
+10 - 7\lambda + \lambda^2 
+$$
+
+Wich can be factorized as: 
+
+$$
+(2- \lambda) (5 - \lambda)
+$$
+
+There you go: we obtain **eigenvalues $\lambda_1 = 2$, and $\lambda_2 = 5$.** this simply means that $\textit{A}\textbf{x} = \lambda \textbf{x}$ can be solved for eigenvalues equal to $2$ and $5$, assuming non-zero eigenvectors.
+
+Once we find the eigenvalues, we can compute the eigenvector for each of them. Let's start with $\lambda_1 = 2$:
+
+$$
+\begin{bmatrix}
+4 - \lambda & 2 \\
+1  & 3 - \lambda 
+\end{bmatrix}
+\begin{bmatrix}
+x_1 \\
+x_2 
+\end{bmatrix} =
+\begin{bmatrix}
+4 - 2 & 2 \\
+1  & 3 - 2 
+\end{bmatrix}
+\begin{bmatrix}
+x_1 \\
+x_2 
+\end{bmatrix} =
+\begin{bmatrix}
+2 & 2 \\
+1 & 1 
+\end{bmatrix}
+\begin{bmatrix}
+x_1 \\
+x_2 
+\end{bmatrix} = 0
+$$
+
+Since the first and second column are identical, we obtain that the solution for the system is pair of such that $\textbf{x}_1 = - \textbf{x}_2$, for instance: 
+
+$$ \textit{E}_{\lambda=2}= 
+\begin{bmatrix}
+-1 \\
+1
+\end{bmatrix}
+$$
+
+Such vector correspond to the **eigenspace** for the eigenvalue $\lambda = 2$. An eigenspace denotes all the vectors that correspond to a given eigenvalue, which in this case is the span of $\textit{E}_{\lambda=2}$.
+
+Now let's evaluate for $\lambda = 5$:
+
+$$
+\begin{bmatrix}
+4 - \lambda & 2 \\
+1  & 3 - \lambda
+\end{bmatrix}
+\begin{bmatrix}
+x_1 \\
+x_2 
+\end{bmatrix} =
+\begin{bmatrix}
+4 - 5 & 2 \\
+1  & 3 - 5 
+\end{bmatrix}
+\begin{bmatrix}
+x_1 \\
+x_2 
+\end{bmatrix} =
+\begin{bmatrix}
+-1 & 2 \\
+1 & -2 
+\end{bmatrix}
+\begin{bmatrix}
+x_1 \\
+x_2 
+\end{bmatrix}
+= 0
+$$
+
+Since the first column is just $-2$ times the second, the solution for the system will be any pair such that $2\textbf{x}_1 = \textbf{x}_2$, i.e.: 
+
+$$
+\textit{E}_{\lambda=5}
+\begin{bmatrix}
+2 \\
+1
+\end{bmatrix}
+$$
+
+With the span of $\textit{E}_{\lambda=5}$ as the eigenspace for the eigenvalue $\lambda = 5$. 
+
+As usual, we can find the eigenvectors and eigenvalues of a matrix with `NumPy`. Let's check our computation:
+
+
+```python
+A = np.array([[4, 2],
+              [1, 3]])
+
+values, vectors = np.linalg.eig(A)
+```
+
+
+```python
+print(f'Eigenvalues of A:\n{values}\n')
+print(f'Eigenvectors of A:\n{np.round(vectors,3)}')
+```
+
+    Eigenvalues of A:
+    [5. 2.]
+    
+    Eigenvectors of A:
+    [[ 0.894 -0.707]
+     [ 0.447  0.707]]
+
+
+The eigenvalues are effectively $5$ and $2$. The eigenvectors (aside rounding error), match exactly what we found. For $\lambda=5$, $2\textbf{x}_1 = \textbf{x}_1$, and for $\lambda=2$ that $\textbf{x}_1 = - \textbf{x}_2$.
+
+Not all matrices will have eigenvalues and eigenvectors in $\mathbb{R}$. Recall that we said that eigenvalues essentially indicate scaling, whereas eigenvectors indicate the vectors that remain unchanged under a linear mapping. It follows that if a linear transformation does not stretch vectors and rotates all of them, then no eigenvectors and eigenvalues should be found. An example of this is a rotation matrix:
+
+$$
+\begin{bmatrix}
+0 & -1 \\
+1 & 0
+\end{bmatrix}
+$$
+
+Let's compute its eigenvectors and eigenvalues in `NumPy`:
+
+
+```python
+B = np.array([[0, -1],
+              [1, 0]])
+
+values, vectors = np.linalg.eig(B)
+```
+
+
+```python
+print(f'B Eigenvalues:\n{values}\n')
+print(f'B Eigenvectors:\n{vectors}\n')
+```
+
+    B Eigenvalues:
+    [0.+1.j 0.-1.j]
+    
+    B Eigenvectors:
+    [[0.70710678+0.j         0.70710678-0.j        ]
+     [0.        -0.70710678j 0.        +0.70710678j]]
+    
+
+
+The ***+0.j*** indicates the solution yield imaginary numbers, meaning that there are not eigenvectors or eigenvalues for the matrix $\textit{B} \in \mathbb{R}$
+
+### Trace and determinant with eigenvalues
+
+The **trace** of a matrix is the *sum of its diagonal elements*. Formally, we define the trace for a square matrix $\textit{A} \in \mathbb{R}^{n \times n}$ as:
+
+$$
+tr(\textit{A}) := \sum_{i=1}^n = a_{ii}
+$$
+
+There is something very special about eigenvalues: *its sum equals the trace of the matrix*. Recall the matrix $\textit{A}$ from the previous section: 
+
+$$
+\begin{bmatrix}
+4 & 2 \\
+1 & 3
+\end{bmatrix}
+$$
+
+Which has a trace equal to $4 + 3 = 7$. We found that their eigenvalues were $\lambda_1 = 2$ and $\lambda_2 = 5$, which also add up to $7$. 
+
+Here is another curious fact about eigenvalues: *its product equals to the determinant of the matrix*. The determinant of $\textit{A}$ equals to $(4 \times 3) - (2 \times 1) = 10$. The product of the eigenvalues is also $10$.
+
+These two properties hold only when we have a full set of eigenvalues, this is when we have as many eigenvalues as dimensions in the matrix. 
+
+### Eigendecomposition
+
+In previous sections, we associated LU decomposition with Gaussian Elimination and QR decomposition with Gram-Schmidt Orthogonalization. Similarly, we can associate the Eigenvalue algorithm to find the eigenvalues and eigenvectors of a matrix, wit the **Eigendecomposition** or **Eigenvalue Decomposition**.
+
+We learned that we can find the eigenvalues and eigenvectors of a square matrix (assuming they exist) with:
+
+$$
+(\textit{A} - \lambda \textit{I})\textbf{x} = 0
+$$
+
+Process that entail to first solve the characteristic equation for the polynomial, and then evaluate each eigenvalue to find the corresponding eigenvector. The question now is how to express such process as a single matrix-matrix operation. Let's consider the following transformation matrix: 
+
+$$\textit{T}=
+\begin{bmatrix}
+5 & 3 & 0 \\
+2 & 6 & 0 \\
+4 & -2 & 2
+\end{bmatrix}
+$$
+
+Let's begin by computing the eigenvalues and eigenvectors with `NumPy`:
+
+
+```python
+A = np.array([[5,  3, 0],
+              [2,  6, 0], 
+              [4,  -2, 2]])
+```
+
+
+```python
+eigenvalues, eigenvectors = np.linalg.eig(A)
+
+print(f'B Eigenvalues:\n{eigenvalues}\n')
+print(f'B Eigenvectors:\n{eigenvectors}\n')
+```
+
+    B Eigenvalues:
+    [2. 8. 3.]
+    
+    B Eigenvectors:
+    [[ 0.          0.6882472   0.18291323]
+     [ 0.          0.6882472  -0.12194215]
+     [ 1.          0.22941573  0.97553722]]
+    
+
+
+We obtained a vector of eigenvalues and a 
+Now, we know that the following identity must be true for scalar-matrix multiplication:
+
+$$
+\textit{A}\textbf{x} = \lambda \textit{I} \textbf{x} 
+$$
+
+Since we want to multiply a matrix of eigenvalues by the matrix of eigenvectors, we have to be careful about selecting the order of the multiplication. Recall that matrix-matrix multiplication *is not commutative*, meaning that the multiplication order matters. Before this wasn't a problem, because scalar-matrix multiplication is commutative. What we want, is in operation such that eigenvalues scale eigenvectors. For this, we will put the eigenvectors in a matrix $\textit{X}$, the result of $\lambda \textit{I}$ in a matrix $\Lambda$, and multiply $\textit{X}$ by $\Lambda$ from the right side as:
+
+$$
+\textit{A}\textbf{X} = \textbf{X} \Lambda
+$$
+
+Let's do this with `NumPy`
+
+
+```python
+X = eigenvectors 
+I = np.identity(3)
+L = I * eigenvalues
+```
+
+
+```python
+print(f'Left-side of the equation AX:\n{A @ X}\n')
+print(f'Right-side of the equation XL:\n{X @ L}\n')
+```
+
+    Left-side of the equation AX:
+    [[ 0.          5.50597761  0.54873968]
+     [ 0.          5.50597761 -0.36582646]
+     [ 2.          1.83532587  2.92661165]]
+    
+    Right-side of the equation XL:
+    [[ 0.          5.50597761  0.54873968]
+     [ 0.          5.50597761 -0.36582646]
+     [ 2.          1.83532587  2.92661165]]
+    
+
+
+Verify equality
+
+
+```python
+print(f'Entry-wise comparison: {np.allclose(A @ X, X @ L)}')
+```
+
+    Entry-wise comparison: True
+
+
+A a side note, it is not a good idea to compare `NumPy` arrays with the equality operator, as rounding error and the finite internal bit representation may yield `False` when values are technically equal. For instance: 
+
+
+```python
+(A @ X == X @ L)
+```
+
+
+
+
+    array([[ True,  True, False],
+           [ True,  True, False],
+           [ True,  True,  True]])
+
+
+
+We still have one issue to address to complete the Eigendecomposition of $\textit{A}$: to get rid of $\textit{X}$ on the left side of the equation. A first thought is simply to multiply by the $\textit{X}^{-1}$ to cancel $\textit{X}$ on both sides. This won't work because on the left side of the equation, $\textit{X}$ is multiplying from the right of $\textit{A}$, whereas on the right side of the equation, $\textit{X}$ is multiplying from the left of $\Lambda$. Yet, we still can get take the inverse to eliminate only from the left side of the equation and obtain:
+
+$$
+\textit{A} = \textit{X} \Lambda \textit{X}^{-1} 
+$$
+
+Lo and behold, **we have found the expression for the Eigendecomposition.** 
+
+Let's confirm this works:
+
+
+```python
+X_inv = np.linalg.inv(X)
+
+print(f'Original matrix A:\n{A}\n')
+print(f'Reconstruction of A with Eigen Decomposition of A:\n{X @ L @ X_inv}')
+```
+
+    Original matrix A:
+    [[ 5  3  0]
+     [ 2  6  0]
+     [ 4 -2  2]]
+    
+    Reconstruction of A with Eigen Decomposition of A:
+    [[ 5.  3.  0.]
+     [ 2.  6.  0.]
+     [ 4. -2.  2.]]
+
+
+### Eigenbasis are a good a basis
+
+There are cases when a transformation or mapping $\textit{T}$ has associated a full set of eigenvectors, i.e., as many eigenvectors as dimensions in $\textit{T}$. We call this set of eigenvectors an **eigenbasis**.   
+
+When approaching linear algebra problems, selecting a "good" basis for the matrix or vector space can significantly simplify computation, and also reveals several facts about the matrix that would be otherwise hard to see. Eigenbasis, are an example of a basis that would make our life easier in several situations.
+
+From the previous section, we learned that the Eigenvalue Decomposition is defined as:
+
+$$
+\textit{A} := \textit{X} \Lambda \textit{X}^{-1}
+$$
+
+Conceptually, a first lesson is that transformations, like $\textit{A}$, have two main components: a matrix $\Lambda$ that stretch, shrink, or flip, the vectors, and $\textit{X}$, which represent the "axes" around which the transformation occurs.  
+
+Eigenbasis also make computing the power of a matrix easy. Consider the case of $\textit{A}^2$:
+
+$$
+\textit{A}^2 = \textit{X} \Lambda \textit{X}^{-1} \textit{X} \Lambda \textit{X}^{-1}
+$$
+
+Since $\textit{X}^{-1} \textit{X}$ equals the identity, we obtain:
+
+$$
+\textit{A}^2 = \textit{X} \Lambda^2 \textit{X}^{-1}
+$$
+
+The pattern:
+
+$$
+\textit{A}^n = \textit{X} \Lambda^n \textit{X}^{-1}
+$$
+
+Generalizes to any power. For powers of $n=2$ or $n=3$ such approach may not be the best, as computing the power directly on $\textit{A}$ may be easier. But, when dealing with large matrices with powers of thousands or millions, this approach is far superior. Further, it even works for the inverse:  
+
+$$
+\textit{A}^{-1} = \textit{X} \Lambda^{-1} \textit{X}^{-1}
+$$
+
+We can see this is true by testing that $\textit{A} \textit{A}^{-1}$ equals the identity:
+
+$$
+\textit{A} \textit{A}^{-1} = \textit{X} \Lambda \textit{X}^{-1} \textit{X} \Lambda^{-1} \textit{X}^{-1}
+$$
+
+Pay attention to what happens now: $\textit{X}^{-1} \textit{X}= \textit{I}$, which yields:
+
+$$
+\textit{A} \textit{A}^{-1} = \textit{X} \Lambda \textit{I} \Lambda^{-1} \textit{X}^{-1} = \textit{X} \Lambda \Lambda^{-1} \textit{X}^{-1}
+$$
+
+Now, $\Lambda \Lambda^{-1} $, also yields the identity:
+
+$$
+\textit{A} \textit{A}^{-1} = \textit{X} \textit{I} \textit{X}^{-1} = \textit{X} \textit{X}^{-1}
+$$
+
+Finally, $\textit{X} \textit{X}^{-1}$, also yields the identity:
+
+$$
+\textit{A} \textit{A}^{-1} = \textit{I}
+$$
+
+### Geometric interpretation of the Eigendecomposition
+
+We said that Eigenbasis is a good basis as it allows us to perform computations more easily and to better understand the nature of linear mappings or transformations. The geometric interpretation of Eigendecomposition further reinforces that point. In concrete, the Eigendecomposition elements can be interpreted as follow: 
+
+1. $\textit{X}^{-1}$ change basis (rotation) from the standard basis into the eigenbasis
+2. $\Lambda$ scale (stretch, shrinks, or flip) the corresponding eigenvectors
+3. $\textit{X}$ change of basis (rotation) from the eigenbasis basis onto the original standard basis orientation
+
+Fig 21. illustrate the action of $\textit{X}^{-1}$, $\Lambda$, and $\textit{X}$ in a pair of vectors in the standard basis. 
+
+**Fig. 21: Eigendecomposition**
+
+
+<img src="/assets/post-10/b-eigendecomposition.svg">
+
+
+### The problem with Eigendecomposition
+
+The problem is simple: **Eigendecomposition can only be performed on square matrices, and sometimes the decomposition does not even exist**. This is very limiting from an applied perspective, as most practical problems involve non-square matrices. 
+
+Ideally, we would like to have a more general decomposition, that allows for non-square matrices and that exist for all matrices. In the next section we introduce the **Singular Value Decomposition**, which takes care of these issues. 
+
+## Singular Value Decomposition
+
+Singular Value Decomposition (SVD) is one the most relevant decomposition in applied settings, as it goes beyond the limitations of Eigendecomposition. Specifically, SVD can be performed for **non-squared matrices and singular matrices (i.e., matrices without a full set of eigenvectors)**. SVD can be used for the same applications that Eigendecomposition (e.g., low-rank approximations) plus the cases for which Eigendecomposition does not work. 
+
+### Singular Value Decomposition Theorem
+
+Since we reviewed Eigendecomposition already, understanding SVD becomes easier. The SVD theorem states that any rectangular matrix $\textit{A} \in \mathbb{R}^{m \times n}$ can be decomposed as the product of an orthogonal matrix $\textit{U} \in \mathbb{R}^{m \times m}$, a diagonal matrix $\Sigma \in \mathbb{R}^{m \times m}$, and another orthogonal matrix $\textit{X}^{-1} \in \mathbb{R}^{n \times n}$:
+
+$$
+\textit{A} := \textit{U} \Sigma \textit{X}^{-1}
+$$
+
+Another common notation is: $\textit{A} := \textit{U} \Sigma \textit{V}^{T}$. Here I'm using $\textit{X}^{-1}$ just to denote that the right orthogonal matrix is the same as in the Eigenvalue decomposition. Also notice that the inverse of an square orthogonal matrix is $\textit{X}^{-1} = \textit{X}^{T}$. 
+
+The *Singular Values* are the non-negative values along the diagonal of $\Sigma$, which play the same role as eigenvalues in Eigendecomposition. You may even find some authors call them eigenvalues as well. Since $\Sigma$ is a rectangular matrix of the shape as $\textit{A}$, the diagonal of the matrix which contains the singular values will necessarily define a square submatrix within $\Sigma$. There are two situations to pay attention to: (1) when $m > n$, i.e., more rows than columns, and (2) when $m < n$, i.e., more columns than rows. 
+
+For the first case, $m > n$, we will have zero-padding at the bottom of $\Sigma$ as:
+
+$$
+\Sigma =
+\begin{bmatrix}
+\sigma_1 & 0 & 0 \\
+0 & \ddots & 0 \\
+0 & 0 & \sigma_n \\
+0 & \cdots & 0 \\
+\vdots & \ddots & \vdots \\
+0 & \cdots & 0 \\
+\end{bmatrix}
+$$
+
+For the second case, $m < n$, we will have zero-padding at the right of $\Sigma$ as:
+
+$$
+\Sigma =
+\begin{bmatrix}
+\sigma_1 & 0 & 0 & 0 & \cdots & 0 \\
+0 & \ddots & 0 & \vdots & \ddots & \vdots \\
+0 & 0 & \sigma_n & 0 & \cdots & 0 \\
+\end{bmatrix}
+$$
+
+Take the case of $\textit{A}^{3 \times 2}$, the SVD is defined as: 
+
+$$
+\textit{A} = \textit{U}\Sigma\textit{V}^T= 
+\begin{bmatrix}
+a_{11} & a_{12} \\
+a_{21} & a_{22} \\
+a_{31} & a_{32} 
+\end{bmatrix} =
+\begin{bmatrix}
+u_{11} & u_{12} & u_{13} \\
+u_{21} & u_{22} & u_{23} \\
+u_{31} & u_{32} & u_{33} 
+\end{bmatrix} 
+\begin{bmatrix}
+\sigma_{11} & 0 \\
+0 & \sigma_{22} \\
+0 & 0
+\end{bmatrix}
+\begin{bmatrix}
+v_{11} & v_{12}  \\
+v_{21} & v_{22}  \\
+\end{bmatrix}
+$$
+
+Now let's evaluate the opposite case, $\textit{A}^{2 \times 3}$, the SVD is defined as: 
+
+$$
+\textit{A} = \textit{U}\Sigma\textit{V}^T= 
+\begin{bmatrix}
+a_{11} & a_{12} & a_{13}  \\
+a_{21} & a_{22} & a_{23} 
+\end{bmatrix} =
+\begin{bmatrix}
+u_{11} & u_{12}  \\
+u_{21} & u_{22}  \\
+\end{bmatrix}
+\begin{bmatrix}
+\sigma_{11} & 0 & 0\\
+0 & \sigma_{22} & 0 
+\end{bmatrix}
+\begin{bmatrix}
+v_{11} & v_{12} & v_{13} \\
+v_{21} & v_{22} & v_{23} \\
+v_{31} & v_{32} & v_{33} 
+\end{bmatrix}
+$$
+
+### Singular Value Decomposition computation
+
+SVD computation leads to messy calculations in most cases, so this time I'll just use `NumPy`. We will compute three cases: a wide matrix $\textit{A}^{2 \times 3}$, a tall matrix $\textit{A}^{3 \times 2}$, and a square matrix $\textit{A}^{3 \times 3}$ with a pair of linearly dependent vectors (i.e., a "defective" matrix, or singular, or not full rank, etc.).
+
+
+```python
+# 2 x 3 matrix
+A_wide = np.array([[2, 1, 0],
+                   [-3, 0, 1]])
+
+# 3 x 2 matrix
+A_tall = np.array([[2, 1],
+                   [-3, 0],
+                   [0, 2]])
+
+# 3 x 3 matrix: col 3 equals 2 x col 1
+A_square = np.array([[2, 1, 4],
+                     [-3, 0, -6],
+                     [1, 2, 2]])
+```
+
+
+```python
+U1, S1, V_T1 = np.linalg.svd(A_wide)
+U2, S2, V_T2 = np.linalg.svd(A_tall)
+U3, S3, V_T3 = np.linalg.svd(A_square)
+
+```
+
+
+```python
+print(f'Left orthogonal matrix wide A:\n{np.round(U1, 2)}\n')
+print(f'Singular values diagonal matrix wide A:\n{np.round(S1, 2)}\n')
+print(f'Right orthogonal matrix wide A:\n{np.round(V_T1, 2)}')
+```
+
+    Left orthogonal matrix wide A:
+    [[-0.55  0.83]
+     [ 0.83  0.55]]
+    
+    Singular values diagonal matrix wide A:
+    [3.74 1.  ]
+    
+    Right orthogonal matrix wide A:
+    [[-0.96 -0.15  0.22]
+     [-0.    0.83  0.55]
+     [ 0.27 -0.53  0.8 ]]
+
+
+As expected, we obtain a $n \times n$ orthogonal matrix on the left, and a $m \times m$ orthogonal matrix on the right. `NumPy` only returns the singular values along the diagonal instead of the $2 \times 3$ matrix, yet it makes no difference regarding the values of the SVD.   
+
+
+```python
+print(f'Left orthogonal matrix for tall A:\n{np.round(U2, 2)}\n')
+print(f'Singular values diagonal matrix for tall A:\n{np.round(S2, 2)}\n')
+print(f'Right orthogonal matrix for tall A:\n{np.round(V_T2, 2)}')
+```
+
+    Left orthogonal matrix for tall A:
+    [[-0.59 -0.24 -0.77]
+     [ 0.8  -0.32 -0.51]
+     [-0.13 -0.91  0.38]]
+    
+    Singular values diagonal matrix for tall A:
+    [3.67 2.13]
+    
+    Right orthogonal matrix for tall A:
+    [[-0.97 -0.23]
+     [ 0.23 -0.97]]
+
+
+As expected, we obtain a $m \times m$ orthogonal matrix on the left and a $n \times n$ orthogonal matrix on the right. Notice that `NumPy` returns the singular values in descending order of magnitude. This is a convention you'll find in the literature frequently. 
+
+
+```python
+print(f'Left orthogonal matrix for square A:\n{np.round(U3, 2)}\n')
+print(f'Singular values diagonal matrix for square A:\n{np.round(S3, 2)}\n')
+print(f'Right orthogonal matrix for square A:\n{np.round(V_T3, 2)}')
+```
+
+    Left orthogonal matrix for square A:
+    [[-0.54 -0.2  -0.82]
+     [ 0.79 -0.46 -0.41]
+     [-0.29 -0.86  0.41]]
+    
+    Singular values diagonal matrix for square A:
+    [8.44 1.95 0.  ]
+    
+    Right orthogonal matrix for square A:
+    [[-0.44 -0.13 -0.89]
+     [ 0.06 -0.99  0.12]
+     [ 0.89  0.   -0.45]]
+
+
+Although column three is just two times column one (i.e., linearly dependent), we obtain the SVD for $\textit{A}$. Notice that the third singular value equals $0$, which is a reflection of the fact that the third column just contains redundant information.
+
+### Geometric interpretation of the Singular Value Decomposition
+
+As with Eigendecomposition, SVD has a nice geometric interpretation as a sequence of linear mappings or transformations. Concretely:
+
+1. $\textit{V}^T$ change basis (rotation) from the standard basis into a set of orthogonal basis
+2. $\Sigma$ scale (stretch, shrinks, or flip) the corresponding orthogonal basis
+3. $\textit{U}$ change of basis (rotation) from the new orthogonal basis onto some other orientation, i.e., not necessarily where we started.  
+
+The key difference with Eigendecomposition is in $\textit{U}$: instead of going back to the standard basis, $\textit{U}$ performs a change of basis onto another direction. 
+
+Fig 22. illustrate the effect of $\textit{A}^{3 \times 2}$, i.e., $\textit{V}^T$, $\Sigma$, and $\textit{U}$, in a pair of vectors in the standard basis. The fact that the right orthogonal matrix has $3$ column vectors generates the third dimension which is orthogonal to the ellipse surface. 
+
+**Fig. 22: Singular Value Decomposition**
+
+
+<img src="/assets/post-10/b-svd.svg">
+
+
+### Singular Value Decomposition vs Eigendecomposition
+
+The SVD and Eigendecomposition are very similar, so it's easy to get confused about how they differ. Here is a list of the most important ways on which both are different:
+
+1. The SVD decomposition exist for any rectangular matrix $\in \mathbb{R}^{m \times n}$ , while the Eigendecomposition exist only for square matrices $\in \mathbb{R}^{n \times n}$. 
+2. The SVD decomposition exists even if the matrix $\textit{A}$ is defective, singular, or not full rank, whereas the Eigendecomposition does not have a solution in $\mathbb{R}$ in such a case.
+3. Eigenvectors $\textit{X}$ are orthogonal only for *symmetric matrices*, whereas the vectors in the $\textit{U}$ and $\textit{V}$ are orthonormal. Hence, $\textit{X}$ represents a rotation only for symmetric matrices, whereas $\textit{U}$ and $\textit{V}$ are always rotations. 
+4. In the Eigendecomposition, $\textit{X}$ and $\textit{X}^T$ are the inverse fo each other, whereas $\textit{U}$ and $\textit{V}$ in the SVD are not. 
+5. The singular values in $\Sigma$ are always real and positive, which is not necessarily the case for $\Lambda$ in the Eigendecomposition.
+6. The SVD change basis in both the domain and codomain. The Eigendecomposition change basis in the same vector space. 
+7. For symmetric matrices, $\textit{A} \in \mathbb{R}^{n \times n}$, the SVD and Eigendecomposition yield the same results. 
+
+## Matrix Approximation
+
+In machine learning applications, it is common to find matrices with thousands, hundreds of thousands, and even millions of rows and columns. Although the Eigendecomposition and Singular Value Decomposition make matrix factorization efficient to compute, such large matrices can consume an enormous amount of time and computational resources. One common way to "get around" these issues is to utilize **low-rank approximations** of the original matrices. By low-rank we mean utilizing a subset of orthogonal vectors instead of the full set of orthogonal vectors, such that we can obtain a "reasonably" good approximation of the original matrix. 
+
+There are many well-known and widely use low-approximation procedures in machine learning, like Principal Component Analysis, Factor Analysis, and Latent Semantic analysis, and dimensionality reduction techniques more generally. Low-rank approximations are possible because in most instances, a small subset of vectors contains most of the information in the matrix, which is a way to say the most data points can be computed as linear combinations of a subset of orthogonal vectors. 
+
+### Best rank-k approximation with SVD
+
+So far we have represented the SVD as the product of three matrices, $\textit{U}$, $\Sigma$, and $\textit{V}^T$. We can represent this same computation as a the sum of the matching columns of each of these components as:
+
+$$
+\textit{A} := \sum_{i=1}^{r} \sigma_i \textbf{u}_i \textbf{u}_i^T 
+$$
+
+Notice that each iteration of $\sum_{i=1}^{r} \textbf{u}_i \textbf{u}_i^T $ will generate a matrix $\sigma_i \textit{A}_i$, which then can be multiplied by $\sigma_i$. In other words, the above expression also equals:
+
+$$
+\sum_{i=1}^r \sigma_i \textit{A}_i
+$$
+
+In matrix notation, we can express the same idea as:
+
+$$
+\textit{A}_k = \textit{U}_k \Sigma_k \textit{V}_k^T 
+$$
+
+Now, we can approximate $\textit{A}$ by taking the sum over $k$ values instead of $r$ values. For instance, for a square matrix with $r=100$ orthogonal vectors, we can compute an approximation with the $k=5$ orthogonal vectors as:
+
+$$
+\hat{\textit{A}} := \sum_{i=1}^{k=5} \sigma_i \textbf{u}_i \textbf{u}_i^T = \sum_{i=1}^k \sigma_i \textit{A}_i
+$$
+
+In practice, this means that we take $k=5$ orthogonal vectors from $\textit{U}$ and $\textit{V}^T$, times $5$ singular values, which requires considerably less computation and memory than the $100 \times 100$ matrix. We call this the **best low-rank approximation** simply because it takes the $5$ largest singular values, which account for most of the information. Nonetheless, we still a precise way to estimate how good is our estimation, for which we need to compute the norm for $\hat{\textit{A}}$ and $\textit{A}$, and how they differ.
+
+### Best low-rank approximation as a minimization problem
+
+In the previous section, we mentioned we need to compute some norm for $\hat{\textit{A}}$ and $\textit{A}$, and then compare. This can be conceptualized as a error minimization problem, where we search for the smallest distance between $\textit{A}$ and the low-rank approximation $\hat{\textit{A}}$. For instance, we can use the Frobenius and compute the distance between $\hat{\textit{A}}$ and $\textit{A}$ as:
+
+$$
+\Vert \textit{A} - \hat{\textit{A}} \Vert_F 
+$$
+
+Alternatively, we can compute the explained variance for the decomposition, where the highest the variance the better the approximation, ranging from $0$ to $1$. We can perform the SVD approximation with `NumPy` and `sklearn` as:
+
+
+```python
+from sklearn.decomposition import TruncatedSVD
+
+A = np.random.rand(100,100)
+```
+
+
+```python
+SVD1 = TruncatedSVD(n_components=1, n_iter=7, random_state=1)
+SVD5 = TruncatedSVD(n_components=5, n_iter=7, random_state=1)
+SVD10 = TruncatedSVD(n_components=10, n_iter=7, random_state=1)
+
+SVD1.fit(A)
+SVD5.fit(A)
+SVD10.fit(A)
+```
+
+
+
+
+    TruncatedSVD(algorithm='randomized', n_components=10, n_iter=7, random_state=1,
+                 tol=0.0)
+
+
+
+
+```python
+print('Explained variance by component:\n')
+print(f'SVD approximation with 1 component:\n{np.round(SVD1.explained_variance_ratio_, 2)}\n')
+print(f'SVD approximation with 5 components:\n{np.round(SVD5.explained_variance_ratio_, 2)}\n')
+print(f'SVD approximation with 10 component:\n{np.round(SVD10.explained_variance_ratio_,2)}')
+```
+
+    Explained variance by component:
+    
+    SVD approximation with 1 component:
+    [0.01]
+    
+    SVD approximation with 5 components:
+    [0.01 0.04 0.03 0.03 0.03]
+    
+    SVD approximation with 10 component:
+    [0.01 0.04 0.03 0.03 0.03 0.03 0.03 0.03 0.03 0.03]
+
+
+
+```python
+print('Singular values for each approximation:\n')
+print(f'SVD approximation with 1 component:\n{np.round(SVD1.singular_values_, 2)}\n')
+print(f'SVD approximation with 5 components:\n{np.round(SVD5.singular_values_, 2)}\n')
+print(f'SVD approximation with 10 component:\n{np.round(SVD10.singular_values_,2)}')
+```
+
+    Singular values for each approximation:
+    
+    SVD approximation with 1 component:
+    [50.42]
+    
+    SVD approximation with 5 components:
+    [50.42  5.47  5.26  5.16  5.08]
+    
+    SVD approximation with 10 component:
+    [50.42  5.47  5.26  5.16  5.08  5.06  4.99  4.88  4.72  4.63]
+
+
+
+```python
+print('Total explained variance by each approximation:\n')
+print('Singular values for each approximation:\n')
+print(f'SVD approximation with 1 component:\n{np.round(SVD1.explained_variance_ratio_.sum(), 2)}\n')
+print(f'SVD approximation with 5 components:\n{np.round(SVD5.explained_variance_ratio_.sum(), 2)}\n')
+print(f'SVD approximation with 10 component:\n{np.round(SVD10.explained_variance_ratio_.sum(),2)}')
+```
+
+    Total explained variance by each approximation:
+    
+    Singular values for each approximation:
+    
+    SVD approximation with 1 component:
+    0.01
+    
+    SVD approximation with 5 components:
+    0.15
+    
+    SVD approximation with 10 component:
+    0.29
+
+
+As expected, the more components (i.e., the highest the rank of the approximation), the highest the explained variance. 
+
+We can compute and compare the norms by first capturing each matrix of the SVD as recovering $\hat{\textit{A}}$, then compute the Frobenius norm of the difference between $\textit{A}$ and $\hat{\textit{A}}$.
+
+
+```python
+from sklearn.utils.extmath import randomized_svd
+
+U, S, V_T = randomized_svd(A, n_components=5, n_iter=10, random_state=5)
+A5 = (U * S) @ V_T
+```
+
+
+```python
+print(f"Norm of the difference between A and rank 5 approximation:\n{np.round(np.linalg.norm(A - A5, 'fro'), 2)}")
+```
+
+    Norm of the difference between A and rank 5 approximation:
+    26.32
+
+
+This number is not very informative in itself, so we usually utilize the explained variance as an indication of how good is the low-rank approximation.
+
+# Epilogue
+
+Linear algebra is an enormous and fascinating subject. These notes are just an introduction to the subject with machine learning in mind. I am no mathematician, and I have no formal mathematical training, yet, I greatly enjoyed writing this document. I have learned quite a lot by doing it and I hope it may help others that, like me, embark on the journey of acquiring a new skill by themselves, even when such effort may seem crazy to others. 
