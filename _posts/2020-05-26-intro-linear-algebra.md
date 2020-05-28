@@ -285,7 +285,7 @@ $$
 
 The simples way to see the effect of this definition of a function is with a chart. In **Fig. 1**, the left-pane shows a valid function, i.e., each value $\textit{f}(\textit{x})$ *maps* uniquely onto one value of $\textit{y}$. The right-pane is not a function, since each value $\textit{f}(\textit{x})$ *maps* onto multiple values of $\textit{y}$. 
 
-**Fig. 1: Geometric vectors**
+**Fig. 1: Functions**
 
 
 <img src="/assets/post-10/b-function.svg">
