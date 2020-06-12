@@ -1,5 +1,5 @@
 ---
-title: Introduction to Jupyter Notebooks: set-up, user-guide, and best practices
+title: Introduction to Jupyter Notebooks - set-up, user-guide, and best practices
 published: true
 mathjax: true
 ---
