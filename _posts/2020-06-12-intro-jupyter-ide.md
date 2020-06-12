@@ -4,6 +4,8 @@ published: true
 mathjax: true
 ---
 
+**Note: I working on a series of video-tutorials as companion for this tutorial. Currently videos I and II are done and embeeded in this document. The rest will be available soon**
+
 ## IDEs: Integrated Development Environments
 
 There are several ways in which we can interact with Python:
@@ -108,6 +110,8 @@ To create a Notebook click under "Notebook" in the Launcher, and select a Python
 
 It is important to rename the Notebook as JupyterLab will give an "Untitled.ipynb" name as default to all new Notebooks. 
 
+**Video I, reviewing contents until this point**
+
 <div class="embed-container">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/U5Hg1Anxy7g" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
@@ -161,6 +165,8 @@ A second Notebook tool to remember commands and methods is the "Contextual Help"
 To move cells around you can hover over the left-side of the cell, and click to drag and drop the cell in a new location. Although this is a nice feature, I strongly advise against it for reasons I will review later.
 
 To save changes made to your Notebook, you can click on "File" at the top bar menu and select "Save Notebook" or "Save All", or to simply use the `Ctrl` + `S` keyboard shortcut. Fortunately, JupyterLab routinely save your progress in the background so it can be recovered if your browser closes for any reason. 
+
+**Video II, reviewing contents until this point**
 
 <div class="embed-container">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/pQsDd0N2kNQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
