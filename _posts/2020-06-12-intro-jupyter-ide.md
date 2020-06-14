@@ -283,6 +283,11 @@ To actually use it, click on "Settings" in the top bar menu, then in "JupyterLab
 
 Or search for `jupyterlab_neon_theme` in the Extension Manager.
 
+**Video III for contents until this section**
+<div class="embed-container">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/lYFusU11RbY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
 ## Exporting Notebooks
 
 Notebooks have the `.ipynb` extension, which stands for interactive python notebook. However, Notebooks can be exported in a wide variety of formats:
