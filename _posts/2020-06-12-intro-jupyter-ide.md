@@ -4,7 +4,7 @@ published: true
 mathjax: true
 ---
 
-**Note: I working on a series of video-tutorials as companion for this tutorial. Currently videos I and II are done and embeeded in this document. The rest will be available soon**
+**Note: I working on a series of video-tutorials as companion for this tutorial. Currently videos I and II are done and embedded in this document. The rest will be available soon**
 
 ## IDEs: Integrated Development Environments
 
@@ -46,7 +46,7 @@ Fortunately, today we have access to Jupyter Notebooks for free, which is develo
 
 ## JupyterLab 
 
-[JupyterLab](https://github.com/jupyterlab/jupyterlab) is the next-generation interface for Jupyter Notebook. Essentially, they are en extension build on top the classic Jupyter Notebook, but with improved capabilities and features. I will use the JupyterLab interface for this mini-workshop, as it is the most up to date version of Project Jupyter, and is expected to fully replace the classic Jupyter Notebook in the short term. Project Jupyter developers advise the use of JupyterLab as they are investing they efforts on maintaining and developing this platform.
+[JupyterLab](https://github.com/jupyterlab/jupyterlab) is the next-generation interface for Jupyter Notebook. Essentially, they are an extension build on top the classic Jupyter Notebook, but with improved capabilities and features. I will use the JupyterLab interface for this mini-workshop, as it is the most up to date version of Project Jupyter, and is expected to fully replace the classic Jupyter Notebook in the short term. Project Jupyter developers advise the use of JupyterLab as they are investing they efforts on maintaining and developing this platform.
 
 Note that there some minor but important differences between the interface Jupyter Notebooks and JupyterLab, so you are advised to search for JupyterLab specific extensions and tutorials, since functionality may differ. 
 
@@ -323,14 +323,16 @@ I highly recommend to export Notebooks to share in HTML format as they may save 
 
 VSCode is a free and open-source general purpose multi-platform (i.e., Linux, Windows, and macOS compatible) text IDE developed by Microsoft. Nowadays is one of the most popular IDEs and text-editors among programmers and data scientist. 
 
-
-
 VSCode has recently incorporated the capacity to open `.ipybn` extension files, i.e., Notebooks, providing a Notebook-like interface. This is certainly a good alternative to try out if you are not fully comfortable with the web browser interface. I personally do not use it as I found out that rendering text, LaTeX formulas, and pictures is cleaner and easier in the browser interface.
-
 
 To install VSCode go to the [official website](https://code.visualstudio.com/) and follow the installation instructions for your system.
 
 [Here](https://code.visualstudio.com/docs/python/jupyter-support) is the official VSCode guide to run Jupyter Notebooks within VSCode.
+
+**Video for contents fot this section**
+<div class="embed-container">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/-jzEB34a0RE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
 
 ## Notebooks weaknesses
 
