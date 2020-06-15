@@ -5,7 +5,7 @@ mathjax: true
 ---
 
 **Notes**: 
-- This tutorial contains video-lessons at the end of each section**
+- This tutorial contains video-lessons at the end of each section
 - The Jupyter Notebook version can be found in my GitHub [here](https://github.com/pabloinsente/intro-sc-python/blob/master/notebooks/intro-jupyter-ide.ipynb)
 
 ## IDEs: Integrated Development Environments
