@@ -56,9 +56,9 @@ Note that there some minor but important differences between the interface Jupyt
 
 ### Installing JupyterLab
 
-Before installing JupyterLab, I am assuming you have a recent version of Python 3 installed. Any Python version greater than 3.6 should work. Utilizing a virtual environment it is also recommended to isolate yout JupyterLab installation.
+Before installing JupyterLab, I am assuming you have a recent version of Python 3 installed. Any Python version greater than 3.6 should work. Utilizing a virtual environment it is also recommended to isolate your JupyterLab installation.
 
- It is also good idea to update `pip` before installas by running:
+ It is also good idea to update `pip` before installing jupyterLab by running:
 
 ```bash
 python -m pip install --upgrade pip
@@ -74,7 +74,7 @@ pip3 install jupyterlab
 or as:
 
 ```bash
-python3 -m pip install SomePackage
+python3 -m pip install jupyterlab
 ```
 
 A second option is with `conda` 
