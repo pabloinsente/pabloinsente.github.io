@@ -110,7 +110,7 @@ To create a Notebook click under "Notebook" in the Launcher, and select a Python
 
 It is important to rename the Notebook as JupyterLab will give an "Untitled.ipynb" name as default to all new Notebooks. 
 
-**Video I, reviewing contents until this point**
+## Video I - Introduction and set-up
 
 <div class="embed-container">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/U5Hg1Anxy7g" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -166,7 +166,7 @@ To move cells around you can hover over the left-side of the cell, and click to 
 
 To save changes made to your Notebook, you can click on "File" at the top bar menu and select "Save Notebook" or "Save All", or to simply use the `Ctrl` + `S` keyboard shortcut. Fortunately, JupyterLab routinely save your progress in the background so it can be recovered if your browser closes for any reason. 
 
-**Video II, reviewing contents until this point**
+## Video II - Intercting with files and Notebooks
 
 <div class="embed-container">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/pQsDd0N2kNQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -283,7 +283,8 @@ To actually use it, click on "Settings" in the top bar menu, then in "JupyterLab
 
 Or search for `jupyterlab_neon_theme` in the Extension Manager.
 
-**Video III for contents until this section**
+## Video III - Kernel and Extensions
+
 <div class="embed-container">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/lYFusU11RbY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
@@ -329,7 +330,9 @@ To install VSCode go to the [official website](https://code.visualstudio.com/) a
 
 [Here](https://code.visualstudio.com/docs/python/jupyter-support) is the official VSCode guide to run Jupyter Notebooks within VSCode.
 
-**Video for contents fot this section**
+
+## Video IV - Exporting and VSCode
+
 <div class="embed-container">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/-jzEB34a0RE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
@@ -388,6 +391,12 @@ Doing all of this with Notebooks is not impossible, but hard. It is just way too
 Refactoring refers to the practice to rewrite and reorganize your code for readability and performance. Debugging refers to the exercise of searching for mistakes in your code. 
 
 **When code modularization is hard, refactoring and debugging are hard**. When code is modularized into single-purpose isolated scripts, it is relatively easy to focus in ways to rewrite such code to be clearer and faster to run. This is hard with Notebooks. Debugging code is also relatively easy when code is modularized, and refactored. If everything is dumped into a Notebook with 100 cells, finding where you made an error in your code can be a nightmare. 
+
+## Video V - Notebooks weaknesses
+
+<div class="embed-container">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/lMlN-2W1rxE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
 
 ## When to use Notebooks
 
