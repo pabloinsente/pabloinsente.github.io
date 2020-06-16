@@ -567,6 +567,12 @@ People have created utilities for that like `whatermark`
 
 No matter how many precautions you take, you will reach a point where using Notebooks it is not the most functional alternative. You can insist on using a Notebook for large projects with many moving pieces, but you will probably start to experience the problems mentioned above. In such cases, a IDE like VSCode, Pycharm or Atom are probable your best option.
 
+## Video VI - When to use Notebooks and Best Practices
+
+<div class="embed-container">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/_M2rbm_zh50" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
 ## Final JupyterLab Tips
 
 Here a few additional final tips to use Notebooks effectively:  
