@@ -1,5 +1,5 @@
 ---
-title: Introduction to the UNIX Shell and Bash
+title: Introduction to the UNIX Shell (Bash)
 published: true
 mathjax: true
 ---
