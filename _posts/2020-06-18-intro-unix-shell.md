@@ -854,7 +854,7 @@ cat nonexistent-file.txt &> empty.txt
 
 The empty.txt file now must contain the "cat: nonexistent-file.txt: No such file or directory" message. If you use `>` instead, the error message will be printed to the terminal, and the empty.txt file will be empty.
 
-[back to top](#the-unix-shell)
+[back to the top](#table-of-contents)
 
 ## Future sections
 
@@ -868,4 +868,4 @@ This tutorial is not complete. I was not planning to release this yet, but it be
 - Alternative shells
 - Additional resources to learn
 
-[back to top](#the-unix-shell)
+[back to the top](#table-of-contents)
