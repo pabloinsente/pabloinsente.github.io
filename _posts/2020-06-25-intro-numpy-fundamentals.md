@@ -702,6 +702,7 @@ Let's plot to see the outcome
 
 ```python
 import matplotlib.pylab as plt
+plt.style.use('dark_background')
 %config InlineBackend.figure_format = 'retina' # to get high resolution images
 ```
 
