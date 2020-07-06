@@ -4,6 +4,8 @@ published: true
 mathjax: true
 ---
 
+<iframe src="https://github.com/sponsors/pabloinsente/card" title="Sponsor pabloinsente" height="225" width="600" style="border: 0;"></iframe>
+
 ## Learning objectives
 
 1. Understand the rationality and principles behind the creation of the perceptron

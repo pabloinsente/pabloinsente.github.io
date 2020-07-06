@@ -3,7 +3,7 @@ title: About the nature and utility of computational models of cognition
 published: true
 ---
 
-<iframe src="https://github.com/sponsors/pabloinsente/card" title="Sponsor pabloinsente" height="112" width="300" style="border: 0;"></iframe>
+<iframe src="https://github.com/sponsors/pabloinsente/card" title="Sponsor pabloinsente" height="225" width="600" style="border: 0;"></iframe>
 
 ## What are computational models of cognition? 
 
