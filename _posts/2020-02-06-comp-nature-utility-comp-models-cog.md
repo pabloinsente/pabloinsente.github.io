@@ -3,6 +3,8 @@ title: About the nature and utility of computational models of cognition
 published: true
 ---
 
+<iframe src="https://github.com/sponsors/pabloinsente/card" title="Sponsor pabloinsente" height="112" width="300" style="border: 0;"></iframe>
+
 ## What are computational models of cognition? 
 
 To explain what computational models of cognition are, It is useful to state first what they are not: *computational models of cognition are not exact replicas of the human mind*, in the same manner, that city-maps are not exact replicas of real cities. The only way to create an exact map of a city is by rebuilding the city all over again until you get an inch by inch match between the city and your map, point at which the map becomes useless, as famously exposed by Jorge Luis Borges on "Del Rigor de la Ciencia" ("On Exactitude of Science", 1998):

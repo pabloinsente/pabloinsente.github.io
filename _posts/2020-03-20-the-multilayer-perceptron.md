@@ -3,6 +3,9 @@ title: The Multilayer Perceptron - Theory and Implementation of the Backpropagat
 published: true
 mathjax: true
 ---
+
+<iframe src="https://github.com/sponsors/pabloinsente/card" title="Sponsor pabloinsente" height="112" width="300" style="border: 0;"></iframe>
+
 ## Learning objectives
 
 1. Understand the principles behind the creation of the multilayer perceptron

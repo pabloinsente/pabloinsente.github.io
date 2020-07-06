@@ -3,6 +3,9 @@ title: The Convolutional Neural Network - Theory and Implementation of LeNet-5 a
 published: true
 mathjax: true
 ---
+
+<iframe src="https://github.com/sponsors/pabloinsente/card" title="Sponsor pabloinsente" height="112" width="300" style="border: 0;"></iframe>
+
 ## Learning objectives
 
 1. Understand the principles behind the creation of the convolutional network

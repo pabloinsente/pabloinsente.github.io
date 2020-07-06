@@ -3,6 +3,9 @@ title: The Recurrent Neural Network - Theory and Implementation of the Elman Net
 published: true
 mathjax: true
 ---
+
+<iframe src="https://github.com/sponsors/pabloinsente/card" title="Sponsor pabloinsente" height="112" width="300" style="border: 0;"></iframe>
+
 ## Learning objectives
 
 1. Understand the principles behind the creation of the recurrent neural network

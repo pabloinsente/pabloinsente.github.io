@@ -4,6 +4,8 @@ published: true
 mathjax: true
 ---
 
+<iframe src="https://github.com/sponsors/pabloinsente/card" title="Sponsor pabloinsente" height="112" width="300" style="border: 0;"></iframe>
+
 **Notes**: 
 - This tutorial contains video-lessons at the end of each section
 - The Jupyter Notebook version can be found in my GitHub [here](https://github.com/pabloinsente/intro-sc-python/blob/master/notebooks/intro-jupyter-ide.ipynb)

@@ -4,6 +4,8 @@ published: true
 mathjax: true
 ---
 
+<iframe src="https://github.com/sponsors/pabloinsente/card" title="Sponsor pabloinsente" height="112" width="300" style="border: 0;"></iframe>
+
 # So, you want to build a website?
 
 I recently used the [jupyter-book](https://pypi.org/project/jupyter-book/) package to build an on-line book version of one of [my projects](https://github.com/pabloinsente/comp_models_cog_beh). This package simplifies the creation of websites hosting interactive [Jupyter Notebooks](https://jupyter.org/), by providing a series of scripts that will transform your Notebooks into Jekyll pages. [Jekyll](https://jekyllrb.com/) is a minimalistic static website and blog generator. Websites built with Jekyll can be freely and easily hosted with [GitHub pages](https://pages.github.com/).
