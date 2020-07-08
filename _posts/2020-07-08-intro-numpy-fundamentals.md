@@ -4,9 +4,11 @@ published: true
 mathjax: true
 ---
 
+<pre>
 <iframe src="https://github.com/sponsors/pabloinsente/card" title="Sponsor pabloinsente" height="225" width="600" style="border: 0;"></iframe>
+</pre>
 
-***Note***: **this is part I of a III part series I am working right now**
+***Note***: **this is part I AND II of a III-part series I am working right now**
 
 ---
 
@@ -28,7 +30,7 @@ Content-wise, I'll say that ~95% is based on `NumPy` v1.18 manual, in particular
 
 The rest ~5% comes from a couple of random articles on the Internet and Stack Overflow. I resort to those sources mostly to clarify concepts and functionality that wasn't clear for me from `NumPy` documentation.
 
-My own experience was the base to organize the tutorial, explain concepts, create practical examples, create images, etc.
+My own experience was the base to organize the tutorial, explain concepts, create practical examples, create images, etc. 
 
 "*Why are you using the documentation as the main source of content, instead of the many great tutorials online?*" Because it is the most up-to-date, complete, and reliable source about `NumPy` (and about any library for that matter).
 
@@ -74,22 +76,37 @@ Here is my [Twitter](https://twitter.com/CodeBug88), [LinkedIn](https://www.link
     - [Array repetition](#array-repetition)
     - [Adding and removing array elements](#adding-and-removing-array-elements)
     - [Rearranging array elements](#rearranging-array-elements)
+- [Logic functions and array evaluation](#logic-functions-and-array-evaluation)
+    - [Boolean testing](#boolean-testing)
+    - [Array elements testing](#array-elements-testing)
+    - [Array type testing](#array-type-testing)
+    - [Logical operators](#logical-operators)
+    - [Comparison operators](#comparison-operators)
+- [Array Indexing](#array-indexing)
+    - [Basic indexing in one-dimensional arrays](#basic-indexing-in-one-dimensional-arrays)
+    - [Slicing one-dimensional arrays](#slicing-one-dimensional-arrays)
+    - [Basic indexing in multidimensional arrays](#basic-indexing-in-multidimensional-arrays)
+    - [Indexing-like NumPy functions](#indexing-like-numpy-functions)
+    - [Boolean or Mask indexing](#boolean-or-mask-indexing)
+    - [Indexing-like NumPy operations](#indexing-like-numpy-operations)
+- [Array iteration](#array-iteration)
+    - [Basic array iteration](#basic-array-iteration)
+    - [Broadcasting array iteration](#broadcasting-array-iteration)
+    - [Allocating outputs from iteration](#allocating-outputs-from-iteration)
+    - [Iteration functions](#iteration-functions)   
+- [Array shallow and deep copies](#array-shallow-and-deep-copies)
+    - [Array new label](#array-new-label)
+    - [Array shallow copy or view](#array-shallow-copy-or-view)
+    - [Array deep copy](#array-deep-copy)
+- [Structured arrays](#structured-arrays)
 
-**Future sections for part II and III**: 
 
-- [NumPy universal functions]
-- [Array indexing]
-- [Array masking]
-- [Array copy and views]
-- [Array logic and evaluation]
+**Future sections for part III**:
+- [NumPy random sampling]
 - [Basic statistics with NumPy]
 - [Basic linear algebra with NumPy]
-- [NumPY Random sampling]
 - [Array string operations]
-- [NumPY datetime functions]
-- [Structured arrays]
-- [Array iteration]
-- [NumPy constants and scalars]
+- [NumPy datetime functions]
 - [Input-output (I/O) data processing]
 - [Resources to learn more]
 
@@ -166,7 +183,7 @@ The virtual environment will isolate your `NumPy` installation from your system-
 
 ## NumPy arrays
 
-`NumPy` fundamental object is the **[ndarray](https://numpy.org/doc/1.18/reference/generated/numpy.ndarray.html)**. Arrays are simply ordered collections of elements, like single numbers, [lists](https://docs.python.org/3/tutorial/datastructures.html), [sets](https://realpython.com/python-sets/), [vectors](https://pabloinsente.github.io/intro-linear-algebra#vectors), [matrices](https://pabloinsente.github.io/intro-linear-algebra#matrices), or [tensors](https://en.wikipedia.org/wiki/Tensor). In Additionally, elements in an array have of **the same type**. For instance, an array can't have integers and text at the same time. 
+`NumPy` fundamental object is the **[ndarray](https://numpy.org/doc/1.18/reference/generated/numpy.ndarray.html)**. Arrays are simply ordered collections of elements, like single numbers, [lists](https://docs.python.org/3/tutorial/datastructures.html), [sets](https://realpython.com/python-sets/), [vectors](https://pabloinsente.github.io/intro-linear-algebra#vectors), [matrices](https://pabloinsente.github.io/intro-linear-algebra#matrices), or [tensors](https://en.wikipedia.org/wiki/Tensor). In Additionally, elements in an array have of **the same type**. For instance, an array can't have integers and text at the same time. The reason is simple: mathematical operations with objects containing multiple data types would be slow, and `NumPy` main goal is fast and efficient numerical computation. 
 
 The "n" in "ndarray" makes references to the arbitrary number of dimensions it can take. An array with one element and one dimension, it's a "singleton" or just a number. An array with four elements and two dimensions is a 2x2 matrix. Put simply, an array is like an Excel sheet with the caveat that instead of being restricted to two dimensions, it can be extended to 3, 4, or higher dimensions, and that you can't combine data types in a "sheet". 
 
@@ -340,7 +357,7 @@ print(f'Array from set:\n{array_set}')
      [4 5 6]]
     
     Array from set:
-    {'pikachu', 'charizard', 'snorlax'}
+    {'snorlax', 'charizard', 'pikachu'}
 
 
 ### Intrinsic NumPy array creation objects 
@@ -390,7 +407,7 @@ print(f'Array from indices:\n{indices}\n')
      [1. 1. 1.]]
     
     Array of empty entries:
-    [[4.64959099e-310 6.93425785e-310]
+    [[4.67441284e-310 6.93043825e-310]
      [0.00000000e+000 0.00000000e+000]]
     
     Evenly spaced array in a range:
@@ -464,9 +481,9 @@ print(f'Array of random numbers sampled from a uniform distribution:\n{rand}')
      [0. 0. 0. 0.]]
     
     Array of random numbers sampled from a uniform distribution:
-    [[0.80156836 0.92397082]
-     [0.33923741 0.81576852]
-     [0.0599685  0.25000192]]
+    [[0.68067459 0.94811904]
+     [0.42049988 0.07282852]
+     [0.38239374 0.22167895]]
 
 
 - The `diagonal` function returns an array with the numbers in the diagonal and zeros elsewhere
@@ -483,6 +500,7 @@ In scientific computing we want speed, meaning we want to get rid of loops. This
 Here is how vectorization looks like conceptually.
 
 <img src= "/assets/post-12/vectorization.svg" >
+
 
 Now let's compare the performance gain of vectorization against looping in a simple sum. 
 
@@ -501,7 +519,7 @@ for i in range(0, len(x)):
     x[i] + y[i]
 ```
 
-    32.5 µs ± 381 ns per loop (mean ± std. dev. of 7 runs, 10000 loops each)
+    35.4 µs ± 353 ns per loop (mean ± std. dev. of 7 runs, 10000 loops each)
 
 
 Sum arrays with `NumPy` (vectorized)
@@ -512,7 +530,7 @@ Sum arrays with `NumPy` (vectorized)
 x+y;
 ```
 
-    504 ns ± 3.21 ns per loop (mean ± std. dev. of 7 runs, 1000000 loops each)
+    488 ns ± 3.35 ns per loop (mean ± std. dev. of 7 runs, 1000000 loops each)
 
 
 As you can see, the `NumPy` vectorized implementation is several orders of magnitude faster. In the runs I've done, approximately 67 times faster (~32 microsecond against ~0.49 microseconds).
@@ -751,6 +769,7 @@ ax3.plot(y, tan)
 ax3.set_title("tanh")
 plt.tight_layout()
 ```
+
 
 <img src="/assets/post-12/output_72_0.png">
 
@@ -1223,6 +1242,66 @@ Now you may be wondering. Why then add a 1 as an index if it's unnecessary? Sinc
 If you are familiar with linear algebra or geometry, you should know that a square is an object with two dimensions, but that can 'live' in three, four, five, a million, or any number of dimensions. Essentially, higher-dimensional spaces can contain objects with fewer dimensions, but not the other way around. You can't fit a sphere in a plane. The misunderstanding, in my view, comes from the tendency to think in data as two-dimensional grid-like objects, when in practice does not need to be like that *necessarily*. People like to think in `NumPy` arrays as matrices, vectors, tensors, etc., but they aren't, they are arrays with one or more dimensions. Period. 
 
 This whole discussion may sound like I am beating around the bushes, but I am not. Dimensionality mismatch is one of the most important sources of errors, misunderstandings, and frustrations when working with `NumPy` arrays. If you ever do anything related to linear algebra, like pretty much all of machine learning and statistics, you need to have a firm understanding of how dimensions work in `NumPy`. 
+
+Related to our previous discussion, a "trick" you may want to be aware of, is how to **add dimensions to an array**, since you will find cases where this can be an issue.
+
+
+```python
+a = np.array([1, 2, 3])
+
+print(f'Array a: {a}\n')
+print(f'Array a shape: {a.shape}\n')
+print(f'Array a dimensions: {a.ndim}\n')
+```
+
+    Array a: [1 2 3]
+    
+    Array a shape: (3,)
+    
+    Array a dimensions: 1
+    
+
+
+To add a new dimension and keep array **a** as "row" in a two-dimensional "matrix", use the `np.newaxis` object:
+
+
+```python
+a_row = a[np.newaxis, :]
+
+print(f'Array a: {a_row}\n')
+print(f'Array a shape: {a_row.shape}\n')
+print(f'Array a dimensions: {a_row.ndim}\n')
+```
+
+    Array a: [[1 2 3]]
+    
+    Array a shape: (1, 3)
+    
+    Array a dimensions: 2
+    
+
+
+To add a new dimension and keep array **a** as "column" in a two-dimensional "matrix", just flip the order of the arguments:
+
+
+```python
+a_col = a[:, np.newaxis]
+
+print(f'Array a:\n{a_col}\n')
+print(f'Array a shape: {a_col.shape}\n')
+print(f'Array a dimensions: {a_col.ndim}\n')
+```
+
+    Array a:
+    [[1]
+     [2]
+     [3]]
+    
+    Array a shape: (3, 1)
+    
+    Array a dimensions: 2
+    
+
 
 ### Array transpose-like operations
 
@@ -1996,3 +2075,1397 @@ print(f'Roll elements array two by one position along axis 1 (cols):\n{roll_four
      [6 4 5]
      [9 7 8]]
 
+
+## Logic functions and array evaluation
+
+There are multiple cases where applying logic functions to evaluate array elements will come in handy. Slicing, indexing, and data transformation rely heavily on logic functions. 
+
+`NumPy` logic functions can be divided on boolean testing, array identity testing, array elements testing, logic operators, and comparison operators.  
+
+### Boolean testing
+
+Boolean testing refers to whether **all** or **some** elements of an array are **True**. There are two functions for this `all` and `any`. Below I exemplify several cases:
+
+
+```python
+true_array = np.array([True, True, True])
+some_true_array = np.array([True, False, False])
+false_array = np.array([False, False, False])
+ones_array = np.ones(3)
+some_ones_array = np.array([1, 1, 0])
+zeros_array = np.zeros(3)
+NAN_array = np.array([np.nan, np.nan, np.nan])
+Infinity_array = np.array([np.inf, np.inf, np.inf])
+```
+
+
+```python
+print(f'All elements of true_array are True: {np.all(true_array)}')
+print(f'Some elements of true_array are True: {np.any(true_array)}\n')
+
+print(f'All elements of some_true_array are True: {np.all(some_true_array)}')
+print(f'Some elements of some_true_array are True: {np.any(some_true_array)}\n')
+
+print(f'All elements of false_array are True: {np.all(false_array)}')
+print(f'Some elements of false_array are True: {np.any(false_array)}\n')
+
+print(f'All elements of ones_array are True: {np.all(ones_array)}')
+print(f'Some elements of ones_array are True: {np.any(ones_array)}\n')
+
+print(f'All elements of some_ones_array are True: {np.all(some_ones_array)}')
+print(f'Some elements of some_ones_array are True: {np.any(some_ones_array)}\n')
+
+print(f'All elements of zeros_array are True: {np.all(zeros_array)}')
+print(f'Some elements of zeros_array are True: {np.any(zeros_array)}\n')
+
+print(f'All elements of NAN_array are True: {np.all(NAN_array)}')
+print(f'Some elements of NAN_array are True: {np.any(NAN_array)}\n')
+
+print(f'All elements of Infinity_array are True: {np.all(Infinity_array)}')
+print(f'Some elements of Infinity_array are True: {np.any(Infinity_array)}\n')
+```
+
+    All elements of true_array are True: True
+    Some elements of true_array are True: True
+    
+    All elements of some_true_array are True: False
+    Some elements of some_true_array are True: True
+    
+    All elements of false_array are True: False
+    Some elements of false_array are True: False
+    
+    All elements of ones_array are True: True
+    Some elements of ones_array are True: True
+    
+    All elements of some_ones_array are True: False
+    Some elements of some_ones_array are True: True
+    
+    All elements of zeros_array are True: False
+    Some elements of zeros_array are True: False
+    
+    All elements of NAN_array are True: True
+    Some elements of NAN_array are True: True
+    
+    All elements of Infinity_array are True: True
+    Some elements of Infinity_array are True: True
+    
+
+
+### Array elements testing
+
+This subset of functions tests the identity elements of an array, particularly for `NumPy` constant like NAN or infinity. This is useful for data cleaning and debugging purposes. Return values are always True or False. Below some examples:
+
+
+```python
+element_testing = [1, 0, np.nan, np.inf, -np.inf,]
+
+print(f'Array to test:\n{element_testing}\n')
+print(f'Element-wise testing for finiteness:\n{np.isfinite(element_testing)}\n')
+print(f'Element-wise testing for infinity:\n{np.isinf(element_testing)}\n')
+print(f'Element-wise testing for negative infinity:\n{np.isneginf(element_testing)}\n')
+print(f'Element-wise testing for positive infinity:\n{np.isposinf(element_testing)}\n')
+print(f'Element-wise testing for not a number:\n{np.isnan(element_testing)}\n')
+```
+
+    Array to test:
+    [1, 0, nan, inf, -inf]
+    
+    Element-wise testing for finiteness:
+    [ True  True False False False]
+    
+    Element-wise testing for infinity:
+    [False False False  True  True]
+    
+    Element-wise testing for negative infinity:
+    [False False False False  True]
+    
+    Element-wise testing for positive infinity:
+    [False False False  True False]
+    
+    Element-wise testing for not a number:
+    [False False  True False False]
+    
+
+
+Notice that `np.nan` is neither infinity nor finite, simply because is not a number, and only numbers can be tested for that. 
+
+### Array type testing
+
+Array type testing is another example of element-wise testing but for the specific case of **data type**. Return values are always True or False. Here are a couple of examples of the available functions:
+
+
+```python
+# use Python list instead of array to mix data types
+type_testing = [1+1j, 0, 1, 2.0, False, np.nan, np.inf, 3j]
+
+print(f'Array tested:\n{type_testing}\n')
+print(f'Is real:\n{np.isreal(type_testing)}\n')
+print(f'Is scalar:\n{np.isreal(type_testing)}\n')
+print(f'Is complex:\n{np.iscomplex(type_testing)}\n')
+```
+
+    Array tested:
+    [(1+1j), 0, 1, 2.0, False, nan, inf, 3j]
+    
+    Is real:
+    [False  True  True  True  True  True  True False]
+    
+    Is scalar:
+    [False  True  True  True  True  True  True False]
+    
+    Is complex:
+    [ True False False False False False False  True]
+    
+
+
+### Logical operators
+
+Logic operators are a subset of logical functions in `NumPy`. Basically, the operators you will find in logic gates or Truth tables: `and`, `or`, `not`, `xor` (exclusive `or`). Return values are always True or False. Keep in mind that each element of the array is tested independently on both conditions.
+
+
+```python
+array = np.arange(7)
+
+print(f'Array:\n{array}\n')
+print(f'Greater than 1 AND less than 5:\n{np.logical_and(array> 1, array<5)}\n')
+print(f'Greater than 1 OR less than 5:\n{np.logical_or(array> 1, array<5)}\n')
+print(f'Greater than 1 NOT less than 5:\n{np.logical_and(array> 1, array<5)}\n')
+print(f'Greater than 1 XOR less than 5:\n{np.logical_xor(array> 1, array<5)}\n')
+```
+
+    Array:
+    [0 1 2 3 4 5 6]
+    
+    Greater than 1 AND less than 5:
+    [False False  True  True  True False False]
+    
+    Greater than 1 OR less than 5:
+    [ True  True  True  True  True  True  True]
+    
+    Greater than 1 NOT less than 5:
+    [False False  True  True  True False False]
+    
+    Greater than 1 XOR less than 5:
+    [ True  True False False False  True  True]
+    
+
+
+### Comparison operators
+
+Comparison operators assess the relationship between a pair of arrays or array elements. Given the inaccuracies resulting from the *finite* or *truncated* representation of infinite or very large (or small) numbers, a comparison of quantities should proceed with caution. Let's begin for the `greater` to illustrate the logic:
+
+
+```python
+array_one = np.array([1, 1, 3])
+array_two = np.array([1, 2, 2]) 
+
+print(f'Element-wise GREATER than comparison:\n{np.greater(array_one, array_two)}\n')
+print(f'Element-wise GREATER than comparison shorthand (>):\n{array_one > array_two}\n')
+print(f'Element-wise GREATER than comparison (flip):\n{np.greater(array_two, array_one)}\n')
+print(f'Element-wise GREATER than comparison shorthand (>) (flip):\n{array_two > array_one}')
+```
+
+    Element-wise GREATER than comparison:
+    [False False  True]
+    
+    Element-wise GREATER than comparison shorthand (>):
+    [False False  True]
+    
+    Element-wise GREATER than comparison (flip):
+    [False  True False]
+    
+    Element-wise GREATER than comparison shorthand (>) (flip):
+    [False  True False]
+
+
+Notice that although we are comparing the same arrays, the order matters. In the first case you are asking: "is 1 greater than 1, is 1 greater than 2, is 3 greater than 2". Whereas in the second case: "is 1 greater than 1, is 2 greater than 1, is 2 greater than 3". Also, notice you can use the `>` shorthand. The same logic applies to the following cases: 
+
+
+```python
+print(f'Element-wise GREATER_EQUAL than comparison:\n{np.greater_equal(array_one, array_two)}\n')
+print(f'Element-wise GREATER_EQUAL than comparison shorthand (>=):\n{array_one >= array_two}\n')
+
+print(f'Element-wise LESS than comparison:\n{np.less(array_one, array_two)}\n')
+print(f'Element-wise LESS than comparison shorthand (<):\n{array_one < array_two}\n')
+
+print(f'Element-wise LESS_EQUAL than comparison:\n{np.less_equal(array_one, array_two)}\n')
+print(f'Element-wise LESS_EQUAL than comparison shorthand (<=):\n{array_one <= array_two}\n')
+
+print(f'Element-wise EQUAL than comparison:\n{np.equal(array_one, array_two)}\n')
+print(f'Element-wise EQUAL than comparison shorthand (==):\n{array_one == array_two}\n')
+
+print(f'Element-wise NOT_EQUAL than comparison:\n{np.not_equal(array_one, array_two)}\n')
+print(f'Element-wise NOT_EQUAL than comparison shorthand (!=):\n{array_one != array_two}\n')
+```
+
+    Element-wise GREATER_EQUAL than comparison:
+    [ True False  True]
+    
+    Element-wise GREATER_EQUAL than comparison shorthand (>=):
+    [ True False  True]
+    
+    Element-wise LESS than comparison:
+    [False  True False]
+    
+    Element-wise LESS than comparison shorthand (<):
+    [False  True False]
+    
+    Element-wise LESS_EQUAL than comparison:
+    [ True  True False]
+    
+    Element-wise LESS_EQUAL than comparison shorthand (<=):
+    [ True  True False]
+    
+    Element-wise EQUAL than comparison:
+    [ True False False]
+    
+    Element-wise EQUAL than comparison shorthand (==):
+    [ True False False]
+    
+    Element-wise NOT_EQUAL than comparison:
+    [False  True  True]
+    
+    Element-wise NOT_EQUAL than comparison shorthand (!=):
+    [False  True  True]
+    
+
+
+Now we review comparison operators which help to deal with cases where you would think two values should be considered equal, but they are not:
+
+
+```python
+array_three = np.array([1e10,1e-8])
+array_four = np.array([1.00001e10,1e-9])
+
+print(f"Array three: {array_three}, Array four: {array_four}\n")
+print(f"Element-wise equality: {np.equal(array_three, array_four)}")
+print(f"Element-wise is close: {np.isclose(array_three,array_four)}")
+```
+
+    Array three: [1.e+10 1.e-08], Array four: [1.00001e+10 1.00000e-09]
+    
+    Element-wise equality: [False False]
+    Element-wise is close: [ True  True]
+
+
+In the example above both numbers are "practically" the same, but technically they are not. Depending on your task at hand, you may want them to be evaluated as equal (given some tolerance level), and you can use the `isclose` method for such purpose. Examples of how the evaluation changes as you change the tolerance: 
+
+
+```python
+print(f"Element-wise is close: {np.isclose(array_three,array_four, atol=0.0)}")
+print(f"Element-wise is close: {np.isclose(array_three,array_four, atol=0.0001)}")
+```
+
+    Element-wise is close: [ True False]
+    Element-wise is close: [ True  True]
+
+
+To compare whether two arrays are equal, this is, if they contain the same elements and have the same shape:
+
+
+```python
+array_five = array_six = np.array([1, 2, 3])
+
+print(f'Are array-three and array-four equal: {np.array_equal(array_three, array_four)}\n')
+print(f'Are array-five and array-six equal: {np.array_equal(array_five, array_six)}')
+```
+
+    Are array-three and array-four equal: False
+    
+    Are array-five and array-six equal: True
+
+
+## Array Indexing
+
+Elements in a have **indices**, which simply are numbers identifying the **position** each element occupies in the array.
+
+Indexing in `NumPy` is 0-based, as in native Python, meaning that you start to count positions at 0 rather than at 1. Indexing is done by utilizing square brackets as `([])`. 
+
+Indexing is a versatile operation useful in a wide variety of cases. The most common ones are to **insert** ("assignment") values, to **extract** ("reference") values, to **delete** values, and to **change** values.
+
+In what follows I refer to operations and objects with concepts that are commonly used in data science, but that deviate a bit from technical indexing terminology in `NumPy`. For a more technical treatment of the topic see [here](https://numpy.org/doc/stable/reference/arrays.indexing.html#).
+
+I also mostly use extraction or "reference" kind of operations to illustrate concepts, but the same ideas apply to insert, deleting, or changing values.
+
+### Basic indexing in one-dimensional arrays
+
+`NumPy` support indexing in one and multiple dimensions. Let's explore a simple case with a couple of examples. 
+
+
+```python
+array_one = np.arange(1,11)
+
+print(f'Array one: {array_one}')
+print(f'Array one dimensions: {array_one.ndim}, shape:{array_one.shape}')
+```
+
+    Array one: [ 1  2  3  4  5  6  7  8  9 10]
+    Array one dimensions: 1, shape:(10,)
+
+
+Elements in array are index with square brackets:
+
+
+```python
+print(f'Select element at position [0]: {array_one[0]}')
+print(f'Select element at position [5]: {array_one[5]}')
+print(f'Select element at position [9]: {array_one[9]}')
+print(f'Select element at position [-5]: {array_one[-5]}')
+print(f'Select element at position [-1]: {array_one[-1]}')
+```
+
+    Select element at position [0]: 1
+    Select element at position [5]: 6
+    Select element at position [9]: 10
+    Select element at position [-5]: 6
+    Select element at position [-1]: 10
+
+
+Notice that `array_one[9]` and `array_one[-1]` return the same value, which is the last element of the array. This shows that `NumPy` (as Python does) can index elements both ways: (1) from **left-to-right** starting at **0**, and (2) from **right-to-left** starting at **-1**. The image below illustrates `NumPy` indexing that you can use as a mental model.
+
+<img src="/assets/post-12/indexing.svg">
+
+### Slicing one-dimensional arrays
+
+To select a **range** of elements, also known as **slicing**, we use the `[:]` notation:
+
+
+```python
+print(f'Elements from position [0] to position [3]: {array_one[0:3]}')
+print(f'Elements from position [5] to position [9]: {array_one[5:9]}')
+print(f'Elements from position [-9] to position [-5]: {array_one[-9:-5]}')
+print(f'Elements from position [-3] to position [-1]: {array_one[-3:-1]}')
+print(f'Elements from position [3] to position [-1]: {array_one[3:-1]}')
+```
+
+    Elements from position [0] to position [3]: [1 2 3]
+    Elements from position [5] to position [9]: [6 7 8 9]
+    Elements from position [-9] to position [-5]: [2 3 4 5]
+    Elements from position [-3] to position [-1]: [8 9]
+    Elements from position [3] to position [-1]: [4 5 6 7 8 9]
+
+
+There are a couple of interesting facts here. `NumPy` operates including the first element on the left but the last on the right. In set notation:
+
+$$[\text{included}:\text{not-included})$$
+
+This is why the element at position 3 (i.e., number 4) is not included in `array_one[0:3]`. 
+
+It's also interesting to notice that when using negative indices (right-to-left), you still have to 'think' with a left-to-right logic, this is, considering that indices are organized as [-10, -9, -8, ..., -3, -2, -1]. You can also 'mix' left-to-right and right-to-left indices as in `array_one[3:-1]`.
+
+When we slice arrays to return sub-arrays, we can specify the **stride**, this is, how many steps we take when pointing at indices to retrieve array elements. The default stride is one. This is simple to see with a couple of examples:  
+
+
+```python
+print(f'Slice from position [0] to position [6] with stride [1]: {array_one[0:6:1]}')
+print(f'Slice from position [0] to position [6] with stride [2]: {array_one[0:6:2]}')
+print(f'Slice from position [-6] to position [-1] with stride [3]: {array_one[-6:-1:3]}')
+```
+
+    Slice from position [0] to position [6] with stride [1]: [1 2 3 4 5 6]
+    Slice from position [0] to position [6] with stride [2]: [1 3 5]
+    Slice from position [-6] to position [-1] with stride [3]: [5 8]
+
+
+### Basic indexing in multidimensional arrays
+
+Array indexing with multiple dimensions follows the same logic as with one dimension. The **NumPy indexing model** figure above illustrates this as well. 
+
+There are two ways to index arrays with multiple dimensions: 
+1. referencing each dimension/axis within a **single pair of square brackets** with each dimension/axis separated by commas `[,]` 
+2. referencing each dimension independently with **as many square brackets as dimensions/axes** `[][]`
+
+Here a couple of examples:  
+
+
+```python
+array_two = np.arange(1,10).reshape((3,3))
+array_three = np.arange(1,9).reshape((2,2,2))
+
+print(f'Array two dimensions/axes: \n{array_two}\n')
+print(f'Array three dimensions/axes: \n{array_three}\n')
+print(f'Array two dimensions: {array_two.ndim}, shape:{array_two.shape}')
+print(f'Array three dimensions: {array_three.ndim}, shape:{array_three.shape}')
+```
+
+    Array two dimensions/axes: 
+    [[1 2 3]
+     [4 5 6]
+     [7 8 9]]
+    
+    Array three dimensions/axes: 
+    [[[1 2]
+      [3 4]]
+    
+     [[5 6]
+      [7 8]]]
+    
+    Array two dimensions: 2, shape:(3, 3)
+    Array three dimensions: 3, shape:(2, 2, 2)
+
+
+
+```python
+print(f'Element at position 1 in first axis (rows) and position 1 in second axis (cols): {array_two[1,1]}')
+print(f'Element at position 0 in first axis (rows) and position 2 in second axis (cols): {array_two[0,2]}')
+print(f'Element at position -1 in first axis (rows) and position -3 in second axis (cols): {array_two[-1,-3]}')
+```
+
+    Element at position 1 in first axis (rows) and position 1 in second axis (cols): 5
+    Element at position 0 in first axis (rows) and position 2 in second axis (cols): 3
+    Element at position -1 in first axis (rows) and position -3 in second axis (cols): 7
+
+
+We can retreive the same elements by utilizing the `[][]` notation as:
+
+
+```python
+print(f'Element at position 1 in first axis (rows) and position 1 in second axis (cols): {array_two[1][1]}')
+print(f'Element at position 0 in first axis (rows) and position 2 in second axis (cols): {array_two[0][2]}')
+print(f'Element at position -1 in first axis (rows) and position -3 in second axis (cols): {array_two[-1][-3]}')
+```
+
+    Element at position 1 in first axis (rows) and position 1 in second axis (cols): 5
+    Element at position 0 in first axis (rows) and position 2 in second axis (cols): 3
+    Element at position -1 in first axis (rows) and position -3 in second axis (cols): 7
+
+
+What notation to use then? If you plan to delete the original array (`array_one` in this example), you are better of utilizing `[][]` notation as this creates a new temporary array that occupies memory. Otherwise, you will be better off by utilizing `[,]` instead as it is only a `view`, i.e., a pointer to the original array that does not occupy extra memory, so it's faster.
+
+To index ranges or intervals in multidimensional arrays, we can mix the slice notation `[:]` with the multidimensional index notation `[,]`.
+
+Selecting elements from the first axis or "row-wise" in two-dimensional arrays: 
+
+
+```python
+print(f'Array two as reference: \n{array_two}\n')
+
+print(f'All elements at position 0 from first axis (all elements from first row): \n{array_two[0,:]}\n')
+print(f'All elements at position 1 from first axis (all elements from second row): \n{array_two[1,:]}\n')
+print(f'All elements at position 2 from first axis (all elements from third row): \n{array_two[2,:]}\n')
+```
+
+    Array two as reference: 
+    [[1 2 3]
+     [4 5 6]
+     [7 8 9]]
+    
+    All elements at position 0 from first axis (all elements from first row): 
+    [1 2 3]
+    
+    All elements at position 1 from first axis (all elements from second row): 
+    [4 5 6]
+    
+    All elements at position 2 from first axis (all elements from third row): 
+    [7 8 9]
+    
+
+
+Selecting elements from the second axis or "column-wise" in two-dimensional arrays:
+
+
+```python
+print(f'Array two as reference: \n{array_two}\n')
+
+print(f'All elements at position 0 from second axis (all elements from first  column): \n{array_two[:,0]}\n')
+print(f'All elements at position 1 from second axis (all elements from second column): \n{array_two[:,1]}\n')
+print(f'All elements at position 2 from second axis (all elements from third  column): \n{array_two[:,2]}\n')
+```
+
+    Array two as reference: 
+    [[1 2 3]
+     [4 5 6]
+     [7 8 9]]
+    
+    All elements at position 0 from second axis (all elements from first  column): 
+    [1 4 7]
+    
+    All elements at position 1 from second axis (all elements from second column): 
+    [2 5 8]
+    
+    All elements at position 2 from second axis (all elements from third  column): 
+    [3 6 9]
+    
+
+
+Selecting elements ranges of elements in both axes in two dimensional arrays:
+
+
+```python
+print(f'Elements at position 0 and 1 from first axis (rows) and position 0 from second axis (cols): \n{array_two[0:2,0]}\n')
+print(f'Elements at position 0 and 1 from first axis (rows) and position 0 and 1 from second axis (cols): \n{array_two[0:2,0:2]}\n')
+print(f'Elements at position 1 and 2 from first axis (rows) and position 1 and 2 from second axis (cols): \n{array_two[1:3,1:3]}\n')
+```
+
+    Elements at position 0 and 1 from first axis (rows) and position 0 from second axis (cols): 
+    [1 4]
+    
+    Elements at position 0 and 1 from first axis (rows) and position 0 and 1 from second axis (cols): 
+    [[1 2]
+     [4 5]]
+    
+    Elements at position 1 and 2 from first axis (rows) and position 1 and 2 from second axis (cols): 
+    [[5 6]
+     [8 9]]
+    
+
+
+As with one dimensional arrays, we can also specify the "stride" to select elements by adding a 
+
+
+```python
+print(f'All elements at position 0 from first axis (all elements from first row) with stride 1: \n{array_two[0,::1]}\n')
+print(f'All elements at position 0 from first axis (all elements from first row) with stride 2: \n{array_two[0,::2]}\n')
+
+print(f'All elements at position 0 from second axis (all elements from first  column) with stride 1: \n{array_two[::1,0]}\n')
+print(f'All elements at position 0 from second axis (all elements from first  column) with stride 2: \n{array_two[::2,0]}\n')
+```
+
+    All elements at position 0 from first axis (all elements from first row) with stride 1: 
+    [1 2 3]
+    
+    All elements at position 0 from first axis (all elements from first row) with stride 2: 
+    [1 3]
+    
+    All elements at position 0 from second axis (all elements from first  column) with stride 1: 
+    [1 4 7]
+    
+    All elements at position 0 from second axis (all elements from first  column) with stride 2: 
+    [1 7]
+    
+
+
+To select elements from three-dimensional arrays you follow the same logic. Recall that the axes (2,2,2), represent 2 arrays with 2 rows and 2 columns each. Hence, the second and third axes represent how "height" and "width" of the two-dimensional arrays, whereas the first index how many of those are "stack" together. Below a couple of examples:
+
+
+```python
+print(f'Array three as reference: \n{array_three}\n')
+
+print(f'First two-dimensional array:\n{array_three[0]}\n')
+print(f'Second two-dimensional array:\n{array_three[1]}\n')
+
+print(f'All elements at position 0 from first two-dimensional array (first row first array):\n{array_three[0][0,:]}\n')
+print(f'All elements at position 1 from second two-dimensional array (second row second array):\n{array_three[1][1,:]}\n')
+```
+
+    Array three as reference: 
+    [[[1 2]
+      [3 4]]
+    
+     [[5 6]
+      [7 8]]]
+    
+    First two-dimensional array:
+    [[1 2]
+     [3 4]]
+    
+    Second two-dimensional array:
+    [[5 6]
+     [7 8]]
+    
+    All elements at position 0 from first two-dimensional array (first row first array):
+    [1 2]
+    
+    All elements at position 1 from second two-dimensional array (second row second array):
+    [7 8]
+    
+
+
+As I mentioned at the beginning of this section, inserting, deleting, and changing values is done with the same logic. 
+
+Below a couple of examples inserting constant values:
+
+
+```python
+x = np.arange(10)
+print(f'Array x:{x}\n')
+
+x[2] = 33
+print(f'Insert a 33 at position 2: {x}\n')
+
+x[6:-1] = 728
+print(f'Insert a 728 between positions 6 and -1: {x}')
+```
+
+    Array x:[0 1 2 3 4 5 6 7 8 9]
+    
+    Insert a 33 at position 2: [ 0  1 33  3  4  5  6  7  8  9]
+    
+    Insert a 728 between positions 6 and -1: [  0   1  33   3   4   5 728 728 728   9]
+
+
+You can insert ranges of values or sub-arrays as long as is shape-consistent:
+
+
+```python
+y = np.arange(10)
+y[-6:-1] = np.arange(100,105)
+print(f'Insert values [100 101 102 103 104] between positions -6 and -1:\n\n{y}')
+```
+
+    Insert values [100 101 102 103 104] between positions -6 and -1:
+    
+    [  0   1   2   3 100 101 102 103 104   9]
+
+
+You can change specific values by specifying their index position:
+
+
+```python
+z = np.arange(10)
+z[2:5] = z[2:5]*27
+print(f'Multiply by 27 values from position [2] to position [5]:\n\n{z}')
+```
+
+    Multiply by 27 values from position [2] to position [5]:
+    
+    [  0   1  54  81 108   5   6   7   8   9]
+
+
+### Boolean or Mask indexing
+
+Boolean arrays, or arrays made of **True** and/or **False** values, can be used to index elements from other arrays. This type of indexing is also known as **"mask" indexing**. To work, the Boolean array must be of the same shape as the array to be indexed.
+
+Here is a mental image you can use: imagine you have two arrays, one with the numbers from 1 to 10, and a Boolean array with "True" in the even positions and "False" in the odd positions. Now, imagine the squares with "True" are transparent whereas the ones with "False" are opaque. If you overlay the Boolean array on top of the regular array, the numbers in even positions will be visible but not the ones in odd positions. This is analogous to wearing a mask on your face: only the regions with "holes" or transparent will be visible, typically your eyes. This is why (according to me!) Boolean array is called "mask" indexing. The image below exemplifies the process:
+
+<img src="/assets/post-12/boolean_index.svg">
+
+
+```python
+array = np.arange(12) 
+mask = array > 6
+
+print(f'Array: \n{array}\n')
+print(f'Mask or Boolean arrayw with "True" for values strictly grater than 6: \n{mask}\n')
+print(f'Return an sub-array where "mask" elements are "True": \n{array[mask]}\n')
+```
+
+    Array: 
+    [ 0  1  2  3  4  5  6  7  8  9 10 11]
+    
+    Mask or Boolean arrayw with "True" for values strictly grater than 6: 
+    [False False False False False False False  True  True  True  True  True]
+    
+    Return an sub-array where "mask" elements are "True": 
+    [ 7  8  9 10 11]
+    
+
+
+We can as many conditions to create Boolean arrays as we desire. The syntax is `[(firs-condition) & (second-condition) & ... (last-condition)]`. For instance, to select elements larger than 1 AND smaller than 5, we do:
+
+
+```python
+print(f'Boolean array with elements larger than 1 and smaller than 5:\n{[(1 < array) & (array < 5)]}\n')
+print(f'Select elements larger than 1 and smaller than 5 from 1-12:\n{array[(1 < array) & (array < 5)]}')
+```
+
+    Boolean array with elements larger than 1 and smaller than 5:
+    [array([False, False,  True,  True,  True, False, False, False, False,
+           False, False, False])]
+    
+    Select elements larger than 1 and smaller than 5 from 1-12:
+    [2 3 4]
+
+
+We can combine multiple logic, comparison, and identity operators to create complex Boolean arrays (see [here](https://www.w3schools.com/python/python_operators.asp)). For instance:
+
+
+```python
+print(f'Select elements equal to 2 OR larger than 9 :\n{array[(2 == array) | (array > 9)]}\n')
+print(f'Select even elements (modulo == 0) OR larger than 9 :\n{array[((array % 2) == 0) | (array > 9)]}\n')
+print(f'Select elements that are NOT 2 and NOT 7 and NOT 9 :\n{array[(2 != array) & (array != 7) & (array != 10)]} ')
+```
+
+    Select elements equal to 2 OR larger than 9 :
+    [ 2 10 11]
+    
+    Select even elements (modulo == 0) OR larger than 9 :
+    [ 0  2  4  6  8 10 11]
+    
+    Select elements that are NOT 2 and NOT 7 and NOT 9 :
+    [ 0  1  3  4  5  6  8  9 11] 
+
+
+This type of indexing comes in handy for **conditional selection or modification** of array elements. I use it all the time when I need **to subset datasets by any attribute(s)**: people older than 65, income lower than 1,000 and higher than a 100,000, scores in between 50-80, states larger than 5,000 of inhabitants, males with diabetes or chronic kidney disease, and so on.
+
+Boolean indexing in **multidimensional arrays** is no different. You just need to pay attention to match the dimensionality of the "mask" and the array to be indexed, *in at least one of the dimensions*. For instance, if you tried to index a two-dimensional array with a one-dimensional boolean array, it won't work. Same if the array has  the same dimensions/axes, but different shape, i.e., numbers of elements along each axis.
+
+
+```python
+array_two = np.arange(1,17).reshape((4,4))
+mask_two =  array_two > 8
+
+print(f'Two-dimensional array: \n{array_two}\n')
+print(f'Mask or Boolean arrayw with "True" for values strictly greater than 8: \n{mask_two}\n')
+print(f'Return an sub-array where "mask" elements are "True": \n{array_two[mask_two]}\n')
+print(f'Shape new sub-array: {array_two[mask_two].shape}')
+```
+
+    Two-dimensional array: 
+    [[ 1  2  3  4]
+     [ 5  6  7  8]
+     [ 9 10 11 12]
+     [13 14 15 16]]
+    
+    Mask or Boolean arrayw with "True" for values strictly greater than 8: 
+    [[False False False False]
+     [False False False False]
+     [ True  True  True  True]
+     [ True  True  True  True]]
+    
+    Return an sub-array where "mask" elements are "True": 
+    [ 9 10 11 12 13 14 15 16]
+    
+    Shape new sub-array: (8,)
+
+
+Notice that the returned sub-array was flattened to a one-dimensional array with 8 elements. If you think about it, this makes sense as the "mask" we used to index values was one-dimensional in the first place.
+
+I also mentioned that array shapes need to match **in at least one of the dimensions**. This means that a (4, 4) array can be indexed by a boolean array that matches its shape in either the first axis (rows), second axis (columns), or both. In practice, this implies we can index an (n , n) array with an (n, n) mask, a  (, n) mask, or an (n, ) mask. Otherwise, it won't work. Let's see some examples:
+
+
+```python
+mask_three = np.array([True, False, False, True])
+mask_four = np.array([False, True, True, False])
+
+
+print(f'Two-dimensional array: \n{array_two}\n')
+print(f'Select elements at position 1 and 4 along the first axis (first and last rows): \n{array_two[mask_three]}\n')
+print(f'Select elements at position 2 and 3 along the second axis (second and third cols): \n{array_two[:,mask_four]}\n')
+```
+
+    Two-dimensional array: 
+    [[ 1  2  3  4]
+     [ 5  6  7  8]
+     [ 9 10 11 12]
+     [13 14 15 16]]
+    
+    Select elements at position 1 and 4 along the first axis (first and last rows): 
+    [[ 1  2  3  4]
+     [13 14 15 16]]
+    
+    Select elements at position 2 and 3 along the second axis (second and third cols): 
+    [[ 2  3]
+     [ 6  7]
+     [10 11]
+     [14 15]]
+    
+
+
+### Indexing-like NumPy functions
+
+There are several `NumPy` functions design to reference or extract elements in arrays (see [here](https://numpy.org/doc/stable/reference/routines.indexing.html#indexing-like-operations)). In general, these are things you can accomplish with basic indexing notation, but that can get pretty complicated to craft. 
+
+The `take` function will "take" elements along some axis given some indices. It's simply like pointing and choosing: "hey, I want elements at positions 0, 2 -1 from the rows (or cols, or flattened array)".
+
+
+```python
+print(f'One-dimensional array:\n{array}\n')
+print(f'Two-dimensional array:\n{array_two}\n')
+
+# take
+indices = [0, 2, -1]
+print(f'Take elements at positions 0, 2 and -1 from one-dim array:\n{np.take(array, indices)}\n')
+print(f'Take elements at positions 0, 2 and -1 from one-dim array along the first (row) axis:\n{np.take(array_two, indices, axis=0)}\n')
+print(f'Take elements at positions 0, 2 and -1 from one-dim array along the second (col) axis:\n{np.take(array_two, indices, axis=1)}\n')
+```
+
+    One-dimensional array:
+    [ 0  1  2  3  4  5  6  7  8  9 10 11]
+    
+    Two-dimensional array:
+    [[ 1  2  3  4]
+     [ 5  6  7  8]
+     [ 9 10 11 12]
+     [13 14 15 16]]
+    
+    Take elements at positions 0, 2 and -1 from one-dim array:
+    [ 0  2 11]
+    
+    Take elements at positions 0, 2 and -1 from one-dim array along the first (row) axis:
+    [[ 1  2  3  4]
+     [ 9 10 11 12]
+     [13 14 15 16]]
+    
+    Take elements at positions 0, 2 and -1 from one-dim array along the second (col) axis:
+    [[ 1  3  4]
+     [ 5  7  8]
+     [ 9 11 12]
+     [13 15 16]]
+    
+
+
+The `choose` function will return an array given a set of indices and arrays to choose from. The logic's a bit more complicated. It's similar to ordering food in a restaurant from different types of food: "The first element of my new array will be the first element of array 3, the second element will be the second element from array 1, the third element will be the third element from array 2, and the fourth element will be the fourth element from array 0".
+
+The mechanics are always the same. The flexibility comes from deciding the order from which array you extract elements. This allows for complex indexing like "diagonals" and "staircase".
+
+
+```python
+# choose
+choices_one = [3, 1, 2, 0]
+choices_diagonal = [0, 1, 2, 3]
+choices_diagonal_back = [3, 2, 1, 0]
+
+
+print(f'Two-dimensional array:\n{array_two}\n')
+print(f'Choose the 1st element from the 4th array, the 2nd from the 1st, the 3th from the 2nd, and the 4th from the 1st: \n{np.choose(choices_one, array_two)}\n')
+print(f'Choose diagonal elements from top-left to botton-right: \n{np.choose(choices_diagonal, array_two)}\n')
+print(f'Choose diagonal elements from bottom-left to top-right: \n{np.choose(choices_diagonal_back, array_two)}\n')
+```
+
+    Two-dimensional array:
+    [[ 1  2  3  4]
+     [ 5  6  7  8]
+     [ 9 10 11 12]
+     [13 14 15 16]]
+    
+    Choose the 1st element from the 4th array, the 2nd from the 1st, the 3th from the 2nd, and the 4th from the 1st: 
+    [13  6 11  4]
+    
+    Choose diagonal elements from top-left to botton-right: 
+    [ 1  6 11 16]
+    
+    Choose diagonal elements from bottom-left to top-right: 
+    [13 10  7  4]
+    
+
+
+A simpler and more flexible way to extract diagonals is with the `diagonal` function:
+
+
+```python
+print(f'Two-dimensional array:\n{array_two}\n')
+print(f'Extract 1st-diagonal diagonal elements from top-left to bottom-right: \n{np.diagonal(array_two, offset=0)}\n')
+print(f'Extract 2st-diagonal diagonal elements from top-left to bottom-right: \n{np.diagonal(array_two, offset=1)}\n')
+print(f'Extract 3st-diagonal diagonal elements from top-left to bottom-right: \n{np.diagonal(array_two, offset=2)}\n')
+```
+
+    Two-dimensional array:
+    [[ 1  2  3  4]
+     [ 5  6  7  8]
+     [ 9 10 11 12]
+     [13 14 15 16]]
+    
+    Extract 1st-diagonal diagonal elements from top-left to bottom-right: 
+    [ 1  6 11 16]
+    
+    Extract 2st-diagonal diagonal elements from top-left to bottom-right: 
+    [ 2  7 12]
+    
+    Extract 3st-diagonal diagonal elements from top-left to bottom-right: 
+    [3 8]
+    
+
+
+To extract the diagonals in the opposite direction, from bottom-right to the top-left, you have to flip the array vertically and then horizontally.
+
+
+```python
+print(f'Two-dimensional array\n{array_two}\n')
+print(f'Vertical flip: \n{np.flipud(array_two)}\n')
+print(f'Horizontal flip: \n{np.fliplr(array_two)}\n')
+print(f'Vertical and horizontal flip: \n{np.fliplr(np.flipud(array_two))}\n')
+print(f'Extract 1st-diagonal diagonal from bottom-right to top-left: \n{np.diagonal(np.fliplr(np.flipud(array_two)), offset=0)}\n')
+print(f'Extract 2st-diagonal diagonal from bottom-right to top-left: \n{np.diagonal(np.fliplr(np.flipud(array_two)), offset=1)}\n')
+print(f'Extract 3st-diagonal diagonal from bottom-right to top-left: \n{np.diagonal(np.fliplr(np.flipud(array_two)), offset=2)}\n')
+```
+
+    Two-dimensional array
+    [[ 1  2  3  4]
+     [ 5  6  7  8]
+     [ 9 10 11 12]
+     [13 14 15 16]]
+    
+    Vertical flip: 
+    [[13 14 15 16]
+     [ 9 10 11 12]
+     [ 5  6  7  8]
+     [ 1  2  3  4]]
+    
+    Horizontal flip: 
+    [[ 4  3  2  1]
+     [ 8  7  6  5]
+     [12 11 10  9]
+     [16 15 14 13]]
+    
+    Vertical and horizontal flip: 
+    [[16 15 14 13]
+     [12 11 10  9]
+     [ 8  7  6  5]
+     [ 4  3  2  1]]
+    
+    Extract 1st-diagonal diagonal from bottom-right to top-left: 
+    [16 11  6  1]
+    
+    Extract 2st-diagonal diagonal from bottom-right to top-left: 
+    [15 10  5]
+    
+    Extract 3st-diagonal diagonal from bottom-right to top-left: 
+    [14  9]
+    
+
+
+To obtain the opposite diagonal or "anti-diagonal" from the top-right to the bottom-left (and its reverse):
+
+
+```python
+print(f'Two-dimensional array: \n{array_two}\n')
+print(f'Antidiagonal: \n{np.diagonal(np.fliplr(array_two), offset=0)}\n')
+print(f'Antidiagonal from bottom-left to top-right: \n{np.diagonal(np.flipud(array_two), offset=0)}\n')
+```
+
+    Two-dimensional array: 
+    [[ 1  2  3  4]
+     [ 5  6  7  8]
+     [ 9 10 11 12]
+     [13 14 15 16]]
+    
+    Antidiagonal: 
+    [ 4  7 10 13]
+    
+    Antidiagonal from bottom-left to top-right: 
+    [13 10  7  4]
+    
+
+
+The `select` function allows for combining multiple conditions to choose elements from multiple arrays. The output will be the elements where the conditions are evaluated as True, and the rest will be set to 0 or to a user-defined default value. 
+
+
+```python
+x = np.arange(10)
+y = np.arange(1,11)
+
+condlist = [x<3, x>5]
+choicelist = [x, y]
+
+print(f'Select elements from x where x<3, and elements from y where x>5: \n{np.select(condlist, choicelist)}\n')
+print(f'Select elements from x where x<3, and elements from y where x>5, with default value 99 for False: \n{np.select(condlist, choicelist, default=99)}\n')
+```
+
+    Select elements from x where x<3, and elements from y where x>5: 
+    [ 0  1  2  0  0  0  7  8  9 10]
+    
+    Select elements from x where x<3, and elements from y where x>5, with default value 99 for False: 
+    [ 0  1  2 99 99 99  7  8  9 10]
+    
+
+
+If you want to return only the values where a condition is True, a simple approach is to subset the array to the non-zero values as (or any value you defined as default):
+
+
+```python
+non_zero = np.select(condlist, choicelist)
+non_nine = np.select(condlist, choicelist, default=99)
+
+print(f'Select non-zero value: \n{non_zero[non_zero != 0]}\n')
+print(f'Select non-ninety-nine values (This option prevents you to remove zeros when zero is a valid value):\n{non_nine[non_nine != 99]}')
+```
+
+    Select non-zero value: 
+    [ 1  2  7  8  9 10]
+    
+    Select non-ninety-nine values (This option prevents you to remove zeros when zero is a valid value):
+    [ 0  1  2  7  8  9 10]
+
+
+## Array iteration
+
+Iterating over arrays refers to the operation of "visiting" elements of an array in a systematic fashion. To iterate over array elements we utilize standard Python syntax (`for` and `while` loops) plus the functionality provided by the `nditer` iterator object.
+
+"OK, so iteration is looping. Wasn't looping bad though?" Right, I said that. Although is true that you want to avoid explicit Python loops as the plague, there are circumstances where iteration is unavoidable, so you better learn how to do it properly.
+
+I'll say upfront that array iteration can be a very complex topic. I rarely have had to use this functionality as most libraries will take care of these issues for you. Here I'll just cover the most basics topics related to array iteration in `NumPy` you have a good enough notion of what is going on and what are your options.
+
+### Basic array iteration
+
+Here is an example of the most basic operation you can do: iterate over array elements one by one.
+
+
+```python
+array = np.arange(1,10).reshape(3,3)
+
+print(f"Two-dimensional array:\n{array}\n")
+for element in np.nditer(array):
+    print(element, end=' ')
+```
+
+    Two-dimensional array:
+    [[1 2 3]
+     [4 5 6]
+     [7 8 9]]
+    
+    1 2 3 4 5 6 7 8 9 
+
+There is a technical detail you should be aware of: the `nditer` object iterates over the array matching the way on which the data is stored in memory. This means that regardless of how you "present" the array to the iterator, you will get back the elements in the same order. This done simply because is faster. For instance:
+
+
+```python
+print(f"Transposed (along main diagonal) two-dimensional array:\n{array.T}\n")
+
+for element in np.nditer(array.T):
+    print(element, end=' ')
+```
+
+    Transposed (along main diagonal) two-dimensional array:
+    [[1 4 7]
+     [2 5 8]
+     [3 6 9]]
+    
+    1 2 3 4 5 6 7 8 9 
+
+If you were expecting to get back 1, 4, 7, 2, 5, 8, 3, 6, 9, you are not alone. I was expecting that order too. But that is not the order data is stored in memory. To visit the elements in the order you would expect by looking at the array, you have to explicitly add you want the `C` order: 
+
+
+```python
+print(f"Transposed (along main diagonal) two-dimensional array:\n{array.T}\n")
+
+for element in np.nditer(array.T.copy(order='C')):
+    print(element, end=' ')
+```
+
+    Transposed (along main diagonal) two-dimensional array:
+    [[1 4 7]
+     [2 5 8]
+     [3 6 9]]
+    
+    1 4 7 2 5 8 3 6 9 
+
+There may be times when you want to update the values of an array while iterating. For instance, reinforcement learning models constantly update values after each iteration. The default behavior of `nditer` is "read-only", meaning it won't let you change values. Hence, you have to specify either "readwrite" or "writeonly" options to update values. Additionally, you have to signal to `nditer` when you have finished iterating over values, as `nditer` needs to update the array with the new values. This happens because `nditer` first save the updated values in a temporary memory space instead of changing values "on the fly". According to `NumPy` docs, there are two ways to do this: 
+
+1. using `nditer` as a context manager utilizing the Python `with` statement
+2. calling the iterator's `close` method at the end of the iteration process
+
+Let's see an example:
+
+
+```python
+array_to_update = np.arange(1,10).reshape(3,3)
+
+print(f'Array to update:\n{array_to_update}\n')
+
+with np.nditer(array_to_update, op_flags=['readwrite']) as iterator:
+    for element in iterator:
+        element[...] = element**2
+        
+print(f'Updated array (squared):\n{array_to_update}')
+```
+
+    Array to update:
+    [[1 2 3]
+     [4 5 6]
+     [7 8 9]]
+    
+    Updated array (squared):
+    [[ 1  4  9]
+     [16 25 36]
+     [49 64 81]]
+
+
+Although looping is not completely avoidable while iterating, there is a way to speed up iteration by partially vectorizing the innermost loop of the iteration. The details of how this work is not relevant from an applied perspective. What you want to know is that it will be faster and that you have to declare the `external_loop` flag in the iterator. Let's time both approaches:
+
+
+```python
+%%timeit
+
+large_array = np.arange(10000)
+
+for element in np.nditer(large_array):
+    element*2
+```
+
+    10.4 ms ± 34.2 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+
+
+
+```python
+%%timeit
+
+large_array = np.arange(10000)
+
+for element in np.nditer(large_array, flags=['external_loop']):
+    element*2
+```
+
+    12.6 µs ± 62.3 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+
+
+By utilizing an external loop, we increased the speed for a factor of around 816 times (0.0125 ms vs 10.2 ms). Not all operations will gain so much on speed, but in general, you will get large gains.
+
+### Broadcasting array iteration
+
+If you find yourself having to iterate over multiple arrays with different shapes and dimensionality, the `nditer` object is smart enough to apply broadcast rules during iteration. For instance:
+
+
+```python
+one_dim_array = np.arange(3)
+
+two_dim_array = np.arange(9).reshape(3,3)
+
+for x, y in np.nditer([one_dim_array, two_dim_array]):
+
+    print(f'x: {x}, y:{y}')
+```
+
+    x: 0, y:0
+    x: 1, y:1
+    x: 2, y:2
+    x: 0, y:3
+    x: 1, y:4
+    x: 2, y:5
+    x: 0, y:6
+    x: 1, y:7
+    x: 2, y:8
+
+
+Here we can see that `nditer` broadcast the `one_dim_array` to match the `two_dim_array` so iteration does not break.
+
+### Allocating outputs from iteration
+
+There are cases where you want to create a function utilizing the `nditer` object. This is, functions that take an array as input, iterate over the array elements, and instead of modifying the original array, they return the output somewhere else. Here is a basic example I took from [the `NumPy` docs](https://numpy.org/doc/stable/reference/arrays.nditer.html#iterator-allocated-output-arrays): 
+
+
+```python
+def square(a):
+
+    with np.nditer([a, None]) as it:
+
+        for x, y in it:
+
+            y[...] = x*x
+
+        return it.operands[1]
+```
+
+
+```python
+input_array = np.arange(1,6)
+print(f'Input array: {input_array}')
+print(f'Input array squared: {square(input_array)}')
+```
+
+    Input array: [1 2 3 4 5]
+    Input array squared: [ 1  4  9 16 25]
+
+
+### Iteration functions
+
+There are a couple of additional functions in `NumPy` in addition to the `nditer` object that you can check [here](https://numpy.org/doc/stable/reference/routines.indexing.html#iterating-over-arrays). An example is the `ndenumerate` that returns both the coordinate index values for each element in the array, plus the element itself:
+
+
+```python
+array = np.arange(1,10).reshape(3,3)
+
+for index, element in np.ndenumerate(array):
+    print(f'Pair of indices: {index}, Element: {element}')
+```
+
+    Pair of indices: (0, 0), Element: 1
+    Pair of indices: (0, 1), Element: 2
+    Pair of indices: (0, 2), Element: 3
+    Pair of indices: (1, 0), Element: 4
+    Pair of indices: (1, 1), Element: 5
+    Pair of indices: (1, 2), Element: 6
+    Pair of indices: (2, 0), Element: 7
+    Pair of indices: (2, 1), Element: 8
+    Pair of indices: (2, 2), Element: 9
+
+
+## Array shallow and deep copies
+
+To copy an array in `NumPy` can mean **three different things**: 
+
+1. To put a new label 
+2. To create a "view" or "shallow copy" that refers to the same chunk of data in memory
+3. To create an independent or "deep copy" of the array in a different location in memory
+
+Creating "shallow copies" instead of "deep copies" can significantly speed up computation and save space, but it has limitations to keep in mind. The figure below illustrates the differences between the three alternatives. 
+
+Let's examine each case.
+
+<img src="/assets/post-12/copies.svg">
+
+### Array new label
+
+There are cases where no copy at all is created. All that is done is attaching a new label to the original array. We can use the `is` and `may_share_memory` methods to check object identity and memory sharing.
+
+
+```python
+array_one = np.ones(10)
+array_two = array_one
+
+print(f'Array one:{array_one}\n')
+print(f'Array two:{array_two}\n')
+print(f'Are array-one and array-two the same object?: {array_two is array_one}\n')
+print(f'Do array-one and array-two share memory?: {np.may_share_memory(array_one, array_two)}')
+```
+
+    Array one:[1. 1. 1. 1. 1. 1. 1. 1. 1. 1.]
+    
+    Array two:[1. 1. 1. 1. 1. 1. 1. 1. 1. 1.]
+    
+    Are array-one and array-two the same object?: True
+    
+    Do array-one and array-two share memory?: True
+
+
+The key here is that `array_one` and `array_two` **share memory AND are the same object**.
+
+A logical consequence of the fact that `array_one` and `array_two` share the same data and identity, is that if you change `array_two` you will be inadvertently changing `array_one` as well:
+
+
+```python
+array_two[-1] = 99
+print(f'New array-two:\n{array_two}\n')
+
+print(f'Array-one is changed although no explicit operation was done to it:\n{array_one}')
+```
+
+    New array-two:
+    [ 1.  1.  1.  1.  1.  1.  1.  1.  1. 99.]
+    
+    Array-one is changed although no explicit operation was done to it:
+    [ 1.  1.  1.  1.  1.  1.  1.  1.  1. 99.]
+
+
+If you want two independent copies of the same data, you need a "deep copy" (more on that below).
+
+### Array shallow copy or view
+
+"Shallow copies" or "views" are objects which **are not the same**, but **share the same data** source. For instance:
+
+
+```python
+array_three = array_one[0:6]
+
+print(f'Array one:{array_one}\n')
+print(f'Array three:{array_three}\n')
+print(f'Are array-one and array-three the same object?: {array_two is array_three}\n')
+print(f'Do array-one and array-three share memory?: {np.may_share_memory(array_one, array_three)}')
+```
+
+    Array one:[ 1.  1.  1.  1.  1.  1.  1.  1.  1. 99.]
+    
+    Array three:[1. 1. 1. 1. 1. 1.]
+    
+    Are array-one and array-three the same object?: False
+    
+    Do array-one and array-three share memory?: True
+
+
+The key here is that `array_one` and `array_three` **are NOT the same object BUT share memory**.
+
+The effect of shallow copies in the base-data is a bit trickier. There are cases where changing a view does not change the base-data, as reshaping:  
+
+
+```python
+array_three_reshape = array_three.reshape(2,3)
+
+print(f'Array-three change shape:\n{array_three_reshape}\n')
+print(f'But this does not change array-two (the source):\n{array_two}')
+```
+
+    Array-three change shape:
+    [[1. 1. 1.]
+     [1. 1. 1.]]
+    
+    But this does not change array-two (the source):
+    [ 1.  1.  1.  1.  1.  1.  1.  1.  1. 99.]
+
+
+And cases where it does change the original base-data, as inserting new values:
+
+
+```python
+array_three[0] = 99
+
+print(f'Array-three new value at position 0:\n{array_three}\n')
+print(f'This does change array-two (the source):\n{array_two}')
+```
+
+    Array-three new value at position 0:
+    [99.  1.  1.  1.  1.  1.]
+    
+    This does change array-two (the source):
+    [99.  1.  1.  1.  1.  1.  1.  1.  1. 99.]
+
+
+### Array deep copy
+
+"Deep copies" are independent copies located in a different position in memory. For instance: 
+
+
+```python
+array_four = array_one[0:5].copy()
+
+print(f'Array one:{array_one}\n')
+print(f'Array four:{array_four}\n')
+print(f'Are array-one and array-four the same object?: {array_one is array_four}\n')
+print(f'Do array-one and array-four share memory?: {np.may_share_memory(array_one, array_four)}')
+```
+
+    Array one:[99.  1.  1.  1.  1.  1.  1.  1.  1. 99.]
+    
+    Array four:[99.  1.  1.  1.  1.]
+    
+    Are array-one and array-four the same object?: False
+    
+    Do array-one and array-four share memory?: False
+
+
+The key here is that `array_one` and `array_four` **NEITHER are the same object NOR share memory**.
+
+In this case, there is no way to affect `array_one` (the base) by changing `array_four`:
+
+
+```python
+array_four[3] = 99
+
+print(f'Array-four new value at position 3:\n{array_four}\n')
+print(f'This does NOT change array-one (the source):\n{array_one}')
+```
+
+    Array-four new value at position 3:
+    [99.  1.  1. 99.  1.]
+    
+    This does NOT change array-one (the source):
+    [99.  1.  1.  1.  1.  1.  1.  1.  1. 99.]
+
+
+Deep copies are recommended when you want to keep a subset of the data and throw away the base array, or when you need to manipulate two or more copies of the same data independently.
+
+## Structured arrays
+
+My only goal introducing structured arrays is to advise to not use them unless you need to interface with C code or to do low-level manipulation of structured buffers (As recommended in the `NumPy` docs). If you need to do such kinds of things you are probably a very advance `NumPy` user or developer, i.e., you won't read this anyway. 
+
+Let's look at what structured arrays are: 
+
+
+```python
+structured_array = np.array([("Bulbasaur", "Grass", 15.2, 71.12),
+                             ("Charmander ", "Fire", 18.7, 60.96)],
+                           dtype=[("Name", 'U10'),
+                                  ("Type", 'U10'),
+                                  ("Weight", 'f4'),
+                                  ("Height", 'f4')])
+```
+
+
+```python
+print(f'Structured array:\n{structured_array}\n')
+print(f'First element structured array:\n{structured_array[0]}\n')
+print(f'Second element structured array:\n{structured_array[1]}')
+```
+
+    Structured array:
+    [('Bulbasaur', 'Grass', 15.2, 71.12) ('Charmander', 'Fire', 18.7, 60.96)]
+    
+    First element structured array:
+    ('Bulbasaur', 'Grass', 15.2, 71.12)
+    
+    Second element structured array:
+    ('Charmander', 'Fire', 18.7, 60.96)
+
+
+From the example you can gather than structured arrays are n-dimensional arrays composed of mixed data types with named fields. For instance, the first element has four fields: a string for "Name", a string for "Type", a float for "Weight", and a float for "height". Essentially, the kind of data you would find in a CSV file or a relational database. 
+
+What to use then if not structured arrays? [Pandas](https://pandas.pydata.org/), just use 🐼 which is specifically designed to deal with relational kind with mixed data types. Alternatives are [xarray](http://xarray.pydata.org/en/stable/) and or query languages like [PostgreSQL](https://www.postgresql.org/).
