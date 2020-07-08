@@ -1,5 +1,5 @@
 ---
-title: The Data Science Three of Knowledge - What is Data Science and How to Educate Data Scientists
+title: The Data Science Tree of Knowledge - What is Data Science and How to Educate Data Scientists
 published: true
 mathjax: true
 ---
