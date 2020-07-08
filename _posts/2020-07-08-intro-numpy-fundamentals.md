@@ -4,9 +4,11 @@ published: true
 mathjax: true
 ---
 
-<pre>
+---
+
 <iframe src="https://github.com/sponsors/pabloinsente/card" title="Sponsor pabloinsente" height="225" width="600" style="border: 0;"></iframe>
-</pre>
+
+---
 
 ***Note***: **this is part I AND II of a III-part series I am working right now**
 
