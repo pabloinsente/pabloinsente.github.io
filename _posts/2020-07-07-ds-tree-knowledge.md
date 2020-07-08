@@ -4,7 +4,17 @@ published: true
 mathjax: true
 ---
 
-As with any other science-based discipline, Data Science tools and core of knowledge changes constantly. During my sociology, public policy, and psychology studies, I quickly learned that research perpetually redefines the boundaries of knowledge. Through friends in fields like physics, biology, engineering, and medical sciences, I have learned that the situation is no different there. Yet, I believe there are a couple of characteristics that make Data Science a particularly hard to “keep up with” as a field. More than most fields I am aware of at least. If you are active in social media, you will quickly find testimonies of people feeling overwhelmed by the pace of change of the field, and its overall fuzziness. With this in mind, in this brief essay, I try to answer the following questions: (1) What is Data Science?; (2) Why is so hard to “keep up with” Data Science tools and knowledge?; (2) What can we do about it (question 2)?
+**TL;DR** 
+
+Here it is:
+
+<img src="../assets/post-14/ds-tree.svg">
+
+Now the essay.
+
+## Data Science challenges
+
+As with any other science-based discipline, Data Science tools and core of knowledge changes constantly. During my sociology, public policy, and psychology studies, I quickly learned that research perpetually redefines the boundaries of knowledge. Through friends in fields like physics, biology, engineering, and medical sciences, I have learned that the situation is no different there. Yet, I believe there are a couple of characteristics that make Data Science a particularly hard to “keep up with” as a field. More than most fields I am aware of at least. If you are active in social media, you will quickly find testimonies of people feeling overwhelmed by the pace of change of the field, and its overall fuzziness. With this in mind, in this brief essay, I try to answer the following questions: (1) **What is Data Science?**; (2) **Why is so hard to “keep up with” Data Science tools and knowledge?**; (2) **What can we do about it (question 2)?**
 
 ## What is Data Science? Buzzword or discipline?   
 
@@ -110,6 +120,7 @@ The roots of the tree are interconnected disciplines which provide the foundatio
 - Intro to data structures
 - Intro to data management
 - Scientific method and reasoning
+- Science communication
 - Quantitative and qualitative research methods
 - Philosophy of science
 - Intro to data visualization
@@ -149,8 +160,10 @@ Finally, the branches of the tree represent topics that require intense dedicati
 - Representation learning
 - Deep generative models
 - Advance Bayesian models
+- Monte-carlo methods
 - Affective computing
 - Human-computer interaction
 - Robotics
+- Hybrid models
 
 My roots, trunk, and branches lists are by no means complete or exhaustive, but I hope are enough to convey my main points: **Data Science, as a discipline, does require a sensible core of knowledge to define itself as a discipline, and to envision a clear learning path for people who aspire to become a Data Scientist**.
