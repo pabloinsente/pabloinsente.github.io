@@ -10,7 +10,9 @@ mathjax: true
 
 ---
 
-***Note***: **this is part I AND II of a III-part series I am working right now**
+***Notes***: 
+- **this is part I AND II of a III-part series I am working right now**
+- If you prefer to read with a white background and black font, you can see this article in GitHub [here](https://github.com/pabloinsente/intro-sc-python/blob/master/notebooks/intro-numpy-fundamentals.ipynb). Las time I check SVG images rendered just fine.
 
 ---
 
@@ -114,7 +116,7 @@ Here is my [Twitter](https://twitter.com/CodeBug88), [LinkedIn](https://www.link
 
 ## Python is slow
 
-Scientific and numerical computing often requires processing massive datasets with complex algorithms. If you are a scientist or data professional, you want a programming language than can process data FAST. **The closer a programming language is to machine instructions (binary), the faster it runs**. That's why for decades, programs like C, C++, and Fortran, were the to-go option for data-intensive applications in science and technology. 
+Scientific and numerical computing often requires processing massive datasets with complex algorithms. If you are a scientist or data professional, you want a programming language than can process data FAST. **The closer a programming language is to machine instructions (binary), the faster it runs**. That's why for decades, programming languages like C, C++, and Fortran, were the to-go option for data-intensive applications in science and technology. 
 
 However, writing code in compiled languages like C++ and Fortran can be slow and, frankly, terribly annoying (but that's just me!). Scientists are not coders (although many end up mutating into scientist-coder hybrids over time, that's a whole other subject). From a scientist's perspective, **the easier and faster to write code, the better**. High-level programming languages, i.e., languages that are closer to human language rather than to machine language do meet such requirements. The likes of Python, PHP, JavaScript, and Ruby, fits the bill: **easy to write, easy to learn, easy to run**. But, instructions written in high-level programming languages are slow to run by computers, for complicated reasons I do not explore here. The fact is that they are slower to run than C++ or Fortran.
 
@@ -126,7 +128,7 @@ There are at least two reasons for this why Python succeed anyways.
 
 The first is that as computing capacity became cheaper, **processing time has become less important than coding-time**. Basically, the time you save by writing code in high-level yet slow to-run programming languages compensates by their lack of performance at run time. And Python is exceptionally clean, intuitive, and easy to learn, compared to C or Fortran.
 
-The second reason, which is probably the major one, is **libraries**. Particularly libraries are written in low-level high-performant languages. Turns out that Python extensibility allows programmers to write the "engine" for numerical computation in languages like C and Fortran, and then Python can invoke such "engines" in the background, meaning that although you write code in Python, it is executed in compiled C or Fortran code instead of Python itself. And that is how you obtain the best of both worlds: **the easy and fast developing time of Python, plus the runtime performance of C or Fortran**. True, there is some small overhead of going back and forth between languages, but its impact it's minimal. 
+The second reason, which is probably the major one, is **libraries**. Particularly libraries written in low-level high-performant languages. Turns out that Python extensibility allows programmers to write the "engine" for numerical computation in languages like C and Fortran, and then Python can invoke such "engines" in the background, meaning that although you write code in Python, it is executed in compiled C or Fortran code instead of Python itself. And that is how you obtain the best of both worlds: **the easy and fast developing time of Python, plus the runtime performance of C or Fortran**. True, there is some small overhead of going back and forth between languages, but its impact it's minimal. 
 
 It is important to mention that nowadays, new programming languages have been created exactly with these two necessities (fast development + fast performance) in mind, like **[Julia](https://julialang.org/)**. In the spectral-norm test, Julia was benchmarked at ~2.79 seconds, almost as fast as C. Additionally, Julia is a dynamic language, easy to learn, and write in like Python. Why not Julia then? Probably because of the relative immaturity of its packages ecosystem compared to Python. Julia first appeared in 2012, whereas Python was introduced in 1990. The availability of well-tested libraries for pretty much anything you can imagine in Python is unparalleled. A second reason is probably that Python does not cost you performance anyways (with its libraries), so Why not? 
 
