@@ -44,7 +44,7 @@ If you want to interact with this Notebook, you can open a MyBinder interactive 
 
 **To open MyBinder** -> [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/pabloinsente/intro-sc-python/master/?urlpath=lab)
 
-As a final note, **if you are `NumPy` expert, advanced user, or developer**, you may find some inaccuracies or lack of depth in some of my explanations. Two things: (1) feel free to suggest a better explanation or something that I may add to make things clearer, (2) I prioritize consciousness and accessibility over the accuracy, so the lack of accuracy or depth sometimes it is intentional from my part. 
+As a final note, **if you are `NumPy` expert, advanced user, or developer**, you may find some inaccuracies or lack of depth in some of my explanations. Two things: (1) feel free to suggest a better explanation or something that I may add to make things clearer, (2) I prioritize conciseness and accessibility over accuracy, so the lack of accuracy or depth sometimes it is intentional from my part. 
 
 If you have any questions or suggestion feel free to reach me out to at pcaceres@wisc.edu
 Here is my [Twitter](https://twitter.com/CodeBug88), [LinkedIn](https://www.linkedin.com/in/pabloascm/), and [personal site](https://pablocaceres.org/). 
