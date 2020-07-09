@@ -803,7 +803,7 @@ ceil = np.ceil(decimals)
 
 ```python
 print(f"Array of decimals:\n{decimals}\n")
-print(f"'around' round to the fiven number of decimals:\n{around}\n")
+print(f"'around' round to the given number of decimals:\n{around}\n")
 print(f"'round' yields identical results than 'around':\n{round_}\n")
 print(f"'rint' round to the nearest integer:\n{rint}\n")
 print(f"'fix' round to the nearest integer towars zero:\n{fix}\n")
@@ -815,7 +815,7 @@ print(f"'ceil' round to the ceiling of the input:\n{ceil}")
     [0.11111111 0.20987654 0.30864197 0.4074074  0.50617283 0.60493827
      0.7037037  0.80246913 0.90123456 0.99999999]
     
-    'around' round to the fiven number of decimals:
+    'around' round to the given number of decimals:
     [0.111 0.21  0.309 0.407 0.506 0.605 0.704 0.802 0.901 1.   ]
     
     'round' yields identical results than 'around':
