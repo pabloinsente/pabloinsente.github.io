@@ -10,9 +10,7 @@ mathjax: true
 
 ---
 
-***Notes***: 
-- **this is part I AND II of a III-part series I am working right now**
-- If you prefer to read with a white background and black font, you can see this article in GitHub [here](https://github.com/pabloinsente/intro-sc-python/blob/master/notebooks/intro-numpy-fundamentals.ipynb). Las time I check SVG images rendered just fine.
+***Note***: If you prefer to read with a **white background and black font**, you can see this article in GitHub [here](https://github.com/pabloinsente/intro-sc-python/blob/master/notebooks/intro-numpy-fundamentals.ipynb). Las time I check SVG images rendered just fine.
 
 ---
 
@@ -46,7 +44,7 @@ If you want to interact with this Notebook, you can open a MyBinder interactive 
 
 **To open MyBinder** -> [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/pabloinsente/intro-sc-python/master/?urlpath=lab)
 
-As a final note, **if you are `NumPy` expert, advanced user, or developer**, you may find some inaccuracies or lack of depth in some of my explanations. Two things: (1) feel free to suggest a better explanation or something that I may add to make things clearer, (2) I prioritize conciseness and accessibility over accuracy, so the lack of accuracy or depth sometimes it is intentional from my part. 
+As a final note, **if you are `NumPy` expert, advanced user, or developer**, you may find some inaccuracies or lack of depth in some of my explanations. Two things: (1) feel free to suggest a better explanation or something that I may add to make things clearer, (2) I prioritize conciseness and accessibility over the accuracy, so the lack of accuracy or depth sometimes it is intentional from my part. 
 
 If you have any questions or suggestion feel free to reach me out to at pcaceres@wisc.edu
 Here is my [Twitter](https://twitter.com/CodeBug88), [LinkedIn](https://www.linkedin.com/in/pabloascm/), and [personal site](https://pablocaceres.org/). 
@@ -103,16 +101,26 @@ Here is my [Twitter](https://twitter.com/CodeBug88), [LinkedIn](https://www.link
     - [Array shallow copy or view](#array-shallow-copy-or-view)
     - [Array deep copy](#array-deep-copy)
 - [Structured arrays](#structured-arrays)
-
-
-**Future sections for part III**:
-- [NumPy random sampling]
-- [Basic statistics with NumPy]
-- [Basic linear algebra with NumPy]
-- [Array string operations]
-- [NumPy datetime functions]
-- [Input-output (I/O) data processing]
-- [Resources to learn more]
+- [Random number generation and sampling with NumPy](#random-number-generation-and-sampling-with-numpy)
+    - [Random sampling updated](#random-sampling-updated)
+    - [Basic random sampling](#basic-random-sampling)
+    - [Setting a seed for reproducibility](#setting-a-seed-for-reproducibility)
+    - [Sampling from particular distributions](#sampling-from-particular-distributions)
+- [Basic statistics with NumPy](#basic-statistics-with-numpy)
+    - [Measures of central tendency](#measures-of-central-tendency)
+    - [Measures of dispersion](#measures-of-dispersion) 
+    - [Measures of correlation](#measures-of-correlation)  
+    - [Histograms](#histograms)
+- [Basic linear algebra with NumPy](#basic-linear-algebra-with-numpy)
+    - [Basic vector operations](#basic-vector-operations)
+    - [Basic vector operations](#basic-vector-operations)
+    - [Basic matrix operations](#basic-matrix-operations)
+    - [Eigendecomposition](#eigendecomposition)
+    - [Singular value decomposition](#singular-value-decomposition)
+- [String operations with NumPy](#string-operations-with-numpy)
+    - [Basic string manipulation](#basic-string-manipulation)
+    - [Basic string comparison](#basic-string-comparison)
+    - [String information](#string-information)
 
 ## Python is slow
 
@@ -361,7 +369,7 @@ print(f'Array from set:\n{array_set}')
      [4 5 6]]
     
     Array from set:
-    {'snorlax', 'charizard', 'pikachu'}
+    {'pikachu', 'snorlax', 'charizard'}
 
 
 ### Intrinsic NumPy array creation objects 
@@ -411,7 +419,7 @@ print(f'Array from indices:\n{indices}\n')
      [1. 1. 1.]]
     
     Array of empty entries:
-    [[4.67441284e-310 6.93043825e-310]
+    [[4.67794427e-310 6.90921830e-310]
      [0.00000000e+000 0.00000000e+000]]
     
     Evenly spaced array in a range:
@@ -485,9 +493,9 @@ print(f'Array of random numbers sampled from a uniform distribution:\n{rand}')
      [0. 0. 0. 0.]]
     
     Array of random numbers sampled from a uniform distribution:
-    [[0.68067459 0.94811904]
-     [0.42049988 0.07282852]
-     [0.38239374 0.22167895]]
+    [[0.75060485 0.07962041]
+     [0.36030122 0.11582055]
+     [0.57917376 0.93888782]]
 
 
 - The `diagonal` function returns an array with the numbers in the diagonal and zeros elsewhere
@@ -504,7 +512,6 @@ In scientific computing we want speed, meaning we want to get rid of loops. This
 Here is how vectorization looks like conceptually.
 
 <img src= "/assets/post-12/vectorization.svg" >
-
 
 Now let's compare the performance gain of vectorization against looping in a simple sum. 
 
@@ -523,7 +530,7 @@ for i in range(0, len(x)):
     x[i] + y[i]
 ```
 
-    35.4 µs ± 353 ns per loop (mean ± std. dev. of 7 runs, 10000 loops each)
+    33 µs ± 447 ns per loop (mean ± std. dev. of 7 runs, 10000 loops each)
 
 
 Sum arrays with `NumPy` (vectorized)
@@ -534,7 +541,7 @@ Sum arrays with `NumPy` (vectorized)
 x+y;
 ```
 
-    488 ns ± 3.35 ns per loop (mean ± std. dev. of 7 runs, 1000000 loops each)
+    505 ns ± 4.17 ns per loop (mean ± std. dev. of 7 runs, 1000000 loops each)
 
 
 As you can see, the `NumPy` vectorized implementation is several orders of magnitude faster. In the runs I've done, approximately 67 times faster (~32 microsecond against ~0.49 microseconds).
@@ -742,8 +749,7 @@ ax3.set_title("tan")
 plt.tight_layout()
 ```
 
-
-<img src="/assets/post-12/output_68_0.png">
+<img src="/assets/post-12/output_69_0.png">
 
 
 ### Hyperbolic functions
@@ -774,8 +780,7 @@ ax3.set_title("tanh")
 plt.tight_layout()
 ```
 
-
-<img src="/assets/post-12/output_72_0.png">
+<img src="/assets/post-12/output_73_0.png">
 
 
 ### Rounding
@@ -3177,7 +3182,7 @@ for element in np.nditer(large_array):
     element*2
 ```
 
-    10.4 ms ± 34.2 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+    10.3 ms ± 107 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
 
 
 
@@ -3190,7 +3195,7 @@ for element in np.nditer(large_array, flags=['external_loop']):
     element*2
 ```
 
-    12.6 µs ± 62.3 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+    12.6 µs ± 51.2 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
 
 
 By utilizing an external loop, we increased the speed for a factor of around 816 times (0.0125 ms vs 10.2 ms). Not all operations will gain so much on speed, but in general, you will get large gains.
@@ -3472,4 +3477,673 @@ print(f'Second element structured array:\n{structured_array[1]}')
 
 From the example you can gather than structured arrays are n-dimensional arrays composed of mixed data types with named fields. For instance, the first element has four fields: a string for "Name", a string for "Type", a float for "Weight", and a float for "height". Essentially, the kind of data you would find in a CSV file or a relational database. 
 
-What to use then if not structured arrays? [Pandas](https://pandas.pydata.org/), just use 🐼 which is specifically designed to deal with relational kind with mixed data types. Alternatives are [xarray](http://xarray.pydata.org/en/stable/) and or query languages like [PostgreSQL](https://www.postgresql.org/).
+What to use then if not structured arrays? [Pandas](https://pandas.pydata.org/), just use 🐼 which is specifically designed to deal with table-like datasets with mixed data types. Alternatives are [xarray](http://xarray.pydata.org/en/stable/) and or query languages like [PostgreSQL](https://www.postgresql.org/).
+
+## Random number generation and sampling with NumPy
+
+Here is an example of something that happened to me: I wrote an on-line book introducing neural network models of cognition. While creating examples, I often had to generate random numbers, particularly to initialize the weights of the network. They were cases where sampling from a *uniform random distribution* vs *random normal distribution* was **the difference between a model solving the problem and not solving it at all**. As you can imagine, knowing how to work with `NumPy` random generator capabilities is crucial to get such kind of issues right. 
+
+### Random sampling updated
+
+This or may not be a surprise to you, but `Numpy` does not actually generate random numbers but **pseudo-random numbers** basically because generating random numbers is impossible. Just trying out, you won't be able to, because you will always depend on picking some non-random event to generate the sequence. But worry not: for all **practical purposes**, `NumPy` random number generator is "random enough" such that you can use it as if it were "truly random".
+
+`NumPy` random generator capabilities were updated on version 1.17.0, meaning that you will probably found outdated ways to use the random number generator online, something like:
+
+```python
+from numpy import random
+random_numbers = random.standard_normal(10)
+```
+
+According to `NumPy` documentation, this is not the recommended way. To generate a sequence of random numbers sampled from a standard normal distribution use:
+
+
+```python
+from numpy.random import default_rng
+rng = default_rng()
+random_numbers = rng.standard_normal(5)
+print(f'Random numbers sequence sampled from a normal distributon:\n{random_numbers}')
+```
+
+    Random numbers sequence sampled from a normal distributon:
+    [ 1.28412127 -0.59084961  1.19645635 -1.43902792 -1.16416342]
+
+
+To explore the difference between the "old" and "new way" to generate random numbers in `NumPy`  see [here](https://numpy.org/doc/stable/reference/random/new-or-different.html#new-or-different).
+
+### Basic random sampling
+
+The three main methods to generate random numbers are `integers`, `random`, and `choice`. The first generates random integers, the second floats, and the third a uniform random sample from a one-dimensional array. Let's see them in action.
+
+For the `integers` method, you need to pass at least one argument indicating the ceiling to be considered:
+
+
+```python
+print(f'A random integer between [1, 10) (10 non-inclusive): \n{rng.integers(10)}\n')
+print(f'5 random integers between [1, 10) (10 non-inclusive): \n{rng.integers(10, size=5)}\n\n')
+```
+
+    A random integer between [1, 10) (10 non-inclusive): 
+    8
+    
+    5 random integers between [1, 10) (10 non-inclusive): 
+    [9 3 3 5 8]
+    
+    
+
+
+The `random` method is more flexible, as it allows to specify a tuple with the shape of the expected array of random numbers:
+
+
+```python
+print(f'A random float between [0.0, 1.0) (1.0 non-inclusive): \n{rng.random()}\n')
+print(f'3 random floats between [0.0, 1.0) (1.0 non-inclusive): \n{rng.random((3,))}\n')
+print(f'3,3 random floats between [0.0, 1.0) (1.0 non-inclusive): \n{rng.random((3,3))}\n')
+print(f'3,3,3 random floats between [0.0, 1.0) (1.0 non-inclusive): \n{rng.random((3,3,3))}\n')
+```
+
+    A random float between [0.0, 1.0) (1.0 non-inclusive): 
+    0.6419758158608625
+    
+    3 random floats between [0.0, 1.0) (1.0 non-inclusive): 
+    [0.42937336 0.52477446 0.02976526]
+    
+    3,3 random floats between [0.0, 1.0) (1.0 non-inclusive): 
+    [[0.3604225  0.88741889 0.07464158]
+     [0.36458258 0.75476422 0.26216883]
+     [0.69558381 0.49518423 0.77079096]]
+    
+    3,3,3 random floats between [0.0, 1.0) (1.0 non-inclusive): 
+    [[[0.23506917 0.38961231 0.07247969]
+      [0.16011855 0.7030183  0.86692858]
+      [0.00326837 0.34421767 0.05739803]]
+    
+     [[0.05635481 0.38558642 0.86025178]
+      [0.83572317 0.96456634 0.28242747]
+      [0.35763072 0.81671697 0.62012315]]
+    
+     [[0.5108489  0.65798614 0.07344178]
+      [0.89918787 0.8241409  0.30456018]
+      [0.96989985 0.55320836 0.61100954]]]
+    
+
+
+The `choice` method needs a one-dimensional array as argument to work:
+
+
+```python
+print(f'A random number from an array [1, 10] (inclusive): \n{rng.choice(np.arange(10))}\n')
+print(f'5 random numbers from an array [1, 10] (inclusive): \n{rng.choice(np.arange(10), 5)}\n\n')
+```
+
+    A random number from an array [1, 10] (inclusive): 
+    1
+    
+    5 random numbers from an array [1, 10] (inclusive): 
+    [2 7 2 1 6]
+    
+    
+
+
+There are a couple of additional options for the `choice` method to keep in mind:
+
+
+```python
+print("The 'p=' argument indicates the weight for each element of the sample space")
+print(f'A non-uniform sample of random numbers from an array [1, 10] (inclusive): \n{rng.choice(np.arange(10), 5, p=[0.1, 0, 0, 0.1, 0, 0.1, 0.2, 0, 0, 0.5])}\n\n')
+
+print("The previous examples were sampling with replacement. We can sample without replacement as well:")
+print(f'Uniform sample of random numbers from an array [1, 10] (inclusive): \n{rng.choice(np.arange(10), 5, replace=False)}\n\n')
+```
+
+    The 'p=' argument indicates the weight for each element of the sample space
+    A non-uniform sample of random numbers from an array [1, 10] (inclusive): 
+    [9 9 3 3 3]
+    
+    
+    The previous examples were sampling with replacement. We can sample without replacement as well:
+    Uniform sample of random numbers from an array [1, 10] (inclusive): 
+    [2 8 3 6 9]
+    
+    
+
+
+### Setting a seed for reproducibility
+
+In the previous examples, there is no way to reproduce the numbers we generated because we didn't specify a "seed". "*Wait, we are generating random numbers, why on earth I would want to repeat the same random number?*". To allow others to reproduce your results. In Data Science and Machine Learning different starting points (seeds) may lead to widely different results. There is a joke going around the Internet saying that the "seed" of a random number generator is another parameter of the model to be adjusted, and indeed, it is. 
+
+Setting a seed for generating reproducible random numbers is simple:
+
+
+```python
+from numpy.random import default_rng
+
+rg = default_rng(seed=9320) 
+
+print(f'{rg.integers(5, size=5)}')
+print(f'{rg.integers(5, size=5)}')
+print(f'{rg.integers(5, size=5)}')
+```
+
+    [0 2 1 0 4]
+    [2 2 2 3 1]
+    [3 1 1 0 1]
+
+
+Now, to get the same sequence of random integers, we just need to use the same seed:
+
+
+```python
+rg = default_rng(seed=9320) 
+
+print("Numbers are the same as in the example above:")
+print(f'{rg.integers(5, size=5)}')
+print(f'{rg.integers(5, size=5)}')
+print(f'{rg.integers(5, size=5)}')
+```
+
+    Numbers are the same as in the example above:
+    [0 2 1 0 4]
+    [2 2 2 3 1]
+    [3 1 1 0 1]
+
+
+If you don't set the seed, you will get different values after every run:
+
+
+```python
+rg = default_rng() 
+
+print("This time numbers will change at random:")
+print(f'{rg.integers(5, size=5)}')
+print(f'{rg.integers(5, size=5)}')
+print(f'{rg.integers(5, size=5)}')
+```
+
+    This time numbers will change at random:
+    [4 1 4 0 1]
+    [0 3 3 2 0]
+    [3 2 4 4 2]
+
+
+Again:
+
+
+```python
+rg = default_rng() 
+
+print(f'{rg.integers(5, size=5)}')
+print(f'{rg.integers(5, size=5)}')
+print(f'{rg.integers(5, size=5)}')
+```
+
+    [1 0 3 4 4]
+    [3 0 1 3 4]
+    [4 0 3 3 3]
+
+
+### Sampling from particular distributions
+
+If you are familiar with probability theory and statistics, you probably know you can sample at random from a wide variety of distributions other than uniform and normal. Luckily, `NumPy` provides many options to chose from (37 last time I check!). I'll just illustrate a couple, so check the documentation [here](https://numpy.org/doc/stable/reference/random/generator.html#distributions) to learn more about the other options.
+
+
+```python
+import matplotlib.pylab as plt
+plt.style.use('dark_background')
+%config InlineBackend.figure_format = 'retina' # to get high resolution images
+```
+
+Sampling from a **binomial** distribution example:
+
+
+```python
+n, p1, p2, t = 1, .5, .8, 1000
+binomial_fair = rg.binomial(n, p1, t)
+binomial_bias = rg.binomial(n, p2, t)
+```
+
+
+```python
+fig, (ax1, ax2) = plt.subplots(1, 2, constrained_layout=True)
+fig.suptitle('Sampling from binomial distribution')
+ax1.hist(binomial_fair)
+ax1.set_title("50/50 chance")
+ax2.hist(binomial_bias)
+ax2.set_title("20/80 chance");
+```
+
+<img src="/assets/post-12/output_372_0.png">
+
+
+Sampling from a **chisquare** distribution example:
+
+
+```python
+chisquare1 = rg.chisquare(5,1000)
+chisquare2 = rg.chisquare(50,1000)
+```
+
+
+```python
+fig, (ax1, ax2) = plt.subplots(1, 2, constrained_layout=True)
+fig.suptitle('Sampling from chisquare distribution')
+ax1.hist(chisquare1, bins=50)
+ax1.set_title("5 degrees of freedom")
+ax2.hist(chisquare2, bins=50)
+ax2.set_title("50 degrees of freedom");
+```
+
+<img src="/assets/post-12/output_375_0.png">
+
+
+Sampling from a **poisson** distribution example:
+
+
+```python
+poisson1 = rg.poisson(5, 1000)
+poisson2 = rg.poisson(50, 1000)
+```
+
+
+```python
+fig, (ax1, ax2) = plt.subplots(1, 2, constrained_layout=True)
+fig.suptitle('Sampling from poisson distribution')
+ax1.hist(poisson1, bins=10)
+ax1.set_title("Expectation of interval: 5")
+ax2.hist(poisson2, bins=10)
+ax2.set_title("Expectation of interval: 50");
+```
+
+<img src="/assets/post-12/output_378_0.png">
+
+
+## Basic statistics with NumPy
+
+Although `NumPy` is not a library for statistical analysis, it does provide several descriptive statistics functions. In `NumPy` documentation these are presented as "order", "average and variances", "correlating" and "histograms", but all of those are just descriptive statistics. Also, keep in mind that pretty much any statistical package in Python you'd find around is based in `NumPy` as its "engine" anyways.
+
+There are just too many statistical functions to explore them all (see [here](https://numpy.org/doc/stable/reference/routines.statistics.html)), so I'll focus my attention on the most common ones. 
+
+### Measures of central tendency
+
+Measures of central tendency are indicators of the center or typical value of data distributions. Let's check the most common ones:
+
+
+```python
+print(f'Arithmetic mean (or simply mean) of poisson distribution: {np.mean(poisson1)}')
+print(f'Arithmetic mean (or simply mean) of chisquare distribution: {np.mean(chisquare1)}\n')
+
+print(f'Median of poisson distribution: {np.median(poisson1)}')
+print(f'Median of chisquare distribution: {np.median(chisquare1)}\n')
+      
+      
+print(f'Weighted average of poisson distribution: {np.average(poisson1, weights=np.flip(poisson1))}')
+print(f'Weighted average of chisquare distribution: {np.average(chisquare1, weights=np.flip(chisquare1))}')
+```
+
+    Arithmetic mean (or simply mean) of poisson distribution: 5.015
+    Arithmetic mean (or simply mean) of chisquare distribution: 4.89668496863773
+    
+    Median of poisson distribution: 5.0
+    Median of chisquare distribution: 4.212365231904483
+    
+    Weighted average of poisson distribution: 5.030109670987039
+    Weighted average of chisquare distribution: 4.931798987029843
+
+
+### Measures of dispersion
+
+Measures of dispersion are indicators of the extent to which data distributions are stretched or squeezed. Let's check the most common ones:
+
+
+```python
+print(f'Standard deviation of poisson distribution: {np.std(poisson1)}')
+print(f'Standard deviation of chisquare distribution: {np.std(chisquare1)}\n')
+
+print(f'Variance of poisson distribution: {np.var(poisson1)}')
+print(f'Variance of chisquare distribution: {np.var(chisquare1)}\n')
+
+print(f'Range of values of poisson distribution: {np.ptp(poisson1)}')
+print(f'Range of values of chisquare distribution: {np.ptp(chisquare1)}\n')
+
+print(f'Min and max of poisson distribution: {np.amin(poisson1), np.amax(poisson1)}')
+print(f'Min and max of chisquare distribution: {np.amin(chisquare1), np.amax(poisson1)}\n')
+
+print(f'Percentile 50th of poisson distribution: {np.percentile(poisson1, 50)}')
+print(f'Percentile 50th of chisquare distribution: {np.percentile(chisquare1, 50)}\n')
+```
+
+    Standard deviation of poisson distribution: 2.322665494641878
+    Standard deviation of chisquare distribution: 3.2006656960017534
+    
+    Variance of poisson distribution: 5.394774999999999
+    Variance of chisquare distribution: 10.24426089756239
+    
+    Range of values of poisson distribution: 14
+    Range of values of chisquare distribution: 23.067229474073194
+    
+    Min and max of poisson distribution: (0, 14)
+    Min and max of chisquare distribution: (0.15474240923106727, 14)
+    
+    Percentile 50th of poisson distribution: 5.0
+    Percentile 50th of chisquare distribution: 4.212365231904483
+    
+
+
+### Meausres of correlation
+
+Measures of correlation are indicators of the extent and how two or more variables are related to each other (regardless of causality). Let's check the most common ones:
+
+
+```python
+rand_matrix = np.random.rand(5,5)
+```
+
+
+```python
+print(f"Pearson product-moment correlation coefficient:\n{np.corrcoef(poisson1,poisson2)}\n")
+print(f"Cross-correlation coefficient:\n{np.correlate(poisson1,poisson2)}\n")
+print(f"Covariance matrix coefficients:\n{np.cov(poisson1,poisson2)}\n")
+
+print(f"Pearson product-moment correlation coefficient:\n{np.corrcoef(rand_matrix)}\n")
+print(f"Covariance matrix coefficients:\n{np.cov(rand_matrix)}")
+```
+
+    Pearson product-moment correlation coefficient:
+    [[ 1.         -0.03087462]
+     [-0.03087462  1.        ]]
+    
+    Cross-correlation coefficient:
+    [249451]
+    
+    Covariance matrix coefficients:
+    [[ 5.40017518 -0.53725726]
+     [-0.53725726 56.07296897]]
+    
+    Pearson product-moment correlation coefficient:
+    [[ 1.         -0.91426916 -0.37348227  0.47770458 -0.17469488]
+     [-0.91426916  1.          0.34706955 -0.63275776 -0.14893734]
+     [-0.37348227  0.34706955  1.         -0.80069146 -0.14583296]
+     [ 0.47770458 -0.63275776 -0.80069146  1.          0.61109471]
+     [-0.17469488 -0.14893734 -0.14583296  0.61109471  1.        ]]
+    
+    Covariance matrix coefficients:
+    [[ 0.08273057 -0.04727347 -0.03477924  0.04340413 -0.01916139]
+     [-0.04727347  0.03231623  0.02019965 -0.03593242 -0.01021005]
+     [-0.03477924  0.02019965  0.10481758 -0.08188813 -0.01800473]
+     [ 0.04340413 -0.03593242 -0.08188813  0.09978777  0.07361411]
+     [-0.01916139 -0.01021005 -0.01800473  0.07361411  0.14542122]]
+
+
+### Histograms
+
+Finally, `NumPy` also offers some convinient functions to compute histograms:
+
+
+```python
+print(f"Histogram poisson distribution:\n{np.histogram(poisson1)}\n")
+print(f"Histogram chisquare distribution:\n{np.histogram(chisquare1)}\n")
+
+print(f"Histogram poisson distribution with 4 bins:\n{np.histogram(poisson1, bins=np.arange(4))}\n")
+print(f"Histogram chisquare distribution with 4 bins:\n{np.histogram(chisquare1, bins=np.arange(4))}\n")
+```
+
+    Histogram poisson distribution:
+    (array([ 44,  91, 320, 168, 124, 176,  40,  28,   6,   3]), array([ 0. ,  1.4,  2.8,  4.2,  5.6,  7. ,  8.4,  9.8, 11.2, 12.6, 14. ]))
+    
+    Histogram chisquare distribution:
+    (array([243, 329, 212, 128,  53,  20,  10,   1,   2,   2]), array([ 0.15474241,  2.46146536,  4.7681883 ,  7.07491125,  9.3816342 ,
+           11.68835715, 13.99508009, 16.30180304, 18.60852599, 20.91524894,
+           23.22197188]))
+    
+    Histogram poisson distribution with 4 bins:
+    (array([ 11,  33, 215]), array([0, 1, 2, 3]))
+    
+    Histogram chisquare distribution with 4 bins:
+    (array([ 41, 129, 153]), array([0, 1, 2, 3]))
+    
+
+
+## Basic linear algebra with NumPy
+
+Linear algebra is a subject where `NumPy` shines as an array-like numerical computing library. Much of machine learning and data science is applied linear algebra and `NumPy` is the (for the most part) perfect tool for that. Since I already wrote a ~20,000  article on linear algebra with `NumPy` and Python (check it out [here](https://pabloinsente.github.io/intro-linear-algebra)) I focus only in a couple of methods I find more important to be aware of. This also means that I won't spend time explaining what each operation is, just how to compute it with `NumPy`.
+
+### Basic vector operations
+
+
+```python
+x, y = np.arange(3), np.arange(4,7)
+alpha, beta = 2, 3
+
+print(f"Vector x: {x}, vector y: {y}\n")
+print(f"Vector addition: {x + y}\n")
+print(f"Vector scalar-multiplication: {x * alpha}\n")
+print(f"Linear combinations of vectors: {x*alpha + y*beta}\n")
+print(f"Vector-vector multiplication: dot product: {x @ y}\n")
+```
+
+    Vector x: [0 1 2], vector y: [4 5 6]
+    
+    Vector addition: [4 6 8]
+    
+    Vector scalar-multiplication: [0 2 4]
+    
+    Linear combinations of vectors: [12 17 22]
+    
+    Vector-vector multiplication: dot product: 17
+    
+
+
+### Basic matrix operations
+
+
+```python
+A, B, C = np.arange(1, 10).reshape(3,3), np.arange(11, 20).reshape(3,3), np.random.rand(3,3)
+
+print(f"Matrix A:\n{A}\n")
+print(f"Matrix B:\n{B}\n")
+print(f"Matrix-matrix addition:\n{A+B}\n")
+print(f"Matrix-scalar multiplication:\n{A*alpha}\n")
+print(f"Matrix-vector multiplication: dot product:\n{A @ x}\n")
+print(f"Matrix-matrix multiplication: dot product:\n{A @ B}\n")
+print(f"Matrix inverse:\n{np.linalg.inv(C)}\n")
+print(f"Matrix transpose:\n{A.T}\n")
+print(f"Hadamard product: \n{A * B}")
+```
+
+    Matrix A:
+    [[1 2 3]
+     [4 5 6]
+     [7 8 9]]
+    
+    Matrix B:
+    [[11 12 13]
+     [14 15 16]
+     [17 18 19]]
+    
+    Matrix-matrix addition:
+    [[12 14 16]
+     [18 20 22]
+     [24 26 28]]
+    
+    Matrix-scalar multiplication:
+    [[ 2  4  6]
+     [ 8 10 12]
+     [14 16 18]]
+    
+    Matrix-vector multiplication: dot product:
+    [ 8 17 26]
+    
+    Matrix-matrix multiplication: dot product:
+    [[ 90  96 102]
+     [216 231 246]
+     [342 366 390]]
+    
+    Matrix inverse:
+    [[-21.32169045  -3.8131569   38.56457317]
+     [  4.50732439   3.31820901 -12.24388988]
+     [  7.14926296  -0.18735867  -8.81170042]]
+    
+    Matrix transpose:
+    [[1 4 7]
+     [2 5 8]
+     [3 6 9]]
+    
+    Hadamard product: 
+    [[ 11  24  39]
+     [ 56  75  96]
+     [119 144 171]]
+
+
+### Eigendecomposition
+
+
+```python
+eigen_values, eigen_vectors = np.linalg.eig(C)
+print(f"Matrix eigenvalues:\n{eigen_values}\n\nMatrix eigenvectors:\n{eigen_vectors}")
+```
+
+    Matrix eigenvalues:
+    [ 1.68949164 -0.03099435  0.20589414]
+    
+    Matrix eigenvectors:
+    [[-0.49129322 -0.93332275  0.55829177]
+     [-0.79415823  0.21672628 -0.77249178]
+     [-0.35769216  0.28624879  0.30259999]]
+
+
+### Singular value decomposition
+
+
+```python
+U, S, T = np.linalg.svd(C)
+
+print(f'Left orthogonal matrix C:\n{np.round(U, 2)}\n')
+print(f'Singular values diagonal matrix C:\n{np.round(S, 2)}\n')
+print(f'Right orthogonal matrix C:\n{np.round(T, 2)}')
+```
+
+    Left orthogonal matrix C:
+    [[-0.54 -0.69  0.48]
+     [-0.75  0.65  0.09]
+     [-0.38 -0.31 -0.87]]
+    
+    Singular values diagonal matrix C:
+    [1.89 0.27 0.02]
+    
+    Right orthogonal matrix C:
+    [[-0.36 -0.57 -0.74]
+     [ 0.07  0.77 -0.63]
+     [-0.93  0.28  0.23]]
+
+
+## Strings operations with NumPy
+
+Turns out `NumPy` is not only a power number-crunching engine but also pretty good at handling strings. Although strings (letters, characters) and numbers are completely different things from a human perspective, both reduce to sequences of zeros and ones to the computer, so `NumPy` can work with strings in a vectorized fashion as well. 
+
+### Basic string manipulation
+
+String manipulation is a whole area of expertise in itself, so we can't and won't dig very deep into it. Yet, `NumPy` can help you out to perform a wide variety of common string operations with relative ease. Let's check a few.
+
+
+```python
+string1 = np.array(["Ms", "Mx", "Mr", "Dr", "Lord"])
+string2 = np.array(["Weird", "Smelly", "Smart", "Strong", "Happy"])
+string3 = np.array([" pants ", " feet ", " belly buttom ", " elbow ", " jaw "])
+```
+
+
+```python
+print(f"Add strings:\n{np.char.add(string1, string2)}\n")
+print(f"Multiply strings:\n{np.char.multiply(string1, 2)}\n")
+print(f"Capitalize first letter of strings:\n{np.char.capitalize(string3)}\n")
+print(f"Join strings in a sequence:\n{np.char.join('-', string1)}\n")
+print(f"Replace string elements:\n{np.char.replace(string2, 'S', 'P')}\n")
+print(f"Strip char elements from the beginning and end of the string (useful to remove white spaces):\n{np.char.strip(string3, chars=' ')}\n")
+print(f"Title case strings:\n{np.char.title(string3)}\n")
+print(f"Upper case strings:\n{np.char.upper(string3)}\n")
+```
+
+    Add strings:
+    ['MsWeird' 'MxSmelly' 'MrSmart' 'DrStrong' 'LordHappy']
+    
+    Multiply strings:
+    ['MsMs' 'MxMx' 'MrMr' 'DrDr' 'LordLord']
+    
+    Capitalize first letter of strings:
+    [' pants ' ' feet ' ' belly buttom ' ' elbow ' ' jaw ']
+    
+    Join strings in a sequence:
+    ['M-s' 'M-x' 'M-r' 'D-r' 'L-o-r-d']
+    
+    Replace string elements:
+    ['Weird' 'Pmelly' 'Pmart' 'Ptrong' 'Happy']
+    
+    Strip char elements from the beginning and end of the string (useful to remove white spaces):
+    ['pants' 'feet' 'belly buttom' 'elbow' 'jaw']
+    
+    Title case strings:
+    [' Pants ' ' Feet ' ' Belly Buttom ' ' Elbow ' ' Jaw ']
+    
+    Upper case strings:
+    [' PANTS ' ' FEET ' ' BELLY BUTTOM ' ' ELBOW ' ' JAW ']
+    
+
+
+### Basic string comparison
+
+String comparison in `NumPy` utilizes the same logic as with numbers. Keep in mind you have to use the methods from the `char` module. Be aware that white spaces at the end of the string will be removed before comparison.
+
+
+```python
+strings = np.array(["cat", "dog", "dog ", "lizard"])
+
+print(f"Equality comparison cat-dog: {np.char.equal(strings[0],strings[1])}")
+print(f"Equality comparison dog-dog: {np.char.equal(strings[1],strings[2])}\n")
+
+
+print(f"Inequality comparison cat-dog: {np.char.not_equal(strings[0],strings[1])}")
+print(f"Inequality comparison dog-dog: {np.char.not_equal(strings[1],strings[2])}\n")
+
+print(f"Greather than comparison cat-lizard: {np.char.greater(strings[0],strings[3])}")
+print(f"Less than comparison lizard-dog: {np.char.not_equal(strings[3],strings[2])}\n")
+```
+
+    Equality comparison cat-dog: False
+    Equality comparison dog-dog: True
+    
+    Inequality comparison cat-dog: True
+    Inequality comparison dog-dog: False
+    
+    Greather than comparison cat-lizard: False
+    Less than comparison lizard-dog: True
+    
+
+
+### String information
+
+There are many instances where you will want to search for or information contained in a string. `NumPy` also has a rich list of methods to approach that: 
+
+
+```python
+strings2 = np.array(["Psychotomimetic", "Trichotillomania",
+                     "Omphaloskepsis","Xenotransplantation",
+                     "Embourgeoisement", "Polyphiloprogenitive",
+                     "12345", "     "])
+
+print(f"Count number of times substring 'p' occurs in string: {np.char.count(strings2, 'p')}\n")
+print(f"Check whether the strings ends with 's': {np.char.endswith(strings2, 's')}\n")
+print(f"Find the first ocurrence 's' and return the index postion: {np.char.find(strings2, 's')}\n")
+print(f"Find strings with numeric characters only: {np.char.isnumeric(strings2)}\n")
+print(f"Find strings with at least one white space: {np.char.isspace(strings2)}\n")
+```
+
+    Count number of times substring 'p' occurs in string: [0 0 2 1 0 2 0 0]
+    
+    Check whether the strings ends with 's': [False False  True False False False False False]
+    
+    Find the first ocurrence 's' and return the index postion: [ 1 -1  7  8 10 -1 -1 -1]
+    
+    Find strings with numeric characters only: [False False False False False False  True False]
+    
+    Find strings with at least one white space: [False False False False False False False  True]
+    
+
