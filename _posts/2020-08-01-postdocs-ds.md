@@ -38,10 +38,10 @@ input[type="submit"], button, textarea {
                 Arial, sans-serif; 
 }
 
-textarea { width: 100%;  resize: none; }
+textarea { width: 90%;  resize: none; }
 </style>
 
-<form id="fs-frm" name="simple-contact-form" accept-charset="utf-8" action="https://formspree.io/xbjzqgzo" method="post">
+<form id="fs-frm" name="simple-contact-form" accept-charset="utf-8" action="https://formspree.io/xknqyrjn" method="post">
   <fieldset id="fs-frm-inputs">
     <label for="full-name">Full Name</label>
     <input type="text" name="name" id="full-name" placeholder="First and Last" required="">
