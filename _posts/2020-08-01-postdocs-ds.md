@@ -8,9 +8,11 @@ Since I'm on the search for new opportunities in data science for my life post P
 
 The current COVID-19 situation has triggered a hiring freeze on many institutions around the world. Yet, some positions are still available and some may reopen next year, meaning I'll be adding both currently available positions and positions that may reopen next year. 
 
-If you want me to **add a new postdoctoral opportunity**, please fill out the form below the table with your message.
+If you want me to *add a new postdoctoral opportunity* **anywhere in the world!**, please fill out the form below the table with your message.
 
 <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vT0oKNA910VQvSzLtk1Za9K3xLRNFO6Jy1S-yl-grKWoTvlibR1hqHg3VtB89Bfu0r8lzSF0MsS9UdR/pubhtml?widget=true&amp;headers=false"  width="100%" height="300"></iframe>
+
+<br>
 
 
 ## Template to add a postdoc to the database
