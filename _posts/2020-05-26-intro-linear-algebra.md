@@ -460,7 +460,7 @@ $$
 \end{bmatrix}
 $$
 
-**Unit vectors**, are vectors composed of a single element equal to one, and the rest to zero. Unit vectors are important to understand applications like norms. For instance, $\bf{x_1}$, $\bf{x_2}$, and $\bf{x_3}$ are unit vectors:
+**Unit vectors** we will understand as vectors composed of a single element equal to one, and the rest to zero. Unit vectors are important to understand applications like norms. For instance, $\bf{x_1}$, $\bf{x_2}$, and $\bf{x_3}$ are unit vectors:
 
 $$
 \bf{x_1} = 
@@ -482,6 +482,8 @@ $$
 1
 \end{bmatrix}
 $$
+
+(More rigorously speaking, any vector of length 1 is a unit vector (thus, not only *[0, 0, 1]*, but *[0, 4/5, 3/5]* is also a unit vector), but we'll stick to the simple ones here, also known as **orts**.)
 
 **Sparse vectors**, are vectors with most of its elements equal to zero. We denote the number of nonzero elements of a vector $\bf{x}$ as $nnz(x)$. The sparser possible vector is the zero vector. Sparse vectors are common in machine learning applications and often require some type of method to deal with them effectively.  
 
