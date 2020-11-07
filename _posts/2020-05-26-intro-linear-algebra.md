@@ -1710,7 +1710,7 @@ $$
 \end{bmatrix}
 $$
 
-You can think in the inverse as playing the same role than $1$ in operations with real numbers. The inverse matrix does not look very interesting in itself, but it plays an important role in some proofs and for the inverse matrix (which can be used to solve system of linear equations). 
+The identity matrix is playing the same role as $1$ in operations with real numbers. The identity matrix does not look very interesting in itself, but it plays an important role in some proofs and for the inverse matrix (which can be used to solve system of linear equations). 
 
 ### Matrix inverse
 
