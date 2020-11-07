@@ -1106,7 +1106,7 @@ $$
 \vert \langle x, y \rangle \vert \leq \Vert x \Vert \Vert y \Vert
 $$
 
-In words: *the absolute value of the inner product of a pair of vectors is less than or equal to the products of their length*. The only case where both sides of the expression are *equal* is when vectors are colinear, for instance, when $\bf{x}$ is a scaled version of $\bf{y}$. In the 2-dimensional case, such vectors would lie along the same line. 
+In words: *the absolute value of the inner product of a pair of vectors is less than or equal to the product of their lengths*. The only case where both sides of the expression are *equal* is when vectors are colinear, for instance, when $\bf{x}$ is a scaled version of $\bf{y}$. In the 2-dimensional case, such vectors would lie along the same line. 
 
 The definition of the angle between vectors can be thought as a generalization of the **law of cosines** in trigonometry, which defines for a triangle with sides $a$, $b$, and $c$, and an angle $\theta$ are related as:
 
