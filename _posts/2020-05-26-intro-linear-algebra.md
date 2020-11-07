@@ -792,7 +792,7 @@ $$
 
 Dot products are so important in machine learning, that after a while they become second nature for practitioners.
 
-To multiply two vectors with dimensions (rows=2, cols=1) in `Numpy`, we need to transpose the first vector at using the `@` operator:
+To multiply two vectors with dimensions (rows=2, cols=1) in `Numpy` using the `@` operator, we need to transpose the first vector:
 
 
 ```python
