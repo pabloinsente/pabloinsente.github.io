@@ -208,7 +208,7 @@ $$
 \textit{B} \supset \textit{A}
 $$
 
-Belonging and inclusion are derived from **axion of extension**: *two sets are equal if and only if they have the same elements*. This axiom may sound trivially obvious but is necessary to make belonging and inclusion rigorous.
+Belonging and inclusion are derived from **axiom of extension**: *two sets are equal if and only if they have the same elements*. This axiom may sound trivially obvious but is necessary to make belonging and inclusion rigorous.
 
 ## Set specification
 
