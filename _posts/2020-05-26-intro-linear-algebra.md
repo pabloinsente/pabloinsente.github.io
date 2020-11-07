@@ -1646,6 +1646,7 @@ Matrix-matrix multiplication has a series of important properties:
 - Transpose of product: $(\textit{A}\textit{B})^T = \textit{B}^T\textit{A}^T$
 
 It's also important to remember that **matrix-matrix multiplication orders matter**, this is, it is **not commutative**. Hence, in general, $AB \ne BA$.
+In fact, for non-square matrices both can't even exist at the same time.
 
 In `NumPy`, we obtan the matrix-matrix product with the `@` operator or `dot` method: 
 
