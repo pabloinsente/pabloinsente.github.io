@@ -240,7 +240,7 @@ In machine learning, we usually do care about presentation order. For this, we n
 
 ## Relations
 
-From ordered pairs, we can derive the idea of **relations** among sets or between elements and sets. Relations can be binary, ternary, quaternary, or N-ary. Here we are just concerned with binary relationships. In set theory, **relations** are defined as *sets of ordered pairs*, and denoted as $\textit{R}$. Hence, we can express the relation between $\textit{x}$ and $\textit{y}$ as:
+From ordered pairs, we can derive the idea of **relations** among sets or between elements and sets. Relations can be binary, ternary, quaternary, or N-ary. Here we are just concerned with binary relationships. In set theory, **binary relations** are defined as *sets of ordered pairs*, and denoted as $\textit{R}$. Hence, we can express the relation between $\textit{x}$ and $\textit{y}$ as:
 
 $$
 \textit{x R y}
