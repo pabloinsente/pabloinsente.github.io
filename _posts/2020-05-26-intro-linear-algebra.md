@@ -236,7 +236,7 @@ Pairs of sets come in two flavors: *unordered* and *ordered*. We care about pair
 
 Consider a pair of sets $\textit{x}$ and $\textit{y}$. An **unordered pair** is a set whose elements are $\{ \textit{x},\textit{y} \}$, and $\{ \textit{x},\textit{y} \} = \{ \textit{y},\textit{x} \} $. Therefore, presentation order does not matter, the set is the same.
 
-In machine learning, we usually do care about presentation order. For this, we need to define an **ordered pair** (I'll introduce this at an intuitive level, to avoid to introduce too many new concepts). An **ordered pair** is denoted as $( \textit{x},\textit{y} )$, with $\textit{x}$ as the *first coordinate* and $\textit{y}$ as the *second coordinate*. A valid ordered pair has the property that $( \textit{x},\textit{y} ) \ne ( \textit{y},\textit{x} )$.
+In machine learning, we usually do care about presentation order. For this, we need to define an **ordered pair** (I'll introduce this at an intuitive level, to avoid to introduce too many new concepts). An **ordered pair** is denoted as $( \textit{x},\textit{y} )$, with $\textit{x}$ as the *first coordinate* and $\textit{y}$ as the *second coordinate*. A valid ordered pair has the property that $( \textit{x},\textit{y} ) \ne ( \textit{y},\textit{x} )$, unless $\{ \textit{x} \}$ and $\{ \textit{y} \}$ are the same set.
 
 ## Relations
 
