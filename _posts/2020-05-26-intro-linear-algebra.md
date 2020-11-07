@@ -103,7 +103,7 @@ If you find any mistake in notes feel free to reach me out at pcaceres@wisc.edu 
     - [Antidiagonal matrix](#antidiagonal-matrix)
     - [Design matrix](#design-matrix)
 - [Matrices as systems of linear equations](#matrices-as-systems-of-linear-equations)
-- [The four fundamental matrix subsapces](#the-four-fundamental-matrix-subsapces)
+- [The four fundamental matrix subspaces](#the-four-fundamental-matrix-subspaces)
     - [The column space](#the-column-space)
     - [The row space](#the-row-space)
     - [The null space](#the-null-space)
@@ -2129,7 +2129,7 @@ Geometrically, the solution for this representation equals to plot a set of **ve
 <img src="/assets/post-10/b-vectors-combination.svg">
 
 
-## The four fundamental matrix subsapces
+## The four fundamental matrix subspaces
 
 Let's recall the definition of a subspace in the context of vectors:
 
