@@ -901,7 +901,7 @@ The importance of the concepts of linear dependence and independence will become
 
 ## Vector null space
 
-Now that we know what subspaces and linear dependent vectors are, we can introduce the idea of the **null space**. Intuitively, the null space of a set of vectors are **all linear combinations that "map" into the zero vector**. Consider a set of geometric vectors $\bf{w}$, $\bf{x}$, $\bf{y}$, and $\bf{z}$ as in **Fig. 8**. By inspection, we can see that vectors $\bf{x}$ and $\bf{z}$ are parallel to each other, hence, independent. On the contrary, vectors $\bf{w}$ and $\bf{y}$ can be obtained as linear combinations of $\bf{x}$ and $\bf{z}$, therefore, dependent. 
+Now that we know what subspaces and linear dependent vectors are, we can introduce the idea of the **null space**. Intuitively, the null space of a set of vectors are **all linear combinations that "map" into the zero vector**. Consider a set of geometric vectors $\bf{w}$, $\bf{x}$, $\bf{y}$, and $\bf{z}$ as in **Fig. 8**. By inspection, we can see that vectors $\bf{x}$ and $\bf{z}$ are perpendicular to each other, hence, independent. On the contrary, vectors $\bf{w}$ and $\bf{y}$ can be obtained as linear combinations of $\bf{x}$ and $\bf{z}$, therefore, dependent. 
 
 **Fig. 8: Vector null space**
 
