@@ -319,7 +319,7 @@ alt.themes.enable('dark')
 
 Linear algebra is the study of vectors. At the most general level, vectors are **ordered finite lists of numbers**. Vectors are the most fundamental mathematical object in machine learning. We use them to **represent attributes of entities**: age, sex, test scores, etc. We represent vectors by a bold lower-case letter like $\bf{v}$ or as a lower-case letter with an arrow on top like $\vec{v}$.
 
-Vectors are a type of mathematical object that can be **added together** and/or **multiplied by a number** to obtain another object of **the same kind**. For instance, if we have a vector $\bf{x} = \text{age}$ and a second vector $\bf{y} = \text{weight}$ (of the same length), we can add them together and obtain a third vector $\bf{z} = x + y$. We can also multiply $2 \times \bf{x}$ to obtain $2\bf{x}$, again, a vector. This is what we mean by *the same kind*: the returning object is still a *vector*, and has the same length. 
+Vectors are a type of mathematical object that can be **added together** and/or **multiplied by a number** to obtain another object of **the same kind**. For instance, if we have a vector $\bf{x} = \text{age}$ and a second vector $\bf{y} = \text{weight}$ (of the same size), we can add them together and obtain a third vector $\bf{z} = x + y$. We can also multiply $2 \times \bf{x}$ to obtain $2\bf{x}$, again, a vector. This is what we mean by *the same kind*: the returning object is still a *vector*, and has the same size. 
 
 ## Types of vectors
 
