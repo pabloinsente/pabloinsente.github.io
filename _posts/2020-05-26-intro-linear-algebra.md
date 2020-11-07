@@ -321,13 +321,13 @@ Linear algebra is the study of vectors. At the most general level, vectors are *
 
 Vectors are a type of mathematical object that can be **added together** and/or **multiplied by a number** to obtain another object of **the same kind**. For instance, if we have a vector $\bf{x} = \text{age}$ and a second vector $\bf{y} = \text{weight}$, we can add them together and obtain a third vector $\bf{z} = x + y$. We can also multiply $2 \times \bf{x}$ to obtain $2\bf{x}$, again, a vector. This is what we mean by *the same kind*: the returning object is still a *vector*. 
 
-## Types of vectors
+## Points of view on vectors
 
-Vectors come in three flavors: (1) **geometric vectors**, (2) **polynomials**, (3) and **elements of $\mathbb{R^n}$ space**. We will defined each one next.
+We can look at vectors in three ways: (1) as **geometric vectors**, (2) as **polynomials**, (3) and as **elements of $\mathbb{R^n}$ space**. We will defined each one next.
 
 ### Geometric vectors
 
-**Geometric vectors are oriented segments**. Therse are the kind of vectors you probably learned about in high-school physics and geometry. Many linear algebra concepts come from the geometric point of view of vectors: space, plane, distance, etc.
+**Geometric vectors are just arrows, oriented straight line segments**. Therse are the kind of vectors you probably learned about in high-school physics and geometry. Many linear algebra concepts come from the geometric point of view of vectors: space, plane, distance, etc.
 
 **Fig. 2: Geometric vectors**
 
@@ -337,18 +337,18 @@ Vectors come in three flavors: (1) **geometric vectors**, (2) **polynomials**, (
 
 ### Polynomials
 
-**A polynomial is an expression like $f(x) = x^2 + y + 1$**. This is, a expression adding multiple "terms" (nomials). Polynomials are vectors because they meet the definition of a vector: they can be added together to get another polynomial, and they can be multiplied together to get another polynomial. 
+**A polynomial is an expression like $p(x) = a*x^3 + b*x^2 + c*x + d$**. This is, a expression adding multiple "terms" (nomials). Polynomials are vectors because they meet the definition of a vector: they can be added together to get another polynomial, and they can be multiplied together to get another polynomial. 
 
 $$
-\text{function addition is valid} \\
-f(x) + g(x)\\
+\text{polynomial addition is valid} \\
+p(x) + s(x)\\
 $$
 $$
 and\\
 $$
 $$
 \text{multiplying by a scalar is valid} \\
-5 \times f(x)
+5 \times p(x)
 $$
 
 **Fig. 3: Polynomials**
@@ -359,7 +359,7 @@ $$
 
 ### Elements of R
 
-**Elements of $\mathbb{R}^n$ are sets of real numbers**. This type of representation is arguably the most important for applied machine learning. It is how data is commonly represented in computers to build machine learning models. For instance, a vector in $\mathbb{R}^3$ takes the shape of:
+**Elements of $\mathbb{R}^n$ are ordered lists of length $n$ of real numbers**. This type of representation is arguably the most important for applied machine learning. It is how data is commonly represented in computers to build machine learning models. For instance, a vector in $\mathbb{R}^3$ takes the shape of:
 
 $$
 \bf{x}=
