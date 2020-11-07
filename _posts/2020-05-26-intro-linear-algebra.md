@@ -271,7 +271,7 @@ Consider a pair of sets $\textit{X}$ and $\textit{Y}$. We say that a **function*
 - $dom \textit{ f} = \textit{X}$ and
 - such that for each $\textit{x} \in \textit{X}$ there is exactly one element of $\textit{y} \in \textit{Y}$ with $(\textit{x}, \textit{y}) \in {f}$ 
 
-More informally, we say that a function "*transform*" or "*maps*" or "*sends*" $\textit{x}$ onto $\textit{y}$, and for each "*argument*" $\textit{x}$ there is a value $\textit{y}$ that $\textit{f }$ "*assumes*" or "*takes*".
+More informally, we say that a function "*transforms*" or "*maps*" or "*sends*" $\textit{x}$ onto $\textit{y}$, and for each "*argument*" $\textit{x}$ there is a value $\textit{y}$ that $\textit{f }$ "*assumes*" or "*takes*".
 
 We typically denote a relation or function or transformation or mapping from X onto Y as:
 
