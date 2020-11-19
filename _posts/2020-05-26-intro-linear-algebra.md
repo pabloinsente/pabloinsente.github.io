@@ -6083,7 +6083,7 @@ Singular Value Decomposition (SVD) is one the most relevant decomposition in app
 
 ### Singular Value Decomposition Theorem
 
-Since we reviewed Eigendecomposition already, understanding SVD becomes easier. The SVD theorem states that any rectangular matrix $\textit{A} \in \mathbb{R}^{m \times n}$ can be decomposed as the product of an orthogonal matrix $\textit{U} \in \mathbb{R}^{m \times m}$, a diagonal matrix $\Sigma \in \mathbb{R}^{m \times m}$, and another orthogonal matrix $\textit{X}^{-1} \in \mathbb{R}^{n \times n}$:
+Since we reviewed Eigendecomposition already, understanding SVD becomes easier. The SVD theorem states that any rectangular matrix $\textit{A} \in \mathbb{R}^{m \times n}$ can be decomposed as the product of an orthogonal matrix $\textit{U} \in \mathbb{R}^{m \times m}$, a diagonal matrix $\Sigma \in \mathbb{R}^{m \times n}$, and another orthogonal matrix $\textit{X}^{-1} \in \mathbb{R}^{n \times n}$:
 
 $$
 \textit{A} := \textit{U} \Sigma \textit{X}^{-1}
