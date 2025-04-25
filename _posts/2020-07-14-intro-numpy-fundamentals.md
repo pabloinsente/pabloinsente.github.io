@@ -4,11 +4,6 @@ published: true
 mathjax: true
 ---
 
----
-
-<iframe src="https://github.com/sponsors/pabloinsente/card" title="Sponsor pabloinsente" height="225" width="600" style="border: 0;"></iframe>
-
----
 
 ***Note***: If you prefer to read with a **white background and black font**, you can see this article in GitHub [here](https://github.com/pabloinsente/intro-sc-python/blob/master/notebooks/intro-numpy-fundamentals.ipynb). Las time I check SVG images rendered just fine.
 
