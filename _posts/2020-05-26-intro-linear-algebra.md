@@ -267,9 +267,9 @@ This reads: the set formed by the values of $\text{y}$ such that at least one el
 Consider a pair of sets $\textit{X}$ and $\textit{Y}$. We say that a **function** from $\textit{X}$ to $\textit{Y}$ is relation such that:
 
 - $dom \textit{ f} = \textit{X}$ and
-- such that for each $\textit{x} \in \textit{X}$ there is a unique element of  $\textit{y} \in \textit{Y}$ with $(\textit{x}, \textit{y}) \in {f}$ 
+- such that for each $\textit{x} \in \textit{X}$ there is exactly one element of $\textit{y} \in \textit{Y}$ with $(\textit{x}, \textit{y}) \in {f}$ 
 
-More informally, we say that a function "*transform*" or "*maps*" or "*sends*" $\textit{x}$ onto $\textit{y}$, and for each "*argument*" $\textit{x}$ there is a unique value $\textit{y}$ that $\textit{f }$ "*assummes*" or "*takes*".
+More informally, we say that a function "*transforms*" or "*maps*" or "*sends*" $\textit{x}$ onto $\textit{y}$, and for each "*argument*" $\textit{x}$ there is a value $\textit{y}$ that $\textit{f }$ "*assumes*" or "*takes*".
 
 We typically denote a relation or function or transformation or mapping from X onto Y as:
 
